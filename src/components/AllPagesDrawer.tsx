@@ -58,12 +58,12 @@ export const AllPagesDrawer: React.FC<AllPagesDrawerProps> = ({
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+        className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm transition-opacity duration-300"
         onClick={onClose}
       />
 
       {/* Drawer Panel */}
-      <div className={`absolute inset-y-0 ${lang === 'ar' ? 'start-0' : 'end-0'} max-w-xs w-full bg-white shadow-2xl flex flex-col z-10 transition-transform animate-in slide-in-from-${lang === 'ar' ? 'right' : 'left'} duration-300`}>
+      <div className={`fixed inset-y-0 start-0 max-w-xs w-full bg-white shadow-2xl flex flex-col z-50 transform transition-transform duration-300 ease-in-out`}>
         
         {/* Header */}
         <div className="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-900 text-white">
