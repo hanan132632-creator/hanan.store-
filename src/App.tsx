@@ -36,6 +36,7 @@ import { CookieConsentBanner } from './components/CookieConsentBanner';
 import { AdSenseBanner } from './components/AdSenseBanner';
 import { BlogSection } from './components/BlogSection';
 import { SearchConsoleModal } from './components/SearchConsoleModal';
+import { SitemapViewerModal } from './components/SitemapViewerModal';
 import { Footer } from './components/Footer';
 import { MobileBottomNav } from './components/MobileBottomNav';
 
@@ -53,6 +54,8 @@ export default function App() {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<LegalTab>('privacy');
   const [isSearchConsoleOpen, setIsSearchConsoleOpen] = useState(false);
+  const [isSitemapViewerOpen, setIsSitemapViewerOpen] = useState(false);
+  const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
@@ -491,6 +494,10 @@ export default function App() {
             setIsLegalOpen(true);
           }}
           onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
+          onOpenSitemapViewer={(type) => {
+            setSitemapViewerTab(type);
+            setIsSitemapViewerOpen(true);
+          }}
         />
       </div>
 
@@ -637,6 +644,14 @@ export default function App() {
       <SearchConsoleModal
         isOpen={isSearchConsoleOpen}
         onClose={() => setIsSearchConsoleOpen(false)}
+        lang={lang}
+      />
+
+      {/* XML Sitemap & System Files Viewer Modal */}
+      <SitemapViewerModal
+        isOpen={isSitemapViewerOpen}
+        onClose={() => setIsSitemapViewerOpen(false)}
+        initialTab={sitemapViewerTab}
         lang={lang}
       />
 

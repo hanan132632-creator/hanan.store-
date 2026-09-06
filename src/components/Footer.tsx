@@ -19,6 +19,7 @@ interface FooterProps {
   onOpenDomainInfo: () => void;
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
   onOpenSearchConsole?: () => void;
+  onOpenSitemapViewer?: (type: 'sitemap' | 'robots' | 'ads') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -26,7 +27,8 @@ export const Footer: React.FC<FooterProps> = ({
   onCategorySelect,
   onOpenDomainInfo,
   onOpenLegal,
-  onOpenSearchConsole
+  onOpenSearchConsole,
+  onOpenSitemapViewer
 }) => {
   const t = TRANSLATIONS[lang];
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -201,32 +203,26 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li className="flex items-center gap-2 pt-1 font-mono text-[11px]">
-                <a 
-                  href="/sitemap.xml" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-300 text-stone-400 hover:underline"
+                <button 
+                  onClick={() => onOpenSitemapViewer?.('sitemap')}
+                  className="hover:text-blue-300 text-stone-400 hover:underline cursor-pointer bg-transparent border-0 p-0 font-mono text-[11px]"
                 >
                   sitemap.xml
-                </a>
+                </button>
                 <span className="text-stone-600">•</span>
-                <a 
-                  href="/robots.txt" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-amber-300 text-stone-400 hover:underline"
+                <button 
+                  onClick={() => onOpenSitemapViewer?.('robots')}
+                  className="hover:text-amber-300 text-stone-400 hover:underline cursor-pointer bg-transparent border-0 p-0 font-mono text-[11px]"
                 >
                   robots.txt
-                </a>
+                </button>
                 <span className="text-stone-600">•</span>
-                <a 
-                  href="/ads.txt" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-emerald-300 text-stone-400 hover:underline"
+                <button 
+                  onClick={() => onOpenSitemapViewer?.('ads')}
+                  className="hover:text-emerald-300 text-stone-400 hover:underline cursor-pointer bg-transparent border-0 p-0 font-mono text-[11px]"
                 >
                   ads.txt
-                </a>
+                </button>
               </li>
             </ul>
           </div>
