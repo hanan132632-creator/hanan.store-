@@ -38,7 +38,24 @@
 
 ---
 
-## 🚀 التشغيل والتطوير المحلي (Quick Start)
+## 🚀 التشغيل والنشر السريع (Quick Start & Deployment)
+
+### ⚡ النشر المباشر عبر Vercel (موصى به لسرعة الاستجابة العالمية)
+المشروع مجهز بالكامل بملف التكوين `vercel.json` لإعادة التوجيه (SPA Routing) وتقديم ملفات `sitemap.xml` و `robots.txt` و `ads.txt` وحماية الروؤس (Security Headers):
+
+1. ادخلي إلى حسابك في [Vercel](https://vercel.com).
+2. اضغطي على **Add New...** -> **Project**.
+3. اختاري مستودع GitHub الخاص بمتجر حنان (`hanan-store`).
+4. سيتعرف Vercel تلقائياً على إطار العمل (**Vite**) وأمر البناء `npm run build` ومجلد المخرجات `dist`.
+5. اضغطي **Deploy**.
+6. **ربط الدومين المخصص (Custom Domain):**
+   - من لوحة تحكم المشروع في Vercel، اذهبي إلى **Settings** -> **Domains**.
+   - أضيفي النطاق: `xn--mgblao3hjb.store` ونطاق `hanan.fun`.
+   - قومي بضبط سجلات الـ DNS في لوحة تحكم مزود النطاق لديك (A Record: `76.76.21.21` أو CNAME: `cname.vercel-dns.com`).
+
+---
+
+### التشغيل والتطوير المحلي
 
 ### المتطلبات الأساسية
 - Node.js 18+
