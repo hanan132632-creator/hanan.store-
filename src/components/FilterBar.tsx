@@ -92,14 +92,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     <div id="catalog-filters-section" className="space-y-6 pt-4">
       
       {/* Category Horizontal Scroll Pills */}
-      <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none no-scrollbar">
+      <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none no-scrollbar overscroll-x-contain touch-pan-x">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;
           return (
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer border ${
+              className={`flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer border touch-manipulation active:scale-95 ${
                 isActive
                   ? 'bg-stone-900 text-white border-stone-900 shadow-md scale-102 ring-2 ring-amber-400/30'
                   : 'bg-white text-stone-700 hover:text-stone-900 hover:bg-stone-50 border-stone-200/80 shadow-xs'

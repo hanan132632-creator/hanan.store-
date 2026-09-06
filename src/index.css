@@ -1,1 +1,47 @@
 @import "tailwindcss";
+
+/* ==========================================================
+   Mobile Performance & Touch Ergonomics Enhancements
+   ========================================================== */
+
+/* Fast Tap & Responsive Touch (Eliminates 300ms tap delay on iOS & Android) */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+
+/* Touch targets optimization */
+button, 
+a, 
+input, 
+select, 
+textarea {
+  touch-action: manipulation;
+}
+
+/* Smooth momentum scrolling on mobile browsers */
+.overflow-x-auto, 
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars cleanly for mobile horizontal pill bars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Content visibility optimization for offscreen sections to accelerate mobile initial render */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}

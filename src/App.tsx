@@ -37,6 +37,7 @@ import { AdSenseBanner } from './components/AdSenseBanner';
 import { BlogSection } from './components/BlogSection';
 import { SearchConsoleModal } from './components/SearchConsoleModal';
 import { Footer } from './components/Footer';
+import { MobileBottomNav } from './components/MobileBottomNav';
 
 export default function App() {
   // Multilingual & Currency State
@@ -287,10 +288,14 @@ export default function App() {
     });
   }, [activeCategory, filters]);
 
+  // Performance-optimized Cart metrics
+  const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
+  const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0), [cart]);
+
   const t = TRANSLATIONS[lang];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-['Cairo',sans-serif]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-['Cairo',sans-serif] pb-16 sm:pb-0">
       
       {/* Sticky Top Header */}
       <Header
@@ -298,7 +303,7 @@ export default function App() {
         setLang={setLang}
         currency={currency}
         setCurrency={setCurrency}
-        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+        cartCount={cartCount}
         wishlistCount={wishlist.length}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
@@ -466,28 +471,34 @@ export default function App() {
       </div>
 
       {/* Editorial Guides & Original Content Section (Crucial for AdSense Value) */}
-      <BlogSection lang={lang} />
+      <div className="content-auto">
+        <BlogSection lang={lang} />
+      </div>
 
       {/* Customer Experiences & Testimonials Section */}
-      <ReviewsSection lang={lang} />
+      <div className="content-auto">
+        <ReviewsSection lang={lang} />
+      </div>
 
       {/* Footer with AdSense and Legal Policies */}
-      <Footer
-        lang={lang}
-        onCategorySelect={handleSelectCategory}
-        onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
-        onOpenLegal={(tab) => {
-          setLegalTab(tab);
-          setIsLegalOpen(true);
-        }}
-        onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
-      />
+      <div className="content-auto">
+        <Footer
+          lang={lang}
+          onCategorySelect={handleSelectCategory}
+          onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
+          onOpenLegal={(tab) => {
+            setLegalTab(tab);
+            setIsLegalOpen(true);
+          }}
+          onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
+        />
+      </div>
 
       {/* Floating Action Button: Gift Advisor */}
       <button
         id="gift-advisor-fab"
         onClick={() => setIsGiftAdvisorOpen(true)}
-        className="fixed bottom-6 start-6 z-40 bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl flex items-center gap-2 group transition-all hover:scale-105 cursor-pointer border border-amber-400/40"
+        className="fixed bottom-20 sm:bottom-6 start-4 sm:start-6 z-30 bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl flex items-center gap-2 group transition-all hover:scale-105 cursor-pointer border border-amber-400/40 touch-manipulation active:scale-95"
         title={lang === 'ar' ? 'مستشار الهدايا الذكي' : 'Gift Advisor'}
       >
         <Gift className="w-5 h-5 text-amber-200 group-hover:rotate-12 transition-transform" />
@@ -501,7 +512,7 @@ export default function App() {
         <button
           id="back-to-top-btn"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 end-6 z-40 p-3 rounded-full bg-white/90 hover:bg-white text-stone-800 shadow-xl border border-stone-200 hover:border-amber-400 transition-all cursor-pointer backdrop-blur-sm"
+          className="fixed bottom-20 sm:bottom-6 end-4 sm:end-6 z-30 p-3 rounded-full bg-white/90 hover:bg-white text-stone-800 shadow-xl border border-stone-200 hover:border-amber-400 transition-all cursor-pointer backdrop-blur-sm touch-manipulation active:scale-95"
           aria-label="Back to Top"
         >
           <ArrowUp className="w-5 h-5" />
@@ -627,6 +638,29 @@ export default function App() {
         isOpen={isSearchConsoleOpen}
         onClose={() => setIsSearchConsoleOpen(false)}
         lang={lang}
+      />
+
+      {/* Mobile Dedicated Bottom Bar for Fast One-Thumb Navigation */}
+      <MobileBottomNav
+        lang={lang}
+        currency={currency}
+        cartCount={cartCount}
+        cartTotal={cartTotal}
+        wishlistCount={wishlist.length}
+        activeCategory={activeCategory}
+        onSelectCategory={handleSelectCategory}
+        onOpenCart={() => setIsCartOpen(true)}
+        onOpenWishlist={() => setIsWishlistOpen(true)}
+        onOpenSearch={() => {
+          const mobileInput = document.getElementById('mobile-search-input') || document.getElementById('desktop-search-input');
+          if (mobileInput) {
+            mobileInput.focus();
+          } else {
+            const toggleBtn = document.getElementById('mobile-search-toggle');
+            if (toggleBtn) toggleBtn.click();
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
     </div>

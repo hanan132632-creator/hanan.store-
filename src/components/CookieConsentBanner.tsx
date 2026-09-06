@@ -40,7 +40,7 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
     <aside 
       id="cookie-consent-banner" 
       aria-label={isAr ? "شريط إشعار ملفات تعريف الارتباط" : "Cookie consent banner"}
-      className="fixed bottom-3 start-3 end-3 sm:start-6 sm:end-auto sm:max-w-md z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-stone-200 p-4 animate-in slide-in-from-bottom duration-300"
+      className="fixed bottom-20 sm:bottom-4 start-3 end-3 sm:start-6 sm:end-auto sm:max-w-md z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-stone-200 p-4 animate-in slide-in-from-bottom duration-300"
       dir={isAr ? 'rtl' : 'ltr'}
     >
       <div className="flex items-start gap-3">

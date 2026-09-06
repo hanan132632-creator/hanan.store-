@@ -118,6 +118,7 @@ export const Hero: React.FC<HeroProps> = ({
                   alt="Hanan Store Royal Collection" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none"></div>
 

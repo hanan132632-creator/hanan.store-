@@ -47,6 +47,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           alt={title}
           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
           loading="lazy"
+          decoding="async"
         />
 
         {/* Subtle overlay gradient */}
@@ -77,9 +78,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Wishlist Button */}
           <button
             onClick={(e) => onToggleWishlist(product, e)}
-            className={`p-2 rounded-full backdrop-blur-md shadow-md transition-all cursor-pointer ${
+            className={`min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-full backdrop-blur-md shadow-md transition-all cursor-pointer touch-manipulation active:scale-95 ${
               isWishlisted
-                ? 'bg-rose-500 text-white scale-110'
+                ? 'bg-rose-500 text-white scale-105'
                 : 'bg-white/80 hover:bg-white text-stone-700 hover:text-rose-600'
             }`}
             title={isWishlisted ? t.removeFromWishlist : t.addToWishlist}
@@ -94,7 +95,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-950 backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
+            className="min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-950 backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 sm:opacity-0 focus:opacity-100 cursor-pointer touch-manipulation active:scale-95"
             title={t.quickView}
             aria-label="Quick View"
           >
@@ -192,21 +193,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             id={`add-to-cart-${product.id}`}
             onClick={(e) => onAddToCart(product, e)}
-            className={`p-2.5 sm:px-3.5 sm:py-2 rounded-2xl flex items-center gap-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`min-h-[44px] px-3.5 py-2.5 rounded-2xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all cursor-pointer touch-manipulation active:scale-95 ${
               isAddedRecently
-                ? 'bg-emerald-600 text-white'
+                ? 'bg-emerald-600 text-white shadow-sm'
                 : 'bg-stone-900 hover:bg-stone-800 text-white hover:shadow-md'
             }`}
           >
             {isAddedRecently ? (
               <>
-                <Check className="w-4 h-4" />
-                <span className="hidden sm:inline">{t.addedToCart}</span>
+                <Check className="w-4 h-4 text-white" />
+                <span className="text-[11px] sm:text-xs">{t.addedToCart}</span>
               </>
             ) : (
               <>
                 <ShoppingBag className="w-4 h-4 text-amber-300" />
-                <span className="hidden sm:inline">{t.addToCart}</span>
+                <span className="text-[11px] sm:text-xs">{t.addToCart}</span>
               </>
             )}
           </button>
