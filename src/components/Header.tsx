@@ -7,10 +7,12 @@ import {
   ShieldCheck, 
   X,
   PhoneCall,
-  Sparkles
+  Sparkles,
+  Menu
 } from 'lucide-react';
 import { Currency, Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { AllPagesDrawer } from './AllPagesDrawer';
 
 interface HeaderProps {
   lang: Language;
@@ -27,6 +29,7 @@ interface HeaderProps {
   setActiveCategory: (cat: string) => void;
   onOpenDomainInfo: () => void;
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
+  onOpenSitemap?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -43,11 +46,13 @@ export const Header: React.FC<HeaderProps> = ({
   activeCategory: _activeCategory,
   setActiveCategory,
   onOpenDomainInfo,
-  onOpenLegal
+  onOpenLegal,
+  onOpenSitemap
 }) => {
   const t = TRANSLATIONS[lang];
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
+  const [isAllPagesOpen, setIsAllPagesOpen] = useState(false);
 
   const currencies: Currency[] = ['SAR', 'AED', 'KWD', 'USD'];
 
@@ -121,8 +126,19 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
-          {/* Brand Logo & Monogram */}
+          {/* Left / Brand Logo & 3 Bars Menu Trigger */}
           <div className="flex items-center gap-3">
+            {/* Three Bars Menu Button (Hamburger) */}
+            <button
+              id="hamburger-menu-btn"
+              onClick={() => setIsAllPagesOpen(true)}
+              className="p-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 transition-all cursor-pointer flex items-center justify-center group shadow-sm border border-stone-200"
+              aria-label="All Site Pages Menu"
+              title={lang === 'ar' ? 'قائمة جميع صفحات الموقع' : 'All Site Pages'}
+            >
+              <Menu className="w-5 h-5 text-stone-800 group-hover:scale-105 transition-transform" />
+            </button>
+
             <button 
               id="brand-logo-btn"
               onClick={() => {
@@ -286,6 +302,21 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
       </div>
+
+      {/* All Pages Drawer (3 bars menu) */}
+      <AllPagesDrawer
+        isOpen={isAllPagesOpen}
+        onClose={() => setIsAllPagesOpen(false)}
+        lang={lang}
+        setActiveCategory={setActiveCategory}
+        onOpenCart={onOpenCart}
+        onOpenWishlist={onOpenWishlist}
+        onOpenDomainInfo={onOpenDomainInfo}
+        onOpenLegal={onOpenLegal || (() => {})}
+        onOpenSitemap={onOpenSitemap || (() => {})}
+        cartCount={cartCount}
+        wishlistCount={wishlistCount}
+      />
     </header>
   );
 };

@@ -319,6 +319,10 @@ export default function App() {
           setLegalTab(tab);
           setIsLegalOpen(true);
         }}
+        onOpenSitemap={() => {
+          setSitemapViewerTab('sitemap');
+          setIsSitemapViewerOpen(true);
+        }}
       />
 
       {/* Main Luxury Hero Showcase */}
