@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصفحة غير موجودة - متجر حنان | Hanan Store</title>
+  <meta http-equiv="refresh" content="0;url=/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF8F5;
+      color: #1c1917;
+      font-family: 'Cairo', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid rgba(231, 229, 228, 0.8);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #78350f;
+      margin-bottom: 12px;
+    }
+    p {
+      color: #57534e;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      background: #1c1917;
+      color: #fbbf24;
+      padding: 12px 28px;
+      border-radius: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn:hover {
+      background: #292524;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>عذراً، الصفحة غير موجودة</h1>
+    <p>يبدو أنك وصلت إلى رابط قديم أو غير موجود في متجر حنان ستور. جاري توجيهك تلقائياً إلى الصفحة الرئيسية...</p>
+    <a href="/" class="btn">العودة إلى متجر حنان (Hanan Store)</a>
+  </div>
+  <script>
+    setTimeout(function() {
+      window.location.href = '/';
+    }, 500);
+  </script>
+</body>
+</html>
