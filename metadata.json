@@ -1,0 +1,6 @@
+{
+  "name": "Hanan Store - متجر حنان",
+  "description": "منصة حنان ستور الفاخرة وبوابة حنان فن (hanan.fun) — وجهتكم الأولى لألعاب الجمعات التفاعلية، بلانرات ومخططات 2026 الرقمية، قوالب كانفا، ونخبة العطور الملكية والمجوهرات الفاخرة مع تسليم فوري وتوافق تام مع Google AdSense ومحركات البحث (xn--mgblao3hjb.store)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

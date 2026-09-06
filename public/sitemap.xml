@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 1. Homepage & Primary Domain -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://xn--mgblao3hjb.store/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xn--mgblao3hjb.store/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xn--mgblao3hjb.store/" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title>Hanan Store - متجر حنان ستور الفاخر</image:title>
+      <image:caption>أجود العطور الملكية، المجوهرات، العبايات وملفات وألعاب حنان فن التفاعلية</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. Secondary Portal: Hanan Fun (hanan.fun) -->
+  <url>
+    <loc>https://hanan.fun/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://hanan.fun/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://hanan.fun/?lang=en" />
+    <xhtml:link rel="canonical" href="https://xn--mgblao3hjb.store/" />
+  </url>
+
+  <!-- 3. Category: Interactive Gathering Games (ألعاب الجمعات التفاعلية) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=fun-games</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://xn--mgblao3hjb.store/?category=fun-games&amp;lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xn--mgblao3hjb.store/?category=fun-games&amp;lang=en" />
+  </url>
+
+  <!-- 4. Category: Digital Planners 2026 (بلانر ومخططات الأيباد) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=planners</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 5. Category: Bundles & Packages (البكجات الشاملة) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=bundles</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 6. Category: Royal Perfumes (العطور الملكية والنيش) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=perfumes</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 7. Category: Fine Jewelry (المجوهرات والإكسسوارات) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=jewelry</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 8. Category: Haute Couture Abayas (العبايات والأزياء) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=abayas</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 9. Category: Beauty & Royal Skincare (مستحضرات العناية) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=beauty</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 10. Editorial Guides & Articles Section (مدونة وأدلة حنان ستور) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 11. Article 1: Gathering Games Guide -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/gathering-games-guide</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 12. Article 2: Digital Planner 2026 Tips -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/digital-planner-tips</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 13. Article 3: Royal Fragrances Longevity Guide -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/royal-perfumes-guide</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 14. Legal: Privacy Policy & Cookies (سياسة الخصوصية) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/privacy-policy</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 15. Legal: Google AdSense Policy Compliance (إفصاح جوجل أدسنس) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/adsense-policy</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 16. Legal: Terms and Conditions (الشروط والأحكام) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/terms</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 17. About Us & Story (من نحن) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/about</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 18. Contact & Concierge Support (اتصل بنا) -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/contact</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>
