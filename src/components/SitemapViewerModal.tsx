@@ -22,9 +22,7 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   if (!isOpen) return null;
 
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <!-- 1. Homepage & Primary Domain -->
   <url>
@@ -46,6 +44,7 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=fun-games</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
@@ -53,42 +52,120 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=planners</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- 5. Royal Perfumes -->
+  <!-- 5. Bundles -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=bundles</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 6. Royal Perfumes -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=perfumes</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 6. Fine Jewelry -->
+  <!-- 7. Fine Jewelry -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=jewelry</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 7. Haute Couture Abayas -->
+  <!-- 8. Haute Couture Abayas -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=abayas</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 8. Editorial Blog & Guides -->
+  <!-- 9. Beauty & Skincare -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/?category=beauty</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 10. Editorial Blog -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- 9. Legal & Privacy Policy -->
+  <!-- 11. Blog Article 1 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/gathering-games-guide</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 12. Blog Article 2 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/digital-planner-tips</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 13. Blog Article 3 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/royal-perfumes-guide</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 14. Privacy Policy -->
   <url>
     <loc>https://xn--mgblao3hjb.store/privacy-policy</loc>
     <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- 15. AdSense Policy -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/adsense-policy</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 16. Terms -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/terms</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 17. About -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/about</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 18. Contact -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/contact</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 
 </urlset>`;
