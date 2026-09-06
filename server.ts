@@ -11,7 +11,7 @@ async function startServer() {
   app.get("/sitemap.xml", (req, res) => {
     const filePath = path.join(process.cwd(), "public", "sitemap.xml");
     if (fs.existsSync(filePath)) {
-      res.setHeader("Content-Type", "application/xml; charset=utf-8");
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.send(fs.readFileSync(filePath, "utf-8"));
     } else {
       res.status(404).send("Sitemap not found");
