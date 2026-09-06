@@ -91,6 +91,75 @@ const ARTICLES: Article[] = [
       'Moisturize pulse points prior to spraying, spray from a distance of 15cm, and harmonize warm wood bases with crisp floral accents for maximum elegance.'
     ],
     image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'jewelry-care-guide',
+    titleAr: 'دليل العناية بالمجوهرات الفضية والذهبية لتدوم براقة مدى الحياة',
+    titleEn: 'Complete Guide to Gold and Silver Jewelry Care for Lifelong Shine',
+    categoryAr: 'مجوهرات وإكسسوارات',
+    categoryEn: 'Fine Jewelry Care',
+    date: '2026-08-15',
+    readTime: '4 دقائق',
+    summaryAr: 'طرق صحيحة لتنظيف وتخزين المجوهرات الفاخرة وحمايتها من العوامل الكيميائية والعطور للحفاظ على لمعانها الأصلي.',
+    summaryEn: 'Proper cleaning and storage methods for luxury jewelry to protect against chemicals and maintain original brilliance.',
+    contentAr: [
+      'المجوهرات الراقية استثمار عاطفي وجمالي يستحق عناية فائقة لتبقى متألقة طوال السنين.',
+      'أفضل ممارسات الحفاظ على المجوهرات:',
+      '1. القاعدة الذهبية "آخر ما يُرتدى وأول ما يُخلع": تجنبي تعريض المجوهرات للعطور، الكريمات، ومنظفات المنزل.',
+      '2. التخزين المنفصل: احفظي كل قطعة في صندوق مبطن بالمخمل لمنع الاحتكاك والخدوش.',
+      '3. التنظيف اللطيف بماء فاتر وصابون طبيعي مع قطعة قماش قطنية ناعمة للحفاظ على الطلاء واللمعان.'
+    ],
+    contentEn: [
+      'Fine jewelry is an emotional and aesthetic investment that requires pristine maintenance.',
+      'Golden rules: wear jewelry last after perfume and lotion, store items in velvet-lined boxes separately, and clean gently with mild soap and warm water.'
+    ],
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'abayas-styling-guide',
+    titleAr: 'فن تنسيق العبايات الراقية مع الإكسسوارات للمناسبات الرسمية',
+    titleEn: 'The Art of Styling Haute Couture Abayas with Accessories for Formal Events',
+    categoryAr: 'عبايات وأزياء',
+    categoryEn: 'Haute Couture Abayas',
+    date: '2026-08-10',
+    readTime: '4 دقائق',
+    summaryAr: 'نصائح الخبراء في اختيار الحقائب، الأحذية، والمجوهرات المناسبة لتتألقي بإطلالة ملكية متكاملة في السهرات.',
+    summaryEn: 'Expert tips on selecting bags, shoes, and jewelry to complete a majestic evening look in luxury abayas.',
+    contentAr: [
+      'العباية الخليجية المعاصرة تمثل عنواناً للرقي والفخامة المتجددة في المناسبات الرسمية والأعياد.',
+      'أسرار الإطلالة المتكاملة:',
+      '1. التوازن في التطريز: إذا كانت العباية مزينة بتطريز يدوي كثيف، فليكن السوار والحقيبة بتصميم ناعم وبسيط.',
+      '2. اختيار الحقيبة والحذاء: الحقائب الجلدية الصغيرة (Clutch) ذات اللمسات المعدنية تضفي فخامة فورية.',
+      '3. طرحة متناسقة: اختيار قماش الطرحة المناسب لنوع قماش العباية يضمن ثباتها وانسدالها الأنيق طوال السهرة.'
+    ],
+    contentEn: [
+      'Modern couture abayas represent timeless elegance and refined luxury for formal occasions.',
+      'Key styling tips: balance heavy embroidery with minimalist accessories, opt for metallic clutch bags, and match headscarf fabrics to the abaya textile.'
+    ],
+    image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'skincare-routine-guide',
+    titleAr: 'روتين العناية الملكية بالبشرة: خطوات بسيطة لنضارة تدوم',
+    titleEn: 'Royal Skincare Routine: Simple Steps for Lasting Radiance',
+    categoryAr: 'عناية وجمال',
+    categoryEn: 'Royal Skincare',
+    date: '2026-08-05',
+    readTime: '5 دقائق',
+    summaryAr: 'دليلك اليومي لتنظيف وترطيب البشرة بأفضل المكونات الطبيعية والمنتجات الفاخرة لإشراقة طبيعية ساحرة.',
+    summaryEn: 'Your daily guide to cleansing and hydrating with top natural ingredients and luxury formulas for a glowing complexion.',
+    contentAr: [
+      'البشرة المشرقة والصحية تبدأ بروتين يومي منتظم ومكونات نقية عالية الجودة.',
+      'خطوات الروتين الملكي:',
+      '1. التنظيف المزدوج مساءً لإزالة آثار المكياج والشوائب دون جفاف.',
+      '2. استخدام السيروم الغني بمضادات الأكسدة وفيتامين C صباحاً لحماية البشرة.',
+      '3. الترطيب العميق والنوم الهادئ الكافي لتجديد خلايا البشرة طبيعياً.'
+    ],
+    contentEn: [
+      'Radiant skin starts with a consistent daily routine and high-purity ingredients.',
+      'Key routine steps: double cleanse at night, apply antioxidant serums in the morning, and ensure deep hydration and restful sleep.'
+    ],
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
