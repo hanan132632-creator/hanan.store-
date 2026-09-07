@@ -78,10 +78,18 @@
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
   </url>
 
-  <!-- 11. Blog Article: Cybersecurity & E-commerce 2026 -->
+  <!-- 11. Blog Article: Fragrance Chemistry & Sillage Secrets -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-fragrance-chemistry-sillage-secrets</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 12. Blog Article: Cybersecurity & E-commerce 2026 -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#article-cybersecurity-ecommerce-2026</loc>
     <lastmod>2026-09-07</lastmod>

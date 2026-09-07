@@ -21,6 +21,38 @@ interface Article {
 
 const ARTICLES: Article[] = [
   {
+    id: 'fragrance-chemistry-sillage-secrets',
+    titleAr: 'كيمياء الفوحان وسيكولوجية العطور: الدليل العلمي والعملي لثبات يدوم 48 ساعة وصناعة بصمتك الملكية',
+    titleEn: 'The Chemistry of Sillage & Scent Psychology: Blueprint for 48-Hour Longevity & Signature Aura',
+    categoryAr: 'كيمياء العطور والجاذبية',
+    categoryEn: 'Fragrance Science & Luxury',
+    categoryKey: 'luxury',
+    date: '2026-09-07',
+    readTime: '7 دقائق',
+    summaryAr: 'لماذا تختفي بعض العطور الفاخرة سريعاً بينما تدوم أخرى لأيام؟ أسرار كسر الروابط الجزيئية بفرك المعصمين، قاعدة الطبقات الدهنية (Sandwich Method)، وخريطة حرارة الجسم التي تمنحك فوحاناً استثنائياً.',
+    summaryEn: 'Why do some luxury scents vanish within hours while others linger for days? Explore molecular fixation, the lipid sandwich technique, and thermodynamic pulse mapping to unlock 48-hour sillage.',
+    contentAr: [
+      'هل تساءلتِ يوماً لماذا يرتبط عطر معين في ذهنك بشخص أو ذكرى لا تمحى مهما مرت السنين؟ علمياً، حاسة الشم هي الحاسة البشرية الوحيدة التي ترتبط تشريحياً ومباشرة بالجهاز الحوفي (Limbic System) ومركز الذاكرة العاطفية في الدماغ دون المرور بمحطات الفلترة العقلية الأخرى. هذا يعني أن عطرك ليس مجرد زينة خارجية، بل هو رسالة سيكولوجية فورية تصنع انطباعك الأول وتخلد حضورك.',
+      'ومع ذلك، يقع أكثر من 85% من عشاق العطور في أخطاء يومية شائعة تؤدي إلى تبخر الزيوت الثمينة خلال ساعات معدودة، وتفقدهم الاستمتاع بالهرم العطري الكامل. إليكِ الدليل الكيميائي والعملي المثبت لتحقيق ثبات أسطوري يتجاوز 48 ساعة:',
+      '1. الخطأ الكيميائي القاتل: فرك المعصمين (Friction Breakage): بمجرد رش العطر على المعصم، يقوم الكثيرون بفركهما معاً بحركة تلقائية. هذا الاحتكاك يولد حرارة فورية تكسر الروابط الجزيئية الحساسة لقمة الهرم العطري (Top Notes) مثل أزهار البرتقال، البرغموت، واللافندر، مما يشوه نقاء الرائحة ويسرع تطايرها. القاعدة الذهبية: رشي ودعي الجزيئات تستقر وتتنفس على بشرتك بهدوء تام.',
+      '2. قاعدة الساندوتش الدهنية (The Lipid Sandwich Method): الجزيئات العطرية بطبيعتها مواد محبة للدهون (Lipophilic). إذا رشت على جلد جاف، تقوم مسام الجلد بامتصاص مذيب الكحول فوراً ويتبخر الزيت العطري في الهواء دون رابط يمسكه. الحل: ضعي طبقة ترطيب غير معطرة (مثل كريم بالسيراميد أو لمسة نقية من زبدة الشيا)، ثم مسحة خفيفة من المسك الأبيض النقي أو دهن العود المعتق، ثم رشي عطر النيش المركز من مسافة 15 سم. هذه الطبقة الدهنية تحتجز جزيئات العطر وتطلقها ببطء وتدرج ساحر.',
+      '3. الخريطة الحرارية لنقاط النبض (Thermodynamic Pulse Mapping): العطر يحتاج إلى طاقة حرارية لينتشر (Sillage). بدلاً من الاكتفاء بالمعصمين فقط، ركزي على: خلف شحمة الأذن ومنبت الشعر الخلفي (حيث تظل الرائحة حية مع حركة شعرك)، تجويف الترقوة (مكان دافئ محمي من تيارات الهواء الباردة)، وثنايا الكوع والركبتين (لأن الحرارة تصعد للأعلى، مما يخلق هالة عطرية متصاعدة تحيط بك أينما خطوتِ).',
+      '4. فن التبخير الملكي وحبس الجزيئات في الأنسجة (Incense Textile Layering): الألياف الطبيعية كالحرير، القطن، والمخمل تحفظ العطر لفترة أطول بعشر مرات من الجلد. السر الخليجي المتوارث للعرائس والمناسبات الكبرى: بخرّي ملابسك وعبايتك أولاً بدخان عود المروكي أو الكلمنتان الطبيعي وهو رطب، حيث تتشبع الألياف بمركبات الراتنج الزيتية، ثم رشي عطر النيش؛ سيلتصق العطر بجزيئات العود مشكلاً مزيجاً ملكياً لا يزول حتى بعد الغسيل الخفيف.',
+      '5. فك شفرة التركيزات (EDT مقابل EDP مقابل Extrait): للتأكد من حصولك على قيمة حقيقية، راجعي تركيز العطر. ماء التواليت (EDT) يحتوي على 8-12% زيت، بينما ماء العطر (EDP) يحتوي 15-20%، وتتصدر العطور الملكية النقية فئة (Extrait de Parfum) بتركيز يفوق 30% من الزيوت النقية، وهو ما يضمن بقاء النوتات القاعدية كالعنبر، خشب الصندل، والباتشولي ثابتة لعدة أيام.'
+    ],
+    contentEn: [
+      'The human sense of smell is anatomically hardwired into the limbic system—the emotional and memory center of the brain. Your fragrance is never just an accessory; it is your enduring sensory signature.',
+      'Key scientific secrets for 48-hour sillage:',
+      '1. Stop rubbing your wrists: Friction generates heat that shatters delicate top-note esters (citrus, neroli, florals), corrupting the pyramid.',
+      '2. The Lipid Sandwich: Fragrance molecules are lipophilic. Applying a fragrance-free ceramide lotion or pure white musk before spraying traps volatile compounds, slowing down evaporation.',
+      '3. Thermodynamic Pulse Mapping: Target the nape of the neck, collarbone hollow, and inner elbows to create a rising thermal aura with body movement.',
+      '4. Incense Textile Layering: Infuse natural fabrics (cashmere, silk, velvet) with gentle agarwood smoke first, then spray niche perfume for an indestructible bond.',
+      '5. Invest in Extrait de Parfum: Formulations with over 25-30% perfume oil concentration guarantee that warm base notes (amber, sandalwood, patchouli) remain vibrant for days.'
+    ],
+    image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
     id: 'cybersecurity-ecommerce-2026',
     titleAr: 'دليل الأمان الرقمي وحماية المدفوعات في المتاجر الإلكترونية لعام 2026',
     titleEn: 'Digital Security & Payment Protection Guide for E-Commerce in 2026',

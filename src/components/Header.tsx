@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Currency, Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
-import { NavigationDrawer } from './NavigationDrawer';
+import { SitePagesMenu } from './SitePagesMenu';
 
 interface HeaderProps {
   lang: Language;
@@ -127,17 +127,30 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Left / Brand Logo & Hamburger Menu Button */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 relative">
             {/* 3 Bars / Hamburger Menu Button */}
             <button
               id="header-hamburger-menu-btn"
-              onClick={() => setIsNavDrawerOpen(true)}
+              onClick={() => setIsNavDrawerOpen(!isNavDrawerOpen)}
               className="p-2 -ms-2 rounded-xl text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors flex items-center justify-center cursor-pointer group"
-              aria-label={lang === 'ar' ? 'فتح القائمة الرئيسية' : 'Open Main Menu'}
-              title={lang === 'ar' ? 'القائمة الرئيسية' : 'Main Menu'}
+              aria-label={lang === 'ar' ? 'صفحات وأقسام الموقع' : 'Site Pages & Menu'}
+              title={lang === 'ar' ? 'صفحات وأقسام الموقع' : 'Site Pages & Menu'}
             >
-              <Menu className="w-6 h-6 group-hover:scale-105 transition-transform" />
+              {isNavDrawerOpen ? (
+                <X className="w-6 h-6 text-stone-900" />
+              ) : (
+                <Menu className="w-6 h-6 group-hover:scale-105 transition-transform" />
+              )}
             </button>
+
+            {/* Dropdown Menu showing all site pages under each other */}
+            <SitePagesMenu
+              isOpen={isNavDrawerOpen}
+              onClose={() => setIsNavDrawerOpen(false)}
+              lang={lang}
+              onSelectCategory={setActiveCategory}
+              onOpenLegal={onOpenLegal}
+            />
 
             <button 
               id="brand-logo-btn"
@@ -299,22 +312,6 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
       </div>
-
-      {/* Slide-out Navigation Drawer (Hamburger Menu) */}
-      <NavigationDrawer
-        isOpen={isNavDrawerOpen}
-        onClose={() => setIsNavDrawerOpen(false)}
-        lang={lang}
-        setLang={setLang}
-        currency={currency}
-        setCurrency={setCurrency}
-        onSelectCategory={setActiveCategory}
-        onOpenLegal={onOpenLegal}
-        onOpenCart={onOpenCart}
-        onOpenWishlist={onOpenWishlist}
-        cartCount={cartCount}
-        wishlistCount={wishlistCount}
-      />
     </header>
   );
 };
