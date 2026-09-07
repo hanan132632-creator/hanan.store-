@@ -3,20 +3,29 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true,
   "redirects": [
     {
-      "source": "/html/article-luxury-gifts-guide(.*)",
-      "destination": "/#article-art-of-luxury-gifting-occasions-guide",
+      "source": "/html/:match*",
+      "destination": "/",
       "permanent": true
     },
     {
-      "source": "/html/:path*",
-      "destination": "/#hanan-blog",
+      "source": "/faq",
+      "destination": "/#faq",
       "permanent": true
     },
     {
-      "source": "/404(.*)",
+      "source": "/faq.html",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/404",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/404.html",
       "destination": "/",
       "permanent": true
     }
@@ -35,7 +44,7 @@
       "destination": "/ads.txt"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|sitemap.xml|robots.txt|ads.txt).*)",
       "destination": "/index.html"
     }
   ],
