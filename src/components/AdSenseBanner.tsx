@@ -63,7 +63,7 @@ export const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
         <ins 
           className="adsbygoogle"
           style={{ display: 'block', width: '100%', minHeight: '90px' }}
-          data-ad-client="ca-pub-0000000000000000"
+          data-ad-client="ca-pub-9169121990473215"
           data-ad-slot={slot}
           data-ad-format={format}
           data-full-width-responsive="true"

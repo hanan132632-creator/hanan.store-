@@ -7,10 +7,12 @@ import {
   ShieldCheck, 
   X,
   PhoneCall,
-  Sparkles
+  Sparkles,
+  Menu
 } from 'lucide-react';
 import { Currency, Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { NavigationDrawer } from './NavigationDrawer';
 
 interface HeaderProps {
   lang: Language;
@@ -48,6 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSitemap: _onOpenSitemap
 }) => {
   const t = TRANSLATIONS[lang];
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
 
@@ -123,21 +126,29 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
-          {/* Left / Brand Logo */}
-          <div className="flex items-center gap-3">
+          {/* Left / Brand Logo & Hamburger Menu Button */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* 3 Bars / Hamburger Menu Button */}
+            <button
+              id="header-hamburger-menu-btn"
+              onClick={() => setIsNavDrawerOpen(true)}
+              className="p-2 -ms-2 rounded-xl text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors flex items-center justify-center cursor-pointer group"
+              aria-label={lang === 'ar' ? 'فتح القائمة الرئيسية' : 'Open Main Menu'}
+              title={lang === 'ar' ? 'القائمة الرئيسية' : 'Main Menu'}
+            >
+              <Menu className="w-6 h-6 group-hover:scale-105 transition-transform" />
+            </button>
+
             <button 
               id="brand-logo-btn"
               onClick={() => {
                 setActiveCategory('all');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="flex items-center gap-3 text-start group cursor-pointer"
+              className="flex items-center text-start group cursor-pointer"
             >
-              <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-stone-900 via-stone-800 to-amber-900 flex items-center justify-center text-amber-300 font-serif text-2xl font-bold shadow-md ring-2 ring-amber-400/30 group-hover:ring-amber-400 transition-all">
-                H
-              </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-stone-900 font-serif flex items-center gap-1.5">
+                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-stone-900 font-serif flex items-center gap-1.5 group-hover:text-amber-800 transition-colors">
                   {lang === 'ar' ? 'حنان ستور' : 'Hanan Store'}
                   <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
                 </span>
@@ -288,6 +299,22 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
       </div>
+
+      {/* Slide-out Navigation Drawer (Hamburger Menu) */}
+      <NavigationDrawer
+        isOpen={isNavDrawerOpen}
+        onClose={() => setIsNavDrawerOpen(false)}
+        lang={lang}
+        setLang={setLang}
+        currency={currency}
+        setCurrency={setCurrency}
+        onSelectCategory={setActiveCategory}
+        onOpenLegal={onOpenLegal}
+        onOpenCart={onOpenCart}
+        onOpenWishlist={onOpenWishlist}
+        cartCount={cartCount}
+        wishlistCount={wishlistCount}
+      />
     </header>
   );
 };
