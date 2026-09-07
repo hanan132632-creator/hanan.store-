@@ -32,19 +32,7 @@
   ],
   "rewrites": [
     {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
-    },
-    {
-      "source": "/robots.txt",
-      "destination": "/robots.txt"
-    },
-    {
-      "source": "/ads.txt",
-      "destination": "/ads.txt"
-    },
-    {
-      "source": "/((?!assets/|sitemap.xml|robots.txt|ads.txt).*)",
+      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico).*)",
       "destination": "/index.html"
     }
   ],
@@ -76,7 +64,7 @@
       ]
     },
     {
-      "source": "/(sitemap.xml|robots.txt|ads.txt)",
+      "source": "/(ads.txt|robots.txt|sitemap.xml|favicon.ico)",
       "headers": [
         {
           "key": "Cache-Control",

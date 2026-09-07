@@ -221,7 +221,7 @@ Sitemap: https://hanan.fun/sitemap.xml
 
 Host: https://xn--mgblao3hjb.store`;
 
-  const adsContent = `google.com, pub-9169121990473215, DIRECT, f08c47fec0942fa0`;
+  const adsContent = `google.com, pub-3298241753177072, DIRECT, f08c47fec0942fa0`;
 
   const getCurrentContent = () => {
     if (activeTab === 'sitemap') return sitemapContent;
