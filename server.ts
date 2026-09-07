@@ -88,7 +88,7 @@ async function startServer() {
   });
 
   // 4. Dedicated 404 page handler
-  app.all(["/404", "/404.html"], (req, res) => {
+  app.all(["/404", "/404.html", "/404.", "/404/"], (req, res) => {
     const notFoundPath = path.join(process.cwd(), "public", "404.html");
     if (fs.existsSync(notFoundPath)) {
       res.status(404).setHeader("Content-Type", "text/html; charset=utf-8");
