@@ -6,8 +6,13 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/html/article-luxury-gifts-guide(.*)",
+      "destination": "/#article-art-of-luxury-gifting-occasions-guide",
+      "permanent": true
+    },
+    {
       "source": "/html/:path*",
-      "destination": "/",
+      "destination": "/#hanan-blog",
       "permanent": true
     },
     {

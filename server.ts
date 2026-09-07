@@ -87,7 +87,30 @@ async function startServer() {
     return res.status(404).type("text/plain").send("Ads.txt not found");
   });
 
-  // 4. Dedicated 404 page handler
+  // 4. Legacy /html/ and old article URLs 301/302 Redirect to modern SPA anchors
+  app.get(["/html/*", "/html", "/article-*"], (req, res) => {
+    const originalUrl = req.originalUrl || req.url;
+    // Map known old article URLs or general /html/ paths to the corresponding article or blog
+    if (originalUrl.includes("luxury-gift") || originalUrl.includes("gifts-guide")) {
+      return res.redirect(301, "/#article-art-of-luxury-gifting-occasions-guide");
+    }
+    if (originalUrl.includes("games") || originalUrl.includes("gatherings")) {
+      return res.redirect(301, "/#article-interactive-gatherings-games-guide-2026");
+    }
+    if (originalUrl.includes("planner") || originalUrl.includes("goodnotes")) {
+      return res.redirect(301, "/#article-digital-planning-goodnotes-ipad-guide");
+    }
+    if (originalUrl.includes("perfume") || originalUrl.includes("oud")) {
+      return res.redirect(301, "/#article-royal-niche-perfumes-oud-secrets");
+    }
+    if (originalUrl.includes("business") || originalUrl.includes("profitable")) {
+      return res.redirect(301, "/#article-how-to-start-profitable-digital-products-business");
+    }
+    // Default fallback for any legacy /html/ page: redirect directly to the blog section
+    return res.redirect(301, "/#hanan-blog");
+  });
+
+  // 5. Dedicated 404 page handler
   app.all(["/404", "/404.html", "/404.", "/404/"], (req, res) => {
     const notFoundPath = path.join(process.cwd(), "public", "404.html");
     if (fs.existsSync(notFoundPath)) {
