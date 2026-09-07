@@ -81,9 +81,41 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- 11. Blog Article: Luxury Gifting -->
+  <!-- 11. Blog Article: Cybersecurity & E-commerce 2026 -->
   <url>
-    <loc>https://xn--mgblao3hjb.store/blog/luxury-gifting-etiquette</loc>
+    <loc>https://xn--mgblao3hjb.store/#article-cybersecurity-ecommerce-2026</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 12. Blog Article: AI Tools for Solopreneurs 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-ai-tools-for-solopreneurs-2026</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 13. Blog Article: TikTok & Snapchat Marketing 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-tiktok-snapchat-content-marketing-2026</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 14. Blog Article: Family Event Planning Checklist -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-family-event-planning-checklist</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 15. Blog Article: Luxury Gifting -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-luxury-gifting-etiquette</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
