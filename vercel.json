@@ -16,9 +16,9 @@
       "permanent": true
     },
     {
-      "source": "/404",
+      "source": "/404(.*)",
       "destination": "/",
-      "permanent": false
+      "permanent": true
     }
   ],
   "rewrites": [

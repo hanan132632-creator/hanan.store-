@@ -110,14 +110,9 @@ async function startServer() {
     return res.redirect(301, "/#hanan-blog");
   });
 
-  // 5. Dedicated 404 page handler
-  app.all(["/404", "/404.html", "/404.", "/404/"], (req, res) => {
-    const notFoundPath = path.join(process.cwd(), "public", "404.html");
-    if (fs.existsSync(notFoundPath)) {
-      res.status(404).setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.sendFile(notFoundPath);
-    }
-    return res.status(404).send("404 Not Found");
+  // 5. Dedicated handler for /404 and /404.html: redirect permanently to homepage with 301
+  app.all(["/404", "/404.html", "/404.", "/404/", "/404/*"], (req, res) => {
+    return res.redirect(301, "/");
   });
 
   // 5. Stale asset hashes fallback (/assets/*.css and /assets/*.js)
