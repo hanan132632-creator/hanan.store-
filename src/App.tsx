@@ -19,6 +19,7 @@ import {
 import { CATEGORIES, PRODUCTS } from './data/products';
 import { TRANSLATIONS } from './data/translations';
 import { Header } from './components/Header';
+import { TopCategoryBars } from './components/TopCategoryBars';
 import { Hero } from './components/Hero';
 import { FilterBar } from './components/FilterBar';
 import { ProductCard } from './components/ProductCard';
@@ -323,6 +324,15 @@ export default function App() {
           setSitemapViewerTab('sitemap');
           setIsSitemapViewerOpen(true);
         }}
+      />
+
+      {/* Top Three Department & Section Navigation Bars */}
+      <TopCategoryBars
+        lang={lang}
+        activeCategory={activeCategory}
+        onSelectCategory={handleSelectCategory}
+        onOpenGiftAdvisor={() => setIsGiftAdvisorOpen(true)}
+        onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
       />
 
       {/* Main Luxury Hero Showcase */}

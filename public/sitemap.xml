@@ -76,12 +76,44 @@
   <!-- 10. Editorial Blog -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
   </url>
 
-  <!-- 11. Blog Article 1 -->
+  <!-- 11. Blog Article: Luxury Gifting -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/luxury-gifting-etiquette</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 12. Blog Article: Digital Commerce 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/digital-products-business-2026</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 13. Blog Article: Majlis Hospitality -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/majlis-hospitality-incense-rituals</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 14. Blog Article: Mindful Journaling -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/mindful-journaling-habits</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 15. Blog Article: Gathering Games -->
   <url>
     <loc>https://xn--mgblao3hjb.store/blog/gathering-games-guide</loc>
     <lastmod>2026-09-01</lastmod>
@@ -89,7 +121,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 12. Blog Article 2 -->
+  <!-- 16. Blog Article: Digital Planner -->
   <url>
     <loc>https://xn--mgblao3hjb.store/blog/digital-planner-tips</loc>
     <lastmod>2026-08-28</lastmod>
@@ -97,7 +129,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 13. Blog Article 3 -->
+  <!-- 17. Blog Article: Royal Perfumes -->
   <url>
     <loc>https://xn--mgblao3hjb.store/blog/royal-perfumes-guide</loc>
     <lastmod>2026-08-20</lastmod>

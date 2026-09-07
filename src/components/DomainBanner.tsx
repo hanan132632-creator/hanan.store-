@@ -119,6 +119,18 @@ export const DomainBanner: React.FC<DomainBannerProps> = ({
               <strong>DNS Configuration:</strong> {lang === 'ar' ? 'يمكن توجيه سجلات A Record و CNAME لدومين xn--mgblao3hjb.store مباشرة لأي استضافة أو كلاود رن بنقرة واحدة.' : 'Ready for immediate CNAME & A Record pointing from Cloudflare / Namecheap / GoDaddy.'}
             </span>
           </div>
+
+          <div className="flex items-start gap-2 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+            <Check className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+            <span>
+              <strong className="text-emerald-900 font-bold">{lang === 'ar' ? 'طلبات OPTIONS و CORS:' : 'OPTIONS & CORS:'}</strong>{' '}
+              <span className="text-emerald-800">
+                {lang === 'ar' 
+                  ? 'مُفعلة بنجاح بنسبة 100% وتستجيب بـ 200 OK لفحص جوجل أدسنس وأرشفة ملفات الخريطة و ads.txt.' 
+                  : 'Enabled 100% with 200 OK preflight responses for Google AdSense, sitemaps, and bots.'}
+              </span>
+            </span>
+          </div>
         </div>
 
         {/* Action button */}

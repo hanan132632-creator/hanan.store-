@@ -8,6 +8,7 @@ interface Article {
   titleEn: string;
   categoryAr: string;
   categoryEn: string;
+  categoryKey: 'gifting' | 'digital' | 'lifestyle' | 'fun' | 'luxury';
   date: string;
   readTime: string;
   summaryAr: string;
@@ -15,15 +16,119 @@ interface Article {
   contentAr: string[];
   contentEn: string[];
   image: string;
+  isNew?: boolean;
 }
 
 const ARTICLES: Article[] = [
+  {
+    id: 'luxury-gifting-etiquette',
+    titleAr: 'فن الإهداء الذكي: دليلك لاختيار هدايا استثنائية تأسر القلوب في كافة المناسبات',
+    titleEn: 'The Art of Thoughtful Luxury Gifting: How to Curate Unforgettable Presents for Every Occasion',
+    categoryAr: 'هدايا ومناسبات فاخرة',
+    categoryEn: 'Luxury Gifting',
+    categoryKey: 'gifting',
+    date: '2026-09-07',
+    readTime: '5 دقائق',
+    summaryAr: 'كيف تختارين هدية فاخرة تترك أثراً عاطفياً دائماً؟ أسرار اختيار العطور النيش، الإكسسوارات الفضية، ودمج المنتجات الرقمية مع بطاقات التهنئة الراقية.',
+    summaryEn: 'Discover how to curate memorable luxury gifts with personal storytelling, bespoke packaging, and emotional touchpoints.',
+    contentAr: [
+      'الهدية الاستثنائية ليست مجرد قطعة مادية تُشترى، بل هي رسالة تقدير صامتة تعبر عن مدى فهمك لشخصية المهدى إليه، وتُخلّد لحظات الفرح في الذاكرة لسنوات.',
+      'في متجر حنان ستور، نؤمن بأن الهدية الناجحة تُبنى على ثلاثة ركائز أساسية: القيمة الجمالية، الفائدة العملية المستدامة، واللمسة العاطفية المخصصة.',
+      'أسرار اختيار الهدية المثالية دون حيرة:',
+      '1. قاعدة التخصيص والملاءمة: تجنبي الهدايا العشوائية، واختاري ما يُكمل شغف المهدى إليه. إذا كان شغوفاً بالتنظيم، فإن بلانر 2026 الرقمي التفاعلي مع بطاقة إهداء مخصصة يُعتبر هدية لا تقدر بثمن.',
+      '2. فن الجمع بين القطعة الملموسة والرمزية: تقديم باقة عطرية ملكية بنوتات النيش أو طقم مجوهرات فضية مرصع بالزركون مع رسالة إهداء مكتوبة بخط يدوي معبر يرفع من القيمة المعنوية عشرات الأضعاف.',
+      '3. سحر التغليف المخملي والتفاصيل الصغيرة: الانطباع الأول يبدأ من طريقة التقديم؛ استخدام الصناديق الفاخرة المبطنة بالساتان أو درجات البيج والذهبي مع شريط حريري ناعم يُعطي شعوراً بالفخامة والاهتمام منذ اللحظة الأولى.'
+    ],
+    contentEn: [
+      'A truly memorable luxury gift is not defined solely by price, but by thoughtful curation and deep empathy for the recipient.',
+      'Key pillars of luxury gifting: personalize the choice to their lifestyle, combine sensory items (like niche fragrances or silver jewelry) with personal handwritten sentiments, and invest in velvet or silk-accented presentation boxes.'
+    ],
+    image: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
+    id: 'digital-products-business-2026',
+    titleAr: 'أسرار إطلاق متجر منتجات رقمية ناجح في 2026: كيف تبدأين من الصفر بدون تكاليف شحن؟',
+    titleEn: 'Launching a Profitable Digital Products Store in 2026: From Zero to First Sale Without Shipping Costs',
+    categoryAr: 'ريادة الأعمال والمنتجات الرقمية',
+    categoryEn: 'Digital Commerce',
+    categoryKey: 'digital',
+    date: '2026-09-06',
+    readTime: '6 دقائق',
+    summaryAr: 'دليل المبتدئين الشامل لتصميم وبيع البلانرات، قوالب الألعاب التفاعلية، والملفات الرقمية بهامش ربح يصل إلى 95% وتسليم فوري للمشترين.',
+    summaryEn: 'A beginner-friendly playbook for creating and selling digital planners, game packs, and templates with 95% profit margins.',
+    contentAr: [
+      'تشهد التجارة الرقمية طفرة غير مسبوقة في منطقة الشرق الأوسط، حيث أصبحت المنتجات الرقمية القابلة للتحميل الفوري هي الخيار الأذكى للمستقلين وأصحاب المشاريع المنزلية الراغبين في بناء دخل مستدام.',
+      'لماذا تتفوق المنتجات الرقمية على التجارة التقليدية؟',
+      '1. انعدام تكاليف التخزين والشحن: لا توجد تكلفة لتصنيع كل نسخة جديدة، ولا رسوم لشركات الشحن، ولا مخاوف من تلف البضائع أو إرجاعها. بمجرد تصميم الملف مرة واحدة، يمكنك بيعه لآلاف العملاء حول العالم بهامش ربح يقارب 95%.',
+      '2. المنتجات الرقمية الأعلى طلباً في 2026: تتصدر المخططات الرقمية التفاعلية لأجهزة الأيباد وتطبيقات GoodNotes، ألعاب الجمعات التفاعلية العائلية للشاشات الذكية (مثل hanan.fun)، وقوالب تنظيم الميزانيات الذكية قائمة المنتجات الأكثر رواجاً.',
+      '3. سر النجاح في التسليم الفوري وتجربة العميل: العميل الرقمي يتوقع استلام ملفه في ثوانٍ معدودة. توفير روابط تحميل آمنة وفورية، مع دليل إرشادي واضح لكيفية الاستخدام، يبني سمعة استثنائية لمتجرك ويجلب تقييمات إيجابية مستمرة.'
+    ],
+    contentEn: [
+      'Digital products and instant downloadables represent the modern frontier for creators seeking high-margin, scalable micro-businesses.',
+      'Zero shipping fees, zero inventory depreciation, and worldwide 24/7 delivery allow solopreneurs to achieve up to 95% profit margins.',
+      'Key winning formats for 2026 include GoodNotes interactive planners, living room gathering party games, and automated financial tracking spreadsheets.'
+    ],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
+    id: 'majlis-hospitality-incense-rituals',
+    titleAr: 'طقوس الضيافة الخليجية المعاصرة: فنون التبخير الفاخر وتنسيق المجالس لاستقبال الضيوف',
+    titleEn: 'Contemporary Arabian Hospitality: Luxury Incense Layering & Warm Majlis Styling',
+    categoryAr: 'ديكور وضيافة عصرية',
+    categoryEn: 'Home & Hospitality',
+    categoryKey: 'lifestyle',
+    date: '2026-09-05',
+    readTime: '5 دقائق',
+    summaryAr: 'كيف تصنعين هالة ترحيبية ساحرة في منزلك؟ أسرار مزج خشب المروكي الطبيعي مع المستكة والمسك الأبيض، وتنسيق الإضاءة الدافئة لجمعات لا تُنسى.',
+    summaryEn: 'Master the art of atmospheric hosting with oud layering, warm mood lighting, and modern table presentation.',
+    contentAr: [
+      'كرم الضيافة ليس مجرد عادة متوارثة، بل هو فن حسي يبدأ من اللحظة التي يخطو فيها الضيف عتبة بيتك، حيث تلتقي الروائح الأصيلة مع الإضاءة المريحة لتبث السكينة والشعور بالترحيب الصادق.',
+      'أسرار هرم التبخير الاحترافي وأجواء المجالس:',
+      '1. التبخير المتدرج (Layering Ritual): ابدئي بتبخير المجلس بحبات المستكة الحجازية قبل وصول الضيوف بنصف ساعة لتعقيم وتثبيت جو الغرفة، ثم ضعي كسرة من عود المروكي المحسن أو الكلمنتان الطبيعي على جمر هادئ مغطى بطبقة رقيقة من الرماد، لتفوح الرائحة العطرية بدون احتراق سريع أو دخان كثيف.',
+      '2. هندسة الإضاءة الدافئة والمريحة: تجنبي تماماً الإضاءة البيضاء المباشرة، واعتمدي على مصادر إنارة دافئة بدرجة (2700K - 3000K) موزعة في زوايا المجلس مع أباجورات جانبية وشموع طبيعية معطرة برائحة الفانيليا وخشب الصندل.',
+      '3. صواني الضيافة التفاعلية: نسقي أطباق الضيافة بتدرج لوني وبصري متناسق يجمع بين التمور المحشوة، فناجين القهوة السعودية المذهبة، مع شاشات تفاعلية تعرض مسابقات خفيفة من حنان فن تكسر الحواجز وتضفي بهجة فورية على الجلسة.'
+    ],
+    contentEn: [
+      'True Arabian hospitality is a multi-sensory experience that begins the moment a guest enters, guided by evocative scent trails and ambient lighting.',
+      'Steps to majestic hosting: prepare the room with natural mastic incense before layering with aged Moroki agarwood on gentle ash embers, curate warm 2700K corner illumination, and pair ceremonial cardamom coffee with welcoming games.'
+    ],
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
+    id: 'mindful-journaling-habits',
+    titleAr: 'قوة التدوين الصباحي والامتنان: 10 دقائق يومياً لتصفية الذهن ومضاعفة الإنتاجية',
+    titleEn: 'The Power of Morning Journaling: 10 Minutes Daily to Clear Mental Fog & Boost Focus',
+    categoryAr: 'تطوير الذات ونمط الحياة',
+    categoryEn: 'Mindfulness & Wellbeing',
+    categoryKey: 'lifestyle',
+    date: '2026-09-04',
+    readTime: '4 دقائق',
+    summaryAr: 'دليلك العملي لممارسة التدوين الذهني (Journaling) والتخلص من التشتت الرقمي، مع أساليب مثبتة لترتيب الأولويات وبدء اليوم بسلام نفسي وتركيز عالٍ.',
+    summaryEn: 'Practical morning journaling routines to eliminate digital overwhelm, reduce stress, and cultivate daily gratitude.',
+    contentAr: [
+      'في عالم مليء بالإشعارات المستمرة والمنبهات الرقمية، يمثل تخصيص 10 دقائق هادئة صباح كل يوم ملاذاً ذهنياً يعيد إليك السيطرة على وقتك وسلامك الداخلي.',
+      'خطوات بسيطة لبناء عادة تدوين مستدامة:',
+      '1. تفريغ الشحنات الذهنية الصباحية (Brain Dump): افتحي صفحة الملاحظات في البلانر الرقمي واكتبي كل فكرة أو التزام يشغل بالك بدون ترتيب أو رقابة ذاتية. هذا التمرين البسيط يحرر سعة الذاكرة العاملة في الدماغ ويخفض هرمون التوتر (الكورتيزول) بشكل فوري.',
+      '2. ثلاثية الامتنان اليومي (Daily Gratitude): دوني ثلاث نعم صغيرة ومحددة حدثت معك خلال الساعات الماضية (كاستمتاعك برشفة قهوة دافئة، أو محادثة لطيفة، أو نسمة هواء عليلة). التركيز على التفاصيل اليومية الصغيرة يعيد برمجة عقلك لرؤية الوفرة والفرص الإيجابية.',
+      '3. مصفوفة الأولويات الثلاث: بدلاً من كتابة قائمة مهام طويلة تسبب الإحباط، حددي ثلاثة أهداف رئيسية فقط تركزين عليها لإنجازها خلال اليوم، واستمتعي بشعور الإنجاز والرضا عند وضع علامة الصح في نهاية يومك.'
+    ],
+    contentEn: [
+      'Carving out ten intentional morning minutes before checking notifications creates a protective sanctuary for mental wellness and daily peak performance.',
+      'Actionable ritual: execute a stream-of-consciousness brain dump to release lingering cognitive clutter, write three hyper-specific gratitude moments, and commit to only three essential daily outcomes.'
+    ],
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
   {
     id: 'gathering-games-guide',
     titleAr: 'دليل حنان فن: كيف تخلقين أجواء حماسية لا تُنسى في جمعاتك العائلية ومناسباتك؟',
     titleEn: 'Hanan Fun Guide: How to Create Unforgettable Gathering Energy for Family & Events',
     categoryAr: 'ألعاب وجمعات (hanan.fun)',
     categoryEn: 'Gathering Games',
+    categoryKey: 'fun',
     date: '2026-09-01',
     readTime: '4 دقائق',
     summaryAr: 'أسرار تحويل أي جمعة عادية إلى ليلة من الضحك والمنافسة الذكية باستخدام ملفات الألعاب التفاعلية والشاشات الذكية بدون ملل.',
@@ -49,6 +154,7 @@ const ARTICLES: Article[] = [
     titleEn: 'Digital Planning 2026: How to Organize Your Schedule & Budget on iPad',
     categoryAr: 'تخطيط وإنتاجية',
     categoryEn: 'Productivity & Planning',
+    categoryKey: 'digital',
     date: '2026-08-28',
     readTime: '5 دقائق',
     summaryAr: 'طرق الاستفادة القصوى من بلانر 2026 التفاعلي مع GoodNotes والروابط التشعبية لتحقيق التوازن بين العمل والمنزل والادخار.',
@@ -74,6 +180,7 @@ const ARTICLES: Article[] = [
     titleEn: 'Secrets of Long-Lasting Royal Niche Fragrances for Gala Events',
     categoryAr: 'ثقافة العطور الفاخرة',
     categoryEn: 'Luxury Fragrance Culture',
+    categoryKey: 'luxury',
     date: '2026-08-20',
     readTime: '3 دقائق',
     summaryAr: 'كيف تدمجين بين دهن العود المعتق وعطور النيش الفرنسية للحصول على هالة عطرية فواحة تدوم طوال اليوم.',
@@ -98,6 +205,7 @@ const ARTICLES: Article[] = [
     titleEn: 'Complete Guide to Gold and Silver Jewelry Care for Lifelong Shine',
     categoryAr: 'مجوهرات وإكسسوارات',
     categoryEn: 'Fine Jewelry Care',
+    categoryKey: 'luxury',
     date: '2026-08-15',
     readTime: '4 دقائق',
     summaryAr: 'طرق صحيحة لتنظيف وتخزين المجوهرات الفاخرة وحمايتها من العوامل الكيميائية والعطور للحفاظ على لمعانها الأصلي.',
@@ -121,6 +229,7 @@ const ARTICLES: Article[] = [
     titleEn: 'The Art of Styling Haute Couture Abayas with Accessories for Formal Events',
     categoryAr: 'عبايات وأزياء',
     categoryEn: 'Haute Couture Abayas',
+    categoryKey: 'luxury',
     date: '2026-08-10',
     readTime: '4 دقائق',
     summaryAr: 'نصائح الخبراء في اختيار الحقائب، الأحذية، والمجوهرات المناسبة لتتألقي بإطلالة ملكية متكاملة في السهرات.',
@@ -144,6 +253,7 @@ const ARTICLES: Article[] = [
     titleEn: 'Royal Skincare Routine: Simple Steps for Lasting Radiance',
     categoryAr: 'عناية وجمال',
     categoryEn: 'Royal Skincare',
+    categoryKey: 'luxury',
     date: '2026-08-05',
     readTime: '5 دقائق',
     summaryAr: 'دليلك اليومي لتنظيف وترطيب البشرة بأفضل المكونات الطبيعية والمنتجات الفاخرة لإشراقة طبيعية ساحرة.',
@@ -169,8 +279,22 @@ interface BlogSectionProps {
 
 export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copied, setCopied] = useState(false);
   const isAr = lang === 'ar';
+
+  const categories = [
+    { key: 'all', labelAr: 'جميع المقالات (١٠)', labelEn: 'All Articles (10)' },
+    { key: 'gifting', labelAr: 'هدايا ومناسبات ✨', labelEn: 'Gifting & Events ✨' },
+    { key: 'digital', labelAr: 'ريادة ومنتجات رقمية', labelEn: 'Digital Commerce' },
+    { key: 'lifestyle', labelAr: 'ضيافة وتطوير الذات', labelEn: 'Hospitality & Mind' },
+    { key: 'fun', labelAr: 'ألعاب وجمعات', labelEn: 'Games & Fun' },
+    { key: 'luxury', labelAr: 'عطور وأزياء راقية', labelEn: 'Luxury & Fashion' },
+  ];
+
+  const filteredArticles = selectedCategory === 'all'
+    ? ARTICLES
+    : ARTICLES.filter((art) => art.categoryKey === selectedCategory);
 
   const handleShare = () => {
     if (navigator.clipboard) {
@@ -200,9 +324,26 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
           </p>
         </div>
 
+        {/* Category Filters Bar */}
+        <div className="flex items-center justify-center gap-2 flex-wrap pb-2">
+          {categories.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setSelectedCategory(cat.key)}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                selectedCategory === cat.key
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'bg-white text-stone-700 border border-stone-200 hover:border-amber-300 hover:bg-stone-50'
+              }`}
+            >
+              {isAr ? cat.labelAr : cat.labelEn}
+            </button>
+          ))}
+        </div>
+
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {ARTICLES.map((article) => {
+          {filteredArticles.map((article) => {
             const title = isAr ? article.titleAr : article.titleEn;
             const category = isAr ? article.categoryAr : article.categoryEn;
             const summary = isAr ? article.summaryAr : article.summaryEn;
@@ -211,7 +352,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
               <article
                 key={article.id}
                 onClick={() => setSelectedArticle(article)}
-                className="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all flex flex-col group cursor-pointer"
+                className="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all flex flex-col group cursor-pointer relative"
               >
                 {/* Image Cover */}
                 <div className="relative h-48 overflow-hidden bg-stone-100">
@@ -224,6 +365,12 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
                   <span className="absolute top-3 start-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-xs text-amber-300 text-[10px] font-bold">
                     {category}
                   </span>
+
+                  {article.isNew && (
+                    <span className="absolute top-3 end-3 px-2.5 py-1 rounded-full bg-emerald-600/95 backdrop-blur-xs text-white text-[10px] font-bold shadow-xs">
+                      {isAr ? '✨ مقال جديد' : '✨ New Post'}
+                    </span>
+                  )}
                 </div>
 
                 {/* Content Details */}

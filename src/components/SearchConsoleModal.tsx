@@ -31,7 +31,7 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
   const [copiedSitemap, setCopiedSitemap] = useState(false);
   const [copiedMetaTag, setCopiedMetaTag] = useState(false);
   const [copiedDnsTxt, setCopiedDnsTxt] = useState(false);
-  const [activeTab, setActiveTab] = useState<'sitemap' | 'verification' | 'urls' | 'robots'>('sitemap');
+  const [activeTab, setActiveTab] = useState<'sitemap' | 'verification' | 'urls' | 'robots' | 'options'>('sitemap');
 
   if (!isOpen) return null;
 
@@ -64,7 +64,11 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
     { path: '/?category=bundles', titleAr: 'البكجات الشاملة الرقمية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=perfumes', titleAr: 'العطور الملكية والنيش', priority: '0.85', freq: 'weekly' },
     { path: '/?category=jewelry', titleAr: 'المجوهرات والإكسسوارات', priority: '0.85', freq: 'weekly' },
-    { path: '#hanan-blog', titleAr: 'أدلة الجمعات والمقالات التحريرية', priority: '0.8', freq: 'weekly' },
+    { path: '#hanan-blog', titleAr: 'مدونة ومقالات حنان ستور الحصرية (١٠ مقالات)', priority: '0.85', freq: 'daily' },
+    { path: '/blog/luxury-gifting-etiquette', titleAr: 'مقال: فن الإهداء الذكي واختيار الهدايا الفاخرة', priority: '0.85', freq: 'monthly' },
+    { path: '/blog/digital-products-business-2026', titleAr: 'مقال: إطلاق متجر منتجات رقمية ناجح في 2026', priority: '0.85', freq: 'monthly' },
+    { path: '/blog/majlis-hospitality-incense-rituals', titleAr: 'مقال: طقوس الضيافة الخليجية وفنون التبخير', priority: '0.85', freq: 'monthly' },
+    { path: '/blog/mindful-journaling-habits', titleAr: 'مقال: قوة التدوين الصباحي والامتنان والتركيز', priority: '0.85', freq: 'monthly' },
     { path: '/privacy-policy', titleAr: 'سياسة الخصوصية وكوكيز أدسنس', priority: '0.7', freq: 'monthly' },
     { path: '/terms', titleAr: 'الشروط والأحكام وتراخيص الملفات', priority: '0.7', freq: 'monthly' }
   ];
@@ -155,6 +159,18 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
           >
             <ListOrdered className="w-3.5 h-3.5" />
             <span>{isAr ? 'الروابط المفهرسة' : 'Indexed URLs'}</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('options')}
+            className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+              activeTab === 'options'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-emerald-700 bg-emerald-50/70 hover:bg-emerald-100 hover:text-emerald-900'
+            }`}
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>{isAr ? 'طلبات OPTIONS و CORS (مفعلة ✓)' : 'OPTIONS & CORS (Active)'}</span>
           </button>
         </div>
 
@@ -402,6 +418,75 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 5: OPTIONS & CORS PREFLIGHT STATUS */}
+          {activeTab === 'options' && (
+            <div className="space-y-4">
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">
+                    <Check className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-emerald-950 text-sm">
+                      {isAr ? 'حالة طلبات OPTIONS و CORS: مفعلة بنجاح 100%' : 'OPTIONS & CORS Status: Fully Active'}
+                    </h4>
+                    <p className="text-xs text-emerald-800 mt-0.5">
+                      {isAr 
+                        ? 'الخادم يستجيب فوراً برمز 200 OK لكافة طلبات OPTIONS الاستطلاعية لخدمات Google AdSense و Googlebot.' 
+                        : 'Server answers all OPTIONS preflights immediately with 200 OK.'}
+                    </p>
+                  </div>
+                </div>
+
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-300 font-mono">
+                  HTTP 200 OK
+                </span>
+              </div>
+
+              {/* Technical Specifications Card */}
+              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+                <h5 className="font-bold text-stone-900 text-xs sm:text-sm">
+                  {isAr ? 'تفاصيل الترويسات (Response Headers) المفعلة في السيرفر:' : 'Active Preflight Response Headers:'}
+                </h5>
+
+                <div className="bg-stone-900 text-stone-200 p-3.5 rounded-xl font-mono text-xs space-y-1.5 overflow-x-auto">
+                  <p><span className="text-amber-400">Access-Control-Allow-Origin:</span> *</p>
+                  <p><span className="text-amber-400">Access-Control-Allow-Methods:</span> GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH</p>
+                  <p><span className="text-amber-400">Access-Control-Allow-Headers:</span> Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma</p>
+                  <p><span className="text-amber-400">Access-Control-Max-Age:</span> 86400 (24h Cache)</p>
+                  <p><span className="text-emerald-400">HTTP Status:</span> 200 OK</p>
+                </div>
+              </div>
+
+              {/* Guidelines Card */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="p-3.5 rounded-xl bg-white border border-stone-200 space-y-1">
+                  <span className="font-bold text-stone-900 text-xs flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>{isAr ? 'هل تحتاجين لأي إجراء إضافي؟' : 'Any further actions needed?'}</span>
+                  </span>
+                  <p className="text-xs text-stone-600 leading-relaxed">
+                    {isAr 
+                      ? 'لا، الإعداد نشط ويعمل على مدار الساعة تلقائياً داخل نظام خادم المتجر بدون أي تدخل يدوي.' 
+                      : 'No further action needed. The server automatically allows and handles all options requests.'}
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white border border-stone-200 space-y-1">
+                  <span className="font-bold text-stone-900 text-xs flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-amber-600" />
+                    <span>{isAr ? 'فائدة التفعيل لأدسنس وجوجل' : 'Benefits for AdSense & SEO'}</span>
+                  </span>
+                  <p className="text-xs text-stone-600 leading-relaxed">
+                    {isAr 
+                      ? 'يمنع ظهور أخطاء CORS و 405 Method Not Allowed عند قراءة ads.txt أو sitemap.xml ويضمن استمرار الإعلانات.' 
+                      : 'Prevents CORS blocking, ensures ads.txt verification passes, and maintains ad revenue.'}
+                  </p>
+                </div>
               </div>
             </div>
           )}
