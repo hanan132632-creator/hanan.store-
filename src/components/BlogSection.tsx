@@ -21,6 +21,70 @@ interface Article {
 
 const ARTICLES: Article[] = [
   {
+    id: 'oud-incense-masterclass-2026',
+    titleAr: 'دليل العود الفاخر والمروكي الملكي: كيف تميزين خشب العود الطبيعي وأسرار التبخير وتثبيت الرائحة 48 ساعة',
+    titleEn: 'The Connoisseur’s Guide to Royal Oud: Identifying Pure Agarwood & Secrets to 48-Hour Incense Longevity',
+    categoryAr: 'بخور وعطور فاخرة',
+    categoryEn: 'Royal Oud & Incense',
+    categoryKey: 'luxury',
+    date: '2026-09-08',
+    readTime: '7 دقائق',
+    summaryAr: 'دليلكِ العملي للتمييز بين خشب العود الطبيعي والمحسن كالمروكي والكلمنتان، اختبارات جودة الزبد ورائحة الراتنج النقي، وسر الرماد البارد في تثبيت البخور بالأقمشة والمجالس لأيام.',
+    summaryEn: 'An essential guide to inspecting natural vs. enhanced agarwood chips, observing resin bubbling, and mastering the cool-ash technique to infuse fabrics and interiors with enduring luxury.',
+    contentAr: [
+      'يحتل خشب العود والبخور مكانة رفيعة في الثقافة العربية الأصيلة؛ فهو ليس مجرد طيب يفوح في المجالس، بل رمز متوارث للضيافة الرفيعة والاحتفاء الكريم بالضيوف. ومع تنوع الأسواق واختلاط الأنواع، تبحث السيدة الذواقة دائماً عن المعايير الدقيقة التي تضمن لها اقتناء خشب العود النقي بأعلى درجات الفخامة.',
+      'إليكِ دليلكِ العملي الشامل لفحص العود واكتشاف أسرار التبخير الملكي خطوة بخطوة:',
+      '1. التمييز بين العود الطبيعي والعود المحسن (Natural vs. Enhanced Chips): العود الطبيعي الخالص ينشأ بفعل تفاعل طبيعي داخل جذوع الأشجار المعمرة لعدة عقود، وتكون عروقه الزيتية متفرقة بلون بني داكن أو أسود مائل للرمادي. أما العود المحسن الفاخر (مثل مروكي دبل سوبر محسن بريسين نقي) فيتم تزويده براتنج طبيعي بيور ليعطي كثافة وثباتاً متجانساً في الجمعات الكبيرة دون روائح غريبة.',
+      '2. اختبار الغليان والزبد على الجمر (The Resin Bubble Test): عند وضع كسرة العود الأصلية على الجمر الهادئ، يظهر فوراً زيت العود النقي وهو يغلي على شكل فقاعات لامعة (يُعرف شعبياً بالزبد). إذا استمر الزبد في الغليان مع انبعاث دخان بارد أبيض مائل للزرقة لا يدمع العين ولا يخدش الحلق، فأنتِ أمام خشب أصيل ذي جودة ملكية.',
+      '3. قاعدة الرماد البارد (The Cool-Ash Technique): أكبر خطأ يقع فيه الكثيرون هو رمي كسرة العود مباشرة على فحم متوهج شديد الاحمرار؛ فالحرارة المباشرة تحرق ألياف الخشب قبل أن يتبخر الزيت، مما يولد رائحة كربون غير مرغوبة. السر: اتركي الجمر حتى يهدأ تماماً وتتكون عليه طبقة رقيقة من الرماد الأبيض، أو ضعي رقاقة خفيفة جداً من القصدير أو الميكا، لتتسخن الكسرة بنعومة وتطلق عبيرها الساحر لأطول وقت ممكن.',
+      '4. فن تثبيت البخور بالأقمشة والمجالس (Scent Locking Method): جزيئات دخان العود تبحث عن وسيط دهني أو رطب لتستقر فيه. قبل إشعال المبخرة، رشي الستائر، العبايات، ووسائد المجلس برذاذ ماء الورد المخفف أو مسحة خفيفة من المسك الأبيض. ستمسك الألياف الرطبة بدخان البخور وتحتجزه لأكثر من 48 ساعة حتى مع تهوية الغرفة.',
+      '5. التخزين الذكي للعود ودهن العود: احتفظي بكسر العود داخل صناديق خشبية مبطنة بالمخمل أو علب زجاجية محكمة في مكان جاف ومعتدل الحرارة بعيداً عن الرطوبة وأشعة الشمس، وتجنبي حفظها في أكياس بلاستيكية رديئة قد تسحب الزيوت العطرية من الخشب مع مرور الوقت.'
+    ],
+    contentEn: [
+      'Pure agarwood (Oud) is the pinnacle of Arabian fragrance heritage, representing timeless hospitality, dignity, and elevated sensory luxury.',
+      'Mastering the art of royal incense evaluation and home application:',
+      '1. Distinguishing Natural vs. Enhanced: Wild natural chips feature irregular dark resin veins formed over decades, while high-grade enhanced chips (like premium Moroki) are infused with clean natural resin to ensure consistent, rich aroma throughout large halls.',
+      '2. The Resin Bubbling Indicator: Genuine agarwood will visually bubble with glistening aromatic oil over gentle heat. The resulting smoke should be soothing, smooth, and gentle on the eyes and throat.',
+      '3. The Cool-Ash Technique: Never drop delicate oud chips onto scorching red coals. Wait until coals develop a gentle blanket of white ash or place a thin mica plate over the ember. This prevents wood charring and releases pure aromatic oils slowly.',
+      '4. Scent Locking with Moisture: Fragrance molecules adhere exceptionally well to hydrated textiles. Lightly mist curtains, velvet cushions, and abayas with pure rosewater or white musk before fumigation for a scent trail that persists for days.',
+      '5. Proper Storage: Keep precious wood chips sealed in velvet-lined boxes or airtight glass jars away from humidity and direct sunlight to preserve volatile essential oils.'
+    ],
+    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
+    id: 'goodnotes-time-blocking-mastery-2026',
+    titleAr: 'دليل التخطيط الأسبوعي وإدارة الوقت عبر الأيباد: 5 استراتيجيات ذكية لمضاعفة الإنتاجية والتوازن الشخصي',
+    titleEn: 'Digital Planning Mastery on iPad: 5 Proven Strategies to Double Focus & Prevent Burnout in 2026',
+    categoryAr: 'تخطيط رقمي وإنتاجية',
+    categoryEn: 'Digital Productivity & Growth',
+    categoryKey: 'digital',
+    date: '2026-09-08',
+    readTime: '6 دقائق',
+    summaryAr: 'وداعاً للتشتت وقوائم المهام المحبطة: كيف تحولين جهاز الأيباد وتطبيقات GoodNotes والبلانر التفاعلي إلى نظام إدارة حياة متكامل يعيد إليك راحة البال والتركيز العميق.',
+    summaryEn: 'Say goodbye to chaotic to-do lists. Learn how to transform your iPad, GoodNotes, and interactive digital planners into a seamless life-operating system.',
+    contentAr: [
+      'في عصر الإشعارات المتلاحقة والمهام المتراكمة، يجد الكثير منا صعوبة في التوفيق بين التزامات العمل، رعاية الأسرة، وتخصيص وقت للراحة والنمو الشخصي. الانتقال إلى التخطيط الرقمي عبر الأيباد لم يعد مجرد رفاهية، بل أصبح الأداة الأكثر فاعلية لتنظيم الفوضى الذهنية وتحويل الأهداف الكبرى إلى خطوات يومية ملموسة.',
+      'إليكِ 5 استراتيجيات مجربة لتنظيم أسبوعك باحترافية عبر البلانر الرقمي التفاعلي:',
+      '1. منهجية حجب الوقت (Time Blocking Framework): بدلاً من كتابة قائمة مهام طويلة وغير واقعية (To-Do List) تصيبك بالإحباط بنهاية اليوم، قسمي يومك في البلانر إلى كتل زمنية ملونة: كتلة للعمل المركز الخالي من التشتت (Deep Work)، كتلة للأمور العائلية والمنزلية، وكتلة غير قابلة للتفاوض للاعتناء بذاتك وراحتك.',
+      '2. قاعدة 1-3-5 للأولويات اليومية: في بداية كل صباح، افتحي صفحة اليوم بالبلانر وحددي: مهمة واحدة رئيسية إذا أنجزتهاِ اعتبرتِ يومك ناجحاً، 3 مهام متوسطة، و5 مهام روتينية سريعة (مثل الرد على الإيميل أو دفع الفاتورة). هذا التوزيع يمنع التشتت ويمنحك شعوراً مستمراً بالتقدم.',
+      '3. الاستفادة من الروابط التشعبية التفاعلية (Hyperlinked Navigation): ميزة بلانر 2026 التفاعلي هي إمكانية التنقل الفوري؛ فبلمسة واحدة بقلم الأبل على أي يوم أو شهر، تنتقلين مباشرة لصفحته التفصيلية دون الحاجة لتصفح مئات الصفحات يدوياً، مما يوفر وقتك ويجعل جلسة التخطيط ممتعة ومريحة.',
+      '4. تتبع العادات اليومية بصرياً (Habit Tracking): بناء العادات الإيجابية يحتاج إلى تحفيز بصري مستمر. استخدمي جدول تتبع العادات في البلانر لتوثيق شرب لترين من الماء، أداء التمارين، قراءة 10 صفحات، وأذكار الصباح والمساء. رؤية سلسلة الإنجاز الخضراء كل يوم تفرز هرمون الدوبامين وتبقيكِ ملتزمة طوال الشهر.',
+      '5. جلسة المراجعة الأسبوعية وفصل الأجهزة (The Weekly Reset Ritual): مساء كل جمعة أو سبت، خصصي 15 دقيقة هادئة مع فنجان قهوة لمراجعة ما تم إنجازه، وتدوين نقاط القوة، ونقل المهام المؤجلة للأسبوع القادم، ثم إغلاق التطبيق بسلام نفسي وبدء الأسبوع الجديد برؤية واضحة وطاقة متجددة.'
+    ],
+    contentEn: [
+      'In our hyper-connected world, daily overwhelm often stems from fragmented attention rather than lack of time. Digital planning on iPad bridges clarity with intentional execution.',
+      'Five core frameworks to maximize your digital planner in 2026:',
+      '1. Visual Time Blocking: Group your calendar into designated color blocks—uninterrupted focus hours, household logistics, and personal recharging. This protects your boundaries against daily reactive tasks.',
+      '2. The 1-3-5 Priority Architecture: Every morning, define 1 major outcome, 3 medium projects, and 5 quick operational items. This ensures substantial progress without evening burnout.',
+      '3. Utilizing Hyperlinked Indexing: Take full advantage of GoodNotes interactive tabs to jump seamlessly from annual overviews to detailed weekly spreads in a single tap.',
+      '4. Visual Habit Chains: Tracking physical hydration, daily reading, and mental wellness routines visually triggers positive reinforcement and ensures long-term consistency.',
+      '5. The Weekend Reset Ritual: Dedicate 15 peaceful minutes every weekend to audit accomplishments, migrate pending goals, and welcome the upcoming week with zero cognitive debt.'
+    ],
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
     id: 'fragrance-chemistry-sillage-secrets',
     titleAr: 'كيمياء الفوحان وسيكولوجية العطور: الدليل العلمي والعملي لثبات يدوم 48 ساعة وصناعة بصمتك الملكية',
     titleEn: 'The Chemistry of Sillage & Scent Psychology: Blueprint for 48-Hour Longevity & Signature Aura',

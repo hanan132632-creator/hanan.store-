@@ -99,12 +99,28 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   <!-- 10. Editorial Blog -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
   </url>
 
-  <!-- 11. Blog Article: Luxury Gifting -->
+  <!-- 11. Blog Article: Royal Oud & Incense Masterclass 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-oud-incense-masterclass-2026</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 12. Blog Article: iPad Digital Planning Mastery 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-goodnotes-time-blocking-mastery-2026</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 13. Blog Article: Luxury Gifting -->
   <url>
     <loc>https://xn--mgblao3hjb.store/blog/luxury-gifting-etiquette</loc>
     <lastmod>2026-09-07</lastmod>
