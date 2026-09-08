@@ -23,16 +23,11 @@
       "source": "/404",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/404.html",
-      "destination": "/",
-      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico).*)",
+      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg|404.html).*)",
       "destination": "/index.html"
     }
   ],
@@ -64,11 +59,15 @@
       ]
     },
     {
-      "source": "/(ads.txt|robots.txt|sitemap.xml|favicon.ico)",
+      "source": "/(ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg|404.html)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600, s-maxage=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
