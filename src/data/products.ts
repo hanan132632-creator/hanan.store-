@@ -6,12 +6,12 @@ export const CATEGORIES: Category[] = [
     nameAr: 'جميع الملفات والمعروضات',
     nameEn: 'All Files & Collections',
     iconName: 'Sparkles',
-    descriptionAr: 'تشكيلة ملفات حنان فن ومنتجات حنان ستور الرقمية والفاخرة لعام 2026',
-    descriptionEn: 'Hanan.fun Digital Files & Hanan Store 2026 Catalog'
+    descriptionAr: 'تشكيلة ملفات وألعاب حنان ستور الرقمية والفاخرة لعام 2026',
+    descriptionEn: 'Hanan Store Digital Files & 2026 Catalog'
   },
   {
     id: 'fun-games',
-    nameAr: 'ملفات الألعاب والفعاليات (Hanan Fun)',
+    nameAr: 'ملفات الألعاب والفعاليات',
     nameEn: 'Interactive Games & Fun Files',
     iconName: 'Gamepad',
     badgeAr: 'الأكثر تحميلاً 🔥',
@@ -56,7 +56,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Gift',
     badgeAr: 'وفر 65%',
     badgeEn: 'Save 65%',
-    descriptionAr: 'حزم رقمية تجمع جميع ألعاب وبلانرات وقوالب حنان فن في ملف واحد بسعر رمزي',
+    descriptionAr: 'حزم رقمية تجمع جميع ألعاب وبلانرات وقوالب المتجر في ملف واحد بسعر رمزي',
     descriptionEn: 'All-inclusive digital bundles containing all games, templates, and planners'
   },
   {
@@ -72,14 +72,14 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const PRODUCTS: Product[] = [
-  // --- 1. DIGITAL FILES: FUN & GAMES (hanan.fun core) ---
+  // --- 1. DIGITAL FILES: FUN & GAMES ---
   {
     id: 'hn-file-games-01',
     sku: 'FUN-GAME-001',
-    titleAr: 'ملف لعبة جمعات حنان فن التفاعلية الكبرى (150 تحدي وسؤال وجولة ضحك)',
-    titleEn: 'Hanan Fun Ultimate Gathering Game (150 Interactive Challenges & Trivia)',
+    titleAr: 'ملف لعبة جمعات حنان التفاعلية الكبرى (150 تحدي وسؤال وجولة ضحك)',
+    titleEn: 'Hanan Ultimate Gathering Game (150 Interactive Challenges & Trivia)',
     categoryId: 'fun-games',
-    categoryNameAr: 'ملفات الألعاب والفعاليات (Hanan Fun)',
+    categoryNameAr: 'ملفات الألعاب والفعاليات',
     categoryNameEn: 'Interactive Games & Fun Files',
     price: 49,
     originalPrice: 120,
@@ -91,8 +91,8 @@ export const PRODUCTS: Product[] = [
       'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1000&auto=format&fit=crop'
     ],
-    descriptionAr: 'الملف الأكثر طلباً وشهرة في حنان فن! ملف تفاعلي ممتع جداً صُمم خصيصاً للجمعات العائلية وجمعات الأصدقاء والمناسبات. يحتوي على 150 شريحة وسؤال تفاعلي يشمل: فقرة "مين فينا؟"، وتحدي "أسرع إجابة"، وألغاز ذكاء، ومواقف محرجة مضحكة، ومسابقة بدون كلام. يعمل بكفاءة على شاشات التلفزيون الذكية والأيباد والجوالات بصيغة بوربوينت وPDF تفاعلي بنقرة زر.',
-    descriptionEn: 'The flagship bestselling file on hanan.fun! An ultra-entertaining interactive gathering party game featuring 150 slides with fun rounds: "Who is Most Likely To?", Rapid Fire, Hilarious Scenarios, and Charades. Plays seamlessly on Smart TVs, iPads, and smartphones.',
+    descriptionAr: 'الملف الأكثر طلباً وشهرة في متجر حنان! ملف تفاعلي ممتع جداً صُمم خصيصاً للجمعات العائلية وجمعات الأصدقاء والمناسبات. يحتوي على 150 شريحة وسؤال تفاعلي يشمل: فقرة "مين فينا؟"، وتحدي "أسرع إجابة"، وألغاز ذكاء، ومواقف محرجة مضحكة، ومسابقة بدون كلام. يعمل بكفاءة على شاشات التلفزيون الذكية والأيباد والجوالات بصيغة بوربوينت وPDF تفاعلي بنقرة زر.',
+    descriptionEn: 'The flagship bestselling file on Hanan Store! An ultra-entertaining interactive gathering party game featuring 150 slides with fun rounds: "Who is Most Likely To?", Rapid Fire, Hilarious Scenarios, and Charades. Plays seamlessly on Smart TVs, iPads, and smartphones.',
     featuresAr: [
       'تحميل فوري مباشر بعد الدفع بثوانٍ معدودة',
       'صيغتان مرفقتان: بوربوينت تفاعلي (PPTX) + ملف PDF جاهز للعرض',
@@ -428,12 +428,12 @@ export const PRODUCTS: Product[] = [
     tagsEn: ['Digital Business', 'Passive Income', 'E-Book']
   },
 
-  // --- 5. DIGITAL FILES: ULTIMATE BUNDLE (البكج الشامل - مثل hanan.fun) ---
+  // --- 5. DIGITAL FILES: ULTIMATE BUNDLE (البكج الشامل) ---
   {
     id: 'hn-file-bundle-01',
     sku: 'BND-ULT-001',
-    titleAr: 'البكج الملكي الشامل لجميع ملفات حنان فن 2026 (كل الألعاب + المخططات + القوالب + الأدلة)',
-    titleEn: 'Hanan.fun Ultimate 2026 Royal Digital Bundle (All Games, Planners & Templates)',
+    titleAr: 'البكج الملكي الشامل لجميع ملفات متجر حنان 2026 (كل الألعاب + المخططات + القوالب + الأدلة)',
+    titleEn: 'Hanan Ultimate 2026 Royal Digital Bundle (All Games, Planners & Templates)',
     categoryId: 'bundles',
     categoryNameAr: 'البكجات الشاملة والحزم الكبرى',
     categoryNameEn: 'All-in-One Digital Bundles',
@@ -447,8 +447,8 @@ export const PRODUCTS: Product[] = [
       'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop'
     ],
-    descriptionAr: 'البكج الأقوى والأوفر على الإطلاق! احصلي على كافة ملفات متجر حنان فن في طلب واحد بخصم يتجاوز 65%! يشمل: لعبة جمعات حنان فن التفاعلية الكبرى 150 شريحة + لعبة جلسات البنات + مخطط 2026 الرقمي للأيباد + شيت ميزانية الإكسل الذكي + حزمة قوالب كانفا 120 قالب + كتاب دليل المنتجات الرقمية الشامل. تحميل فوري لحزمة ZIP كاملة.',
-    descriptionEn: 'The most comprehensive, high-value bundle on hanan.fun! Get all store files in one download with over 65% savings. Includes: Ultimate Gathering Game (150 slides), Besties Icebreaker Game, 2026 iPad Planner, Smart Budget Spreadsheet, 120+ Canva Templates, and the Digital Business Handbook.',
+    descriptionAr: 'البكج الأقوى والأوفر على الإطلاق! احصلي على كافة ملفات متجر حنان في طلب واحد بخصم يتجاوز 65%! يشمل: لعبة جمعات حنان التفاعلية الكبرى 150 شريحة + لعبة جلسات البنات + مخطط 2026 الرقمي للأيباد + شيت ميزانية الإكسل الذكي + حزمة قوالب كانفا 120 قالب + كتاب دليل المنتجات الرقمية الشامل. تحميل فوري لحزمة ZIP كاملة.',
+    descriptionEn: 'The most comprehensive, high-value bundle on Hanan Store! Get all store files in one download with over 65% savings. Includes: Ultimate Gathering Game (150 slides), Besties Icebreaker Game, 2026 iPad Planner, Smart Budget Spreadsheet, 120+ Canva Templates, and the Digital Business Handbook.',
     featuresAr: [
       'توفير أكثر من 260 ريال مقارنة بشراء كل ملف على حدة',
       'تحميل فوري بضغطة زر لملف ZIP منظم يحتوي على كافة الملفات',

@@ -47,13 +47,13 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
     scrollToSection('catalog-main');
   };
 
-  // BAR 1: Digital & Hanan Fun Sections
+  // BAR 1: Digital & Games Sections
   const digitalSections = [
     {
       id: 'fun-games',
       icon: <Gamepad className="w-3.5 h-3.5 text-amber-400" />,
-      titleAr: 'ألعاب وفعاليات الجمعات (Hanan Fun)',
-      titleEn: 'Interactive Games & Fun',
+      titleAr: 'ألعاب وفعاليات الجمعات التفاعلية',
+      titleEn: 'Interactive Gathering Games',
       badgeAr: 'الأكثر طلباً 🔥',
       badgeEn: 'Popular 🔥',
       action: () => handleCategoryClick('fun-games')
@@ -210,7 +210,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
           <div className="flex items-center gap-1.5 shrink-0 pe-2 border-e border-stone-700/60">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="text-[11px] sm:text-xs font-black text-amber-300 tracking-wide font-serif">
-              {isAr ? '١. أقسام حنان فن والملفات الرقمية:' : '1. Hanan Fun & Digital Files:'}
+              {isAr ? '١. أقسام ملفات الألعاب والمنتجات الرقمية:' : '1. Digital Files & Games:'}
             </span>
           </div>
 

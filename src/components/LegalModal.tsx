@@ -58,11 +58,11 @@ export const LegalModal: React.FC<LegalModalProps> = ({
       badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200'
     },
     about: {
-      titleAr: 'من نحن • قصة متجر حنان وبوابة حنان فن',
-      titleEn: 'About Hanan Store & Hanan Fun Portal',
+      titleAr: 'من نحن • قصة متجر حنان',
+      titleEn: 'About Hanan Store',
       badgeAr: 'علامة موثقة وهوية مسجلة',
       badgeEn: 'Verified Brand',
-      subAr: 'حنان ستور وحنان فن (xn--mgblao3hjb.store | hanan.fun) — ألعاب جمعات، منتجات رقمية، وعطور فاخرة',
+      subAr: 'حنان ستور (xn--mgblao3hjb.store) — ألعاب جمعات، منتجات رقمية، وعطور فاخرة',
       subEn: 'Authentic brand crafting memorable gathering games, digital planners, and curated luxury',
       icon: Sparkles,
       iconColor: 'text-amber-600 bg-amber-50',
@@ -229,8 +229,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h5>
                 <p>
                   {isAr
-                    ? 'متجر حنان ستور (المشار إليه بـ "حنان ستور"، "hanan.fun"، أو "xn--mgblao3hjb.store") يلتزم بأعلى معايير الشفافية وحماية خصوصية زواره وعملائه الكرام. توضح هذه السياسة كيف نقوم بجمع واستخدام ومشاركة وحماية معلوماتك عند زيارة موقعنا أو شراء منتجاتنا وملفاتنا الرقمية.'
-                    : 'Hanan Store ("hanan.fun" and "xn--mgblao3hjb.store") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your data.'}
+                    ? 'متجر حنان ستور (المشار إليه بـ "حنان ستور"، "حنان.store"، أو "xn--mgblao3hjb.store") يلتزم بأعلى معايير الشفافية وحماية خصوصية زواره وعملائه الكرام. توضح هذه السياسة كيف نقوم بجمع واستخدام ومشاركة وحماية معلوماتك عند زيارة موقعنا أو شراء منتجاتنا وملفاتنا الرقمية.'
+                    : 'Hanan Store ("xn--mgblao3hjb.store" and "حنان.store") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your data.'}
                 </p>
               </section>
 
@@ -364,7 +364,6 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   </span>
                   <div className="font-mono text-stone-600 space-y-0.5 text-[11px]">
                     <p>Domain: xn--mgblao3hjb.store (حنان.store)</p>
-                    <p>Secondary: hanan.fun</p>
                     <p>AdSense File: /ads.txt</p>
                   </div>
                 </div>
@@ -404,7 +403,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h5>
                 <p>
                   {isAr
-                    ? 'جميع الملفات الرقمية وألعاب الجمعات (hanan.fun)، البلانرات، والقوالب المعروضة في المتجر مخصصة للاستخدام الشخصي غير التجاري مدى الحياة. يحظر منعاً باتاً إعادة بيعها أو توزيعها مجاناً أو نشرها على مواقع أخرى دون إذن خطي مسبق من إدارة حنان ستور.'
+                    ? 'جميع الملفات الرقمية وألعاب الجمعات التفاعلية، البلانرات، والقوالب المعروضة في المتجر مخصصة للاستخدام الشخصي غير التجاري مدى الحياة. يحظر منعاً باتاً إعادة بيعها أو توزيعها مجاناً أو نشرها على مواقع أخرى دون إذن خطي مسبق من إدارة حنان ستور.'
                     : 'Digital files and gathering games are licensed for personal, non-commercial lifetime use. Reselling or public redistribution is strictly prohibited.'}
                 </p>
               </section>
@@ -438,7 +437,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </div>
                 <div>
                   <h4 className="font-bold text-stone-950 font-serif text-base sm:text-lg">
-                    {isAr ? 'قصة حنان ستور وحنان فن' : 'Story of Hanan Store & Hanan Fun'}
+                    {isAr ? 'قصة متجر حنان' : 'Story of Hanan Store'}
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-600 mt-1">
                     {isAr
@@ -454,7 +453,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h5>
                 <p>
                   {isAr
-                    ? 'انطلقت منصة حنان ستور وحنان فن لتكون مساحة تجمع بين الجمال والترفيه الراقي. نبتكر ألعاباً عائلية تفاعلية تحيي الجمعات وتخلق ذكريات لا تُنسى، ونختار بعناية أجود العطور والمجوهرات التي تعكس الأصالة والذوق الرفيع.'
+                    ? 'انطلقت منصة متجر حنان لتكون مساحة تجمع بين الجمال والترفيه الراقي. نبتكر ألعاباً عائلية تفاعلية تحيي الجمعات وتخلق ذكريات لا تُنسى، ونختار بعناية أجود العطور والمجوهرات التي تعكس الأصالة والذوق الرفيع.'
                     : 'We craft memorable gatherings through interactive games while presenting curated royal fragrances and jewelry.'}
                 </p>
               </div>
@@ -529,7 +528,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
           <div className="flex items-center gap-1.5 font-mono text-[11px]">
             <span>Domain: xn--mgblao3hjb.store</span>
             <span>•</span>
-            <span>hanan.fun</span>
+            <span>حنان.store</span>
           </div>
           <button
             onClick={onClose}

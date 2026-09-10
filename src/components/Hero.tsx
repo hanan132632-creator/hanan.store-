@@ -50,15 +50,15 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Display Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-stone-900 tracking-tight leading-[1.2] font-serif">
               {lang === 'ar' 
-                ? 'ملفات وألعاب حنان فن التفاعلية والقطع الفاخرة' 
-                : 'Hanan Fun Interactive Files & Luxury Experience'}
+                ? 'ملفات وألعاب الجمعات التفاعلية والقطع الفاخرة' 
+                : 'Hanan Store Interactive Files & Luxury Experience'}
             </h1>
 
             {/* Body Description */}
             <p className="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               {lang === 'ar'
-                ? 'استمتعي بأقوى ملفات الألعاب التفاعلية للجمعات والمناسبات مثل hanan.fun، ومخططات الأيباد السنوية 2026، وقوالب كانفا، وشيتات الإكسل الذكية، مع توصيل فوري مباشر وتشكيلة حنان الملكية.'
-                : 'Enjoy top interactive gathering game files from hanan.fun, 2026 iPad digital planners, Canva kits, and automated budget spreadsheets with instant direct download.'}
+                ? 'استمتعي بأقوى ملفات الألعاب التفاعلية للجمعات والمناسبات العائلية، ومخططات الأيباد السنوية 2026، وقوالب كانفا، وشيتات الإكسل الذكية، مع توصيل فوري مباشر وتشكيلة حنان الملكية.'
+                : 'Enjoy top interactive gathering game files, 2026 iPad digital planners, Canva kits, and automated budget spreadsheets with instant direct download.'}
             </p>
 
             {/* Action Buttons */}
@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onExploreClick}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all cursor-pointer group"
               >
-                <span>{lang === 'ar' ? 'تصفح ملفات وألعاب حنان فن' : 'Browse Files & Games'}</span>
+                <span>{lang === 'ar' ? 'تصفح ملفات وألعاب حنان ستور' : 'Browse Files & Games'}</span>
                 <ArrowDown className="w-4 h-4 text-amber-400 group-hover:translate-y-0.5 transition-transform" />
               </button>
 
@@ -77,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={() => onCategorySelect('fun-games')}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold text-sm sm:text-base shadow-sm transition-all cursor-pointer"
               >
-                <span>{lang === 'ar' ? 'ألعاب الجمعات (Hanan Fun)' : 'Gathering Games'}</span>
+                <span>{lang === 'ar' ? 'ألعاب الجمعات التفاعلية' : 'Gathering Games'}</span>
               </button>
 
               <button

@@ -118,7 +118,7 @@ export const TRANSLATIONS = {
     },
     domainSection: {
       title: 'الدومين المعتمد والرسمي لمتجر حنان',
-      desc: 'يمكنك الوصول للمتجر عبر الرابط المباشر xn--mgblao3hjb.store (المطابق للنطاق العربي حنان.store) أو عبر hanan.fun بأعلى معايير الأمان والتشفير.',
+      desc: 'يمكنك الوصول للمتجر عبر الرابط المباشر xn--mgblao3hjb.store (المطابق للنطاق العربي حنان.store) بأعلى معايير الأمان والتشفير.',
       sslSecured: 'اتصال مشفر 256-bit SSL آمن بالكامل',
       copyDomain: 'نسخ رابط الدومين',
       copied: 'تم نسخ الرابط بنجاح!'
@@ -137,7 +137,7 @@ export const TRANSLATIONS = {
     instantDeliveryLabel: 'تسليم فوري ومباشر بعد الدفع',
     previewFileContent: 'معاينة عينة من الملف',
     downloadNow: 'تحميل الملف الآن',
-    digitalFileBadge: 'ملف رقمي (Hanan Fun)',
+    digitalFileBadge: 'ملف رقمي فوري',
     samplePreviewTitle: 'عينة من صفحات ومحتوى الملف'
   },
   en: {
@@ -231,9 +231,9 @@ export const TRANSLATIONS = {
       support: { title: '24/7 Dedicated Concierge', desc: 'Personal shopping assistants ready to assist you via WhatsApp and phone' }
     },
     hero: {
-      eyebrow: 'HANAN STORE • HANAN.FUN FILES & LUXURY 2026',
-      title: 'Hanan Fun Digital Files & Absolute Luxury Experience',
-      description: 'Discover the iconic hanan.fun interactive gathering games, GoodNotes digital planners, Canva kits, and royal boutique gifts with instant download.',
+      eyebrow: 'HANAN STORE • DIGITAL FILES & ROYAL LUXURY 2026',
+      title: 'Hanan Store Digital Files & Absolute Luxury Experience',
+      description: 'Discover our interactive gathering games, GoodNotes digital planners, Canva kits, and royal boutique gifts with instant download.',
       shopNowBtn: 'Browse Digital Files & Goods',
       exploreCollections: 'Explore Sections',
       satisfactionRate: '99.4%',
@@ -243,7 +243,7 @@ export const TRANSLATIONS = {
     },
     domainSection: {
       title: 'Official & Verified Domain for Hanan Store',
-      desc: 'Access the boutique directly via xn--mgblao3hjb.store (Arabic punycode domain حنان.store) or via hanan.fun with 256-bit SSL encryption.',
+      desc: 'Access the boutique directly via xn--mgblao3hjb.store (Arabic punycode domain حنان.store) with 256-bit SSL encryption.',
       sslSecured: 'Fully Secured with 256-bit SSL Certificate',
       copyDomain: 'Copy Domain Link',
       copied: 'Domain link copied!'
@@ -262,7 +262,7 @@ export const TRANSLATIONS = {
     instantDeliveryLabel: 'Instant Delivery Upon Payment',
     previewFileContent: 'Preview File Sample',
     downloadNow: 'Download File Now',
-    digitalFileBadge: 'Digital File (Hanan Fun)',
+    digitalFileBadge: 'Instant Digital File',
     samplePreviewTitle: 'Sample Pages & Preview'
   }
 };

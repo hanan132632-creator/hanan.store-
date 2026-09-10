@@ -59,7 +59,7 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
 
   const sitemapUrls = [
     { path: '/', titleAr: 'الصفحة الرئيسية للمتجر', priority: '1.0', freq: 'daily' },
-    { path: '/?category=fun-games', titleAr: 'ألعاب الجمعات التفاعلية (hanan.fun)', priority: '0.9', freq: 'weekly' },
+    { path: '/?category=fun-games', titleAr: 'ألعاب الجمعات التفاعلية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=planners', titleAr: 'بلانر ومخططات الأيباد 2026', priority: '0.9', freq: 'weekly' },
     { path: '/?category=bundles', titleAr: 'البكجات الشاملة الرقمية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=perfumes', titleAr: 'العطور الملكية والنيش', priority: '0.85', freq: 'weekly' },
@@ -380,7 +380,6 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
                 <p>Allow: /sitemap.xml</p>
                 <p>Allow: /ads.txt</p>
                 <p className="pt-2 text-amber-300 font-bold">Sitemap: https://xn--mgblao3hjb.store/sitemap.xml</p>
-                <p className="text-amber-300 font-bold">Sitemap: https://hanan.fun/sitemap.xml</p>
                 <p className="pt-1 text-stone-400">Host: https://xn--mgblao3hjb.store</p>
               </div>
             </div>

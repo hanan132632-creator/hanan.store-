@@ -76,8 +76,8 @@ export const Footer: React.FC<FooterProps> = ({
 
             <p className="text-xs sm:text-sm text-stone-400 leading-relaxed max-w-md">
               {lang === 'ar' 
-                ? 'متجر حنان ستور ومنصة حنان فن: وجهتك الفاخرة لألعاب الجمعات التفاعلية، البلانرات الرقمية، والعطور الملكية النيش والمجوهرات الأصيلة، متوافق ومصمم وفق أعلى معايير الجودة والمصداقية.'
-                : 'Hanan Store & Hanan Fun: Your premier boutique for interactive party games, digital planners, royal perfumes, and fine jewelry.'}
+                ? 'متجر حنان ستور: وجهتك الفاخرة لألعاب الجمعات التفاعلية، البلانرات الرقمية، والعطور الملكية النيش والمجوهرات الأصيلة، متوافق ومصمم وفق أعلى معايير الجودة والمصداقية.'
+                : 'Hanan Store: Your premier boutique for interactive party games, digital planners, royal perfumes, and fine jewelry.'}
             </p>
 
             {/* Official Domain & SSL Pill */}
@@ -113,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-1"
                 >
                   <span className="text-amber-400 font-bold">•</span>
-                  <span>{lang === 'ar' ? 'ألعاب الجمعات التفاعلية (hanan.fun)' : 'Gathering Games (hanan.fun)'}</span>
+                  <span>{lang === 'ar' ? 'ألعاب الجمعات التفاعلية' : 'Gathering Interactive Games'}</span>
                 </button>
               </li>
               <li>

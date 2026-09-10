@@ -182,7 +182,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-amber-950 flex items-center gap-1.5">
                       <Sparkles className="w-4 h-4 text-amber-600" />
-                      <span>{lang === 'ar' ? 'تفاصيل الملف الرقمي (Hanan Fun):' : 'Digital File Details:'}</span>
+                      <span>{lang === 'ar' ? 'تفاصيل الملف الرقمي:' : 'Digital File Details:'}</span>
                     </span>
                     {onPreviewSample && (
                       <button

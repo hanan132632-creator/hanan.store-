@@ -28,7 +28,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({
 
   const handleDownloadSample = () => {
     // Generate a downloadable text/sample file
-    const sampleContent = `Hanan Store & Hanan Fun (hanan.fun) - Sample Preview\n` +
+    const sampleContent = `Hanan Store (حنان.store) - Sample Preview\n` +
       `Product: ${product.titleAr} (${product.titleEn})\n` +
       `SKU: ${product.sku}\n` +
       `Format: ${product.fileType || 'Interactive PDF'}\n` +
@@ -41,7 +41,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `SAMPLE_${product.downloadFileName || 'Hanan_Fun_File.txt'}`;
+    link.download = `SAMPLE_${product.downloadFileName || 'Hanan_Digital_File.txt'}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -127,7 +127,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({
           <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 space-y-2">
             <div className="flex items-center gap-2 text-emerald-900 font-bold text-xs">
               <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>{lang === 'ar' ? 'مميزات الملف المعتمد من حنان فن (hanan.fun):' : 'Official Hanan Fun File Features:'}</span>
+              <span>{lang === 'ar' ? 'مميزات الملف المعتمد من حنان ستور:' : 'Official Hanan Store File Features:'}</span>
             </div>
             <ul className="text-[11px] text-emerald-800 space-y-1 list-disc list-inside ps-1">
               <li>{lang === 'ar' ? 'صلاحية وصول واستخدام غير محدودة مدى الحياة' : 'Lifetime unlimited personal use & access'}</li>
