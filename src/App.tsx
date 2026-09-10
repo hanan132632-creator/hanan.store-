@@ -40,6 +40,8 @@ import { SearchConsoleModal } from './components/SearchConsoleModal';
 import { SitemapViewerModal } from './components/SitemapViewerModal';
 import { Footer } from './components/Footer';
 import { MobileBottomNav } from './components/MobileBottomNav';
+import { TextToVideoModal } from './components/TextToVideoModal';
+import { ArticleWriterModal } from './components/ArticleWriterModal';
 
 export default function App() {
   // Multilingual & Currency State
@@ -57,6 +59,8 @@ export default function App() {
   const [isSearchConsoleOpen, setIsSearchConsoleOpen] = useState(false);
   const [isSitemapViewerOpen, setIsSitemapViewerOpen] = useState(false);
   const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
+  const [isTextToVideoOpen, setIsTextToVideoOpen] = useState(false);
+  const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
@@ -135,6 +139,21 @@ export default function App() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Hash listener for opening AI tools directly via link or button
+  useEffect(() => {
+    const handleHashTools = () => {
+      const hash = window.location.hash;
+      if (hash === '#tool-text-to-video' || hash === '#video-tool' || hash === '#text-to-video') {
+        setIsTextToVideoOpen(true);
+      } else if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer') {
+        setIsArticleWriterOpen(true);
+      }
+    };
+    handleHashTools();
+    window.addEventListener('hashchange', handleHashTools);
+    return () => window.removeEventListener('hashchange', handleHashTools);
   }, []);
 
   // Update category when activeCategory changes
@@ -324,6 +343,8 @@ export default function App() {
           setSitemapViewerTab('sitemap');
           setIsSitemapViewerOpen(true);
         }}
+        onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
+        onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
       />
 
       {/* Top Three Department & Section Navigation Bars */}
@@ -348,6 +369,8 @@ export default function App() {
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
+        onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
+        onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
       />
 
       {/* Official Domain & Brand Guarantee Ribbon */}
@@ -489,7 +512,11 @@ export default function App() {
 
       {/* Editorial Guides & Original Content Section (Crucial for AdSense Value) */}
       <div className="content-auto">
-        <BlogSection lang={lang} />
+        <BlogSection 
+          lang={lang} 
+          onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
+          onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
+        />
       </div>
 
       {/* Customer Experiences & Testimonials Section */}
@@ -512,6 +539,8 @@ export default function App() {
             setSitemapViewerTab(type);
             setIsSitemapViewerOpen(true);
           }}
+          onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
+          onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
         />
       </div>
 
@@ -666,6 +695,20 @@ export default function App() {
         isOpen={isSitemapViewerOpen}
         onClose={() => setIsSitemapViewerOpen(false)}
         initialTab={sitemapViewerTab}
+        lang={lang}
+      />
+
+      {/* AI Text to Video Creation Tool Modal */}
+      <TextToVideoModal
+        isOpen={isTextToVideoOpen}
+        onClose={() => setIsTextToVideoOpen(false)}
+        lang={lang}
+      />
+
+      {/* AI Article & SEO Content Writer Tool Modal */}
+      <ArticleWriterModal
+        isOpen={isArticleWriterOpen}
+        onClose={() => setIsArticleWriterOpen(false)}
         lang={lang}
       />
 

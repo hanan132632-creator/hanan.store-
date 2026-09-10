@@ -8,7 +8,8 @@ interface Article {
   titleEn: string;
   categoryAr: string;
   categoryEn: string;
-  categoryKey: 'gifting' | 'digital' | 'lifestyle' | 'fun' | 'luxury';
+  categoryKey: 'gifting' | 'digital' | 'lifestyle' | 'fun' | 'luxury' | 'ai';
+  toolActionType?: 'text-to-video' | 'article-writer';
   date: string;
   readTime: string;
   summaryAr: string;
@@ -20,6 +21,72 @@ interface Article {
 }
 
 const ARTICLES: Article[] = [
+  {
+    id: 'ai-text-to-video-tools-guide-2026',
+    titleAr: 'دليل أداة تحويل النص إلى فيديو بالذكاء الاصطناعي: كيف تصنع مقاطع سينمائية وتسويقية مذهلة من مجرد كلمات في 2026',
+    titleEn: 'AI Text-to-Video Generation Guide: Crafting Cinematic & Commercial Videos from Words in 2026',
+    categoryAr: 'أدوات الذكاء الاصطناعي 🤖',
+    categoryEn: 'AI Video & Creative Tech 🤖',
+    categoryKey: 'ai',
+    toolActionType: 'text-to-video',
+    date: '2026-09-10',
+    readTime: '8 دقائق',
+    summaryAr: 'كل ما تحتاج لمعرفته عن أداة تحويل النص إلى فيديو: نماذج التوليد السينمائي Sora وRunway وKling، أسرار صياغة البرومبت الإخراجي وحركة الكاميرا، وكيف تحول أفكارك ومنتجاتك إلى ريلز وإعلانات احترافية مجاناً.',
+    summaryEn: 'The definitive guide to AI Text-to-Video tools in 2026: exploring diffusion models, cinematic camera movement prompts, luxury commercial workflows, and hands-on video creation for TikTok and YouTube.',
+    contentAr: [
+      'يشهد عام 2026 ثورة بصرية غير مسبوقة في صناعة المحتوى الرقمي، حيث تحولت فكرة تحويل الكلمات والسيناريوهات المكتوبة إلى مقاطع فيديو فائقة الدقة والواقعية من خيال علمي إلى حقيقة يومية في متناول الجميع. لم يعد صناع المحتوى ورواد الأعمال بحاجة إلى معدات تصوير باهظة الثمن أو استوديوهات إضاءة معقدة لإنتاج مقاطع فيديو تسويقية أو سينمائية تأسر الأنظار.',
+      'أطلقت منصة حنان ستور أداة تحويل النص إلى فيديو المدمجة مجاناً لجميع زوار الموقع، لتمكين الجميع من تجربة التوليد الفوري للمشاهد السينمائية ومخططات الإخراج (Storyboards). إليك في هذا الدليل الشامل كل ما تحتاج لمعرفته لاحتراف هذه التقنية وصناعة فيديوهات تتصدر المشاهدات:',
+      '1. كيف تعمل تقنية تحويل النص إلى فيديو (Diffusion & Spatio-Temporal Video Models): تعتمد خوارزميات الفيديو الحديثة (مثل OpenAI Sora، Runway Gen-3 Alpha، Kling AI، وPika) على فهم العلاقات المكانية والزمنية. يقوم النموذج بتحليل الكلمات المفتاحية في النص، وتوليد إطارات متتالية تحافظ على ثبات ملامح الشخصيات والمنتجات وحركة الضوء والفيزياء الواقعية دون اهتزاز أو تشوهات بصرية.',
+      '2. هندسة البرومبت الإخراجي (Cinematic Prompt Engineering): للحصول على فيديو فائق الواقعية، يجب ألا تكتفي بوصف العنصر فقط، بل حدد أربعة عناصر إخراجية جوهرية: زاوية وحركة الكاميرا (مثل Slow Push-in، أو 360 Orbit، أو Extreme Macro)، نوع العدسة والعمق الميداني (Anamorphic Lens, Shallow Depth of Field f/1.2)، الإضاءة والأجواء (Cinematic Golden Hour, Dramatic Rim Lighting, Volumetric Fog)، ومعدل الإطارات ونعومة الحركة (4K 60fps Photorealistic).',
+      '3. صناعة إعلانات المنتجات الفاخرة للريلز والتيك توك: إذا كنت تدير متجراً للمنتجات الرقمية أو العطور أو الهدايا، فإن الفيديوهات القصيرة (بأبعاد 9:16) هي الأسرع انتشاراً ومبيعات. يمكنك إدخال سيناريو يركز على تفاصيل المنتج، كانبعاث دخان العود الملكي بهدوء فوق رمال الصحراء الذهبية، مع تعليق صوتي فخم يجذب المشاهد في أول 3 ثوانٍ وهي اللحظة الحاسمة لمنع التخطي (Hook).',
+      '4. تنظيم المخطط الزمني للمشاهد (Storyboard Breakdown): أفضل الفيديوهات الناجحة لا تعتمد على لقطة واحدة ممتدة، بل تتكون من 3 لقطات متناسقة: لقطة تأسيسية خاطفة (00:00 - 00:03) تلفت الانتباه، لقطة تفصيلية مقربة للمنتج أو الفكرة (00:03 - 00:07)، ولقطة ختامية متوازنة مع دعوة صريحة للعمل (00:07 - 00:10).',
+      '5. جرب الأداة التفاعلية المدمجة الآن: وفرنا لك في حنان ستور أداة تحويل النص إلى فيديو التفاعلية مباشرة على الموقع، لتوليد سيناريوهاتك، معاينة المحاكاة البصرية، ونسخ البرومبت الشامل الجاهز للاستخدام الفوري بضغطة زر واحدة.'
+    ],
+    contentEn: [
+      'In 2026, generative video AI has democratized high-end cinematography, enabling solopreneurs and creators to turn raw text into breathtaking 4K footage within seconds.',
+      'Hanan Store has introduced an integrated AI Text-to-Video tool directly on the platform to empower creators. Here is your roadmap to mastering generative video prompts and storyboard production:',
+      '1. Understanding Temporal Video Models: Cutting-edge systems (Sora, Runway Gen-3, Kling) leverage spatio-temporal diffusion to ensure consistent physics, lighting coherence, and character fidelity across consecutive video frames.',
+      '2. Cinematic Prompt Architecture: Specify camera dynamics (Slow Push-In, 360 Orbit), lens depth (50mm f/1.2 anamorphic), volumetric lighting, and color grading to unlock cinematic elegance.',
+      '3. Formats for Viral Reach: Leverage 9:16 vertical orientation for TikTok and Instagram Reels. Craft high-impact 3-second visual hooks focusing on tactile textures and emotional storytelling.',
+      '4. Three-Act Storyboard: Structure your clip into an establishing opener, a detailed macro feature showcase, and an authoritative closing call-to-action.',
+      '5. Try the Interactive Built-in Tool: Click the button below to launch our free AI Text-to-Video tool and generate your custom storyboards right now.'
+    ],
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
+    id: 'ai-article-generator-seo-mastery-2026',
+    titleAr: 'دليل أداة إنشاء المقالات بالذكاء الاصطناعي: أسرار كتابة محتوى متصدر لمحركات البحث ومتوافق تماماً مع Google AdSense',
+    titleEn: 'AI Article Generator & SEO Mastery Guide: Writing High-Ranking Content Compliant with AdSense',
+    categoryAr: 'أدوات الذكاء الاصطناعي 🤖',
+    categoryEn: 'AI Content & SEO Growth 🤖',
+    categoryKey: 'ai',
+    toolActionType: 'article-writer',
+    date: '2026-09-10',
+    readTime: '9 دقائق',
+    summaryAr: 'دليلك الحصري لاستخدام أداة كتابة المقالات بالذكاء الاصطناعي: صياغة محتوى حصري 100%، استراتيجيات تصدر محركات البحث (SEO)، معايير قبول وتحقيق الدخل عبر Google AdSense، وتوليد المقالات الجاهزة للنشر بضغطة زر.',
+    summaryEn: 'How to utilize AI article generation tools to craft unique, authoritative, SEO-dominating long-form articles that strictly adhere to Google AdSense helpful content guidelines.',
+    contentAr: [
+      'تطورت خوارزميات محركات البحث في عام 2026 بشكل جذري؛ فلم يعد التنافس مقتصراً على حشو الكلمات المفتاحية أو نشر نصوص آلية مكررة، بل أصبح التركيز المطلق منصباً على تقديم "محتوى ذي قيمة بشرية حقيقية" (Helpful Content) يرتكز على الخبرة والمصداقية وموثوقية المصدر (Google EEAT Guidelines).',
+      'ولمساعدة الكتاب وأصحاب المواقع وزوار حنان ستور في إنتاج محتوى استثنائي يجذب القراء ويتوافق مع اشتراطات برنامج Google AdSense الربحي، قمنا بتضمين "أداة إنشاء مقالات بالذكاء الاصطناعي" مباشرة على موقعنا. إليك أسرار استخدام الأداة لتحقيق أفضل النتائج:',
+      '1. ركائز المحتوى المتوافق مع Google AdSense: تشترط جوجل أن يقدم المقال معلومات أصلية غير منسوخة، وأن يكون منسقاً بشكل احترافي يسهل تصفحه على الجوال، مع وضوح حقوق النشر وسياسات الخصوصية والشفافية التحريرية. المقالات المنشورة عبر أداتنا مصممة هيكلياً لتلبي هذه المعايير بنسبة 100%.',
+      '2. الهيكلية الذهبية للمقالات المتصدرة (H1, H2, H3 Architecture): احرص دائماً على أن يبدأ المقال بعنوان رئيسي جذاب يتضمن نية البحث (Search Intent)، يليه وصف ميتا دقيق يجذب النقرات في صفحة نتائج جوجل (CTR). ثم قسّم الموضوع إلى ترويسات فرعية واضحة، مع تدعيم الأفكار بنقاط بارزة (Bullet Points) وجداول محتويات مريحة للعين.',
+      '3. تضمين الكلمات الدلالية الثانوية (LSI Keywords): بدلاً من تكرار الكلمة المفتاحية الرئيسية بشكل مصطنع، وجه الأداة للتركيز على المرادفات والمصطلحات المرتبطة بالمجال، مما يمنح المقال ثراءً لغوياً تفضله خوارزميات الذكاء الاصطناعي في محركات البحث الحديثة.',
+      '4. إضافة قسم الأسئلة الشائعة (FAQ Schema): تشير أحدث إحصائيات السيو إلى أن المقالات التي تتضمن إجابات دقيقة ومباشرة على أسئلة المستخدمين تحظى بفرصة أكبر بنسبة 65% للظهور في المقتطفات المميزة (Featured Snippets) أعلى نتائج البحث.',
+      '5. استخدام أداة حنان ستور المجانية للكتابة: يمكنك الآن النقر على زر الأداة الموجود في الموقع، إدخال أي موضوع تريده، واختيار النبرة والعمق، لتحصل في ثوانٍ على مقال متكامل منسق وجاهز للنشر أو النسخ أو التصدير بصيغة Markdown مع نقاط تقييم السيو الفورية.'
+    ],
+    contentEn: [
+      'Search ranking criteria in 2026 place unprecedented weight on genuine user utility, domain trust, and transparent editorial craftsmanship under Google’s EEAT framework.',
+      'Hanan Store’s embedded AI Article Writer empowers website owners and creators to generate comprehensive, compliant, and engaging long-form content. Here are the principles for commanding search traffic and AdSense monetization:',
+      '1. AdSense Policy Alignment: Google demands authentic, original perspectives with zero spammy scraping. Articles must feature clear structural hierarchy, high dwell-time elements, and transparent authorship.',
+      '2. The H1/H2/H3 Typographic Architecture: Balance a compelling, query-focused title with structured subheadings, bullet summaries, and an intuitive table of contents.',
+      '3. Semantic & LSI Keyword Density: Weave natural synonyms and contextual terminology rather than forced repetitive keywords.',
+      '4. High-Impact FAQ Sections: Directly resolving common user inquiries triggers Google Featured Snippets and voice search visibility.',
+      '5. Launch the Built-in AI Writer: Click below to open our free AI Article Writer tool, configure your topic, and generate publish-ready markdown in seconds.'
+    ],
+    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
   {
     id: 'oud-incense-masterclass-2026',
     titleAr: 'دليل العود الفاخر والمروكي الملكي: كيف تميزين خشب العود الطبيعي وأسرار التبخير وتثبيت الرائحة 48 ساعة',
@@ -475,9 +542,15 @@ const ARTICLES: Article[] = [
 
 interface BlogSectionProps {
   lang: Language;
+  onOpenTextToVideo?: () => void;
+  onOpenArticleWriter?: () => void;
 }
 
-export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
+export const BlogSection: React.FC<BlogSectionProps> = ({ 
+  lang,
+  onOpenTextToVideo,
+  onOpenArticleWriter
+}) => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copied, setCopied] = useState(false);
@@ -505,6 +578,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
 
   const categories = [
     { key: 'all', labelAr: `جميع المقالات (${ARTICLES.length})`, labelEn: `All Articles (${ARTICLES.length})` },
+    { key: 'ai', labelAr: 'أدوات الذكاء الاصطناعي 🤖', labelEn: 'AI Tools 🤖' },
     { key: 'gifting', labelAr: 'هدايا ومناسبات ✨', labelEn: 'Gifting & Events ✨' },
     { key: 'digital', labelAr: 'أمان وريادة ومنتجات رقمية', labelEn: 'Tech & Digital Business' },
     { key: 'lifestyle', labelAr: 'تسويق وضيافة وتطوير الذات', labelEn: 'Marketing & Hospitality' },
@@ -616,6 +690,35 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
                     <p className="text-stone-600 text-xs line-clamp-3 leading-relaxed">
                       {summary}
                     </p>
+
+                    {/* Quick Direct Action Tool Button on Card */}
+                    {article.toolActionType === 'text-to-video' && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onOpenTextToVideo) onOpenTextToVideo();
+                        }}
+                        className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-stone-950 text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        <span>{isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن 🎬' : 'Launch Text to Video Tool 🎬'}</span>
+                      </button>
+                    )}
+
+                    {article.toolActionType === 'article-writer' && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onOpenArticleWriter) onOpenArticleWriter();
+                        }}
+                        className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        <span>{isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي ✍️' : 'Launch AI Article Writer ✍️'}</span>
+                      </button>
+                    )}
                   </div>
 
                   <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-amber-800">
@@ -675,6 +778,57 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
                 <span>•</span>
                 <span>{isAr ? 'بقلم: فريق تحرير حنان ستور' : 'By: Hanan Editorial Team'}</span>
               </div>
+
+              {/* Dedicated Tool Launch Callout inside Reading Modal */}
+              {selectedArticle.toolActionType === 'text-to-video' && (
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border border-amber-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                  <div className="space-y-1 text-center sm:text-start">
+                    <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">
+                      {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
+                    </span>
+                    <h3 className="font-serif font-bold text-white text-base">
+                      {isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن مجاناً' : 'Try AI Text to Video Generator Now'}
+                    </h3>
+                    <p className="text-xs text-stone-300">
+                      {isAr ? 'أدخل النص وشاهد محاكاة المشاهد، حركة الكاميرا، والبرومبت الإخراجي الشامل.' : 'Enter your script and view simulated scene cuts, 4K prompts and storyboard.'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedArticle(null);
+                      if (onOpenTextToVideo) onOpenTextToVideo();
+                    }}
+                    className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
+                  >
+                    {isAr ? 'فتح أداة الفيديو الآن 🎬' : 'Open Video Tool 🎬'}
+                  </button>
+                </div>
+              )}
+
+              {selectedArticle.toolActionType === 'article-writer' && (
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                  <div className="space-y-1 text-center sm:text-start">
+                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest font-mono">
+                      {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
+                    </span>
+                    <h3 className="font-serif font-bold text-white text-base">
+                      {isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي الآن' : 'Try AI Article Writer Tool Now'}
+                    </h3>
+                    <p className="text-xs text-stone-300">
+                      {isAr ? 'اكتب مقالات حصرية متوافقة مع السيو وأدسنس بضغطة زر مع تصدير Markdown.' : 'Generate 100% original, SEO and AdSense compliant long-form articles.'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedArticle(null);
+                      if (onOpenArticleWriter) onOpenArticleWriter();
+                    }}
+                    className="px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
+                  >
+                    {isAr ? 'فتح أداة المقالات الآن ✍️' : 'Open Writer Tool ✍️'}
+                  </button>
+                </div>
+              )}
 
               <div className="rounded-2xl overflow-hidden h-56 sm:h-72">
                 <img

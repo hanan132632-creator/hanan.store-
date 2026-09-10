@@ -8,13 +8,17 @@ interface HeroProps {
   onExploreClick: () => void;
   onCategorySelect: (catId: string) => void;
   onOpenDomainInfo: () => void;
+  onOpenTextToVideo?: () => void;
+  onOpenArticleWriter?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   lang,
   onExploreClick,
   onCategorySelect,
-  onOpenDomainInfo
+  onOpenDomainInfo,
+  onOpenTextToVideo,
+  onOpenArticleWriter
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -83,6 +87,54 @@ export const Hero: React.FC<HeroProps> = ({
               >
                 <span>{lang === 'ar' ? 'البكج الشامل (وفر 65%)' : 'Ultimate Bundle'}</span>
               </button>
+            </div>
+
+            {/* Free AI Generation Tools Showcase in Hero */}
+            <div className="pt-2">
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 backdrop-blur-xs border border-amber-300/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-start">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-600 text-stone-950 flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                    ✨
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-black text-stone-900">
+                        {lang === 'ar' ? 'استوديو أدوات الذكاء الاصطناعي المجانية' : 'Free AI Studio Tools'}
+                      </span>
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-bold">
+                        {lang === 'ar' ? 'متاح الآن' : 'LIVE'}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-stone-500">
+                      {lang === 'ar' ? 'أدوات مجانية: تحويل النص إلى فيديو + كاتب مقالات السيو وأدسنس' : 'Free tools: Text-to-Video generation + AI Article SEO writer'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                  {onOpenTextToVideo && (
+                    <button
+                      id="hero-tool-video-btn"
+                      onClick={onOpenTextToVideo}
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-amber-600 text-amber-300 hover:text-stone-950 text-xs font-black transition-all cursor-pointer shadow-xs whitespace-nowrap"
+                    >
+                      <span>🎬</span>
+                      <span>{lang === 'ar' ? 'أداة الفيديو' : 'Video Tool'}</span>
+                    </button>
+                  )}
+
+                  {onOpenArticleWriter && (
+                    <button
+                      id="hero-tool-writer-btn"
+                      onClick={onOpenArticleWriter}
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-black transition-all cursor-pointer shadow-xs whitespace-nowrap"
+                    >
+                      <span>✍️</span>
+                      <span>{lang === 'ar' ? 'صانع المقالات' : 'AI Writer'}</span>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* Trust Metrics */}

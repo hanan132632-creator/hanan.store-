@@ -30,6 +30,8 @@ interface HeaderProps {
   onOpenDomainInfo: () => void;
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
   onOpenSitemap?: () => void;
+  onOpenTextToVideo?: () => void;
+  onOpenArticleWriter?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -47,7 +49,9 @@ export const Header: React.FC<HeaderProps> = ({
   setActiveCategory,
   onOpenDomainInfo,
   onOpenLegal,
-  onOpenSitemap: _onOpenSitemap
+  onOpenSitemap: _onOpenSitemap,
+  onOpenTextToVideo,
+  onOpenArticleWriter
 }) => {
   const t = TRANSLATIONS[lang];
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
@@ -83,6 +87,34 @@ export const Header: React.FC<HeaderProps> = ({
                 xn--mgblao3hjb.store
               </span>
             </button>
+
+            <span className="hidden md:inline text-stone-600">|</span>
+
+            {/* AI Text to Video Button in Announcement Bar */}
+            {onOpenTextToVideo && (
+              <button
+                id="top-bar-tool-video-btn"
+                onClick={onOpenTextToVideo}
+                className="hidden sm:inline-flex items-center gap-1 text-amber-300 hover:text-white font-bold bg-amber-500/20 hover:bg-amber-500/30 px-2 py-0.5 rounded border border-amber-500/40 cursor-pointer transition-colors"
+                title={lang === 'ar' ? 'أداة تحويل النص إلى فيديو' : 'AI Text to Video Tool'}
+              >
+                <span>🎬</span>
+                <span>{lang === 'ar' ? 'أداة النص إلى فيديو' : 'Text to Video'}</span>
+              </button>
+            )}
+
+            {/* AI Article Writer Button in Announcement Bar */}
+            {onOpenArticleWriter && (
+              <button
+                id="top-bar-tool-writer-btn"
+                onClick={onOpenArticleWriter}
+                className="hidden sm:inline-flex items-center gap-1 text-emerald-300 hover:text-white font-bold bg-emerald-500/20 hover:bg-emerald-500/30 px-2 py-0.5 rounded border border-emerald-500/40 cursor-pointer transition-colors"
+                title={lang === 'ar' ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool'}
+              >
+                <span>✍️</span>
+                <span>{lang === 'ar' ? 'أداة إنشاء المقالات AI' : 'AI Article Writer'}</span>
+              </button>
+            )}
 
             <span className="hidden md:inline text-stone-600">|</span>
 
@@ -150,6 +182,8 @@ export const Header: React.FC<HeaderProps> = ({
               lang={lang}
               onSelectCategory={setActiveCategory}
               onOpenLegal={onOpenLegal}
+              onOpenTextToVideo={onOpenTextToVideo}
+              onOpenArticleWriter={onOpenArticleWriter}
             />
 
             <button 
@@ -196,8 +230,33 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Right Action Icons & Controls */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             
+            {/* Quick AI Tools Buttons on Desktop */}
+            {onOpenTextToVideo && (
+              <button
+                id="header-btn-text-to-video"
+                onClick={onOpenTextToVideo}
+                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-black rounded-full bg-stone-900 text-amber-300 hover:bg-amber-600 hover:text-stone-950 transition-all shadow-xs border border-amber-500/30 cursor-pointer"
+                title={lang === 'ar' ? 'أداة تحويل النص إلى فيديو' : 'AI Text to Video Tool'}
+              >
+                <span>🎬</span>
+                <span className="hidden xl:inline">{lang === 'ar' ? 'النص لفيديو' : 'Text to Video'}</span>
+              </button>
+            )}
+
+            {onOpenArticleWriter && (
+              <button
+                id="header-btn-article-writer"
+                onClick={onOpenArticleWriter}
+                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-black rounded-full bg-emerald-900 text-emerald-100 hover:bg-emerald-600 hover:text-white transition-all shadow-xs border border-emerald-500/30 cursor-pointer"
+                title={lang === 'ar' ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool'}
+              >
+                <span>✍️</span>
+                <span className="hidden xl:inline">{lang === 'ar' ? 'كاتب المقالات' : 'AI Writer'}</span>
+              </button>
+            )}
+
             {/* Mobile Search Button */}
             <button
               id="mobile-search-toggle"
