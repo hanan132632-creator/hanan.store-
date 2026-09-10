@@ -22,6 +22,7 @@ interface FooterProps {
   onOpenSitemapViewer?: (type: 'sitemap' | 'robots' | 'ads') => void;
   onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
+  onOpenAdSenseAudit?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -32,7 +33,8 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenSearchConsole,
   onOpenSitemapViewer,
   onOpenTextToVideo,
-  onOpenArticleWriter
+  onOpenArticleWriter,
+  onOpenAdSenseAudit
 }) => {
   const t = TRANSLATIONS[lang];
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -197,6 +199,17 @@ export const Footer: React.FC<FooterProps> = ({
                   {lang === 'ar' ? 'إفصاح إعلانات Google AdSense' : 'Google AdSense Policy'}
                 </button>
               </li>
+              {onOpenAdSenseAudit && (
+                <li>
+                  <button 
+                    onClick={onOpenAdSenseAudit}
+                    className="hover:text-blue-300 transition-colors cursor-pointer text-blue-400 font-bold hover:underline flex items-center gap-1.5"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>{lang === 'ar' ? '📊 تقرير مراجعة AdSense الحي' : '📊 Live AdSense Audit Report'}</span>
+                  </button>
+                </li>
+              )}
               <li>
                 <button 
                   onClick={() => onOpenLegal && onOpenLegal('terms')}

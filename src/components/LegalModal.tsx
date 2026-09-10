@@ -23,13 +23,15 @@ interface LegalModalProps {
   onClose: () => void;
   lang: Language;
   initialTab?: LegalTab;
+  onOpenAdSenseAudit?: () => void;
 }
 
 export const LegalModal: React.FC<LegalModalProps> = ({
   isOpen,
   onClose,
   lang,
-  initialTab = 'privacy'
+  initialTab = 'privacy',
+  onOpenAdSenseAudit
 }) => {
   const [activeTab, setActiveTab] = useState<LegalTab>(initialTab);
 
@@ -355,15 +357,30 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-stone-100 border border-stone-200 text-xs">
-                <span className="font-bold text-stone-900 block mb-1">
-                  {isAr ? 'بيانات الناشر المعتمدة لدى جوجل:' : 'Publisher Details:'}
-                </span>
-                <div className="font-mono text-stone-600 space-y-0.5">
-                  <p>Domain: xn--mgblao3hjb.store (حنان.store)</p>
-                  <p>Secondary: hanan.fun</p>
-                  <p>AdSense File: /ads.txt</p>
+              <div className="p-4 rounded-xl bg-stone-100 border border-stone-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <span className="font-bold text-stone-900 block mb-1">
+                    {isAr ? 'بيانات الناشر المعتمدة لدى جوجل:' : 'Publisher Details:'}
+                  </span>
+                  <div className="font-mono text-stone-600 space-y-0.5 text-[11px]">
+                    <p>Domain: xn--mgblao3hjb.store (حنان.store)</p>
+                    <p>Secondary: hanan.fun</p>
+                    <p>AdSense File: /ads.txt</p>
+                  </div>
                 </div>
+
+                {onOpenAdSenseAudit && (
+                  <button
+                    onClick={() => {
+                      onClose();
+                      onOpenAdSenseAudit();
+                    }}
+                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shrink-0 shadow-xs"
+                  >
+                    <span>📊</span>
+                    <span>{isAr ? 'فتح تقرير تدقيق أدسنس الحي' : 'Open Live AdSense Report'}</span>
+                  </button>
+                )}
               </div>
             </div>
           )}

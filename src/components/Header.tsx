@@ -32,6 +32,7 @@ interface HeaderProps {
   onOpenSitemap?: () => void;
   onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
+  onOpenAdSenseAudit?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -51,7 +52,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenLegal,
   onOpenSitemap: _onOpenSitemap,
   onOpenTextToVideo,
-  onOpenArticleWriter
+  onOpenArticleWriter,
+  onOpenAdSenseAudit
 }) => {
   const t = TRANSLATIONS[lang];
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
@@ -113,6 +115,19 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <span>✍️</span>
                 <span>{lang === 'ar' ? 'أداة إنشاء المقالات AI' : 'AI Article Writer'}</span>
+              </button>
+            )}
+
+            {/* AdSense Live Audit Report in Announcement Bar */}
+            {onOpenAdSenseAudit && (
+              <button
+                id="top-bar-adsense-audit-btn"
+                onClick={onOpenAdSenseAudit}
+                className="hidden md:inline-flex items-center gap-1.5 text-blue-300 hover:text-white font-bold bg-blue-500/20 hover:bg-blue-500/30 px-2 py-0.5 rounded border border-blue-400/40 cursor-pointer transition-colors text-[11px]"
+                title={lang === 'ar' ? 'تقرير مراجعة وفحص Google AdSense' : 'Live AdSense Audit Report'}
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>{lang === 'ar' ? '📊 تقرير مراجعة أدسنس' : '📊 AdSense Audit'}</span>
               </button>
             )}
 
@@ -184,6 +199,7 @@ export const Header: React.FC<HeaderProps> = ({
               onOpenLegal={onOpenLegal}
               onOpenTextToVideo={onOpenTextToVideo}
               onOpenArticleWriter={onOpenArticleWriter}
+              onOpenAdSenseAudit={onOpenAdSenseAudit}
             />
 
             <button 
@@ -254,6 +270,18 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <span>✍️</span>
                 <span className="hidden xl:inline">{lang === 'ar' ? 'كاتب المقالات' : 'AI Writer'}</span>
+              </button>
+            )}
+
+            {onOpenAdSenseAudit && (
+              <button
+                id="header-btn-adsense-audit"
+                onClick={onOpenAdSenseAudit}
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-full bg-blue-50 text-blue-900 hover:bg-blue-600 hover:text-white transition-all shadow-xs border border-blue-300/60 cursor-pointer"
+                title={lang === 'ar' ? 'تقرير مراجعة واعتماد جوجل أدسنس' : 'Live AdSense Audit Report'}
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>{lang === 'ar' ? 'تقرير أدسنس' : 'AdSense Audit'}</span>
               </button>
             )}
 

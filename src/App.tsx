@@ -41,6 +41,7 @@ import { Footer } from './components/Footer';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { TextToVideoModal } from './components/TextToVideoModal';
 import { ArticleWriterModal } from './components/ArticleWriterModal';
+import { AdSenseAuditModal } from './components/AdSenseAuditModal';
 
 export default function App() {
   // Multilingual & Currency State
@@ -60,6 +61,7 @@ export default function App() {
   const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
   const [isTextToVideoOpen, setIsTextToVideoOpen] = useState(false);
   const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
+  const [isAdSenseAuditOpen, setIsAdSenseAuditOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
@@ -148,6 +150,8 @@ export default function App() {
         setIsTextToVideoOpen(true);
       } else if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer') {
         setIsArticleWriterOpen(true);
+      } else if (hash === '#adsense-audit' || hash === '#adsense-report' || hash === '#adsense') {
+        setIsAdSenseAuditOpen(true);
       }
     };
     handleHashTools();
@@ -344,6 +348,7 @@ export default function App() {
         }}
         onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
+        onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
       />
 
       {/* Top Three Department & Section Navigation Bars */}
@@ -528,6 +533,7 @@ export default function App() {
           }}
           onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
           onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
+          onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
         />
       </div>
 
@@ -659,6 +665,22 @@ export default function App() {
         onClose={() => setIsLegalOpen(false)}
         lang={lang}
         initialTab={legalTab}
+        onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
+      />
+
+      {/* Google AdSense Live Audit & Policy Readiness Report Modal */}
+      <AdSenseAuditModal
+        isOpen={isAdSenseAuditOpen}
+        onClose={() => setIsAdSenseAuditOpen(false)}
+        lang={lang}
+        onOpenLegal={(tab) => {
+          setLegalTab(tab);
+          setIsLegalOpen(true);
+        }}
+        onOpenSitemapViewer={(type) => {
+          setSitemapViewerTab(type);
+          setIsSitemapViewerOpen(true);
+        }}
       />
 
       {/* Google EU User Consent & Global Cookie Banner */}
