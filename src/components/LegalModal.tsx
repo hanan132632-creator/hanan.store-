@@ -33,9 +33,76 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<LegalTab>(initialTab);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      setActiveTab(initialTab);
+    }
+  }, [isOpen, initialTab]);
+
   if (!isOpen) return null;
 
   const isAr = lang === 'ar';
+
+  const tabHeaderData = {
+    privacy: {
+      titleAr: 'وثيقة سياسة الخصوصية وحماية البيانات',
+      titleEn: 'Official Privacy & Data Protection Policy',
+      badgeAr: 'سارية ومحدثة لعام 2026',
+      badgeEn: 'Active 2026',
+      subAr: 'متوافقة مع نظام حماية البيانات الشخصية السعودي (PDPL) ومعايير Google AdSense وGDPR',
+      subEn: 'Compliant with Saudi PDPL, Google AdSense Policies, and GDPR requirements',
+      icon: ShieldCheck,
+      iconColor: 'text-amber-700 bg-amber-100',
+      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200'
+    },
+    about: {
+      titleAr: 'من نحن • قصة متجر حنان وبوابة حنان فن',
+      titleEn: 'About Hanan Store & Hanan Fun Portal',
+      badgeAr: 'علامة موثقة وهوية مسجلة',
+      badgeEn: 'Verified Brand',
+      subAr: 'حنان ستور وحنان فن (xn--mgblao3hjb.store | hanan.fun) — ألعاب جمعات، منتجات رقمية، وعطور فاخرة',
+      subEn: 'Authentic brand crafting memorable gathering games, digital planners, and curated luxury',
+      icon: Sparkles,
+      iconColor: 'text-amber-600 bg-amber-50',
+      badgeColor: 'bg-amber-100 text-amber-800 border-amber-200'
+    },
+    contact: {
+      titleAr: 'اتصل بنا وقنوات الدعم المباشر والشكاوى',
+      titleEn: 'Official Contact & Customer Support Desk',
+      badgeAr: 'خدمة عملاء 24/7',
+      badgeEn: 'Active Support 24/7',
+      subAr: 'وسائل التواصل المعتمدة لزوار المتجر، العملاء، والجهات الإشرافية والإعلانية',
+      subEn: 'Direct verified contact lines for customers, visitors, and advertising auditors',
+      icon: Mail,
+      iconColor: 'text-emerald-700 bg-emerald-100',
+      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200'
+    },
+    terms: {
+      titleAr: 'الشروط والأحكام العامة ورخص الاستخدام',
+      titleEn: 'Terms of Service & Licensing Agreements',
+      badgeAr: 'لوائح تجارية معتمدة',
+      badgeEn: 'Commercial Terms',
+      subAr: 'ضوابط التجارة الإلكترونية، ترخيص الملفات الرقمية، وضمانات المعاملات الآمنة',
+      subEn: 'Official e-commerce regulations, digital product licensing, and buyer guarantees',
+      icon: FileText,
+      iconColor: 'text-stone-700 bg-stone-200',
+      badgeColor: 'bg-stone-100 text-stone-800 border-stone-200'
+    },
+    adsense: {
+      titleAr: 'إفصاح إعلانات Google AdSense ومعايير الجودة',
+      titleEn: 'Google AdSense Policy & Publisher Quality',
+      badgeAr: 'متوافق مع إرشادات جوجل',
+      badgeEn: 'AdSense Compliant',
+      subAr: 'شفافية الإعلانات الممولة، حماية تجربة المستخدم، واعتماد ملف ads.txt الرسمي',
+      subEn: 'Transparent ad labeling, non-intrusive layouts, and verified ads.txt integration',
+      icon: Award,
+      iconColor: 'text-amber-800 bg-amber-100',
+      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200'
+    }
+  };
+
+  const currentHeader = tabHeaderData[activeTab];
+  const IconComponent = currentHeader.icon;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-200">
@@ -46,20 +113,20 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         {/* Header */}
         <div className="p-5 border-b border-stone-100 flex items-center justify-between bg-stone-50/90">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-amber-700" />
+            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${currentHeader.iconColor}`}>
+              <IconComponent className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h3 className="font-serif font-bold text-stone-900 text-base sm:text-lg">
-                  {isAr ? 'السياسات القانونية ومتطلبات جوجل أدسنس' : 'Legal Policies & AdSense Compliance'}
+                  {isAr ? currentHeader.titleAr : currentHeader.titleEn}
                 </h3>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">
-                  {isAr ? 'معتمد وموثق' : 'Verified'}
+                <span className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold border ${currentHeader.badgeColor}`}>
+                  {isAr ? currentHeader.badgeAr : currentHeader.badgeEn}
                 </span>
               </div>
               <p className="text-xs text-stone-500 mt-0.5">
-                {isAr ? 'حنان ستور وحنان فن (xn--mgblao3hjb.store | hanan.fun)' : 'Hanan Store & Hanan Fun (xn--mgblao3hjb.store | hanan.fun)'}
+                {isAr ? currentHeader.subAr : currentHeader.subEn}
               </p>
             </div>
           </div>

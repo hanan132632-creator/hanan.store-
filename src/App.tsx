@@ -34,7 +34,6 @@ import { GiftAdvisorModal } from './components/GiftAdvisorModal';
 import { FilePreviewModal } from './components/FilePreviewModal';
 import { LegalModal, LegalTab } from './components/LegalModal';
 import { CookieConsentBanner } from './components/CookieConsentBanner';
-import { AdSenseBanner } from './components/AdSenseBanner';
 import { BlogSection } from './components/BlogSection';
 import { SearchConsoleModal } from './components/SearchConsoleModal';
 import { SitemapViewerModal } from './components/SitemapViewerModal';
@@ -497,18 +496,6 @@ export default function App() {
         )}
 
       </main>
-
-      {/* Google AdSense Responsive Display Unit (Policy Compliant) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AdSenseBanner 
-          lang={lang} 
-          slot="9876543210" 
-          onOpenAdSensePolicy={() => {
-            setLegalTab('adsense');
-            setIsLegalOpen(true);
-          }} 
-        />
-      </div>
 
       {/* Editorial Guides & Original Content Section (Crucial for AdSense Value) */}
       <div className="content-auto">

@@ -59,42 +59,15 @@ export const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
       </div>
 
       {/* Actual AdSense Slot */}
-      <div className="min-h-[90px] sm:min-h-[100px] flex items-center justify-center relative overflow-hidden rounded-xl bg-white border border-stone-100 p-2">
+      <div className="w-full flex items-center justify-center relative overflow-hidden rounded-xl bg-transparent">
         <ins 
           className="adsbygoogle"
-          style={{ display: 'block', width: '100%', minHeight: '90px' }}
+          style={{ display: 'block', width: '100%' }}
           data-ad-client="ca-pub-3298241753177072"
           data-ad-slot={slot}
           data-ad-format={format}
           data-full-width-responsive="true"
         />
-
-        {/* Informative fallback for preview / staging before Google crawler activates ads */}
-        {!adLoaded && (
-          <div className="py-4 px-3 flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-start">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-serif font-black text-sm shrink-0 border border-amber-200">
-                G
-              </div>
-              <div>
-                <p className="font-bold text-stone-800 text-xs sm:text-sm">
-                  {isAr ? 'مساحة إعلانية مهيأة ومطابقة لمتطلبات Google AdSense' : 'Responsive Google AdSense Display Unit'}
-                </p>
-                <p className="text-[11px] text-stone-500 mt-0.5">
-                  {isAr 
-                    ? 'متوافقة مع ads.txt، وتدعم البنرات المتجاوبة مع الحفاظ الكامل على سرعة الموقع وتجربة المستخدم.' 
-                    : 'Fully responsive, ads.txt compliant, adhering to Google Webmaster quality policies.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[10px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 font-mono">
-                ads.txt ✓ DIRECT
-              </span>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
