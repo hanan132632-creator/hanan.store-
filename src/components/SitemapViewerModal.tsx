@@ -32,15 +32,7 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. Secondary Portal: Hanan Fun -->
-  <url>
-    <loc>https://hanan.fun/</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- 3. Interactive Games -->
+  <!-- 2. Interactive Games -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=fun-games</loc>
     <lastmod>2026-09-06</lastmod>
@@ -220,7 +212,6 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
 
   const robotsContent = `# Robots.txt for Hanan Store (حنان ستور)
 # Primary Domain: https://xn--mgblao3hjb.store/
-# Secondary Portal: https://hanan.fun/
 
 User-agent: *
 Allow: /
@@ -233,7 +224,6 @@ Allow: /sitemap.xml
 Allow: /ads.txt
 
 Sitemap: https://xn--mgblao3hjb.store/sitemap.xml
-Sitemap: https://hanan.fun/sitemap.xml
 
 Host: https://xn--mgblao3hjb.store`;
 

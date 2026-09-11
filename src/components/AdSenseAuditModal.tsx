@@ -144,7 +144,7 @@ export const AdSenseAuditModal: React.FC<AdSenseAuditModalProps> = ({
       id: 'ssl-domain',
       titleAr: 'أمان النطاق وتشفير SSL/HTTPS والعنونة القياسية',
       titleEn: 'SSL/HTTPS Security & Canonical Architecture',
-      descAr: 'ارتباط النطاق الرسمي xn--mgblao3hjb.store وبوابة hanan.fun بشهادات أمان مشفرة ووسم Canonical سليم.',
+      descAr: 'ارتباط النطاق الرسمي xn--mgblao3hjb.store (حنان.store) بشهادات أمان مشفرة ووسم Canonical سليم.',
       descEn: 'Encrypted HTTPS connection with valid canonical links and domain configuration.',
       status: 'verified',
       tag: 'HTTPS / SSL Active',
@@ -178,7 +178,7 @@ export const AdSenseAuditModal: React.FC<AdSenseAuditModalProps> = ({
                 <span>{isAr ? 'النطاق المفحوص:' : 'Audited Domain:'}</span>
                 <span className="font-mono text-amber-300 font-bold">xn--mgblao3hjb.store</span>
                 <span>•</span>
-                <span className="font-mono text-stone-300">hanan.fun</span>
+                <span className="text-stone-300 font-bold">{isAr ? 'حنان.store' : 'Hanan Store'}</span>
               </p>
             </div>
           </div>

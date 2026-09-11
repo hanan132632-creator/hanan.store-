@@ -9,15 +9,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. Secondary Portal: Hanan Fun -->
-  <url>
-    <loc>https://hanan.fun/</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- 3. Interactive Games -->
+  <!-- 2. Interactive Gathering Games -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=fun-games</loc>
     <lastmod>2026-09-06</lastmod>

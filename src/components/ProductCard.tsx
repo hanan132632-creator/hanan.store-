@@ -58,7 +58,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product.isDigitalFile && (
             <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-stone-900 text-amber-300 border border-amber-400/40 shadow-sm flex items-center gap-1">
               <Download className="w-3 h-3 text-amber-400" />
-              <span>{lang === 'ar' ? 'ملف رقمي (hanan.fun)' : 'Digital File'}</span>
+              <span>{lang === 'ar' ? 'ملف رقمي فوري' : 'Digital File'}</span>
             </span>
           )}
           {product.isBestSeller && (

@@ -198,7 +198,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
     <div id="top-three-category-bars" className="w-full flex flex-col shadow-xs select-none">
       
       {/* ─────────────────────────────────────────────────────────────
-          BAR 1: Digital Products & Hanan Fun Strip (Dark Slate Theme)
+          BAR 1: Digital Products & Gathering Games Strip (Dark Slate Theme)
          ───────────────────────────────────────────────────────────── */}
       <div 
         id="top-bar-digital-sections" 

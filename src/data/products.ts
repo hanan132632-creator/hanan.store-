@@ -128,7 +128,7 @@ export const PRODUCTS: Product[] = [
     fileType: 'بوربوينت تفاعلي + PDF',
     fileSize: '28 MB',
     filePagesOrItems: '150 شريحة تفاعلية',
-    downloadFileName: 'Hanan_Fun_Gathering_Game_2026.zip',
+    downloadFileName: 'Hanan_Store_Gathering_Game_2026.zip',
     sampleContentPreview: [
       'فقرة مين فينا: من أكثر شخص يضيع مفاتيحه؟',
       'تحدي الثواني الخمس: اذكر 3 أشياء مستحيل تسافر بدونها!',
@@ -144,8 +144,8 @@ export const PRODUCTS: Product[] = [
     titleAr: 'ملف لعبة "تحدي مين فينا؟" و "كشف الأسرار" - نسخة البنات والجلسات الخاصة',
     titleEn: 'Girls Night & Besties Icebreaker Game (Interactive PDF Edition)',
     categoryId: 'fun-games',
-    categoryNameAr: 'ملفات الألعاب والفعاليات (Hanan Fun)',
-    categoryNameEn: 'Interactive Games & Fun Files',
+    categoryNameAr: 'ملفات الألعاب والفعاليات التفاعلية',
+    categoryNameEn: 'Interactive Games & Gathering Files',
     price: 35,
     originalPrice: 75,
     rating: 4.9,
@@ -480,7 +480,7 @@ export const PRODUCTS: Product[] = [
     fileType: 'حزمة ملفات شاملة ZIP',
     fileSize: '95 MB',
     filePagesOrItems: '6 منتجات رقمية متكاملة',
-    downloadFileName: 'Hanan_Fun_Complete_Royal_Vault_2026.zip',
+    downloadFileName: 'Hanan_Store_Complete_Royal_Vault_2026.zip',
     sampleContentPreview: [
       'ملف لعبة جمعات حنان التفاعلية (150 شريحة)',
       'مخطط حنان 2026 بروابط تشعبية للأيباد (468 صفحة)',

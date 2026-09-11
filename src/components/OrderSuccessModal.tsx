@@ -34,7 +34,7 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
   const [downloadedIds, setDownloadedIds] = useState<Record<string, boolean>>({});
 
   const handleDownloadFile = (productId: string, title: string, fileName?: string) => {
-    const fileData = `Hanan Store & Hanan Fun (hanan.fun)\n` +
+    const fileData = `Hanan Store (xn--mgblao3hjb.store)\n` +
       `====================================\n` +
       `Order Confirmation: ${order.id}\n` +
       `Purchased Item: ${title}\n` +

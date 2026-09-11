@@ -104,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Quick Category Links (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-serif">
-              {lang === 'ar' ? 'الأقسام وملفات حنان فن' : 'Collections & Files'}
+              {lang === 'ar' ? 'الأقسام والملفات الرقمية' : 'Collections & Digital Files'}
             </h4>
             <ul className="space-y-2 text-xs">
               <li>

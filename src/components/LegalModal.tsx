@@ -302,7 +302,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h4>
                 <p className="text-xs text-stone-700 mt-1">
                   {isAr 
-                    ? 'يلتزم موقع متجر حنان ستور وحنان فن نصاً وروحاً بجميع إرشادات جودة مشرفي المواقع وسياسات المحتوى المعتمدة من Google.' 
+                    ? 'يلتزم موقع متجر حنان ستور نصاً وروحاً بجميع إرشادات جودة مشرفي المواقع وسياسات المحتوى المعتمدة من Google.' 
                     : 'Hanan Store strictly adheres to Google Webmaster quality guidelines and AdSense content policies.'}
                 </p>
               </div>

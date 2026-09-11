@@ -1,6 +1,5 @@
 # Robots.txt for Hanan Store (حنان ستور)
 # Primary Domain: https://xn--mgblao3hjb.store/
-# Secondary Portal: https://hanan.fun/
 
 User-agent: *
 Allow: /
@@ -22,7 +21,6 @@ Allow: /
 
 # Google Search Console Sitemap declaration (Mandatory)
 Sitemap: https://xn--mgblao3hjb.store/sitemap.xml
-Sitemap: https://hanan.fun/sitemap.xml
 
 # Preferred Host
 Host: https://xn--mgblao3hjb.store

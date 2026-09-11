@@ -73,7 +73,7 @@ const TOPIC_PRESETS = [
     titleAr: 'كيف تنظمين جمعة عائلية حماسية ومسلية بألعاب الشاشة',
     titleEn: 'Hosting Unforgettable Family Gathering Game Nights',
     icon: '🎉',
-    keywords: 'ألعاب جمعات, hanan.fun, مسابقات عائلية, فعاليات منزلية, ألعاب تفاعلية'
+    keywords: 'ألعاب جمعات, متجر حنان, مسابقات عائلية, فعاليات منزلية, ألعاب تفاعلية'
   }
 ];
 
