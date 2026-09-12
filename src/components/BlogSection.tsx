@@ -22,6 +22,36 @@ interface Article {
 
 const ARTICLES: Article[] = [
   {
+    id: 'physical-digital-minimalism-guide-2026',
+    titleAr: 'فن التبسيط والتخلص من الفوضى المادية والرقمية في 2026: دليلك الشامل لترتيب المنزل، تنقية الأجهزة الذكية، واستعادة السلام النفسي والتركيز',
+    titleEn: 'The Art of Modern Physical & Digital Minimalism in 2026: Master Guide to Decluttering Your Space, Devices & Mind for Deep Focus',
+    categoryAr: 'تطوير ذات ونمط حياة فاخر ✨',
+    categoryEn: 'Mindful Living & Minimalism ✨',
+    categoryKey: 'lifestyle',
+    date: '2026-09-12',
+    readTime: '8 دقائق',
+    summaryAr: 'دليلكِ الشامل والعملي للتخلص من التراكمات المرهقة واستعادة صفاء الذهن: استراتيجيات تنظيف المساحات الرقمية (الصور، الإيميلات، شاشات الأيباد)، قاعدة الـ 20/20 لترتيب المنزل، طقوس تفريغ الدماغ المسائي في البلانر، وكيف يخلق التبسيط وفرة حقيقية في وقتك ومالك وطاقتك.',
+    summaryEn: 'A transformative masterclass on decluttering your physical environment and digital devices: digital hygiene rules for smartphones and iPads, the 20/20 decluttering framework, evening brain-dumping routines, and curating an intentional high-vibe lifestyle.',
+    contentAr: [
+      'في عصر تتسابق فيه التطبيقات والإشعارات والنزعات الاستهلاكية السريعة على التهام طاقتنا وانتباهنا، أصبحت الفوضى أحد أكبر مسببات الإرهاق العصبي والذهني غير المرئي. علمياً، كل غرض مبعثر في غرفتك وكل إشعار أحمر على شاشة هاتفك هو بمثابة "مهمة معلقة غير مكتملة" في عقلك الباطن، مما يرفع هرمون الكورتيزول ويستنزف طاقتك اليومية دون أن تدري. التبسيط الواعي (Minimalism) ليس دعوة للعيش في حرمان، بل هو فن استبعاد ما لا يفيد لإفساح المجال لما هو أصيل وثمين ومبهج حقاً.',
+      '1. بروتوكول التخلص من التراكم الرقمي (The Digital Detox & Hygiene Protocol): تبدأ الفوضى الحديثة من شاشة الهاتف والأيباد التي ننظر إليها مئات المرات يومياً. خصصي 30 دقيقة أسبوعية لتطبيق ثلاث قواعد ذهبية: أولاً، حذف أي تطبيق لم تفتحيه خلال آخر 30 يوماً. ثانياً، تصفية ألبوم الصور وحذف لقطات الشاشة المكررة والفيديوهات غير الضرورية، مع نقل الذكريات الثمينة إلى مساحة سحابية منظمة. ثالثاً، الوصول إلى "صندوق بريد فارغ" (Inbox Zero) عبر إلغاء الاشتراك في النشرات الإعلانية المزعجة بنقرة واحدة.',
+      '2. قاعدة اللمسة الواحدة وقاعدة 20/20 لترتيب المنزل والمكتب (Physical Space Mastery): لمنع تراكم الفوضى في غرفتك ومكتب العمل، طبقي قاعدة اللمسة الواحدة (One-Touch Rule): إذا تناولتِ غرضاً (مفتاح، ورقة، كوب، ملابس)، ضعيه مباشرة في مكانه النهائي بدلاً من تركه على الطاولة لترتيبه لاحقاً. وللتغلب على الخوف من التخلص من الأشياء القديمة، استعيني بقاعدة الـ 20/20: "إذا كان بإمكانك استبدال هذا الشيء بأقل من 20 دولاراً وفي أقل من 20 دقيقة إذا احتجتِه مستقبلاً، فغالباً أنتِ لستِ بحاجة لحفظه في خزانتك لسنوات".',
+      '3. طقس تفريغ الدماغ المسائي (The Evening Brain-Dump Ritual): أحد أعظم أسرار النوم العميق والسلام النفسي قبل النوم هو إفراغ الدماغ على الورق أو البلانر الرقمي. قبل إطفاء الأنوار بنصف ساعة، افتحي صفحة البلانر اليومي ودوني كل فكرة، موعد، أو قلق يراودك. بمجرد أن تنتقل الأفكار العشوائية إلى خطة مكتوبة مجدولة لليوم التالي، يتلقى جهازك العصبي إشارة فورية بالأمان، فيتوقف التفكير الزائد (Overthinking) وتستيقظين في اليوم التالي برؤية واضحة وطاقة عالية.',
+      '4. خلق واحة حسية مهدئة (Aromatherapy & Sensory Calming): لا يكتمل ترتيب المكان إلا بضبط أجوائه الحسية. أثبتت الدراسات العصبية أن استنشاق المركبات الطبيعية في خشب الصندل، اللافندر، أو بخور المستكة واللبان العماني يقلل نبضات القلب المتسارعة ويحفز موجات ألفا الدماغية المرتبطة بالاسترخاء والإبداع. اجعلي من إشعال المبخرة الهادئة أو الشمعة العطرية بعد ترتيب غرفتك إشارة حسية لبدء وقت السكينة العائلية.',
+      '5. الشراء الواعي وفلسفة "الأقل ولكن الأفضل" (Mindful Spending & Heirloom Value): التبسيط المستدام يبدأ من نقطة الشراء. قبل شراء أي قطعة جديدة، اسألي نفسك ثلاثة أسئلة: هل أحتاجها فعلاً؟ أين سأضعها بالتحديد في بيتي؟ وهل ستمنحني سعادة وفائدة تدوم لأشهر أم مجرد نشوة تسوق عابرة؟ الاستثمار في قطع نوعية تدوم طويلاً—مثل المجوهرات الفضية عيار 925، العطور النقية المعتقة، والمنتجات الرقمية التي تطور مهاراتك—يمنحك فخامة حقيقية ويوفر أموالك على المدى البعيد.'
+    ],
+    contentEn: [
+      'In a hyper-stimulated world driven by endless notifications and fast-paced consumerism, physical and digital clutter serves as an invisible trigger for chronic mental fatigue. Neuroscience demonstrates that visual disarray constantly competes for neural resources, elevating cortisol levels. Conscious minimalism is not deprivation; it is the intentional art of curating space for what truly elevates your life.',
+      '1. The Digital Hygiene Protocol: Begin with the screens you engage with dozens of times daily. Dedicate a weekly reset to uninstall apps untouched for 30 days, purge duplicate photos, and achieve Inbox Zero by ruthlessly unsubscribing from junk newsletters. Transform your iPad and phone into serene sanctuaries dedicated purely to purposeful creation and calm.',
+      '2. The One-Touch & 20/20 Decluttering Frameworks: To prevent surface clutter in your living space and desk, adopt the One-Touch Rule: never place an item down temporarily; return it immediately to its designated home. Overcome sentimental hoarding anxiety with the 20/20 principle: if an item can be replaced for under $20 in under 20 minutes if ever needed, you do not need it cluttering your cupboards.',
+      '3. The Evening Brain-Dump Ritual: One of the most potent tools for restorative sleep is offloading cognitive weight onto an interactive digital planner. Dedicate 10 minutes each evening to journal pending thoughts and define tomorrow’s 3 major priorities. This signals safety to your nervous system, turning off racing thoughts.',
+      '4. Sensory Calming Architecture: Elevate your decluttered sanctuary through sensory pacing. Aromatic compounds in pure sandalwood incense, soothing lavender, and royal frankincense naturally lower heart rate and induce alpha brainwaves. Lighting a gentle incense burner becomes a sacred anchor for evening unwinding.',
+      '5. Mindful Spending & Timeless Curation: Sustainable minimalism begins at point of purchase. Prioritize heirloom quality over disposable quantity—investing in pure 925 sterling silver accents, concentrated niche fragrances, and enduring digital templates that enrich your lifestyle without filling drawers with noise.'
+    ],
+    image: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
     id: 'ai-text-to-video-tools-guide-2026',
     titleAr: 'دليل أداة تحويل النص إلى فيديو بالذكاء الاصطناعي: كيف تصنع مقاطع سينمائية وتسويقية مذهلة من مجرد كلمات في 2026',
     titleEn: 'AI Text-to-Video Generation Guide: Crafting Cinematic & Commercial Videos from Words in 2026',
