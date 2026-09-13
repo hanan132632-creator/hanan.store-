@@ -99,6 +99,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
+              aria-label={lang === 'ar' ? `تصفية حسب قسم ${cat.nameAr}` : `Filter by ${cat.nameEn}`}
               className={`flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer border touch-manipulation active:scale-95 ${
                 isActive
                   ? 'bg-stone-900 text-white border-stone-900 shadow-md scale-102 ring-2 ring-amber-400/30'
@@ -124,8 +125,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         
         {/* Left: Price Filters & In-Stock toggle */}
         <div className="flex flex-wrap items-center gap-2.5">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-stone-500 me-1">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-amber-600" />
+          <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700 me-1">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-amber-700" />
             <span>{t.priceRange}:</span>
           </div>
 
@@ -136,10 +137,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 <button
                   key={idx}
                   onClick={() => onUpdateFilters({ minPrice: range.min, maxPrice: range.max })}
+                  aria-label={lang === 'ar' ? `تصفية بالسعر: ${range.label}` : `Filter by price: ${range.label}`}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
                     isSelected
-                      ? 'bg-amber-100/90 text-amber-950 border-amber-300 font-bold'
-                      : 'bg-stone-50 text-stone-600 border-stone-200 hover:bg-stone-100'
+                      ? 'bg-amber-100 text-amber-950 border-amber-400 font-black shadow-xs'
+                      : 'bg-stone-50 text-stone-750 text-stone-800 border-stone-300 hover:bg-stone-100 hover:text-stone-950'
                   }`}
                 >
                   {range.label}
@@ -151,13 +153,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           {/* In-Stock Toggle */}
           <button
             onClick={() => onUpdateFilters({ inStockOnly: !filters.inStockOnly })}
+            role="switch"
+            aria-checked={filters.inStockOnly}
+            aria-label={t.inStockOnly}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer border ms-auto sm:ms-2 ${
               filters.inStockOnly
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold'
-                : 'bg-stone-50 text-stone-600 border-stone-200 hover:bg-stone-100'
+                ? 'bg-emerald-100 text-emerald-950 border-emerald-400 font-bold'
+                : 'bg-stone-50 text-stone-800 border-stone-300 hover:bg-stone-100'
             }`}
           >
-            <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${filters.inStockOnly ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-stone-400'}`}>
+            <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${filters.inStockOnly ? 'bg-emerald-700 border-emerald-700 text-white' : 'border-stone-500'}`}>
               {filters.inStockOnly && <Check className="w-2.5 h-2.5" />}
             </div>
             <span>{t.inStockOnly}</span>
@@ -166,16 +171,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
         {/* Right: Sorting & Results Count */}
         <div className="flex items-center justify-between md:justify-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-stone-100">
-          <div className="text-xs text-stone-500 font-medium">
-            <span className="font-bold text-stone-900">{totalProductsCount}</span> {t.itemsWord}
+          <div className="text-xs text-stone-700 font-semibold">
+            <span className="font-black text-stone-950">{totalProductsCount}</span> {t.itemsWord}
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-stone-500 hidden sm:inline">{t.sortBy}:</span>
+            <span className="text-xs text-stone-700 font-bold hidden sm:inline">{t.sortBy}:</span>
             <select
+              id="catalog-sort-select"
+              aria-label={t.sortBy}
               value={filters.sortBy}
               onChange={(e) => onUpdateFilters({ sortBy: e.target.value as FilterState['sortBy'] })}
-              className="bg-stone-50 text-stone-800 text-xs font-bold rounded-xl py-2 px-3 border border-stone-200 focus:outline-none focus:border-amber-500 cursor-pointer"
+              className="bg-stone-50 text-stone-900 text-xs font-bold rounded-xl py-2 px-3 border border-stone-300 focus:outline-none focus:border-amber-600 cursor-pointer"
             >
               {sortOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -187,8 +194,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             {hasActiveFilters && (
               <button
                 onClick={resetAll}
-                className="p-2 text-stone-500 hover:text-rose-600 rounded-xl hover:bg-rose-50 transition-colors cursor-pointer"
+                className="p-2 text-stone-700 hover:text-rose-700 rounded-xl hover:bg-rose-50 transition-colors cursor-pointer"
                 title={t.resetFilters}
+                aria-label={t.resetFilters}
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
@@ -200,17 +208,17 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
       {/* Popular Luxury Tags strip */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-        <span className="text-stone-400 font-medium shrink-0">{lang === 'ar' ? 'وسوم رائجة:' : 'Trending Tags:'}</span>
+        <span className="text-stone-700 font-bold shrink-0">{lang === 'ar' ? 'وسوم رائجة:' : 'Trending Tags:'}</span>
         {popularTags.map((tag) => {
           const isActive = filters.activeTag === tag;
           return (
             <button
               key={tag}
               onClick={() => onUpdateFilters({ activeTag: isActive ? '' : tag })}
-              className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer shrink-0 ${
+              className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer shrink-0 border ${
                 isActive
-                  ? 'bg-amber-600 text-white font-bold'
-                  : 'bg-stone-100 hover:bg-stone-200 text-stone-600'
+                  ? 'bg-amber-700 text-white font-bold border-amber-800'
+                  : 'bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium border-stone-200'
               }`}
             >
               #{tag}

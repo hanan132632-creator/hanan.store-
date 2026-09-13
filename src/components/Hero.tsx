@@ -42,6 +42,7 @@ export const Hero: React.FC<HeroProps> = ({
               <button 
                 onClick={onOpenDomainInfo} 
                 className="hover:underline font-mono text-[11px] text-amber-200 cursor-pointer"
+                aria-label={lang === 'ar' ? 'توثيق الدومين المعتمد xn--mgblao3hjb.store' : 'Verified domain documentation'}
               >
                 xn--mgblao3hjb.store
               </button>
@@ -101,11 +102,11 @@ export const Hero: React.FC<HeroProps> = ({
                       <span className="text-xs font-black text-stone-900">
                         {lang === 'ar' ? 'استوديو أدوات الذكاء الاصطناعي المجانية' : 'Free AI Studio Tools'}
                       </span>
-                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-bold">
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-950 text-[10px] font-bold border border-amber-300">
                         {lang === 'ar' ? 'متاح الآن' : 'LIVE'}
                       </span>
                     </div>
-                    <p className="text-[11px] text-stone-500">
+                    <p className="text-[11px] text-stone-700 font-medium">
                       {lang === 'ar' ? 'أدوات مجانية: تحويل النص إلى فيديو + كاتب مقالات السيو وأدسنس' : 'Free tools: Text-to-Video generation + AI Article SEO writer'}
                     </p>
                   </div>
@@ -116,7 +117,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <button
                       id="hero-tool-video-btn"
                       onClick={onOpenTextToVideo}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-amber-600 text-amber-300 hover:text-stone-950 text-xs font-black transition-all cursor-pointer shadow-xs whitespace-nowrap"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-stone-950 hover:bg-amber-600 text-amber-300 hover:text-stone-950 text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
                     >
                       <span>🎬</span>
                       <span>{lang === 'ar' ? 'أداة الفيديو' : 'Video Tool'}</span>
@@ -127,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <button
                       id="hero-tool-writer-btn"
                       onClick={onOpenArticleWriter}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-black transition-all cursor-pointer shadow-xs whitespace-nowrap"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
                     >
                       <span>✍️</span>
                       <span>{lang === 'ar' ? 'صانع المقالات' : 'AI Writer'}</span>
@@ -141,19 +142,19 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="pt-6 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center lg:text-start">
               <div>
                 <p className="text-xl sm:text-2xl font-black text-stone-900 font-serif">100%</p>
-                <p className="text-xs text-stone-500 font-medium">{lang === 'ar' ? 'منتجات أصلية ونقية' : 'Authentic Guaranteed'}</p>
+                <p className="text-xs text-stone-700 font-semibold">{lang === 'ar' ? 'منتجات أصلية ونقية' : 'Authentic Guaranteed'}</p>
               </div>
               <div>
                 <p className="text-xl sm:text-2xl font-black text-stone-900 font-serif">{t.hero.satisfactionRate}</p>
-                <p className="text-xs text-stone-500 font-medium">{t.hero.satisfactionLabel}</p>
+                <p className="text-xs text-stone-700 font-semibold">{t.hero.satisfactionLabel}</p>
               </div>
               <div>
                 <p className="text-xl sm:text-2xl font-black text-stone-900 font-serif">{t.hero.ordersShipped}</p>
-                <p className="text-xs text-stone-500 font-medium">{t.hero.ordersShippedLabel}</p>
+                <p className="text-xs text-stone-700 font-semibold">{t.hero.ordersShippedLabel}</p>
               </div>
               <div>
-                <p className="text-xl sm:text-2xl font-black text-amber-700 font-serif">24 - 48h</p>
-                <p className="text-xs text-stone-500 font-medium">{lang === 'ar' ? 'توصيل فائق السرعة' : 'Rapid Delivery'}</p>
+                <p className="text-xl sm:text-2xl font-black text-amber-800 font-serif">24 - 48h</p>
+                <p className="text-xs text-stone-700 font-semibold">{lang === 'ar' ? 'توصيل فائق السرعة' : 'Rapid Delivery'}</p>
               </div>
             </div>
 
@@ -166,8 +167,11 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Main Luxury Frame */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-900 aspect-[4/5] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=1200&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop" 
                   alt="Hanan Store Royal Collection" 
+                  width={480}
+                  height={600}
+                  fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
                   decoding="async"
@@ -212,10 +216,10 @@ export const Hero: React.FC<HeroProps> = ({
                   <Truck className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold text-stone-500">
+                  <p className="text-[10px] font-bold text-stone-700">
                     {lang === 'ar' ? 'شحن مبرد فاخر' : 'Luxury Express'}
                   </p>
-                  <p className="text-xs font-bold text-stone-900">
+                  <p className="text-xs font-black text-stone-950">
                     {lang === 'ar' ? 'مجاني للطلبات +350 ر.س' : 'Free over 350 SAR'}
                   </p>
                 </div>
@@ -228,43 +232,43 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* 4 Pillars Trust Strip below Hero */}
         <div className="mt-14 pt-8 border-t border-stone-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/70 border border-stone-200/60 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-bold text-stone-900">{t.guarantees.original.title}</h4>
-              <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">{t.guarantees.original.desc}</p>
+              <p className="text-[11px] text-stone-700 mt-0.5 leading-snug font-medium">{t.guarantees.original.desc}</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/70 border border-stone-200/60 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center shrink-0">
+          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-900 flex items-center justify-center shrink-0">
               <Gift className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-bold text-stone-900">{t.guarantees.packaging.title}</h4>
-              <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">{t.guarantees.packaging.desc}</p>
+              <p className="text-[11px] text-stone-700 mt-0.5 leading-snug font-medium">{t.guarantees.packaging.desc}</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/70 border border-stone-200/60 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-900 flex items-center justify-center shrink-0">
               <Truck className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-bold text-stone-900">{t.guarantees.shipping.title}</h4>
-              <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">{t.guarantees.shipping.desc}</p>
+              <p className="text-[11px] text-stone-700 mt-0.5 leading-snug font-medium">{t.guarantees.shipping.desc}</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/70 border border-stone-200/60 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+          <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-900 flex items-center justify-center shrink-0">
               <Award className="w-5 h-5" />
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-bold text-stone-900">{t.guarantees.support.title}</h4>
-              <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">{t.guarantees.support.desc}</p>
+              <p className="text-[11px] text-stone-700 mt-0.5 leading-snug font-medium">{t.guarantees.support.desc}</p>
             </div>
           </div>
         </div>

@@ -82,23 +82,23 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
             <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-serif mt-2">
               {t.reviewsTitle}
             </h2>
-            <p className="text-xs sm:text-sm text-stone-500 mt-1">
+            <p className="text-xs sm:text-sm text-stone-700 font-medium mt-1">
               {t.reviewsSub}
             </p>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#FAF8F5] border border-stone-200">
+          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#FAF8F5] border border-stone-300">
             <div className="text-end">
-              <div className="flex items-center gap-1 text-amber-400">
+              <div className="flex items-center gap-1 text-amber-500">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
                 ))}
               </div>
-              <p className="text-[11px] text-stone-500 mt-0.5">
+              <p className="text-[11px] text-stone-700 font-semibold mt-0.5">
                 {lang === 'ar' ? 'بناءً على 1,480+ تقييم' : 'Based on 1,480+ reviews'}
               </p>
             </div>
-            <div className="text-3xl font-black text-stone-900 font-serif ps-3 border-s border-stone-200">
+            <div className="text-3xl font-black text-stone-950 font-serif ps-3 border-s border-stone-300">
               4.9
             </div>
           </div>
@@ -109,39 +109,39 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
           {reviews.map((rev) => (
             <div 
               key={rev.id} 
-              className="p-5 rounded-3xl bg-[#FAF8F5]/70 border border-stone-200/80 hover:border-amber-300 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              className="p-5 rounded-3xl bg-[#FAF8F5] border border-stone-200 hover:border-amber-400 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center text-amber-400">
+                  <div className="flex items-center text-amber-500">
                     {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                     ))}
                   </div>
-                  <span className="text-[10px] text-stone-400 font-sans">
+                  <span className="text-[10px] text-stone-600 font-sans font-medium">
                     {lang === 'ar' ? rev.dateAr : rev.dateEn}
                   </span>
                 </div>
 
-                <p className="text-xs text-stone-700 leading-relaxed italic">
+                <p className="text-xs text-stone-800 leading-relaxed italic font-normal">
                   "{lang === 'ar' ? rev.commentAr : rev.commentEn}"
                 </p>
               </div>
 
-              <div className="pt-3 mt-4 border-t border-stone-200/60 flex items-center justify-between">
+              <div className="pt-3 mt-4 border-t border-stone-200 flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-1">
                     <span className="text-xs font-bold text-stone-900">
                       {lang === 'ar' ? rev.authorAr : rev.authorEn}
                     </span>
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" title="Verified Buyer" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" title="Verified Buyer" />
                   </div>
-                  <span className="text-[10px] text-stone-400">
+                  <span className="text-[10px] text-stone-600 font-medium">
                     {lang === 'ar' ? rev.cityAr : rev.cityEn}
                   </span>
                 </div>
 
-                <span className="text-[10px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded font-medium max-w-[110px] truncate">
+                <span className="text-[10px] text-amber-950 bg-amber-100 px-2 py-0.5 rounded font-bold max-w-[110px] truncate border border-amber-300">
                   {lang === 'ar' ? rev.productAr : rev.productEn}
                 </span>
               </div>

@@ -45,6 +45,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <img
           src={product.image}
           alt={title}
+          width={400}
+          height={400}
           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
           loading="lazy"
           decoding="async"
@@ -78,13 +80,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Wishlist Button */}
           <button
             onClick={(e) => onToggleWishlist(product, e)}
-            className={`min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-full backdrop-blur-md shadow-md transition-all cursor-pointer touch-manipulation active:scale-95 ${
+            className={`min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-full backdrop-blur-md shadow-md transition-all cursor-pointer touch-manipulation active:scale-95 ${
               isWishlisted
                 ? 'bg-rose-500 text-white scale-105'
                 : 'bg-white/80 hover:bg-white text-stone-700 hover:text-rose-600'
             }`}
             title={isWishlisted ? t.removeFromWishlist : t.addToWishlist}
-            aria-label="Wishlist"
+            aria-label={isWishlisted ? (lang === 'ar' ? `إزالة ${title} من المفضلة` : `Remove ${title} from wishlist`) : (lang === 'ar' ? `إضافة ${title} إلى المفضلة` : `Add ${title} to wishlist`)}
           >
             <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-white' : ''}`} />
           </button>
@@ -95,9 +97,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-950 backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 sm:opacity-0 focus:opacity-100 cursor-pointer touch-manipulation active:scale-95"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-stone-950 backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 sm:opacity-0 focus:opacity-100 cursor-pointer touch-manipulation active:scale-95"
             title={t.quickView}
-            aria-label="Quick View"
+            aria-label={lang === 'ar' ? `معاينة سريعة لـ ${title}` : `Quick view for ${title}`}
           >
             <Eye className="w-4 h-4" />
           </button>
@@ -123,21 +125,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         
         <div>
           {/* Category Tag & Rating */}
-          <div className="flex items-center justify-between text-xs text-stone-500 mb-1.5">
-            <span className="font-semibold uppercase tracking-wider text-[11px] text-amber-800">
+          <div className="flex items-center justify-between text-xs text-stone-700 mb-1.5">
+            <span className="font-bold uppercase tracking-wider text-[11px] text-amber-900">
               {categoryName}
             </span>
-            <div className="flex items-center gap-1 text-amber-500 font-bold text-xs">
-              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span>{product.rating}</span>
-              <span className="text-stone-400 text-[10px]">({product.reviewsCount})</span>
+            <div className="flex items-center gap-1 text-amber-600 font-bold text-xs">
+              <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+              <span className="text-stone-900">{product.rating}</span>
+              <span className="text-stone-600 text-[10px]">({product.reviewsCount})</span>
             </div>
           </div>
 
           {/* Title */}
           <h3 
             onClick={() => onQuickView(product)}
-            className="font-serif font-bold text-stone-900 text-sm sm:text-base line-clamp-2 hover:text-amber-700 transition-colors cursor-pointer leading-snug"
+            className="font-serif font-bold text-stone-900 text-sm sm:text-base line-clamp-2 hover:text-amber-800 transition-colors cursor-pointer leading-snug"
           >
             {title}
           </h3>
@@ -145,12 +147,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Key tags or File Format Details */}
           <div className="flex flex-wrap gap-1 mt-2">
             {product.fileType && (
-              <span className="text-[10px] px-2 py-0.5 rounded bg-amber-50 text-amber-900 font-bold border border-amber-200/60">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-950 font-bold border border-amber-300">
                 {product.fileType}
               </span>
             )}
             {(lang === 'ar' ? product.tagsAr : product.tagsEn).slice(0, 2).map((tag, idx) => (
-              <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-stone-100 text-stone-600 font-medium">
+              <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-stone-100 text-stone-800 font-semibold border border-stone-200">
                 {tag}
               </span>
             ))}
@@ -163,7 +165,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 e.stopPropagation();
                 onPreviewFile(product);
               }}
-              className="mt-2.5 text-[11px] font-bold text-amber-700 hover:text-amber-900 flex items-center gap-1 hover:underline cursor-pointer"
+              className="mt-2.5 text-[11px] font-bold text-amber-800 hover:text-amber-950 flex items-center gap-1 hover:underline cursor-pointer"
+              aria-label={lang === 'ar' ? `معاينة محتوى ملف ${title}` : `Preview content of ${title}`}
             >
               <FileText className="w-3.5 h-3.5" />
               <span>{t.previewFileContent}</span>
@@ -179,12 +182,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 {formatPrice(product.price, currency, lang)}
               </span>
               {product.originalPrice && (
-                <span className="text-xs text-stone-400 line-through">
+                <span className="text-xs text-stone-600 line-through font-medium">
                   {formatPrice(product.originalPrice, currency, lang)}
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-stone-400 block font-sans">
+            <span className="text-[10px] text-stone-600 block font-sans font-medium">
               {lang === 'ar' ? 'شامل الضريبة 15%' : 'Incl. 15% VAT'}
             </span>
           </div>
@@ -198,6 +201,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : 'bg-stone-900 hover:bg-stone-800 text-white hover:shadow-md'
             }`}
+            aria-label={lang === 'ar' ? `إضافة ${title} إلى سلة المشتريات` : `Add ${title} to shopping cart`}
           >
             {isAddedRecently ? (
               <>

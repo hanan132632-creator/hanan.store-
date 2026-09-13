@@ -223,6 +223,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
                   key={item.id}
                   id={`top-bar-btn-${item.id}`}
                   onClick={item.action}
+                  aria-label={isAr ? item.titleAr : item.titleEn}
                   className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
                     isActive
                       ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-xs'
@@ -276,6 +277,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
                   key={item.id}
                   id={`top-bar-btn-${item.id}`}
                   onClick={item.action}
+                  aria-label={isAr ? item.titleAr : item.titleEn}
                   className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
                     isActive
                       ? 'bg-amber-400 text-stone-950 font-bold border-amber-300 shadow-xs'
@@ -327,6 +329,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
                 key={item.id}
                 id={`top-bar-btn-${item.id}`}
                 onClick={item.action}
+                aria-label={isAr ? item.titleAr : item.titleEn}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 border bg-white hover:bg-amber-50/80 text-stone-800 border-amber-200 hover:border-amber-400 shadow-2xs"
                 title={isAr ? item.titleAr : item.titleEn}
               >

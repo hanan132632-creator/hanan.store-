@@ -541,6 +541,7 @@ export default function App() {
       <button
         id="gift-advisor-fab"
         onClick={() => setIsGiftAdvisorOpen(true)}
+        aria-label={lang === 'ar' ? 'مساعد اختيار الهدايا الذكي' : 'Smart Gift Advisor'}
         className="fixed bottom-20 sm:bottom-6 start-4 sm:start-6 z-30 bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl flex items-center gap-2 group transition-all hover:scale-105 cursor-pointer border border-amber-400/40 touch-manipulation active:scale-95"
         title={lang === 'ar' ? 'مستشار الهدايا الذكي' : 'Gift Advisor'}
       >
@@ -556,7 +557,7 @@ export default function App() {
           id="back-to-top-btn"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="fixed bottom-20 sm:bottom-6 end-4 sm:end-6 z-30 p-3 rounded-full bg-white/90 hover:bg-white text-stone-800 shadow-xl border border-stone-200 hover:border-amber-400 transition-all cursor-pointer backdrop-blur-sm touch-manipulation active:scale-95"
-          aria-label="Back to Top"
+          aria-label={lang === 'ar' ? 'الرجوع إلى أعلى الصفحة' : 'Scroll back to top'}
         >
           <ArrowUp className="w-5 h-5" />
         </button>

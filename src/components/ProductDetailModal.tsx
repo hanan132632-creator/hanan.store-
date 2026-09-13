@@ -75,23 +75,24 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       >
         {/* Top Control Bar */}
         <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-3 border-b border-stone-100 flex items-center justify-between z-20">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-500">
+          <div className="flex items-center gap-2 text-xs font-mono text-stone-700 font-semibold">
             <span>SKU: {product.sku}</span>
-            <span className="text-stone-300">•</span>
-            <span className="text-amber-800 font-bold">{lang === 'ar' ? product.categoryNameAr : product.categoryNameEn}</span>
+            <span className="text-stone-400">•</span>
+            <span className="text-amber-900 font-bold">{lang === 'ar' ? product.categoryNameAr : product.categoryNameEn}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handleShare}
-              className="p-2 text-stone-500 hover:text-stone-900 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+              className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
               title="Share link"
             >
               {shareCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
             </button>
             <button
               onClick={onClose}
-              className="p-2 text-stone-400 hover:text-stone-900 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+              className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
+              aria-label="Close product modal"
             >
               <X className="w-5 h-5" />
             </button>
@@ -147,13 +148,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               
               {/* Rating & Reviews */}
               <div className="flex items-center gap-2">
-                <div className="flex items-center text-amber-400">
+                <div className="flex items-center text-amber-500">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
                   ))}
                 </div>
-                <span className="text-xs font-bold text-stone-800">{product.rating}</span>
-                <span className="text-xs text-stone-400">({product.reviewsCount} {lang === 'ar' ? 'تقييم موثق' : 'Verified Reviews'})</span>
+                <span className="text-xs font-black text-stone-900">{product.rating}</span>
+                <span className="text-xs text-stone-600 font-medium">({product.reviewsCount} {lang === 'ar' ? 'تقييم موثق' : 'Verified Reviews'})</span>
               </div>
 
               {/* Title */}
@@ -162,16 +163,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </h2>
 
               {/* Price Block */}
-              <div className="flex items-baseline gap-3 p-3.5 bg-[#FAF8F5] rounded-2xl border border-stone-200/80">
-                <span className="text-2xl sm:text-3xl font-black text-stone-900 font-serif">
+              <div className="flex items-baseline gap-3 p-3.5 bg-[#FAF8F5] rounded-2xl border border-stone-200">
+                <span className="text-2xl sm:text-3xl font-black text-stone-950 font-serif">
                   {formatPrice(product.price, currency, lang)}
                 </span>
                 {product.originalPrice && (
-                  <span className="text-sm sm:text-base text-stone-400 line-through">
+                  <span className="text-sm sm:text-base text-stone-600 line-through font-medium">
                     {formatPrice(product.originalPrice, currency, lang)}
                   </span>
                 )}
-                <span className="text-xs font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded">
+                <span className="text-xs font-black text-emerald-950 bg-emerald-100 px-2.5 py-1 rounded border border-emerald-300">
                   {product.isDigitalFile ? (lang === 'ar' ? 'تحميل فوري مباشر' : 'Instant Download') : (lang === 'ar' ? 'شحن فاخر مجاني' : 'Free Luxury Shipping')}
                 </span>
               </div>
@@ -311,14 +312,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Description & Specifications Tabs */}
-          <div className="pt-6 border-t border-stone-200/80">
+          <div className="pt-6 border-t border-stone-200">
             <div className="flex items-center gap-4 border-b border-stone-200 mb-4">
               <button
                 onClick={() => setActiveTab('desc')}
                 className={`pb-2 text-sm font-bold transition-colors cursor-pointer border-b-2 ${
                   activeTab === 'desc'
-                    ? 'border-amber-600 text-stone-900'
-                    : 'border-transparent text-stone-400 hover:text-stone-700'
+                    ? 'border-amber-700 text-stone-950 font-black'
+                    : 'border-transparent text-stone-600 hover:text-stone-900'
                 }`}
               >
                 {lang === 'ar' ? 'الوصف والمميزات' : 'Description & Highlights'}
@@ -327,8 +328,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 onClick={() => setActiveTab('specs')}
                 className={`pb-2 text-sm font-bold transition-colors cursor-pointer border-b-2 ${
                   activeTab === 'specs'
-                    ? 'border-amber-600 text-stone-900'
-                    : 'border-transparent text-stone-400 hover:text-stone-700'
+                    ? 'border-amber-700 text-stone-950 font-black'
+                    : 'border-transparent text-stone-600 hover:text-stone-900'
                 }`}
               >
                 {t.specifications}
@@ -336,20 +337,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {activeTab === 'desc' ? (
-              <div className="space-y-4 text-xs sm:text-sm text-stone-700 leading-relaxed">
+              <div className="space-y-4 text-xs sm:text-sm text-stone-800 leading-relaxed font-normal">
                 <p>{description}</p>
                 
                 {features && features.length > 0 && (
                   <div className="space-y-2 pt-2">
                     <h4 className="font-bold text-stone-900 flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4 text-amber-500" />
+                      <Sparkles className="w-4 h-4 text-amber-600" />
                       <span>{lang === 'ar' ? 'أبرز مميزات القطعة:' : 'Key Features:'}</span>
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {features.map((feat, idx) => (
-                        <li key={idx} className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200/60">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{feat}</span>
+                        <li key={idx} className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                          <Check className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                          <span className="text-stone-800 font-medium">{feat}</span>
                         </li>
                       ))}
                     </ul>
@@ -357,18 +358,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 )}
               </div>
             ) : (
-              <div className="bg-stone-50 rounded-2xl p-4 border border-stone-200/80">
+              <div className="bg-stone-50 rounded-2xl p-4 border border-stone-200">
                 {specs ? (
                   <dl className="divide-y divide-stone-200 text-xs sm:text-sm">
                     {Object.entries(specs).map(([key, val]) => (
                       <div key={key} className="py-2.5 grid grid-cols-3 gap-2">
                         <dt className="font-bold text-stone-900">{key}</dt>
-                        <dd className="col-span-2 text-stone-600">{val}</dd>
+                        <dd className="col-span-2 text-stone-700 font-medium">{val}</dd>
                       </div>
                     ))}
                   </dl>
                 ) : (
-                  <p className="text-xs text-stone-500">{lang === 'ar' ? 'لا توجد مواصفات إضافية.' : 'No additional specs.'}</p>
+                  <p className="text-xs text-stone-700">{lang === 'ar' ? 'لا توجد مواصفات إضافية.' : 'No additional specs.'}</p>
                 )}
               </div>
             )}

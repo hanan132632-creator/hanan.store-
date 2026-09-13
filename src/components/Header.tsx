@@ -83,6 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenDomainInfo}
               className="flex items-center gap-1.5 text-amber-200 hover:text-white transition-colors cursor-pointer group"
               title="Official Domain Verification"
+              aria-label={lang === 'ar' ? 'توثيق الدومين الرسمي xn--mgblao3hjb.store' : 'Official domain verification'}
             >
               <ShieldCheck className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
               <span className="font-mono text-[11px] underline underline-offset-2 decoration-amber-400/50">
@@ -209,6 +210,7 @@ export const Header: React.FC<HeaderProps> = ({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="flex items-center text-start group cursor-pointer"
+              aria-label={lang === 'ar' ? 'متجر حنان ستور - الصفحة الرئيسية' : 'Hanan Store - Homepage'}
             >
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-stone-900 font-serif flex items-center gap-1.5 group-hover:text-amber-800 transition-colors">
@@ -231,13 +233,15 @@ export const Header: React.FC<HeaderProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full bg-stone-100/80 hover:bg-stone-100 focus:bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm rounded-full py-2.5 px-4 ps-10 border border-stone-200 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
+                aria-label={t.searchPlaceholder}
+                className="w-full bg-stone-100/90 hover:bg-stone-100 focus:bg-white text-stone-950 placeholder:text-stone-600 text-xs sm:text-sm rounded-full py-2.5 px-4 ps-10 border border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/25 transition-all font-medium"
               />
-              <Search className="w-4 h-4 text-stone-400 absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-4 h-4 text-stone-600 absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute end-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1 cursor-pointer"
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-stone-600 hover:text-stone-900 p-1 cursor-pointer"
+                  aria-label={lang === 'ar' ? 'مسح نص البحث' : 'Clear search'}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -290,7 +294,8 @@ export const Header: React.FC<HeaderProps> = ({
               id="mobile-search-toggle"
               onClick={() => setIsSearchExpanded(!isSearchExpanded)}
               className="md:hidden p-2 text-stone-700 hover:text-stone-900 rounded-full hover:bg-stone-100 transition-colors cursor-pointer"
-              aria-label="Toggle search"
+              aria-label={lang === 'ar' ? (isSearchExpanded ? 'إغلاق البحث' : 'فتح البحث في المنتجات') : (isSearchExpanded ? 'Close search' : 'Open product search')}
+              aria-expanded={isSearchExpanded}
             >
               <Search className="w-5 h-5" />
             </button>
@@ -301,6 +306,9 @@ export const Header: React.FC<HeaderProps> = ({
                 id="currency-menu-btn"
                 onClick={() => setShowCurrencyMenu(!showCurrencyMenu)}
                 className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200/70 rounded-full transition-colors cursor-pointer"
+                aria-label={lang === 'ar' ? `تغيير العملة (الحالية: ${currency})` : `Change currency (current: ${currency})`}
+                aria-haspopup="listbox"
+                aria-expanded={showCurrencyMenu}
               >
                 <span>{currency}</span>
               </button>
@@ -308,11 +316,15 @@ export const Header: React.FC<HeaderProps> = ({
               {showCurrencyMenu && (
                 <div 
                   className="absolute end-0 mt-2 w-28 bg-white rounded-xl shadow-xl border border-stone-200 py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  role="listbox"
+                  aria-label={lang === 'ar' ? 'قائمة العملات المتاحة' : 'Available currencies'}
                   onMouseLeave={() => setShowCurrencyMenu(false)}
                 >
                   {currencies.map((curr) => (
                     <button
                       key={curr}
+                      role="option"
+                      aria-selected={currency === curr}
                       onClick={() => {
                         setCurrency(curr);
                         setShowCurrencyMenu(false);
@@ -333,6 +345,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
               className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200/70 rounded-full transition-colors cursor-pointer"
               title={lang === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'}
+              aria-label={lang === 'ar' ? 'التحويل إلى اللغة الإنجليزية (English)' : 'التحويل إلى اللغة العربية (Arabic)'}
             >
               <Globe className="w-3.5 h-3.5 text-stone-500" />
               <span>{lang === 'ar' ? 'EN' : 'عربي'}</span>
@@ -343,7 +356,7 @@ export const Header: React.FC<HeaderProps> = ({
               id="wishlist-btn"
               onClick={onOpenWishlist}
               className="relative p-2.5 text-stone-700 hover:text-rose-600 rounded-full hover:bg-rose-50/60 transition-colors cursor-pointer"
-              aria-label="Wishlist"
+              aria-label={lang === 'ar' ? `قائمة المفضلة، ${wishlistCount} منتج` : `Wishlist, ${wishlistCount} items`}
               title={t.wishlist}
             >
               <Heart className="w-5 h-5" />
@@ -359,7 +372,7 @@ export const Header: React.FC<HeaderProps> = ({
               id="cart-drawer-btn"
               onClick={onOpenCart}
               className="relative flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-white py-2 px-3.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer group"
-              aria-label="Shopping Cart"
+              aria-label={lang === 'ar' ? `سلة المشتريات، ${cartCount} منتجات` : `Shopping Cart, ${cartCount} items`}
             >
               <ShoppingBag className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" />
               <span className="hidden sm:inline text-xs font-bold tracking-wide">
@@ -383,14 +396,16 @@ export const Header: React.FC<HeaderProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
+                aria-label={t.searchPlaceholder}
                 autoFocus
-                className="w-full bg-stone-100 text-stone-900 placeholder:text-stone-400 text-sm rounded-full py-2.5 px-4 ps-10 border border-stone-200 focus:border-amber-500 focus:outline-none"
+                className="w-full bg-stone-100 text-stone-950 placeholder:text-stone-600 text-sm rounded-full py-2.5 px-4 ps-10 border border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20 font-medium"
               />
-              <Search className="w-4 h-4 text-stone-400 absolute start-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-stone-600 absolute start-3.5 top-1/2 -translate-y-1/2" />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute end-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1"
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-stone-600 hover:text-stone-950 p-1"
+                  aria-label={lang === 'ar' ? 'مسح البحث' : 'Clear search'}
                 >
                   <X className="w-4 h-4" />
                 </button>

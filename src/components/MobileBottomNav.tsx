@@ -67,8 +67,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-home"
           onClick={handleHomeClick}
-          className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors cursor-pointer touch-manipulation active:scale-95 ${
-            activeCategory === 'all' ? 'text-amber-800 font-bold' : 'text-stone-500 hover:text-stone-800'
+          aria-label={isAr ? 'الصفحة الرئيسية' : 'Home'}
+          className={`min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-colors cursor-pointer touch-manipulation active:scale-95 ${
+            activeCategory === 'all' ? 'text-amber-800 font-bold' : 'text-stone-700 font-semibold hover:text-stone-950'
           }`}
         >
           <div className="relative">
@@ -86,8 +87,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-games"
           onClick={handleGamesClick}
-          className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-colors cursor-pointer touch-manipulation active:scale-95 ${
-            activeCategory === 'fun-games' ? 'text-amber-800 font-bold' : 'text-stone-500 hover:text-stone-800'
+          aria-label={isAr ? 'قسم ألعاب وتحديات الجمعات' : 'Fun Gathering Games Category'}
+          className={`min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-colors cursor-pointer touch-manipulation active:scale-95 ${
+            activeCategory === 'fun-games' ? 'text-amber-800 font-bold' : 'text-stone-700 font-semibold hover:text-stone-950'
           }`}
         >
           <div className="relative">
@@ -108,7 +110,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             triggerHaptic();
             onOpenSearch();
           }}
-          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-stone-500 hover:text-stone-900 transition-colors cursor-pointer touch-manipulation active:scale-95"
+          aria-label={isAr ? 'البحث عن منتج' : 'Search products'}
+          className="min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-xl text-stone-700 font-semibold hover:text-stone-950 transition-colors cursor-pointer touch-manipulation active:scale-95"
         >
           <Search className="w-5 h-5" />
           <span className="text-[10px] mt-1 tracking-tight truncate max-w-full">
@@ -123,7 +126,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             triggerHaptic();
             onOpenWishlist();
           }}
-          className="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-stone-500 hover:text-rose-600 transition-colors cursor-pointer touch-manipulation active:scale-95"
+          aria-label={isAr ? `قائمة المفضلة (${wishlistCount} منتج)` : `Wishlist (${wishlistCount} items)`}
+          className="min-h-[48px] relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-stone-700 font-semibold hover:text-rose-700 transition-colors cursor-pointer touch-manipulation active:scale-95"
         >
           <div className="relative">
             <Heart className="w-5 h-5" />
@@ -145,7 +149,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             triggerHaptic();
             onOpenCart();
           }}
-          className="relative flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-stone-900 transition-colors cursor-pointer touch-manipulation active:scale-95"
+          aria-label={isAr ? `سلة المشتريات (${cartCount} عنصر، المجموع: ${formatPrice(cartTotal, currency, lang)})` : `Shopping Cart (${cartCount} items, Total: ${formatPrice(cartTotal, currency, lang)})`}
+          className="min-h-[48px] relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-stone-900 transition-colors cursor-pointer touch-manipulation active:scale-95"
         >
           <div className="relative">
             <div className="w-8 h-8 rounded-full bg-stone-900 text-amber-300 flex items-center justify-center shadow-sm">
