@@ -25,8 +25,8 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section id="hero-section" className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F5F2EC] to-[#FAF8F5] py-10 md:py-16 border-b border-stone-200/60">
       {/* Decorative Golden Ambient Glows */}
-      <div className="absolute top-0 end-0 w-96 h-96 bg-amber-200/30 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-      <div className="absolute bottom-0 start-0 w-80 h-80 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
+      <div className="absolute top-0 end-0 w-80 h-80 bg-amber-200/25 rounded-full blur-xl pointer-events-none -mr-16 -mt-16"></div>
+      <div className="absolute bottom-0 start-0 w-72 h-72 bg-amber-100/30 rounded-full blur-xl pointer-events-none -ml-16 -mb-16"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -181,7 +181,7 @@ export const Hero: React.FC<HeroProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none"></div>
 
                 {/* Bottom Card Overlay Tag */}
-                <div className="absolute bottom-5 inset-x-5 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/40 shadow-lg text-stone-900">
+                <div className="absolute bottom-5 inset-x-5 p-4 rounded-2xl bg-white/95 sm:bg-white/90 sm:backdrop-blur-md border border-white/40 shadow-lg text-stone-900">
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-bold tracking-wider uppercase text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded">

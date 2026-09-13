@@ -12,7 +12,8 @@ import {
 } from 'lucide-react';
 import { Currency, Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
-import { SitePagesMenu } from './SitePagesMenu';
+
+const SitePagesMenu = React.lazy(() => import('./SitePagesMenu').then(m => ({ default: m.SitePagesMenu })));
 
 interface HeaderProps {
   lang: Language;
@@ -65,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
   const currencies: Currency[] = ['SAR', 'AED', 'KWD', 'USD'];
 
   return (
-    <header id="store-header" className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 transition-all duration-300 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)]">
+    <header id="store-header" className="sticky top-0 z-40 bg-white/98 sm:bg-white/95 sm:backdrop-blur-md border-b border-stone-200/80 transition-all duration-300 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)]">
       {/* Top Luxury Announcement Bar */}
       <div className="bg-[#18181B] text-amber-100 text-xs py-2 px-4 border-b border-amber-900/30">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-start">
@@ -207,17 +208,21 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             {/* Dropdown Menu showing all site pages under each other */}
-            <SitePagesMenu
-              isOpen={isNavDrawerOpen}
-              onClose={() => setIsNavDrawerOpen(false)}
-              lang={lang}
-              onSelectCategory={setActiveCategory}
-              onOpenLegal={onOpenLegal}
-              onOpenTextToVideo={onOpenTextToVideo}
-              onOpenArticleWriter={onOpenArticleWriter}
-              onOpenAdSenseAudit={onOpenAdSenseAudit}
-              onOpenMobileOptimizer={onOpenMobileOptimizer}
-            />
+            {isNavDrawerOpen && (
+              <React.Suspense fallback={null}>
+                <SitePagesMenu
+                  isOpen={isNavDrawerOpen}
+                  onClose={() => setIsNavDrawerOpen(false)}
+                  lang={lang}
+                  onSelectCategory={setActiveCategory}
+                  onOpenLegal={onOpenLegal}
+                  onOpenTextToVideo={onOpenTextToVideo}
+                  onOpenArticleWriter={onOpenArticleWriter}
+                  onOpenAdSenseAudit={onOpenAdSenseAudit}
+                  onOpenMobileOptimizer={onOpenMobileOptimizer}
+                />
+              </React.Suspense>
+            )}
 
             <button 
               id="brand-logo-btn"

@@ -34,6 +34,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
   onOpenDomainInfo
 }) => {
   const isAr = lang === 'ar';
+  const [mobileTab, setMobileTab] = React.useState<'digital' | 'luxury' | 'services'>('digital');
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -197,12 +198,42 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
   return (
     <div id="top-three-category-bars" className="w-full flex flex-col shadow-xs select-none">
       
+      {/* Mobile-Only Category Tab Switcher (Saves DOM and 80px vertical space on Mobile) */}
+      <div className="flex sm:hidden items-center justify-between bg-[#141416] p-1 border-b border-stone-800 text-[11px] gap-1">
+        <button
+          onClick={() => setMobileTab('digital')}
+          className={`flex-1 py-1 px-1.5 rounded-md font-bold text-center transition-all ${
+            mobileTab === 'digital' ? 'bg-amber-500 text-stone-950 shadow-xs' : 'text-stone-300 hover:text-white'
+          }`}
+        >
+          {isAr ? '🎮 ملفات وألعاب' : '🎮 Digital'}
+        </button>
+        <button
+          onClick={() => setMobileTab('luxury')}
+          className={`flex-1 py-1 px-1.5 rounded-md font-bold text-center transition-all ${
+            mobileTab === 'luxury' ? 'bg-amber-400 text-stone-950 shadow-xs' : 'text-stone-300 hover:text-white'
+          }`}
+        >
+          {isAr ? '👑 البوتيك الملكي' : '👑 Boutique'}
+        </button>
+        <button
+          onClick={() => setMobileTab('services')}
+          className={`flex-1 py-1 px-1.5 rounded-md font-bold text-center transition-all ${
+            mobileTab === 'services' ? 'bg-amber-100 text-amber-950 shadow-xs' : 'text-stone-300 hover:text-white'
+          }`}
+        >
+          {isAr ? '🛡️ خدمات سريعة' : '🛡️ Services'}
+        </button>
+      </div>
+
       {/* ─────────────────────────────────────────────────────────────
           BAR 1: Digital Products & Gathering Games Strip (Dark Slate Theme)
          ───────────────────────────────────────────────────────────── */}
       <div 
         id="top-bar-digital-sections" 
-        className="w-full bg-[#18181b] text-stone-200 border-b border-stone-800 py-1.5 px-3 sm:px-6"
+        className={`w-full bg-[#18181b] text-stone-200 border-b border-stone-800 py-1.5 px-3 sm:px-6 ${
+          mobileTab === 'digital' ? 'block' : 'hidden sm:block'
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           
@@ -256,7 +287,9 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
          ───────────────────────────────────────────────────────────── */}
       <div 
         id="top-bar-luxury-sections" 
-        className="w-full bg-[#24201c] text-amber-100 border-b border-amber-950/70 py-1.5 px-3 sm:px-6"
+        className={`w-full bg-[#24201c] text-amber-100 border-b border-amber-950/70 py-1.5 px-3 sm:px-6 ${
+          mobileTab === 'luxury' ? 'block' : 'hidden sm:block'
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           
@@ -310,7 +343,9 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
          ───────────────────────────────────────────────────────────── */}
       <div 
         id="top-bar-editorial-services" 
-        className="w-full bg-[#fdfaf5] text-stone-900 border-b border-amber-200/80 py-1.5 px-3 sm:px-6"
+        className={`w-full bg-[#fdfaf5] text-stone-900 border-b border-amber-200/80 py-1.5 px-3 sm:px-6 ${
+          mobileTab === 'services' ? 'block' : 'hidden sm:block'
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           

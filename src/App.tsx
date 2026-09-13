@@ -100,6 +100,7 @@ export default function App() {
 
   // Search, Category, and Filtering State
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [visibleCount, setVisibleCount] = useState<number>(12);
   const [recentlyAddedId, setRecentlyAddedId] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -168,10 +169,12 @@ export default function App() {
   // Update category when activeCategory changes
   const handleSelectCategory = (catId: string) => {
     setActiveCategory(catId);
+    setVisibleCount(12);
     setFilters(prev => ({ ...prev, category: catId }));
   };
 
   const handleUpdateFilters = (updates: Partial<FilterState>) => {
+    setVisibleCount(12);
     setFilters(prev => ({ ...prev, ...updates }));
   };
 
@@ -320,6 +323,11 @@ export default function App() {
     });
   }, [activeCategory, filters]);
 
+  // Progressive rendering for mobile performance & light initial DOM
+  const displayedProducts = useMemo(() => {
+    return filteredProducts.slice(0, visibleCount);
+  }, [filteredProducts, visibleCount]);
+
   // Performance-optimized Cart metrics
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
   const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0), [cart]);
@@ -458,24 +466,43 @@ export default function App() {
 
         {/* Product Cards Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-2">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                currency={currency}
-                lang={lang}
-                onAddToCart={(p, e) => {
-                  if (e) e.stopPropagation();
-                  handleAddToCart(p);
-                }}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onPreviewFile={(p) => setPreviewFileProduct(p)}
-                isWishlisted={isWishlisted(product.id)}
-                onToggleWishlist={handleToggleWishlist}
-                isAddedRecently={recentlyAddedId === product.id}
-              />
-            ))}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-2">
+              {displayedProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  currency={currency}
+                  lang={lang}
+                  onAddToCart={(p, e) => {
+                    if (e) e.stopPropagation();
+                    handleAddToCart(p);
+                  }}
+                  onQuickView={(p) => setSelectedProduct(p)}
+                  onPreviewFile={(p) => setPreviewFileProduct(p)}
+                  isWishlisted={isWishlisted(product.id)}
+                  onToggleWishlist={handleToggleWishlist}
+                  isAddedRecently={recentlyAddedId === product.id}
+                />
+              ))}
+            </div>
+
+            {/* Progressive Load More Products (Optimizes Mobile First-Render & Scrolling) */}
+            {visibleCount < filteredProducts.length && (
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setVisibleCount(prev => prev + 12)}
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-2xl bg-stone-900 text-amber-300 hover:bg-stone-800 font-bold text-xs sm:text-sm shadow-md transition-all active:scale-98 cursor-pointer border border-amber-400/20"
+                >
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                  <span>
+                    {lang === 'ar'
+                      ? `عرض باقي المعروضات (${filteredProducts.length - visibleCount} منتج إضافي)`
+                      : `Show More Products (${filteredProducts.length - visibleCount} more)`}
+                  </span>
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-20 bg-white rounded-3xl border border-stone-200/80 p-8 space-y-4">
