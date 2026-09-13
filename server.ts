@@ -87,6 +87,28 @@ async function startServer() {
     return res.status(404).type("text/plain").send("Ads.txt not found");
   });
 
+  app.all(["/favicon.ico"], (req, res) => {
+    const icoPath = path.join(process.cwd(), "public", "favicon.ico");
+    if (fs.existsSync(icoPath)) {
+      res.setHeader("Content-Type", "image/x-icon");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.sendFile(icoPath);
+    }
+    return res.status(204).end();
+  });
+
+  app.all(["/favicon.svg"], (req, res) => {
+    const svgPath = path.join(process.cwd(), "public", "favicon.svg");
+    if (fs.existsSync(svgPath)) {
+      res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.sendFile(svgPath);
+    }
+    return res.status(204).end();
+  });
+
   // 4. Legacy /html/ and old article URLs 301/302 Redirect to modern SPA anchors
   app.get(["/html/*", "/html", "/article-*"], (req, res) => {
     const originalUrl = req.originalUrl || req.url;
