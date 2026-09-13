@@ -23,6 +23,7 @@ interface FooterProps {
   onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenAdSenseAudit?: () => void;
+  onOpenMobileOptimizer?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -34,7 +35,8 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenSitemapViewer,
   onOpenTextToVideo,
   onOpenArticleWriter,
-  onOpenAdSenseAudit
+  onOpenAdSenseAudit,
+  onOpenMobileOptimizer
 }) => {
   const t = TRANSLATIONS[lang];
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -208,6 +210,17 @@ export const Footer: React.FC<FooterProps> = ({
                   >
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>{lang === 'ar' ? '📊 تقرير مراجعة AdSense الحي' : '📊 Live AdSense Audit Report'}</span>
+                  </button>
+                </li>
+              )}
+              {onOpenMobileOptimizer && (
+                <li>
+                  <button 
+                    onClick={onOpenMobileOptimizer}
+                    className="hover:text-amber-300 transition-colors cursor-pointer text-amber-400 font-bold hover:underline flex items-center gap-1.5"
+                  >
+                    <span>📱</span>
+                    <span>{lang === 'ar' ? 'أداة تحسين وتوافق الجوال (Core Web Vitals)' : 'Mobile Usability & Optimizer Tool'}</span>
                   </button>
                 </li>
               )}

@@ -6,7 +6,8 @@ import {
   Search, 
   Flame, 
   ShieldCheck, 
-  PackageSearch
+  PackageSearch,
+  Smartphone
 } from 'lucide-react';
 import { 
   CartItem, 
@@ -42,6 +43,7 @@ import { MobileBottomNav } from './components/MobileBottomNav';
 import { TextToVideoModal } from './components/TextToVideoModal';
 import { ArticleWriterModal } from './components/ArticleWriterModal';
 import { AdSenseAuditModal } from './components/AdSenseAuditModal';
+import { MobileOptimizerModal } from './components/MobileOptimizerModal';
 
 export default function App() {
   // Multilingual & Currency State
@@ -62,6 +64,7 @@ export default function App() {
   const [isTextToVideoOpen, setIsTextToVideoOpen] = useState(false);
   const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
   const [isAdSenseAuditOpen, setIsAdSenseAuditOpen] = useState(false);
+  const [isMobileOptimizerOpen, setIsMobileOptimizerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
@@ -349,6 +352,7 @@ export default function App() {
         onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
         onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
+        onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
       />
 
       {/* Top Three Department & Section Navigation Bars */}
@@ -534,8 +538,26 @@ export default function App() {
           onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
           onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
           onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
+          onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
         />
       </div>
+
+      {/* Floating Action Button: Mobile Optimizer */}
+      <button
+        id="mobile-optimizer-fab"
+        onClick={() => setIsMobileOptimizerOpen(true)}
+        aria-label={lang === 'ar' ? 'أداة تحسين وتوافق الجوال وCore Web Vitals' : 'Mobile Usability & Optimizer Tool'}
+        className="fixed bottom-36 sm:bottom-20 start-4 sm:start-6 z-30 bg-stone-900/95 hover:bg-black text-amber-300 px-3 py-2 rounded-full shadow-2xl flex items-center gap-2 group transition-all hover:scale-105 cursor-pointer border border-amber-500/40 backdrop-blur-md touch-manipulation active:scale-95"
+        title={lang === 'ar' ? 'أداة تحسين الجوال وسرعة التصفح وتوافق Googlebot' : 'Mobile Usability & Speed Optimizer'}
+      >
+        <Smartphone className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+        <span className="text-xs font-bold font-sans">
+          {lang === 'ar' ? 'أداة الجوال' : 'Mobile Tool'}
+        </span>
+        <span className="px-1.5 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+          ⚡ 100%
+        </span>
+      </button>
 
       {/* Floating Action Button: Gift Advisor */}
       <button
@@ -719,6 +741,13 @@ export default function App() {
       <ArticleWriterModal
         isOpen={isArticleWriterOpen}
         onClose={() => setIsArticleWriterOpen(false)}
+        lang={lang}
+      />
+
+      {/* Mobile Usability & Performance Optimizer Tool Modal */}
+      <MobileOptimizerModal
+        isOpen={isMobileOptimizerOpen}
+        onClose={() => setIsMobileOptimizerOpen(false)}
         lang={lang}
       />
 

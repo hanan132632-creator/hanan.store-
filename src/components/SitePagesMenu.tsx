@@ -26,6 +26,7 @@ interface SitePagesMenuProps {
   onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenAdSenseAudit?: () => void;
+  onOpenMobileOptimizer?: () => void;
 }
 
 export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
@@ -36,7 +37,8 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
   onOpenLegal,
   onOpenTextToVideo,
   onOpenArticleWriter,
-  onOpenAdSenseAudit
+  onOpenAdSenseAudit,
+  onOpenMobileOptimizer
 }) => {
   const isAr = lang === 'ar';
 
@@ -219,6 +221,35 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
                 {isAr ? 'تشغيل ↗' : 'Launch ↗'}
               </span>
             </button>
+
+            {/* Mobile Optimizer & Core Web Vitals Tool */}
+            {onOpenMobileOptimizer && (
+              <button
+                id="menu-tool-mobile-optimizer"
+                onClick={() => {
+                  onClose();
+                  onOpenMobileOptimizer();
+                }}
+                className="w-full flex items-center justify-between px-2.5 py-2 rounded-lg bg-white hover:bg-amber-50 text-stone-900 transition-colors text-start shadow-xs border border-amber-300 cursor-pointer group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-md bg-gradient-to-br from-amber-600 to-amber-700 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    📱
+                  </div>
+                  <div>
+                    <span className="font-black text-xs block text-stone-900 group-hover:text-amber-900">
+                      {isAr ? 'أداة تحسين وتوافق الجوال' : 'Mobile Optimizer Tool'}
+                    </span>
+                    <span className="text-[10px] text-stone-700 font-medium block">
+                      {isAr ? 'فحص Googlebot للجوال وتوربو السرعة' : 'Core Web Vitals & Speed Turbo'}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+                  {isAr ? 'فتح ↗' : 'Open ↗'}
+                </span>
+              </button>
+            )}
           </div>
 
           <div className="h-px bg-stone-100 my-1" />

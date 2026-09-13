@@ -45,3 +45,19 @@ textarea {
   content-visibility: auto;
   contain-intrinsic-size: 1px 500px;
 }
+
+/* Live Mobile Optimizer Modes */
+html.mobile-turbo-active *,
+html.mobile-turbo-active *::before,
+html.mobile-turbo-active *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.mobile-touch-boost button,
+html.mobile-touch-boost a,
+html.mobile-touch-boost input {
+  min-height: 48px !important;
+}

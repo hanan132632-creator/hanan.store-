@@ -33,6 +33,7 @@ interface HeaderProps {
   onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenAdSenseAudit?: () => void;
+  onOpenMobileOptimizer?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -53,7 +54,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSitemap: _onOpenSitemap,
   onOpenTextToVideo,
   onOpenArticleWriter,
-  onOpenAdSenseAudit
+  onOpenAdSenseAudit,
+  onOpenMobileOptimizer
 }) => {
   const t = TRANSLATIONS[lang];
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
@@ -132,6 +134,19 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
             )}
 
+            {/* Mobile Optimizer Tool Button in Announcement Bar */}
+            {onOpenMobileOptimizer && (
+              <button
+                id="top-bar-mobile-optimizer-btn"
+                onClick={onOpenMobileOptimizer}
+                className="inline-flex items-center gap-1 text-amber-300 hover:text-white font-bold bg-amber-500/20 hover:bg-amber-500/30 px-2.5 py-0.5 rounded-full border border-amber-400/40 cursor-pointer transition-colors text-[11px]"
+                title={lang === 'ar' ? 'أداة تحسين وتوافق الجوال' : 'Mobile Optimizer Tool'}
+              >
+                <span>📱</span>
+                <span>{lang === 'ar' ? 'تحسين الجوال' : 'Mobile Optimizer'}</span>
+              </button>
+            )}
+
             <span className="hidden md:inline text-stone-600">|</span>
 
             {/* Guides / Blog anchor */}
@@ -201,6 +216,7 @@ export const Header: React.FC<HeaderProps> = ({
               onOpenTextToVideo={onOpenTextToVideo}
               onOpenArticleWriter={onOpenArticleWriter}
               onOpenAdSenseAudit={onOpenAdSenseAudit}
+              onOpenMobileOptimizer={onOpenMobileOptimizer}
             />
 
             <button 
@@ -286,6 +302,20 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>{lang === 'ar' ? 'تقرير أدسنس' : 'AdSense Audit'}</span>
+              </button>
+            )}
+
+            {/* Mobile Optimizer Quick Button */}
+            {onOpenMobileOptimizer && (
+              <button
+                id="header-btn-mobile-optimizer"
+                onClick={onOpenMobileOptimizer}
+                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold rounded-full bg-amber-100 text-amber-950 hover:bg-amber-600 hover:text-white transition-all shadow-xs border border-amber-300 cursor-pointer"
+                title={lang === 'ar' ? 'أداة تحسين وتوافق الجوال وCore Web Vitals' : 'Mobile Optimizer Tool'}
+                aria-label={lang === 'ar' ? 'أداة تحسين الجوال' : 'Mobile optimizer tool'}
+              >
+                <span>📱</span>
+                <span className="font-sans">{lang === 'ar' ? 'تحسين الجوال' : 'Mobile'}</span>
               </button>
             )}
 
