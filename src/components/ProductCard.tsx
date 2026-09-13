@@ -35,10 +35,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
-  // Optimize image URL for responsive performance
-  const optimizedImage = product.image.includes('images.unsplash.com')
-    ? product.image.replace(/w=\d+/, 'w=480').replace(/q=\d+/, 'q=75')
+  // Optimize image URL and srcset for mobile responsive performance
+  const isUnsplash = product.image.includes('images.unsplash.com');
+  const baseImg = isUnsplash ? product.image.split('?')[0] : product.image;
+  const optimizedImage = isUnsplash 
+    ? `${baseImg}?q=75&w=400&auto=format&fit=crop` 
     : product.image;
+  const imageSrcSet = isUnsplash
+    ? `${baseImg}?q=75&w=280&auto=format&fit=crop 280w, ${baseImg}?q=75&w=400&auto=format&fit=crop 400w`
+    : undefined;
 
   return (
     <div 
@@ -49,6 +54,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" onClick={() => onQuickView(product)}>
         <img
           src={optimizedImage}
+          srcSet={imageSrcSet}
+          sizes="(max-width: 640px) 280px, 400px"
           alt={title}
           width={400}
           height={400}
