@@ -35,15 +35,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
-  // Optimize image URL and srcset for mobile responsive performance
+  // Optimize image URL for high performance and caching
   const isUnsplash = product.image.includes('images.unsplash.com');
   const baseImg = isUnsplash ? product.image.split('?')[0] : product.image;
   const optimizedImage = isUnsplash 
-    ? `${baseImg}?q=75&w=400&auto=format&fit=crop` 
+    ? `${baseImg}?q=70&w=360&auto=format&fit=crop` 
     : product.image;
-  const imageSrcSet = isUnsplash
-    ? `${baseImg}?q=75&w=280&auto=format&fit=crop 280w, ${baseImg}?q=75&w=400&auto=format&fit=crop 400w`
-    : undefined;
 
   return (
     <div 
@@ -54,11 +51,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" onClick={() => onQuickView(product)}>
         <img
           src={optimizedImage}
-          srcSet={imageSrcSet}
-          sizes="(max-width: 640px) 280px, 400px"
           alt={title}
-          width={400}
-          height={400}
+          width={360}
+          height={360}
           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
           loading="lazy"
           decoding="async"

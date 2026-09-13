@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({
             
             {/* Domain & Authority Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-950 text-amber-300 text-xs font-semibold shadow-sm border border-amber-800/40">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>{t.hero.eyebrow}</span>
               <span className="text-stone-500">•</span>
               <button 
@@ -167,9 +167,7 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Main Luxury Frame */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-900 aspect-[4/5] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=70&w=480&auto=format&fit=crop" 
-                  srcSet="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=70&w=360&auto=format&fit=crop 360w, https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=480&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=640&auto=format&fit=crop 640w"
-                  sizes="(max-width: 480px) 360px, (max-width: 640px) 480px, 640px"
+                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=480&auto=format&fit=crop" 
                   alt="Hanan Store Royal Collection" 
                   width={480}
                   height={600}

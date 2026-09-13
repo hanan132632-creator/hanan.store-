@@ -100,7 +100,7 @@ export default function App() {
 
   // Search, Category, and Filtering State
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [visibleCount, setVisibleCount] = useState<number>(12);
+  const [visibleCount, setVisibleCount] = useState<number>(8);
   const [recentlyAddedId, setRecentlyAddedId] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -145,7 +145,7 @@ export default function App() {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
