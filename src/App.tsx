@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { 
   Sparkles, 
   Gift, 
@@ -24,26 +24,29 @@ import { TopCategoryBars } from './components/TopCategoryBars';
 import { Hero } from './components/Hero';
 import { FilterBar } from './components/FilterBar';
 import { ProductCard } from './components/ProductCard';
-import { ProductDetailModal } from './components/ProductDetailModal';
-import { CartDrawer } from './components/CartDrawer';
-import { CheckoutModal } from './components/CheckoutModal';
-import { OrderSuccessModal } from './components/OrderSuccessModal';
-import { WishlistModal } from './components/WishlistModal';
 import { DomainBanner } from './components/DomainBanner';
-import { ReviewsSection } from './components/ReviewsSection';
-import { GiftAdvisorModal } from './components/GiftAdvisorModal';
-import { FilePreviewModal } from './components/FilePreviewModal';
-import { LegalModal, LegalTab } from './components/LegalModal';
 import { CookieConsentBanner } from './components/CookieConsentBanner';
-import { BlogSection } from './components/BlogSection';
-import { SearchConsoleModal } from './components/SearchConsoleModal';
-import { SitemapViewerModal } from './components/SitemapViewerModal';
 import { Footer } from './components/Footer';
 import { MobileBottomNav } from './components/MobileBottomNav';
-import { TextToVideoModal } from './components/TextToVideoModal';
-import { ArticleWriterModal } from './components/ArticleWriterModal';
-import { AdSenseAuditModal } from './components/AdSenseAuditModal';
-import { MobileOptimizerModal } from './components/MobileOptimizerModal';
+import type { LegalTab } from './components/LegalModal';
+
+// Performance-optimized dynamic imports for modals and heavy offscreen sections
+const ProductDetailModal = lazy(() => import('./components/ProductDetailModal').then(m => ({ default: m.ProductDetailModal })));
+const CartDrawer = lazy(() => import('./components/CartDrawer').then(m => ({ default: m.CartDrawer })));
+const CheckoutModal = lazy(() => import('./components/CheckoutModal').then(m => ({ default: m.CheckoutModal })));
+const OrderSuccessModal = lazy(() => import('./components/OrderSuccessModal').then(m => ({ default: m.OrderSuccessModal })));
+const WishlistModal = lazy(() => import('./components/WishlistModal').then(m => ({ default: m.WishlistModal })));
+const GiftAdvisorModal = lazy(() => import('./components/GiftAdvisorModal').then(m => ({ default: m.GiftAdvisorModal })));
+const FilePreviewModal = lazy(() => import('./components/FilePreviewModal').then(m => ({ default: m.FilePreviewModal })));
+const LegalModal = lazy(() => import('./components/LegalModal').then(m => ({ default: m.LegalModal })));
+const SearchConsoleModal = lazy(() => import('./components/SearchConsoleModal').then(m => ({ default: m.SearchConsoleModal })));
+const SitemapViewerModal = lazy(() => import('./components/SitemapViewerModal').then(m => ({ default: m.SitemapViewerModal })));
+const TextToVideoModal = lazy(() => import('./components/TextToVideoModal').then(m => ({ default: m.TextToVideoModal })));
+const ArticleWriterModal = lazy(() => import('./components/ArticleWriterModal').then(m => ({ default: m.ArticleWriterModal })));
+const AdSenseAuditModal = lazy(() => import('./components/AdSenseAuditModal').then(m => ({ default: m.AdSenseAuditModal })));
+const MobileOptimizerModal = lazy(() => import('./components/MobileOptimizerModal').then(m => ({ default: m.MobileOptimizerModal })));
+const ReviewsSection = lazy(() => import('./components/ReviewsSection').then(m => ({ default: m.ReviewsSection })));
+const BlogSection = lazy(() => import('./components/BlogSection').then(m => ({ default: m.BlogSection })));
 
 export default function App() {
   // Multilingual & Currency State
@@ -508,16 +511,20 @@ export default function App() {
 
       {/* Editorial Guides & Original Content Section (Crucial for AdSense Value) */}
       <div className="content-auto">
-        <BlogSection 
-          lang={lang} 
-          onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
-          onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
-        />
+        <Suspense fallback={<div className="py-12" />}>
+          <BlogSection 
+            lang={lang} 
+            onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
+            onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
+          />
+        </Suspense>
       </div>
 
       {/* Customer Experiences & Testimonials Section */}
       <div className="content-auto">
-        <ReviewsSection lang={lang} />
+        <Suspense fallback={<div className="py-12" />}>
+          <ReviewsSection lang={lang} />
+        </Suspense>
       </div>
 
       {/* Footer with AdSense and Legal Policies */}
@@ -585,171 +592,194 @@ export default function App() {
         </button>
       )}
 
-      {/* Modals & Drawers */}
-      <ProductDetailModal
-        product={selectedProduct}
-        currency={currency}
-        lang={lang}
-        onClose={() => setSelectedProduct(null)}
-        onAddToCart={(product, quantity, option) => handleAddToCart(product, quantity, option)}
-        onPreviewSample={(product) => setPreviewFileProduct(product)}
-        isWishlisted={selectedProduct ? isWishlisted(selectedProduct.id) : false}
-        onToggleWishlist={handleToggleWishlist}
-      />
+      {/* Modals & Drawers with Zero-Cost Lazy Bundling */}
+      <Suspense fallback={null}>
+        {selectedProduct && (
+          <ProductDetailModal
+            product={selectedProduct}
+            currency={currency}
+            lang={lang}
+            onClose={() => setSelectedProduct(null)}
+            onAddToCart={(product, quantity, option) => handleAddToCart(product, quantity, option)}
+            onPreviewSample={(product) => setPreviewFileProduct(product)}
+            isWishlisted={isWishlisted(selectedProduct.id)}
+            onToggleWishlist={handleToggleWishlist}
+          />
+        )}
 
-      <FilePreviewModal
-        product={previewFileProduct}
-        isOpen={Boolean(previewFileProduct)}
-        onClose={() => setPreviewFileProduct(null)}
-        currency={currency}
-        lang={lang}
-        onAddToCart={(prod) => {
-          handleAddToCart(prod);
-          setIsCartOpen(true);
-        }}
-      />
+        {previewFileProduct && (
+          <FilePreviewModal
+            product={previewFileProduct}
+            isOpen={Boolean(previewFileProduct)}
+            onClose={() => setPreviewFileProduct(null)}
+            currency={currency}
+            lang={lang}
+            onAddToCart={(prod) => {
+              handleAddToCart(prod);
+              setIsCartOpen(true);
+            }}
+          />
+        )}
 
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cart}
-        currency={currency}
-        lang={lang}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveFromCart}
-        onProceedToCheckout={() => {
-          setIsCartOpen(false);
-          setIsCheckoutOpen(true);
-        }}
-        promoCode={promoCode}
-        setPromoCode={setPromoCode}
-        discountRate={discountRate}
-        onApplyPromoCode={handleApplyPromoCode}
-      />
+        {isCartOpen && (
+          <CartDrawer
+            isOpen={isCartOpen}
+            onClose={() => setIsCartOpen(false)}
+            items={cart}
+            currency={currency}
+            lang={lang}
+            onUpdateQuantity={handleUpdateQuantity}
+            onRemoveItem={handleRemoveFromCart}
+            onProceedToCheckout={() => {
+              setIsCartOpen(false);
+              setIsCheckoutOpen(true);
+            }}
+            promoCode={promoCode}
+            setPromoCode={setPromoCode}
+            discountRate={discountRate}
+            onApplyPromoCode={handleApplyPromoCode}
+          />
+        )}
 
-      <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        items={cart}
-        currency={currency}
-        lang={lang}
-        discountRate={discountRate}
-        promoCode={promoCode}
-        onOrderCompleted={handleOrderCompleted}
-      />
+        {isCheckoutOpen && (
+          <CheckoutModal
+            isOpen={isCheckoutOpen}
+            onClose={() => setIsCheckoutOpen(false)}
+            items={cart}
+            currency={currency}
+            lang={lang}
+            discountRate={discountRate}
+            promoCode={promoCode}
+            onOrderCompleted={handleOrderCompleted}
+          />
+        )}
 
-      <OrderSuccessModal
-        order={confirmedOrder}
-        currency={currency}
-        lang={lang}
-        onClose={() => setConfirmedOrder(null)}
-      />
+        {confirmedOrder && (
+          <OrderSuccessModal
+            order={confirmedOrder}
+            currency={currency}
+            lang={lang}
+            onClose={() => setConfirmedOrder(null)}
+          />
+        )}
 
-      <WishlistModal
-        isOpen={isWishlistOpen}
-        onClose={() => setIsWishlistOpen(false)}
-        wishlist={wishlist}
-        currency={currency}
-        lang={lang}
-        onAddToCart={(prod) => {
-          handleAddToCart(prod);
-          setIsWishlistOpen(false);
-          setIsCartOpen(true);
-        }}
-        onRemoveFromWishlist={(prod) => handleToggleWishlist(prod)}
-        onQuickView={(prod) => setSelectedProduct(prod)}
-      />
+        {isWishlistOpen && (
+          <WishlistModal
+            isOpen={isWishlistOpen}
+            onClose={() => setIsWishlistOpen(false)}
+            wishlist={wishlist}
+            currency={currency}
+            lang={lang}
+            onAddToCart={(prod) => {
+              handleAddToCart(prod);
+              setIsWishlistOpen(false);
+              setIsCartOpen(true);
+            }}
+            onRemoveFromWishlist={(prod) => handleToggleWishlist(prod)}
+            onQuickView={(prod) => setSelectedProduct(prod)}
+          />
+        )}
 
-      <DomainBanner
-        lang={lang}
-        isOpen={isDomainInfoOpen}
-        onClose={() => setIsDomainInfoOpen(false)}
-      />
+        {isDomainInfoOpen && (
+          <DomainBanner
+            lang={lang}
+            isOpen={isDomainInfoOpen}
+            onClose={() => setIsDomainInfoOpen(false)}
+          />
+        )}
 
-      <GiftAdvisorModal
-        isOpen={isGiftAdvisorOpen}
-        onClose={() => setIsGiftAdvisorOpen(false)}
-        currency={currency}
-        lang={lang}
-        onAddToCart={(prod) => {
-          handleAddToCart(prod);
-          setIsGiftAdvisorOpen(false);
-          setIsCartOpen(true);
-        }}
-        onQuickView={(prod) => {
-          setIsGiftAdvisorOpen(false);
-          setSelectedProduct(prod);
-        }}
-      />
+        {isGiftAdvisorOpen && (
+          <GiftAdvisorModal
+            isOpen={isGiftAdvisorOpen}
+            onClose={() => setIsGiftAdvisorOpen(false)}
+            currency={currency}
+            lang={lang}
+            onAddToCart={(prod) => {
+              handleAddToCart(prod);
+              setIsGiftAdvisorOpen(false);
+              setIsCartOpen(true);
+            }}
+            onQuickView={(prod) => {
+              setIsGiftAdvisorOpen(false);
+              setSelectedProduct(prod);
+            }}
+          />
+        )}
 
-      {/* AdSense-Compliant Legal & Policies Modal */}
-      <LegalModal
-        isOpen={isLegalOpen}
-        onClose={() => setIsLegalOpen(false)}
-        lang={lang}
-        initialTab={legalTab}
-        onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
-      />
+        {/* AdSense-Compliant Legal & Policies Modal */}
+        {isLegalOpen && (
+          <LegalModal
+            isOpen={isLegalOpen}
+            onClose={() => setIsLegalOpen(false)}
+            lang={lang}
+            initialTab={legalTab}
+            onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
+          />
+        )}
 
-      {/* Google AdSense Live Audit & Policy Readiness Report Modal */}
-      <AdSenseAuditModal
-        isOpen={isAdSenseAuditOpen}
-        onClose={() => setIsAdSenseAuditOpen(false)}
-        lang={lang}
-        onOpenLegal={(tab) => {
-          setLegalTab(tab);
-          setIsLegalOpen(true);
-        }}
-        onOpenSitemapViewer={(type) => {
-          setSitemapViewerTab(type);
-          setIsSitemapViewerOpen(true);
-        }}
-      />
+        {/* Google AdSense Live Audit & Policy Readiness Report Modal */}
+        {isAdSenseAuditOpen && (
+          <AdSenseAuditModal
+            isOpen={isAdSenseAuditOpen}
+            onClose={() => setIsAdSenseAuditOpen(false)}
+            lang={lang}
+            onOpenLegal={(tab) => {
+              setLegalTab(tab);
+              setIsLegalOpen(true);
+            }}
+            onOpenSitemapViewer={(type) => {
+              setSitemapViewerTab(type);
+              setIsSitemapViewerOpen(true);
+            }}
+          />
+        )}
 
-      {/* Google EU User Consent & Global Cookie Banner */}
-      <CookieConsentBanner
-        lang={lang}
-        onOpenPrivacyPolicy={() => {
-          setLegalTab('privacy');
-          setIsLegalOpen(true);
-        }}
-      />
+        {/* Google Search Console & Sitemap Hub Modal */}
+        {isSearchConsoleOpen && (
+          <SearchConsoleModal
+            isOpen={isSearchConsoleOpen}
+            onClose={() => setIsSearchConsoleOpen(false)}
+            lang={lang}
+          />
+        )}
 
-      {/* Google Search Console & Sitemap Hub Modal */}
-      <SearchConsoleModal
-        isOpen={isSearchConsoleOpen}
-        onClose={() => setIsSearchConsoleOpen(false)}
-        lang={lang}
-      />
+        {/* XML Sitemap & System Files Viewer Modal */}
+        {isSitemapViewerOpen && (
+          <SitemapViewerModal
+            isOpen={isSitemapViewerOpen}
+            onClose={() => setIsSitemapViewerOpen(false)}
+            initialTab={sitemapViewerTab}
+            lang={lang}
+          />
+        )}
 
-      {/* XML Sitemap & System Files Viewer Modal */}
-      <SitemapViewerModal
-        isOpen={isSitemapViewerOpen}
-        onClose={() => setIsSitemapViewerOpen(false)}
-        initialTab={sitemapViewerTab}
-        lang={lang}
-      />
+        {/* AI Text to Video Creation Tool Modal */}
+        {isTextToVideoOpen && (
+          <TextToVideoModal
+            isOpen={isTextToVideoOpen}
+            onClose={() => setIsTextToVideoOpen(false)}
+            lang={lang}
+          />
+        )}
 
-      {/* AI Text to Video Creation Tool Modal */}
-      <TextToVideoModal
-        isOpen={isTextToVideoOpen}
-        onClose={() => setIsTextToVideoOpen(false)}
-        lang={lang}
-      />
+        {/* AI Article & SEO Content Writer Tool Modal */}
+        {isArticleWriterOpen && (
+          <ArticleWriterModal
+            isOpen={isArticleWriterOpen}
+            onClose={() => setIsArticleWriterOpen(false)}
+            lang={lang}
+          />
+        )}
 
-      {/* AI Article & SEO Content Writer Tool Modal */}
-      <ArticleWriterModal
-        isOpen={isArticleWriterOpen}
-        onClose={() => setIsArticleWriterOpen(false)}
-        lang={lang}
-      />
-
-      {/* Mobile Usability & Performance Optimizer Tool Modal */}
-      <MobileOptimizerModal
-        isOpen={isMobileOptimizerOpen}
-        onClose={() => setIsMobileOptimizerOpen(false)}
-        lang={lang}
-      />
+        {/* Mobile Usability & Performance Optimizer Tool Modal */}
+        {isMobileOptimizerOpen && (
+          <MobileOptimizerModal
+            isOpen={isMobileOptimizerOpen}
+            onClose={() => setIsMobileOptimizerOpen(false)}
+            lang={lang}
+          />
+        )}
+      </Suspense>
 
       {/* Mobile Dedicated Bottom Bar for Fast One-Thumb Navigation */}
       <MobileBottomNav

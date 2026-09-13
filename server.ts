@@ -146,9 +146,11 @@ async function startServer() {
     const publicAssetsPath = path.join(process.cwd(), "public", "assets", filename);
 
     if (fs.existsSync(distAssetsPath)) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
       return res.sendFile(distAssetsPath);
     }
     if (fs.existsSync(publicAssetsPath)) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
       return res.sendFile(publicAssetsPath);
     }
 

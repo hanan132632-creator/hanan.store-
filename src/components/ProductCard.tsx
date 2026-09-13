@@ -35,6 +35,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
+  // Optimize image URL for responsive performance
+  const optimizedImage = product.image.includes('images.unsplash.com')
+    ? product.image.replace(/w=\d+/, 'w=480').replace(/q=\d+/, 'q=75')
+    : product.image;
+
   return (
     <div 
       id={`product-card-${product.id}`}
@@ -43,7 +48,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Top Image Container */}
       <div className="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" onClick={() => onQuickView(product)}>
         <img
-          src={product.image}
+          src={optimizedImage}
           alt={title}
           width={400}
           height={400}

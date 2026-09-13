@@ -167,7 +167,9 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Main Luxury Frame */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-900 aspect-[4/5] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=640&auto=format&fit=crop" 
+                  srcSet="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=480&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=75&w=640&auto=format&fit=crop 640w"
+                  sizes="(max-width: 640px) 480px, 640px"
                   alt="Hanan Store Royal Collection" 
                   width={480}
                   height={600}
