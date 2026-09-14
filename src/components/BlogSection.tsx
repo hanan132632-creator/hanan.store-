@@ -22,6 +22,36 @@ interface Article {
 
 const ARTICLES: Article[] = [
   {
+    id: 'hanan-store-official-story-vision-2026',
+    titleAr: 'قصة ورؤية حنان ستور 2026: كيف بنينا المتجر الإلكتروني العربي الأكثر فخامة وتكاملاً بين العطور الملكية والمنتجات الرقمية المبتكرة',
+    titleEn: 'The Story & Vision of Hanan Store 2026: Crafting the Premier Arab Luxury Boutique & Digital Innovation Hub',
+    categoryAr: 'رؤية وتاريخ حنان ستور 👑',
+    categoryEn: 'Hanan Store Heritage 👑',
+    categoryKey: 'luxury',
+    date: '2026-09-14',
+    readTime: '6 دقائق',
+    summaryAr: 'المقال الرسمي لتدشين الرؤية الشاملة لمتجر حنان ستور: سر التناغم الفريد بين سحر الأصالة الشرقية في العطور والبخور الملكي، وبين أحدث أدوات الترفيه الرقمي والذكاء الاصطناعي والتسوق السحابي فائق السرعة عبر الدومين المعتمد حنان.store.',
+    summaryEn: 'The official manifesto of Hanan Store: exploring our philosophy of blending timeless Arabian luxury fragrances and fine jewelry with cutting-edge digital games, planners, and AI creative tools.',
+    contentAr: [
+      'انطلقت مسيرة "حنان ستور" (Hanan Store) من فكرة أصيلة ورؤية استثنائية: إعادة تعريف تجربة التسوق الرقمي العربي لتجمع بين أرقى مفاهيم الفخامة الملكية التراثية، وبين أحدث الابتكارات البرمجية وحلول الذكاء الاصطناعي في منصة واحدة متكاملة وسلسة.',
+      '1. فلسفة الفخامة والأصالة في العطور والمجوهرات (The Royal Scent & Craftsmanship): نؤمن في متجر حنان أن العطر ليس مجرد رائحة، بل هو هوية وأثر خالد. نحرص على انتقاء أندر خامات دهن العود المعتق، وخشب الصندل النقي، وعنبر المحيطات الطبيعي، إلى جانب صياغة المجوهرات الفضية عيار 925 بتصاميم تجمع بين هيبة التراث وأناقة العصر الحديث، لتكون كل قطعة تحفة فنية تتوارثها الأجيال.',
+      '2. الثورة الرقمية وألعاب الجمعات التفاعلية (The Interactive Gathering Revolution): بالتوازي مع البوتيك الفاخر، صممنا قسماً رقمياً رائداً يضم أكثر من 15 ملفاً وفعالية تفاعلية جاهزة للتحميل الفوري، بدءاً من ألعاب جمعات العائلة والمناسبات (حروف وكلمات، تخمين الأمثال، الصندوق الغامض)، وصولاً إلى المخططات والبلانرات الرقمية اليومية والمالية المتوافقة مع أجهزة الأيباد والتابلت.',
+      '3. البنية التقنية السحابية فائقة السرعة والدومين العربي (xn--mgblao3hjb.store): بُني متجر حنان وفق أحدث المعايير البرمجية العالمية ليعمل بسرعة فائقة (زمن استجابة خادم 1ms)، مع تشفير أمني متكامل 256-bit SSL، وتوافق تام مع محركات البحث العالمية (Google Search Console) وتوثيق الهوية الرقمية تحت النطاق العربي الرسمي حنان.store.',
+      '4. التزامنا تجاه عملائنا وشركائنا: الجودة أولاً، الشفافية التامة، والتوصيل الفاخر والمبرد في كراتين هدايا مخملية أنيقة، مع دعم فني متواصل على مدار الساعة عبر الواتساب لضمان رضا ملكي بنسبة 100% لكل عميلة وعميل.',
+      '5. مستقبل حنان ستور: نواصل التوسع في إطلاق أدوات الذكاء الاصطناعي الإبداعية (تحويل النص إلى فيديو وصانع المقالات التسويقية) لتمكين زوارنا من تجربة مستقبل المحتوى والتجارة الإلكترونية في مكان واحد.'
+    ],
+    contentEn: [
+      'Hanan Store was founded on a singular vision: redefining Arabic digital commerce by uniting heritage royal luxury fragrances with next-generation digital products and AI-driven experiences.',
+      '1. The Royal Fragrance & Jewelry Heritage: We curate the purest aged Cambodian Oud, rare Mysore sandalwood, and certified 925 sterling silver jewelry crafted to evoke timeless elegance.',
+      '2. Interactive Gathering Games & Digital Solutions: Discover our instant-download digital library featuring interactive party games, iPad planners, and productivity frameworks.',
+      '3. High-Speed Cloud Architecture & Arab Domain: Engineered on lightning-fast edge servers with 1ms latency and verified under our official Arab domain xn--mgblao3hjb.store (حنان.store).',
+      '4. Uncompromising Customer Dedication: Luxury gift packaging, express shipping, and 24/7 VIP assistance ensuring 100% satisfaction on every royal order.',
+      '5. The AI Innovation Horizon: Continually enhancing built-in AI video and article generation tools to empower our community of modern creators.'
+    ],
+    image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80',
+    isNew: true
+  },
+  {
     id: 'physical-digital-minimalism-guide-2026',
     titleAr: 'فن التبسيط والتخلص من الفوضى المادية والرقمية في 2026: دليلك الشامل لترتيب المنزل، تنقية الأجهزة الذكية، واستعادة السلام النفسي والتركيز',
     titleEn: 'The Art of Modern Physical & Digital Minimalism in 2026: Master Guide to Decluttering Your Space, Devices & Mind for Deep Focus',
