@@ -32,7 +32,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg|404.html).*)",
+      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg).*)",
       "destination": "/index.html"
     }
   ],
@@ -68,7 +68,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
+          "value": "public, max-age=86400, s-maxage=86400"
         },
         {
           "key": "Access-Control-Allow-Origin",
