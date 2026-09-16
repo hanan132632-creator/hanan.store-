@@ -91,8 +91,7 @@ async function startServer() {
     const icoPath = path.join(process.cwd(), "public", "favicon.ico");
     if (fs.existsSync(icoPath)) {
       res.setHeader("Content-Type", "image/x-icon");
-      res.setHeader("Cache-Control", "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400");
-      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Cache-Control", "public, max-age=86400");
       if (req.method === "HEAD") return res.status(200).end();
       return res.sendFile(icoPath);
     }
@@ -103,23 +102,9 @@ async function startServer() {
     const svgPath = path.join(process.cwd(), "public", "favicon.svg");
     if (fs.existsSync(svgPath)) {
       res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400");
-      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Cache-Control", "public, max-age=86400");
       if (req.method === "HEAD") return res.status(200).end();
       return res.sendFile(svgPath);
-    }
-    return res.status(204).end();
-  });
-
-  app.all(["/favicon.png", "/apple-touch-icon.png", "/apple-touch-icon-precomposed.png", "/icon-192.png", "/icon-512.png"], (req, res) => {
-    const filename = path.basename(req.path);
-    const imgPath = path.join(process.cwd(), "public", filename);
-    if (fs.existsSync(imgPath)) {
-      res.setHeader("Content-Type", "image/png");
-      res.setHeader("Cache-Control", "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400");
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      if (req.method === "HEAD") return res.status(200).end();
-      return res.sendFile(imgPath);
     }
     return res.status(204).end();
   });

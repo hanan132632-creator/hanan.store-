@@ -52,7 +52,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|ads\\.txt|robots\\.txt|sitemap\\.xml|favicon\\..*|apple-touch-icon.*|icon-.*|.*\\.(ico|png|svg|jpg|jpeg|webp|gif|txt|xml)).*)",
+      "source": "/((?!assets/|ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg).*)",
       "destination": "/index.html"
     }
   ],
@@ -84,55 +84,15 @@
       ]
     },
     {
-      "source": "/(favicon\\.ico|favicon\\.svg|favicon\\.png|apple-touch-icon.*|icon-.*)",
+      "source": "/(ads.txt|robots.txt|sitemap.xml|favicon.ico|favicon.svg|404.html)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400"
+          "value": "public, max-age=86400, s-maxage=86400"
         },
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
-        }
-      ]
-    },
-    {
-      "source": "/(ads\\.txt|robots\\.txt|sitemap\\.xml|404\\.html)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    },
-    {
-      "source": "/(blog|مدونة|%D9%85%D8%AF%D9%88%D9%86%D8%A9)/:match*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
-        }
-      ]
-    },
-    {
-      "source": "/(blog|مدونة|%D9%85%D8%AF%D9%88%D9%86%D8%A9)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
-        }
-      ]
-    },
-    {
-      "source": "/(index\\.html)?",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
         }
       ]
     }
