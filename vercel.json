@@ -20,6 +20,26 @@
       "permanent": true
     },
     {
+      "source": "/blog",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:match*",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/مدونة",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/مدونة/:match*",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
       "source": "/404",
       "destination": "/",
       "permanent": true

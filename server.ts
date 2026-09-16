@@ -132,6 +132,22 @@ async function startServer() {
     return res.redirect(301, "/#hanan-blog");
   });
 
+  // 4.5. Dedicated handler for /blog and /مدونة routes: redirect permanently with 301 to /#hanan-blog
+  app.all(["/blog", "/blog/*", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9/*"], (req, res) => {
+    return res.redirect(301, "/#hanan-blog");
+  });
+  app.use((req, res, next) => {
+    try {
+      const decodedPath = decodeURIComponent(req.path);
+      if (decodedPath.startsWith("/مدونة")) {
+        return res.redirect(301, "/#hanan-blog");
+      }
+    } catch {
+      // ignore decoding errors and continue
+    }
+    next();
+  });
+
   // 5. Dedicated handler for /404 and /404.html: redirect permanently to homepage with 301
   app.all(["/404", "/404.html", "/404.", "/404/", "/404/*"], (req, res) => {
     return res.redirect(301, "/");
