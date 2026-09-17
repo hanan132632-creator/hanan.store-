@@ -68,9 +68,17 @@
   <!-- 10. Editorial Blog -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- 10.1. Blog Article: Calm Living & Sensory Sanctuary 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-calm-living-sanctuary-guide-2026</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
 
   <!-- 11. Blog Article: Physical & Digital Minimalism 2026 -->
