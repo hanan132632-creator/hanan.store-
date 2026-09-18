@@ -695,6 +695,14 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     } catch {
       window.location.hash = `article-${article.id}`;
     }
+    setTimeout(() => {
+      const el = document.getElementById('hanan-blog');
+      if (el) {
+        const yOffset = -70;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 60);
   };
 
   const closeArticle = () => {
@@ -706,6 +714,14 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     } catch {
       window.location.hash = 'hanan-blog';
     }
+    setTimeout(() => {
+      const el = document.getElementById('hanan-blog');
+      if (el) {
+        const yOffset = -70;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 60);
   };
 
   const categories = [
@@ -735,303 +751,367 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     <section id="hanan-blog" className="py-16 bg-[#FAF8F5] border-y border-stone-200" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
-        {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300/80">
-            <BookOpen className="w-3.5 h-3.5 text-amber-700" />
-            <span>{isAr ? 'مقالات وأدلة حنان ستور الحصرية' : 'Hanan Editorial & Guides'}</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 font-serif">
-            {isAr ? 'محتوى أصلي ومعرفة تلهم أوقاتك وجمعاتك' : 'Original Insights for Gatherings & Lifestyle'}
-          </h2>
-          <p className="text-stone-600 text-xs sm:text-sm">
-            {isAr 
-              ? 'أدلة إرشادية وتجارب متجددة مكتوبة لمساعدتك في تنظيم أمتع الجمعات، استثمار الوقت، واختيار أندر القطع.'
-              : 'Helpful articles and expert tips to organize joyful gatherings, enhance digital planning, and discover rare beauty.'}
-          </p>
-        </div>
-
-        {/* Category Filters Bar */}
-        <div className="flex items-center justify-center gap-2 flex-wrap pb-2">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setSelectedCategory(cat.key)}
-              aria-label={isAr ? `تصفية حسب ${cat.labelAr}` : `Filter by ${cat.labelEn}`}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                selectedCategory === cat.key
-                  ? 'bg-amber-600 text-white shadow-sm'
-                  : 'bg-white text-stone-700 border border-stone-200 hover:border-amber-300 hover:bg-stone-50'
-              }`}
-            >
-              {isAr ? cat.labelAr : cat.labelEn}
-            </button>
-          ))}
-        </div>
-
-        {/* Article Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {filteredArticles.map((article) => {
-            const title = isAr ? article.titleAr : article.titleEn;
-            const category = isAr ? article.categoryAr : article.categoryEn;
-            const summary = isAr ? article.summaryAr : article.summaryEn;
-
-            return (
-              <article
-                key={article.id}
-                onClick={() => openArticle(article)}
-                className="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all flex flex-col group cursor-pointer relative"
+        {/* If an article is selected: Display the Full Dedicated In-Page Article View */}
+        {selectedArticle ? (
+          <div className="bg-white rounded-3xl border border-stone-200/90 shadow-xl overflow-hidden p-6 sm:p-10 space-y-8 animate-in fade-in duration-300">
+            {/* Top Navigation & Action Bar */}
+            <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-stone-100">
+              <button
+                type="button"
+                onClick={closeArticle}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-amber-300 font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer group active:scale-95 border border-amber-400/30"
               >
-                {/* Image Cover */}
-                <div className="relative h-48 overflow-hidden bg-stone-100">
-                  <img
-                    src={article.image}
-                    alt={title}
-                    width={600}
-                    height={300}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="absolute top-3 start-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-xs text-amber-300 text-[10px] font-bold">
-                    {category}
-                  </span>
+                {isAr ? (
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-400" />
+                ) : (
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-amber-400" />
+                )}
+                <span>{isAr ? '← العودة إلى قائمة جميع المقالات' : '← Back to All Articles'}</span>
+              </button>
 
-                  {article.isNew && (
-                    <span className="absolute top-3 end-3 px-2.5 py-1 rounded-full bg-emerald-600/95 backdrop-blur-xs text-white text-[10px] font-bold shadow-xs">
-                      {isAr ? '✨ مقال جديد' : '✨ New Post'}
-                    </span>
-                  )}
-                </div>
-
-                {/* Content Details */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-[11px] text-stone-700 font-semibold">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-amber-700" />
-                        <span>{article.date}</span>
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5 text-amber-700" />
-                        <span>{article.readTime}</span>
-                      </span>
-                    </div>
-
-                    <h3 className="font-serif font-bold text-stone-900 text-base group-hover:text-amber-900 transition-colors line-clamp-2 leading-snug">
-                      {title}
-                    </h3>
-
-                    <p className="text-stone-700 text-xs line-clamp-3 leading-relaxed">
-                      {summary}
-                    </p>
-
-                    {/* Quick Direct Action Tool Button on Card */}
-                    {article.toolActionType === 'text-to-video' && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (onOpenTextToVideo) onOpenTextToVideo();
-                        }}
-                        aria-label={isAr ? 'تشغيل أداة تحويل النص إلى فيديو' : 'Launch Text to Video tool'}
-                        className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-stone-950 text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
-                      >
-                        <Sparkles className="w-3.5 h-3.5 fill-current" />
-                        <span>{isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن 🎬' : 'Launch Text to Video Tool 🎬'}</span>
-                      </button>
-                    )}
-
-                    {article.toolActionType === 'article-writer' && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (onOpenArticleWriter) onOpenArticleWriter();
-                        }}
-                        aria-label={isAr ? 'تشغيل أداة كتابة المقالات بالذكاء الاصطناعي' : 'Launch AI Article Writer tool'}
-                        className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
-                      >
-                        <Sparkles className="w-3.5 h-3.5 fill-current" />
-                        <span>{isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي ✍️' : 'Launch AI Article Writer ✍️'}</span>
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-amber-800">
-                    <span>{isAr ? 'قراءة الدليل كاملاً' : 'Read Full Guide'}</span>
-                    {isAr ? (
-                      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    ) : (
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    )}
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-      </div>
-
-      {/* Full Article Reading Modal */}
-      {selectedArticle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl max-w-3xl w-full my-auto overflow-hidden shadow-2xl border border-stone-200 relative flex flex-col max-h-[90vh]">
-            
-            {/* Modal Header */}
-            <div className="p-5 border-b border-stone-100 flex items-center justify-between bg-stone-50">
-              <div className="flex items-center gap-2 text-xs text-amber-800 font-bold">
-                <Sparkles className="w-4 h-4" />
-                <span>{isAr ? selectedArticle.categoryAr : selectedArticle.categoryEn}</span>
-              </div>
               <div className="flex items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300">
+                  {isAr ? selectedArticle.categoryAr : selectedArticle.categoryEn}
+                </span>
                 <button
+                  type="button"
                   onClick={handleShare}
-                  className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-200 transition-colors cursor-pointer"
-                  title={isAr ? 'نسخ الرابط' : 'Share'}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold transition-colors cursor-pointer"
+                  title={isAr ? 'مشاركة رابط المقال' : 'Share Article Link'}
                 >
-                  {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
-                </button>
-                <button
-                  onClick={closeArticle}
-                  className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-200 transition-colors cursor-pointer"
-                  aria-label="Close article modal"
-                >
-                  <X className="w-5 h-5" />
+                  {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-stone-600" />}
+                  <span>{copied ? (isAr ? 'تم نسخ الرابط' : 'Copied!') : (isAr ? 'مشاركة' : 'Share')}</span>
                 </button>
               </div>
             </div>
 
-            {/* Scrollable Reading Content */}
-            <div className="p-6 sm:p-8 overflow-y-auto space-y-6 flex-1 text-stone-800 leading-relaxed text-xs sm:text-sm">
-              <h1 className="font-serif font-black text-stone-900 text-lg sm:text-2xl leading-tight">
+            {/* Article Header */}
+            <div className="space-y-4 max-w-4xl">
+              <div className="flex items-center gap-3 text-xs text-stone-600 font-medium">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-amber-700" />
+                  <span>{selectedArticle.date}</span>
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-amber-700" />
+                  <span>{selectedArticle.readTime}</span>
+                </span>
+                <span>•</span>
+                <span className="text-amber-800 font-bold">
+                  {isAr ? 'بقلم: فريق تحرير متجر حنان' : 'By: Hanan Store Editorial Team'}
+                </span>
+              </div>
+
+              <h1 className="font-serif font-black text-stone-900 text-2xl sm:text-3xl lg:text-4xl leading-tight">
                 {isAr ? selectedArticle.titleAr : selectedArticle.titleEn}
               </h1>
 
-              <div className="flex items-center gap-4 text-xs text-stone-700 font-medium pb-4 border-b border-stone-200">
-                <span>{selectedArticle.date}</span>
-                <span>•</span>
-                <span>{selectedArticle.readTime}</span>
-                <span>•</span>
-                <span>{isAr ? 'بقلم: فريق تحرير حنان ستور' : 'By: Hanan Editorial Team'}</span>
+              {/* Summary Lead Box */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-stone-800 text-sm sm:text-base leading-relaxed font-medium">
+                <p>{isAr ? selectedArticle.summaryAr : selectedArticle.summaryEn}</p>
               </div>
+            </div>
 
-              {/* Dedicated Tool Launch Callout inside Reading Modal */}
-              {selectedArticle.toolActionType === 'text-to-video' && (
-                <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border border-amber-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                  <div className="space-y-1 text-center sm:text-start">
-                    <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">
-                      {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
-                    </span>
-                    <h3 className="font-serif font-bold text-white text-base">
-                      {isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن مجاناً' : 'Try AI Text to Video Generator Now'}
-                    </h3>
-                    <p className="text-xs text-stone-300">
-                      {isAr ? 'أدخل النص وشاهد محاكاة المشاهد، حركة الكاميرا، والبرومبت الإخراجي الشامل.' : 'Enter your script and view simulated scene cuts, 4K prompts and storyboard.'}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setSelectedArticle(null);
-                      if (onOpenTextToVideo) onOpenTextToVideo();
-                    }}
-                    className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
-                  >
-                    {isAr ? 'فتح أداة الفيديو الآن 🎬' : 'Open Video Tool 🎬'}
-                  </button>
+            {/* Featured Hero Image */}
+            <div className="rounded-3xl overflow-hidden shadow-md max-h-[420px] bg-stone-100 border border-stone-200/60">
+              <img
+                src={selectedArticle.image}
+                alt={isAr ? selectedArticle.titleAr : selectedArticle.titleEn}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Interactive Tool Callouts if available */}
+            {selectedArticle.toolActionType === 'text-to-video' && (
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border border-amber-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                <div className="space-y-1 text-center sm:text-start">
+                  <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">
+                    {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
+                  </span>
+                  <h3 className="font-serif font-bold text-white text-base">
+                    {isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن مجاناً' : 'Try AI Text to Video Generator Now'}
+                  </h3>
+                  <p className="text-xs text-stone-300">
+                    {isAr ? 'أدخل النص وشاهد محاكاة المشاهد، حركة الكاميرا، والبرومبت الإخراجي الشامل.' : 'Enter your script and view simulated scene cuts, 4K prompts and storyboard.'}
+                  </p>
                 </div>
-              )}
-
-              {selectedArticle.toolActionType === 'article-writer' && (
-                <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                  <div className="space-y-1 text-center sm:text-start">
-                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest font-mono">
-                      {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
-                    </span>
-                    <h3 className="font-serif font-bold text-white text-base">
-                      {isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي الآن' : 'Try AI Article Writer Tool Now'}
-                    </h3>
-                    <p className="text-xs text-stone-300">
-                      {isAr ? 'اكتب مقالات حصرية متوافقة مع السيو وأدسنس بضغطة زر مع تصدير Markdown.' : 'Generate 100% original, SEO and AdSense compliant long-form articles.'}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setSelectedArticle(null);
-                      if (onOpenArticleWriter) onOpenArticleWriter();
-                    }}
-                    className="px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
-                  >
-                    {isAr ? 'فتح أداة المقالات الآن ✍️' : 'Open Writer Tool ✍️'}
-                  </button>
-                </div>
-              )}
-
-              <div className="rounded-2xl overflow-hidden h-56 sm:h-72">
-                <img
-                  src={selectedArticle.image}
-                  alt="Cover"
-                  className="w-full h-full object-cover"
-                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenTextToVideo) onOpenTextToVideo();
+                  }}
+                  className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
+                >
+                  {isAr ? 'فتح أداة الفيديو الآن 🎬' : 'Open Video Tool 🎬'}
+                </button>
               </div>
+            )}
 
-              <div className="space-y-4 pt-2">
-                {(isAr ? selectedArticle.contentAr : selectedArticle.contentEn).map((paragraph, pIdx) => {
-                  const isNumbered = /^[0-9]+[.-]/.test(paragraph.trim());
-                  const isHeaderLike = paragraph.trim().endsWith(':') || paragraph.trim().endsWith('：');
-                  
-                  if (isHeaderLike) {
-                    return (
-                      <h4 key={pIdx} className="font-bold text-stone-900 text-base sm:text-lg pt-3 pb-1 border-b border-stone-200/60 font-serif">
-                        {paragraph}
-                      </h4>
-                    );
-                  }
+            {selectedArticle.toolActionType === 'article-writer' && (
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                <div className="space-y-1 text-center sm:text-start">
+                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest font-mono">
+                    {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
+                  </span>
+                  <h3 className="font-serif font-bold text-white text-base">
+                    {isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي الآن' : 'Try AI Article Writer Tool Now'}
+                  </h3>
+                  <p className="text-xs text-stone-300">
+                    {isAr ? 'اكتب مقالات حصرية متوافقة مع السيو وأدسنس بضغطة زر مع تصدير Markdown.' : 'Generate 100% original, SEO and AdSense compliant long-form articles.'}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenArticleWriter) onOpenArticleWriter();
+                  }}
+                  className="px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
+                >
+                  {isAr ? 'فتح أداة المقالات الآن ✍️' : 'Open Writer Tool ✍️'}
+                </button>
+              </div>
+            )}
 
-                  if (isNumbered) {
-                    return (
-                      <div key={pIdx} className="flex items-start gap-3 p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/50 text-stone-800 text-sm sm:text-base leading-relaxed">
-                        <span className="w-2 h-2 rounded-full bg-amber-600 mt-2 shrink-0"></span>
-                        <p className="flex-1 font-medium">{paragraph}</p>
-                      </div>
-                    );
-                  }
+            {/* Article Formatted Body Paragraphs */}
+            <div className="space-y-5 pt-4 max-w-4xl text-stone-800 leading-relaxed text-sm sm:text-base">
+              {(isAr ? selectedArticle.contentAr : selectedArticle.contentEn).map((paragraph, pIdx) => {
+                const isNumbered = /^[0-9]+[.-]/.test(paragraph.trim());
+                const isHeaderLike = paragraph.trim().endsWith(':') || paragraph.trim().endsWith('：');
+                
+                if (isHeaderLike) {
+                  return (
+                    <h3 key={pIdx} className="font-bold text-stone-900 text-base sm:text-lg pt-4 pb-1 border-b border-stone-200/80 font-serif">
+                      {paragraph}
+                    </h3>
+                  );
+                }
+
+                if (isNumbered) {
+                  return (
+                    <div key={pIdx} className="flex items-start gap-3 p-4 rounded-xl bg-amber-50/70 border border-amber-200/60 text-stone-800 text-sm sm:text-base leading-relaxed">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-600 mt-2 shrink-0 shadow-xs"></span>
+                      <p className="flex-1 font-medium">{paragraph}</p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <p key={pIdx} className="text-stone-700 leading-relaxed text-sm sm:text-base font-normal">
+                    {paragraph}
+                  </p>
+                );
+              })}
+            </div>
+
+            {/* AdSense & E-E-A-T Quality Disclosure */}
+            <div className="p-5 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs sm:text-sm space-y-2 max-w-4xl">
+              <span className="font-bold text-amber-950 block text-sm">
+                🌿 {isAr ? 'معايير النشر والمصداقية التحريرية (E-E-A-T AdSense Guidelines):' : 'Editorial Quality & Disclosure:'}
+              </span>
+              <p className="text-amber-900/90 leading-relaxed">
+                {isAr
+                  ? 'تمت كتابة وتوثيق هذا الدليل التحريري بواسطة خبراء ومحرري متجر حنان بهدف تقديم قيمة أصيلة ومتعمقة للمجتمع العربي، مع الالتزام بأعلى معايير المصداقية والجودة المعتمدة من Google.'
+                  : 'This guide was carefully researched and curated by Hanan Store Editorial Team to provide high quality, actionable knowledge.'}
+              </p>
+            </div>
+
+            {/* Next / Previous Navigation & Bottom Return Button */}
+            <div className="pt-8 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button
+                type="button"
+                onClick={closeArticle}
+                className="w-full sm:w-auto px-8 py-3 rounded-full bg-stone-900 hover:bg-stone-800 text-amber-300 font-bold text-sm shadow-md transition-all cursor-pointer text-center"
+              >
+                {isAr ? '← العودة إلى قائمة مقالات حنان ستور' : '← Back to All Articles'}
+              </button>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                {(() => {
+                  const currIdx = ARTICLES.findIndex((a) => a.id === selectedArticle.id);
+                  const prevArt = currIdx > 0 ? ARTICLES[currIdx - 1] : null;
+                  const nextArt = currIdx >= 0 && currIdx < ARTICLES.length - 1 ? ARTICLES[currIdx + 1] : null;
 
                   return (
-                    <p key={pIdx} className="text-stone-700 leading-relaxed text-sm sm:text-base font-normal">
-                      {paragraph}
-                    </p>
+                    <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                      {prevArt && (
+                        <button
+                          type="button"
+                          onClick={() => openArticle(prevArt)}
+                          className="px-4 py-2 rounded-xl bg-stone-100 hover:bg-amber-100 text-stone-800 text-xs font-bold transition-colors cursor-pointer"
+                        >
+                          {isAr ? '← المقال السابق' : '← Prev Article'}
+                        </button>
+                      )}
+                      {nextArt && (
+                        <button
+                          type="button"
+                          onClick={() => openArticle(nextArt)}
+                          className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors cursor-pointer"
+                        >
+                          {isAr ? 'المقال التالي →' : 'Next Article →'}
+                        </button>
+                      )}
+                    </div>
                   );
-                })}
-              </div>
-
-              <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs space-y-2">
-                <span className="font-bold text-amber-950 block">
-                  {isAr ? 'تنويه تحريري ومصداقية المحتوى (AdSense Transparency):' : 'Editorial Disclosure:'}
-                </span>
-                <p className="text-amber-900/80">
-                  {isAr
-                    ? 'جميع مقالاتنا وإرشاداتنا أصلية ومكتوبة بواسطة فريق حنان ستور بهدف إثراء المحتوى العربي وتقديم قيمة حقيقية للزوار وفق إرشادات الجودة المعتمدة.'
-                    : 'All articles are original and curated by our editorial team to provide genuine information to our readers.'}
-                </p>
+                })()}
               </div>
             </div>
-
-            {/* Modal Bottom Close */}
-            <div className="p-4 border-t border-stone-100 bg-stone-50 flex items-center justify-end">
-              <button
-                onClick={closeArticle}
-                className="px-6 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs transition-colors cursor-pointer"
-              >
-                {isAr ? 'إغلاق المقال' : 'Close Article'}
-              </button>
-            </div>
-
           </div>
-        </div>
-      )}
+        ) : (
+          /* Normal Articles Grid View */
+          <>
+            {/* Section Heading */}
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300/80">
+                <BookOpen className="w-3.5 h-3.5 text-amber-700" />
+                <span>{isAr ? 'مقالات وأدلة حنان ستور الحصرية' : 'Hanan Editorial & Guides'}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 font-serif">
+                {isAr ? 'محتوى أصلي ومعرفة تلهم أوقاتك وجمعاتك' : 'Original Insights for Gatherings & Lifestyle'}
+              </h2>
+              <p className="text-stone-600 text-xs sm:text-sm">
+                {isAr 
+                  ? 'أدلة إرشادية وتجارب متجددة مكتوبة لمساعدتك في تنظيم أمتع الجمعات، استثمار الوقت، واختيار أندر القطع.'
+                  : 'Helpful articles and expert tips to organize joyful gatherings, enhance digital planning, and discover rare beauty.'}
+              </p>
+            </div>
+
+            {/* Category Filters Bar */}
+            <div className="flex items-center justify-center gap-2 flex-wrap pb-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat.key}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.key)}
+                  aria-label={isAr ? `تصفية حسب ${cat.labelAr}` : `Filter by ${cat.labelEn}`}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    selectedCategory === cat.key
+                      ? 'bg-amber-600 text-white shadow-sm'
+                      : 'bg-white text-stone-700 border border-stone-200 hover:border-amber-300 hover:bg-stone-50'
+                  }`}
+                >
+                  {isAr ? cat.labelAr : cat.labelEn}
+                </button>
+              ))}
+            </div>
+
+            {/* Article Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {filteredArticles.map((article) => {
+                const title = isAr ? article.titleAr : article.titleEn;
+                const category = isAr ? article.categoryAr : article.categoryEn;
+                const summary = isAr ? article.summaryAr : article.summaryEn;
+
+                return (
+                  <article
+                    key={article.id}
+                    onClick={() => openArticle(article)}
+                    className="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all flex flex-col group cursor-pointer relative"
+                  >
+                    {/* Image Cover */}
+                    <div className="relative h-48 overflow-hidden bg-stone-100">
+                      <img
+                        src={article.image}
+                        alt={title}
+                        width={600}
+                        height={300}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="absolute top-3 start-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-xs text-amber-300 text-[10px] font-bold">
+                        {category}
+                      </span>
+
+                      {article.isNew && (
+                        <span className="absolute top-3 end-3 px-2.5 py-1 rounded-full bg-emerald-600/95 backdrop-blur-xs text-white text-[10px] font-bold shadow-xs">
+                          {isAr ? '✨ مقال جديد' : '✨ New Post'}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Content Details */}
+                    <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3 text-[11px] text-stone-700 font-semibold">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5 text-amber-700" />
+                            <span>{article.date}</span>
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-amber-700" />
+                            <span>{article.readTime}</span>
+                          </span>
+                        </div>
+
+                        <h3 className="font-serif font-bold text-stone-900 text-base group-hover:text-amber-900 transition-colors line-clamp-2 leading-snug">
+                          {title}
+                        </h3>
+
+                        <p className="text-stone-700 text-xs line-clamp-3 leading-relaxed">
+                          {summary}
+                        </p>
+
+                        {/* Quick Direct Action Tool Button on Card */}
+                        {article.toolActionType === 'text-to-video' && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (onOpenTextToVideo) onOpenTextToVideo();
+                            }}
+                            aria-label={isAr ? 'تشغيل أداة تحويل النص إلى فيديو' : 'Launch Text to Video tool'}
+                            className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-stone-950 text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                          >
+                            <Sparkles className="w-3.5 h-3.5 fill-current" />
+                            <span>{isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن 🎬' : 'Launch Text to Video Tool 🎬'}</span>
+                          </button>
+                        )}
+
+                        {article.toolActionType === 'article-writer' && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (onOpenArticleWriter) onOpenArticleWriter();
+                            }}
+                            aria-label={isAr ? 'تشغيل أداة كتابة المقالات بالذكاء الاصطناعي' : 'Launch AI Article Writer tool'}
+                            className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                          >
+                            <Sparkles className="w-3.5 h-3.5 fill-current" />
+                            <span>{isAr ? 'جرّب أداة كتابة المقالات بالذكاء الاصطناعي ✍️' : 'Launch AI Article Writer ✍️'}</span>
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Explicit Interactive Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openArticle(article);
+                        }}
+                        className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-amber-800 hover:text-amber-900 transition-colors w-full text-start cursor-pointer"
+                      >
+                        <span>{isAr ? 'قراءة الدليل كاملاً' : 'Read Full Guide'}</span>
+                        {isAr ? (
+                          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-amber-700" />
+                        ) : (
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-700" />
+                        )}
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </>
+        )}
+
+      </div>
     </section>
   );
 };

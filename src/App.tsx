@@ -537,7 +537,7 @@ export default function App() {
       </main>
 
       {/* Editorial Guides & Original Content Section (Crucial for AdSense Value) */}
-      <div className="content-auto">
+      <div id="hanan-blog-wrapper" className="w-full relative">
         <Suspense fallback={<div className="py-12" />}>
           <BlogSection 
             lang={lang} 
