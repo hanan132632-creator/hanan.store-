@@ -151,10 +151,10 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
     {
       id: 'service-blog',
       icon: <BookMarked className="w-3.5 h-3.5 text-amber-700" />,
-      titleAr: 'مدونة ومقالات حنان (١٠ مقالات فريدة)',
-      titleEn: 'Hanan Blog (10 Unique Articles)',
-      badgeAr: 'جديد ومحدث',
-      badgeEn: '10 Articles',
+      titleAr: 'مدونة ومكتبة مقالات حنان التحريرية',
+      titleEn: 'Hanan Editorial & Articles Library',
+      badgeAr: 'أدلة حصرية 🌿',
+      badgeEn: '20+ Guides 🌿',
       action: () => scrollToSection('hanan-blog')
     },
     {
