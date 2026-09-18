@@ -648,25 +648,65 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   const [copied, setCopied] = useState(false);
   const isAr = lang === 'ar';
 
-  // Deep-linking: auto-open article modal if URL contains #article-<id> or #blog-<id>
+  // Deep-linking: auto-open article modal if URL contains /article/<id>, /blog/<id>, #article-<id>, or #blog-<id>
   React.useEffect(() => {
-    const handleHashCheck = () => {
+    const handleRouteAndHashCheck = () => {
+      const pathname = window.location.pathname;
       const hash = window.location.hash;
-      if (hash && (hash.startsWith('#article-') || hash.startsWith('#blog-'))) {
-        const articleId = hash.replace(/^#(article-|blog-)/, '');
+      let articleId = '';
+
+      if (pathname.startsWith('/article/') || pathname.startsWith('/blog/')) {
+        articleId = pathname.replace(/^\/(article|blog)\//, '').replace(/\/$/, '');
+      } else if (hash && (hash.startsWith('#article-') || hash.startsWith('#blog-'))) {
+        articleId = hash.replace(/^#(article-|blog-)/, '');
+      }
+
+      if (articleId) {
+        const decodedId = decodeURIComponent(articleId).trim();
         const matched = ARTICLES.find(
-          (a) => a.id === articleId || a.id.includes(articleId) || articleId.includes(a.id)
+          (a) => a.id === decodedId || a.id === articleId || a.id.includes(decodedId) || decodedId.includes(a.id)
         );
         if (matched) {
           setSelectedArticle(matched);
         }
+      } else {
+        // If navigated back to root without article params
+        if (pathname === '/' && !hash.startsWith('#article-') && !hash.startsWith('#blog-')) {
+          setSelectedArticle(null);
+        }
       }
     };
 
-    handleHashCheck();
-    window.addEventListener('hashchange', handleHashCheck);
-    return () => window.removeEventListener('hashchange', handleHashCheck);
+    handleRouteAndHashCheck();
+    window.addEventListener('hashchange', handleRouteAndHashCheck);
+    window.addEventListener('popstate', handleRouteAndHashCheck);
+    return () => {
+      window.removeEventListener('hashchange', handleRouteAndHashCheck);
+      window.removeEventListener('popstate', handleRouteAndHashCheck);
+    };
   }, []);
+
+  const openArticle = (article: Article) => {
+    setSelectedArticle(article);
+    try {
+      if (window.history && window.history.pushState) {
+        window.history.pushState({ articleId: article.id }, '', `/article/${article.id}`);
+      }
+    } catch {
+      window.location.hash = `article-${article.id}`;
+    }
+  };
+
+  const closeArticle = () => {
+    setSelectedArticle(null);
+    try {
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', '/#hanan-blog');
+      }
+    } catch {
+      window.location.hash = 'hanan-blog';
+    }
+  };
 
   const categories = [
     { key: 'all', labelAr: `جميع المقالات (${ARTICLES.length})`, labelEn: `All Articles (${ARTICLES.length})` },
@@ -684,7 +724,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
   const handleShare = () => {
     if (navigator.clipboard && selectedArticle) {
-      const shareUrl = `${window.location.origin}/#article-${selectedArticle.id}`;
+      const shareUrl = `${window.location.origin}/article/${selectedArticle.id}`;
       navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
@@ -739,7 +779,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             return (
               <article
                 key={article.id}
-                onClick={() => setSelectedArticle(article)}
+                onClick={() => openArticle(article)}
                 className="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all flex flex-col group cursor-pointer relative"
               >
                 {/* Image Cover */}
@@ -855,7 +895,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
                 </button>
                 <button
-                  onClick={() => setSelectedArticle(null)}
+                  onClick={closeArticle}
                   className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-200 transition-colors cursor-pointer"
                   aria-label="Close article modal"
                 >

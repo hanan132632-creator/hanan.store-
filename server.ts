@@ -180,6 +180,10 @@ async function startServer() {
   // 4. Legacy /html/ and old article URLs 301/302 Redirect to modern SPA anchors
   app.get(["/html/*", "/html", "/article-*"], (req, res) => {
     const originalUrl = req.originalUrl || req.url;
+    if (originalUrl.startsWith("/article-")) {
+      const artId = originalUrl.replace(/^\/article-/, "").split("?")[0];
+      return res.redirect(301, `/article/${artId}`);
+    }
     // Map known old article URLs or general /html/ paths to the corresponding article or blog
     if (originalUrl.includes("luxury-gift") || originalUrl.includes("gifts-guide")) {
       return res.redirect(301, "/#article-art-of-luxury-gifting-occasions-guide");
@@ -200,8 +204,12 @@ async function startServer() {
     return res.redirect(301, "/#hanan-blog");
   });
 
-  // 4.5. Dedicated handler for /blog and /مدونة routes: redirect permanently with 301 to /#hanan-blog
-  app.all(["/blog", "/blog/*", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9/*"], (req, res) => {
+  // 4.5. Dedicated handler for /blog and /مدونة routes
+  app.get(["/blog/:id", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9/:id"], (req, res) => {
+    const { id } = req.params;
+    return res.redirect(301, `/article/${id}`);
+  });
+  app.all(["/blog", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9"], (req, res) => {
     return res.redirect(301, "/#hanan-blog");
   });
   app.use((req, res, next) => {
@@ -276,7 +284,19 @@ async function startServer() {
     next();
   });
 
-  // 6. Vite middleware for development or static serving in production
+  // 6. Direct clean URL handler for articles and blog posts
+  app.get(["/article/*", "/blog/*", "/post/*"], (req, res, next) => {
+    if (process.env.NODE_ENV !== "production") {
+      // In dev, delegate to Vite SPA middleware which will serve index.html
+      return next();
+    }
+    const distPath = path.join(process.cwd(), "dist");
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+    return res.status(200).sendFile(path.join(distPath, "index.html"));
+  });
+
+  // 7. Vite middleware for development or static serving in production
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
