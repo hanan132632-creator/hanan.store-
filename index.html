@@ -90,11 +90,14 @@
     </script>
   </head>
   <body class="bg-[#FAF8F5] text-stone-900 font-['Cairo',sans-serif] antialiased selection:bg-amber-100 selection:text-amber-900">
-    <div id="root">
-      <!-- Semantic Server Fallback & Pre-rendered Pillar Content for Search Engine & AdSense Crawlers -->
+    <!-- Main Application Mounting Container (Opens Home View Instantly) -->
+    <div id="root"></div>
+
+    <!-- Pre-rendered Semantic Content for Search Engines & Non-JS AdSense Crawlers (Zero visual impact for visitors) -->
+    <noscript>
       <header style="padding: 24px; background: #1c1917; color: #fff; text-align: center;">
         <h1 style="font-size: 28px; margin-bottom: 8px;">حنان ستور | Hanan Store — البوابة الرسمية للفخامة والمحتوى الرقمي العربي 2026</h1>
-        <p style="color: #d6d3d1; max-size: 800px; margin: 0 auto; line-height: 1.6;">
+        <p style="color: #d6d3d1; max-width: 800px; margin: 0 auto; line-height: 1.6;">
           المنصة الرائدة للمنتجات الرقمية التفاعلية، ألعاب الجمعات العائلية، بلانرات 2026 للأيباد، وأفخر العطور الملكية والمجوهرات، مع مدونة حصرية تقدم أدلة معرفية متعمقة متوافقة 100% مع معايير Google AdSense وGoogle Search Console.
         </p>
         <nav style="margin-top: 16px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
@@ -171,7 +174,7 @@
           </div>
         </section>
       </main>
-    </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -978,11 +978,33 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               </div>
 
               <div className="space-y-4 pt-2">
-                {(isAr ? selectedArticle.contentAr : selectedArticle.contentEn).map((paragraph, pIdx) => (
-                  <p key={pIdx} className="text-stone-700 leading-relaxed text-sm">
-                    {paragraph}
-                  </p>
-                ))}
+                {(isAr ? selectedArticle.contentAr : selectedArticle.contentEn).map((paragraph, pIdx) => {
+                  const isNumbered = /^[0-9]+[.-]/.test(paragraph.trim());
+                  const isHeaderLike = paragraph.trim().endsWith(':') || paragraph.trim().endsWith('：');
+                  
+                  if (isHeaderLike) {
+                    return (
+                      <h4 key={pIdx} className="font-bold text-stone-900 text-base sm:text-lg pt-3 pb-1 border-b border-stone-200/60 font-serif">
+                        {paragraph}
+                      </h4>
+                    );
+                  }
+
+                  if (isNumbered) {
+                    return (
+                      <div key={pIdx} className="flex items-start gap-3 p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/50 text-stone-800 text-sm sm:text-base leading-relaxed">
+                        <span className="w-2 h-2 rounded-full bg-amber-600 mt-2 shrink-0"></span>
+                        <p className="flex-1 font-medium">{paragraph}</p>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <p key={pIdx} className="text-stone-700 leading-relaxed text-sm sm:text-base font-normal">
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
 
               <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs space-y-2">
@@ -1000,7 +1022,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             {/* Modal Bottom Close */}
             <div className="p-4 border-t border-stone-100 bg-stone-50 flex items-center justify-end">
               <button
-                onClick={() => setSelectedArticle(null)}
+                onClick={closeArticle}
                 className="px-6 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs transition-colors cursor-pointer"
               >
                 {isAr ? 'إغلاق المقال' : 'Close Article'}
