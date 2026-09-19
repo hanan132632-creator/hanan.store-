@@ -3,6 +3,33 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/html/:path*",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/html",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/article-:path*",
+      "destination": "/#hanan-blog",
+      "permanent": true
+    },
+    {
+      "source": "/404.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/404",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!assets/|api/|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot)$).*)",
@@ -24,11 +51,15 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/favicon.ico",
       "headers": [
         {
+          "key": "Content-Type",
+          "value": "image/x-icon"
+        },
+        {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, s-maxage=31536000, immutable"
+          "value": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -37,11 +68,45 @@
       ]
     },
     {
-      "source": "/(favicon\\.ico|favicon\\.svg)",
+      "source": "/favicon.svg",
       "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/svg+xml; charset=UTF-8"
+        },
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/(favicon-.*\\.png|apple-touch-icon\\.png)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, s-maxage=31536000, immutable"
         },
         {
           "key": "Access-Control-Allow-Origin",
