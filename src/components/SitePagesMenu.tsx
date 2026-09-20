@@ -7,6 +7,7 @@ import {
   ShieldCheck, 
   PhoneCall, 
   ArrowUpRight,
+  FileText,
   Gamepad2,
   Calendar,
   Layout,
@@ -320,7 +321,29 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
             <ArrowUpRight className="w-3.5 h-3.5 text-stone-600" />
           </button>
 
-          {/* 6. اتصل بنا */}
+          {/* 6. الشروط والأحكام */}
+          <button
+            id="menu-page-terms"
+            onClick={() => handleLegalClick('terms')}
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-stone-900 hover:bg-stone-100 transition-colors text-start group cursor-pointer"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center">
+                <FileText className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="font-bold text-sm block">
+                  {isAr ? 'الشروط والأحكام' : 'Terms of Service'}
+                </span>
+                <span className="text-[10px] text-stone-700 font-medium">
+                  {isAr ? 'حقوق الاستخدام، الإرجاع وسياسة الشحن' : 'Terms, Returns & Shipping Policies'}
+                </span>
+              </div>
+            </div>
+            <ArrowUpRight className="w-3.5 h-3.5 text-stone-600" />
+          </button>
+
+          {/* 7. اتصل بنا */}
           <button
             id="menu-page-contact"
             onClick={() => handleLegalClick('contact')}

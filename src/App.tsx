@@ -149,22 +149,233 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Hash listener for opening AI tools directly via link or button
+  // Comprehensive Bilingual URL Path & Hash Routing Engine (Arabic & English)
   useEffect(() => {
-    const handleHashTools = () => {
-      const hash = window.location.hash;
-      if (hash === '#tool-text-to-video' || hash === '#video-tool' || hash === '#text-to-video') {
+    const resolveBilingualRoute = () => {
+      let rawPath = window.location.pathname || '';
+      let rawHash = window.location.hash || '';
+
+      let path = '';
+      try {
+        path = decodeURIComponent(rawPath).trim().toLowerCase();
+      } catch {
+        path = rawPath.trim().toLowerCase();
+      }
+
+      let hash = '';
+      try {
+        hash = decodeURIComponent(rawHash).trim().toLowerCase();
+      } catch {
+        hash = rawHash.trim().toLowerCase();
+      }
+
+      // Normalize path (strip trailing slashes if not root)
+      if (path.length > 1 && path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
+
+      // 1. About Us / عن الموقع / من نحن (Arabic & English)
+      const isAbout = 
+        path === '/عن' || 
+        path === '/من-نحن' || 
+        path === '/من_نحن' || 
+        path === '/عن-الموقع' || 
+        path === '/about' || 
+        path === '/about-us' || 
+        path === '/aboutus' ||
+        hash === '#about' ||
+        hash === '#about-us' ||
+        hash === '#عن' ||
+        hash === '#من-نحن';
+
+      if (isAbout) {
+        setLegalTab('about');
+        setIsLegalOpen(true);
+        return;
+      }
+
+      // 2. Contact Us / اتصل بنا / تواصل معنا (Arabic & English)
+      const isContact = 
+        path === '/اتصل-بنا' || 
+        path === '/تواصل-معنا' || 
+        path === '/اتصل_بنا' || 
+        path === '/تواصل_معنا' || 
+        path === '/اتصل' || 
+        path === '/contact' || 
+        path === '/contact-us' || 
+        path === '/contactus' ||
+        hash === '#contact' ||
+        hash === '#contact-us' ||
+        hash === '#اتصل-بنا' ||
+        hash === '#تواصل-معنا';
+
+      if (isContact) {
+        setLegalTab('contact');
+        setIsLegalOpen(true);
+        return;
+      }
+
+      // 3. Store / المتجر / متجر (Arabic & English)
+      const isStore = 
+        path === '/متجر' || 
+        path === '/المتجر' || 
+        path === '/تسوق' || 
+        path === '/store' || 
+        path === '/shop' ||
+        hash === '#store' ||
+        hash === '#shop' ||
+        hash === '#متجر' ||
+        hash === '#المتجر' ||
+        hash === '#catalog-main';
+
+      if (isStore) {
+        setIsLegalOpen(false);
+        setActiveCategory('all');
+        setFilters(prev => ({ ...prev, category: 'all' }));
+        setTimeout(() => {
+          const el = document.getElementById('catalog-main');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+        return;
+      }
+
+      // 4. Privacy Policy / سياسة الخصوصية (Arabic & English)
+      const isPrivacy = 
+        path === '/سياسة-الخصوصية' || 
+        path === '/سياسة_الخصوصية' || 
+        path === '/الخصوصية' || 
+        path === '/privacy' || 
+        path === '/privacy-policy' || 
+        path === '/privacypolicy' ||
+        hash === '#privacy' ||
+        hash === '#privacy-policy' ||
+        hash === '#سياسة-الخصوصية';
+
+      if (isPrivacy) {
+        setLegalTab('privacy');
+        setIsLegalOpen(true);
+        return;
+      }
+
+      // 5. Terms of Service / الشروط والأحكام (Arabic & English)
+      const isTerms = 
+        path === '/الشروط' || 
+        path === '/شروط' || 
+        path === '/الشروط-والأحكام' || 
+        path === '/الشروط-والاحكام' || 
+        path === '/شروط-الخدمة' || 
+        path === '/terms' || 
+        path === '/terms-of-service' || 
+        path === '/terms-and-conditions' ||
+        hash === '#terms' ||
+        hash === '#terms-of-service' ||
+        hash === '#الشروط' ||
+        hash === '#الشروط-والأحكام';
+
+      if (isTerms) {
+        setLegalTab('terms');
+        setIsLegalOpen(true);
+        return;
+      }
+
+      // 6. Google AdSense Policy / سياسة الإعلانات
+      const isAdSensePolicy = 
+        path === '/سياسة-اعلانات-جوجل' || 
+        path === '/اعلانات-جوجل' || 
+        path === '/اعلانات' || 
+        path === '/adsense' || 
+        path === '/adsense-policy' ||
+        hash === '#adsense' ||
+        hash === '#adsense-policy';
+
+      if (isAdSensePolicy) {
+        setLegalTab('adsense');
+        setIsLegalOpen(true);
+        return;
+      }
+
+      // 7. Blog / المدونة (Arabic & English)
+      const isBlog = 
+        path === '/مدونة' || 
+        path === '/المدونة' || 
+        path === '/مقالات' || 
+        path === '/blog' || 
+        path === '/articles' ||
+        hash === '#blog' ||
+        hash === '#مدونة' ||
+        hash === '#hanan-blog';
+
+      if (isBlog) {
+        setIsLegalOpen(false);
+        setTimeout(() => {
+          const el = document.getElementById('hanan-blog') || document.getElementById('hanan-blog-wrapper');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+        return;
+      }
+
+      // 8. Specialized AI Tools & Diagnostic Modals
+      if (hash === '#tool-text-to-video' || hash === '#video-tool' || hash === '#text-to-video' || path === '/video-tool' || path === '/text-to-video') {
         setIsTextToVideoOpen(true);
-      } else if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer') {
+      } else if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
         setIsArticleWriterOpen(true);
-      } else if (hash === '#adsense-audit' || hash === '#adsense-report' || hash === '#adsense') {
+      } else if (hash === '#adsense-audit' || hash === '#adsense-report' || path === '/adsense-audit') {
         setIsAdSenseAuditOpen(true);
+      } else if (hash === '#mobile-optimizer' || hash === '#mobile-tool' || path === '/mobile-optimizer') {
+        setIsMobileOptimizerOpen(true);
       }
     };
-    handleHashTools();
-    window.addEventListener('hashchange', handleHashTools);
-    return () => window.removeEventListener('hashchange', handleHashTools);
+
+    resolveBilingualRoute();
+    window.addEventListener('popstate', resolveBilingualRoute);
+    window.addEventListener('hashchange', resolveBilingualRoute);
+    return () => {
+      window.removeEventListener('popstate', resolveBilingualRoute);
+      window.removeEventListener('hashchange', resolveBilingualRoute);
+    };
   }, []);
+
+  // Open legal modal and synchronize browser URL with bilingual path
+  const handleOpenLegal = (tab: LegalTab) => {
+    setLegalTab(tab);
+    setIsLegalOpen(true);
+
+    const routeMap: Record<LegalTab, { ar: string; en: string }> = {
+      about: { ar: '/من-نحن', en: '/about-us' },
+      contact: { ar: '/اتصل-بنا', en: '/contact-us' },
+      privacy: { ar: '/سياسة-الخصوصية', en: '/privacy-policy' },
+      terms: { ar: '/الشروط', en: '/terms' },
+      adsense: { ar: '/سياسة-اعلانات-جوجل', en: '/adsense' },
+    };
+
+    try {
+      const slug = lang === 'ar' ? routeMap[tab].ar : routeMap[tab].en;
+      window.history.pushState({ tab }, '', slug);
+    } catch {
+      // ignore
+    }
+  };
+
+  // Close legal modal and restore root path if on a known route
+  const handleCloseLegal = () => {
+    setIsLegalOpen(false);
+    try {
+      const currentPath = decodeURIComponent(window.location.pathname || '').toLowerCase();
+      const knownPaths = [
+        '/عن', '/من-نحن', '/عن-الموقع', '/about', '/about-us', '/aboutus',
+        '/اتصل-بنا', '/تواصل-معنا', '/contact', '/contact-us', '/contactus',
+        '/متجر', '/المتجر', '/تسوق', '/store', '/shop',
+        '/سياسة-الخصوصية', '/الخصوصية', '/privacy', '/privacy-policy',
+        '/الشروط', '/شروط', '/الشروط-والأحكام', '/الشروط-والاحكام', '/terms', '/terms-of-service',
+        '/سياسة-اعلانات-جوجل', '/adsense', '/adsense-policy'
+      ];
+      if (knownPaths.includes(currentPath)) {
+        window.history.pushState(null, '', '/');
+      }
+    } catch {
+      // ignore
+    }
+  };
 
   // Update category when activeCategory changes
   const handleSelectCategory = (catId: string) => {
@@ -352,10 +563,7 @@ export default function App() {
         activeCategory={activeCategory}
         setActiveCategory={handleSelectCategory}
         onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
-        onOpenLegal={(tab) => {
-          setLegalTab(tab);
-          setIsLegalOpen(true);
-        }}
+        onOpenLegal={handleOpenLegal}
         onOpenSitemap={() => {
           setSitemapViewerTab('sitemap');
           setIsSitemapViewerOpen(true);
@@ -560,10 +768,7 @@ export default function App() {
           lang={lang}
           onCategorySelect={handleSelectCategory}
           onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
-          onOpenLegal={(tab) => {
-            setLegalTab(tab);
-            setIsLegalOpen(true);
-          }}
+          onOpenLegal={handleOpenLegal}
           onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
           onOpenSitemapViewer={(type) => {
             setSitemapViewerTab(type);
@@ -737,7 +942,7 @@ export default function App() {
         {isLegalOpen && (
           <LegalModal
             isOpen={isLegalOpen}
-            onClose={() => setIsLegalOpen(false)}
+            onClose={handleCloseLegal}
             lang={lang}
             initialTab={legalTab}
             onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
@@ -750,10 +955,7 @@ export default function App() {
             isOpen={isAdSenseAuditOpen}
             onClose={() => setIsAdSenseAuditOpen(false)}
             lang={lang}
-            onOpenLegal={(tab) => {
-              setLegalTab(tab);
-              setIsLegalOpen(true);
-            }}
+            onOpenLegal={handleOpenLegal}
             onOpenSitemapViewer={(type) => {
               setSitemapViewerTab(type);
               setIsSitemapViewerOpen(true);
