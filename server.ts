@@ -172,7 +172,8 @@ async function startServer() {
     const icoPath = path.join(process.cwd(), "public", "favicon.ico");
     if (fs.existsSync(icoPath)) {
       res.setHeader("Content-Type", "image/x-icon");
-      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.setHeader("Cache-Control", "public, max-age=604800, immutable");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       if (req.method === "HEAD") return res.status(200).end();
       return res.sendFile(icoPath);
     }
@@ -183,9 +184,30 @@ async function startServer() {
     const svgPath = path.join(process.cwd(), "public", "favicon.svg");
     if (fs.existsSync(svgPath)) {
       res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.setHeader("Cache-Control", "public, max-age=604800, immutable");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       if (req.method === "HEAD") return res.status(200).end();
       return res.sendFile(svgPath);
+    }
+    return res.status(204).end();
+  });
+
+  app.all([
+    "/apple-touch-icon.png",
+    "/apple-touch-icon-precomposed.png",
+    "/favicon-192x192.png",
+    "/favicon-96x96.png",
+    "/favicon-48x48.png"
+  ], (req, res) => {
+    const reqFilename = path.basename(req.path);
+    const targetFile = reqFilename === "apple-touch-icon-precomposed.png" ? "apple-touch-icon.png" : reqFilename;
+    const iconPath = path.join(process.cwd(), "public", targetFile);
+    if (fs.existsSync(iconPath)) {
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=604800, immutable");
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.sendFile(iconPath);
     }
     return res.status(204).end();
   });
@@ -297,17 +319,33 @@ async function startServer() {
     next();
   });
 
-  // 6. Direct clean URL handler for articles and blog posts
-  app.get(["/article/*", "/blog/*", "/post/*"], (req, res, next) => {
-    if (process.env.NODE_ENV !== "production") {
-      // In dev, delegate to Vite SPA middleware which will serve index.html
-      return next();
+  // 6. Direct clean URL handler for articles, blog posts, and bilingual pages
+  app.get(
+    [
+      "/article/*",
+      "/blog/*",
+      "/post/*",
+      "/about",
+      "/privacy",
+      "/terms",
+      "/contact",
+      "/store",
+      "/blog",
+      "/cookie-policy",
+      "/adsense-standards",
+      "/privacy-policy",
+      "/terms-of-service"
+    ],
+    (req, res, next) => {
+      if (process.env.NODE_ENV !== "production") {
+        return next();
+      }
+      const distPath = path.join(process.cwd(), "dist");
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+      return res.status(200).sendFile(path.join(distPath, "index.html"));
     }
-    const distPath = path.join(process.cwd(), "dist");
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
-    return res.status(200).sendFile(path.join(distPath, "index.html"));
-  });
+  );
 
   // 7. Vite middleware for development or static serving in production
   if (process.env.NODE_ENV !== "production") {

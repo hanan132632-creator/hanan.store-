@@ -275,6 +275,8 @@ export default function App() {
         path.endsWith('/سياسة-الخصوصية') || 
         path === '/سياسة_الخصوصية' || 
         path.endsWith('/سياسة_الخصوصية') || 
+        path === '/سياسة-خصوصية' || 
+        path.endsWith('/سياسة-خصوصية') || 
         path === '/الخصوصية' || 
         path.endsWith('/الخصوصية') || 
         hash === '#privacy' ||
@@ -288,7 +290,7 @@ export default function App() {
         return;
       }
 
-      // 5. Terms of Service / الشروط والأحكام (Arabic & English)
+      // 5. Terms of Service / الشروط والأحكام / شروط الاستخدام (Arabic & English)
       const isTerms = 
         path === '/terms' || 
         path.endsWith('/terms') || 
@@ -300,6 +302,12 @@ export default function App() {
         path.endsWith('/الشروط') || 
         path === '/شروط' || 
         path.endsWith('/شروط') || 
+        path === '/شروط-الاستخدام' || 
+        path.endsWith('/شروط-الاستخدام') || 
+        path === '/شروط_الاستخدام' || 
+        path.endsWith('/شروط_الاستخدام') || 
+        path === '/شروط-استخدام' || 
+        path.endsWith('/شروط-استخدام') || 
         path === '/الشروط-والأحكام' || 
         path.endsWith('/الشروط-والأحكام') || 
         path === '/الشروط-والاحكام' || 
@@ -309,6 +317,7 @@ export default function App() {
         hash === '#terms' ||
         hash === '#terms-of-service' ||
         hash === '#الشروط' ||
+        hash === '#شروط-الاستخدام' ||
         hash === '#الشروط-والأحكام';
 
       if (isTerms) {
