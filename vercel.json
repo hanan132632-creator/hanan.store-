@@ -35,8 +35,14 @@
     { "source": "/sitemap.txt", "destination": "/sitemap.txt" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/ads.txt", "destination": "/ads.txt" },
+    { "source": "/terms.html", "destination": "/terms.html" },
+    { "source": "/privacy.html", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
     {
-      "source": "/((?!assets/|api/|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot)$).*)",
+      "source": "/((?!assets/|api/|terms|privacy|about|contact|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot|html)$).*)",
       "destination": "/index.html"
     }
   ],

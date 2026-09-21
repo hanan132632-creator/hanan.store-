@@ -322,21 +322,44 @@ async function startServer() {
   // 6. Direct clean URL handler for articles, blog posts, and bilingual pages
   app.get(
     [
-      "/article/*",
-      "/blog/*",
-      "/post/*",
-      "/about",
-      "/privacy",
+      "/terms.html",
+      "/privacy.html",
       "/terms",
+      "/privacy",
+      "/about",
       "/contact",
       "/store",
       "/blog",
       "/cookie-policy",
       "/adsense-standards",
       "/privacy-policy",
-      "/terms-of-service"
+      "/terms-of-service",
+      "/article/*",
+      "/blog/*",
+      "/post/*"
     ],
     (req, res, next) => {
+      // Check if direct static pre-generated HTML exists (e.g. /terms.html, /public/terms/index.html)
+      const cleanPath = req.path.replace(/^\/+|\/+$/g, "");
+      const possibleStaticFiles = [
+        path.join(process.cwd(), "public", `${cleanPath}`),
+        path.join(process.cwd(), "public", `${cleanPath}.html`),
+        path.join(process.cwd(), "public", cleanPath, "index.html"),
+        path.join(process.cwd(), "dist", `${cleanPath}`),
+        path.join(process.cwd(), "dist", `${cleanPath}.html`),
+        path.join(process.cwd(), "dist", cleanPath, "index.html")
+      ];
+
+      for (const staticFile of possibleStaticFiles) {
+        if (fs.existsSync(staticFile) && fs.statSync(staticFile).isFile() && staticFile.endsWith(".html")) {
+          res.setHeader("Content-Type", "text/html; charset=utf-8");
+          res.setHeader("Cache-Control", "public, max-age=3600");
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          if (req.method === "HEAD") return res.status(200).end();
+          return res.sendFile(staticFile);
+        }
+      }
+
       if (process.env.NODE_ENV !== "production") {
         return next();
       }
