@@ -117,7 +117,7 @@ async function startServer() {
     next();
   });
 
-  // 3. Explicit SEO & Crawler Files (sitemap.xml, robots.txt, ads.txt)
+  // 3. Explicit SEO & Crawler Files (sitemap.xml, sitemap.txt, robots.txt, ads.txt)
   app.all(["/sitemap.xml", "/sitemap"], (req, res) => {
     const filePath = path.join(process.cwd(), "public", "sitemap.xml");
     if (fs.existsSync(filePath)) {
@@ -129,6 +129,19 @@ async function startServer() {
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
     return res.status(404).type("text/plain").send("Sitemap not found");
+  });
+
+  app.all(["/sitemap.txt"], (req, res) => {
+    const filePath = path.join(process.cwd(), "public", "sitemap.txt");
+    if (fs.existsSync(filePath)) {
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      res.setHeader("X-Robots-Tag", "all");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
+    }
+    return res.status(404).type("text/plain").send("Sitemap text not found");
   });
 
   app.all(["/robots.txt"], (req, res) => {

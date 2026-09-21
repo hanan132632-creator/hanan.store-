@@ -4,23 +4,20 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
 
-# Googlebot specific directives
 User-agent: Googlebot
 Allow: /
-Allow: /sitemap.xml
-Allow: /ads.txt
-
-User-agent: Googlebot-Image
-Allow: /assets/
-Allow: /images/
 
 User-agent: Mediapartners-Google
 Allow: /
 
-# Google Search Console Sitemap declaration (Mandatory)
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemaps (XML & TXT)
 Sitemap: https://xn--mgblao3hjb.store/sitemap.xml
+Sitemap: https://xn--mgblao3hjb.store/sitemap.txt
 
 # Preferred Host
 Host: https://xn--mgblao3hjb.store
+

@@ -13,7 +13,8 @@ import {
   Layout,
   BookMarked,
   Sparkles,
-  HeartHandshake
+  HeartHandshake,
+  Lock
 } from 'lucide-react';
 import { Language } from '../types';
 import { CATEGORIES } from '../data/products';
@@ -303,11 +304,11 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
           <button
             id="menu-page-privacy"
             onClick={() => handleLegalClick('privacy')}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-stone-900 hover:bg-stone-100 transition-colors text-start group cursor-pointer"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-stone-900 hover:bg-emerald-50/70 transition-colors text-start group cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center">
-                <ShieldCheck className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                <Lock className="w-4 h-4 text-emerald-600 shrink-0" />
               </div>
               <div>
                 <span className="font-bold text-sm block">
@@ -318,29 +319,39 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
                 </span>
               </div>
             </div>
-            <ArrowUpRight className="w-3.5 h-3.5 text-stone-600" />
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-300 font-semibold font-mono">
+                GDPR & CCPA
+              </span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-emerald-700" />
+            </div>
           </button>
 
-          {/* 6. الشروط والأحكام */}
+          {/* 6. شروط الاستخدام / الشروط والأحكام */}
           <button
             id="menu-page-terms"
             onClick={() => handleLegalClick('terms')}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-stone-900 hover:bg-stone-100 transition-colors text-start group cursor-pointer"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-stone-900 hover:bg-indigo-50/70 transition-colors text-start group cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center">
-                <FileText className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                <FileText className="w-4 h-4 text-indigo-600 shrink-0" />
               </div>
               <div>
                 <span className="font-bold text-sm block">
-                  {isAr ? 'الشروط والأحكام' : 'Terms of Service'}
+                  {isAr ? 'شروط الاستخدام' : 'Terms of Use'}
                 </span>
                 <span className="text-[10px] text-stone-700 font-medium">
                   {isAr ? 'حقوق الاستخدام، الإرجاع وسياسة الشحن' : 'Terms, Returns & Shipping Policies'}
                 </span>
               </div>
             </div>
-            <ArrowUpRight className="w-3.5 h-3.5 text-stone-600" />
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-300 font-semibold">
+                {isAr ? 'قانوني' : 'Legal'}
+              </span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-indigo-700" />
+            </div>
           </button>
 
           {/* 7. اتصل بنا */}

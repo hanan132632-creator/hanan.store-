@@ -176,13 +176,20 @@ export default function App() {
 
       // 1. About Us / عن الموقع / من نحن (Arabic & English)
       const isAbout = 
-        path === '/عن' || 
-        path === '/من-نحن' || 
-        path === '/من_نحن' || 
-        path === '/عن-الموقع' || 
         path === '/about' || 
+        path.endsWith('/about') || 
         path === '/about-us' || 
-        path === '/aboutus' ||
+        path.endsWith('/about-us') || 
+        path === '/aboutus' || 
+        path.endsWith('/aboutus') || 
+        path === '/عن' || 
+        path.endsWith('/عن') || 
+        path === '/من-نحن' || 
+        path.endsWith('/من-نحن') || 
+        path === '/من_نحن' || 
+        path.endsWith('/من_نحن') || 
+        path === '/عن-الموقع' || 
+        path.endsWith('/عن-الموقع') || 
         hash === '#about' ||
         hash === '#about-us' ||
         hash === '#عن' ||
@@ -196,14 +203,22 @@ export default function App() {
 
       // 2. Contact Us / اتصل بنا / تواصل معنا (Arabic & English)
       const isContact = 
-        path === '/اتصل-بنا' || 
-        path === '/تواصل-معنا' || 
-        path === '/اتصل_بنا' || 
-        path === '/تواصل_معنا' || 
-        path === '/اتصل' || 
         path === '/contact' || 
+        path.endsWith('/contact') || 
         path === '/contact-us' || 
-        path === '/contactus' ||
+        path.endsWith('/contact-us') || 
+        path === '/contactus' || 
+        path.endsWith('/contactus') || 
+        path === '/اتصل-بنا' || 
+        path.endsWith('/اتصل-بنا') || 
+        path === '/تواصل-معنا' || 
+        path.endsWith('/تواصل-معنا') || 
+        path === '/اتصل_بنا' || 
+        path.endsWith('/اتصل_بنا') || 
+        path === '/تواصل_معنا' || 
+        path.endsWith('/تواصل_معنا') || 
+        path === '/اتصل' || 
+        path.endsWith('/اتصل') || 
         hash === '#contact' ||
         hash === '#contact-us' ||
         hash === '#اتصل-بنا' ||
@@ -217,11 +232,16 @@ export default function App() {
 
       // 3. Store / المتجر / متجر (Arabic & English)
       const isStore = 
-        path === '/متجر' || 
-        path === '/المتجر' || 
-        path === '/تسوق' || 
         path === '/store' || 
-        path === '/shop' ||
+        path.endsWith('/store') || 
+        path === '/shop' || 
+        path.endsWith('/shop') || 
+        path === '/متجر' || 
+        path.endsWith('/متجر') || 
+        path === '/المتجر' || 
+        path.endsWith('/المتجر') || 
+        path === '/تسوق' || 
+        path.endsWith('/تسوق') || 
         hash === '#store' ||
         hash === '#shop' ||
         hash === '#متجر' ||
@@ -239,16 +259,27 @@ export default function App() {
         return;
       }
 
-      // 4. Privacy Policy / سياسة الخصوصية (Arabic & English)
+      // 4. Privacy Policy / سياسة الخصوصية / cookie-policy (Arabic & English)
       const isPrivacy = 
-        path === '/سياسة-الخصوصية' || 
-        path === '/سياسة_الخصوصية' || 
-        path === '/الخصوصية' || 
         path === '/privacy' || 
+        path.endsWith('/privacy') || 
         path === '/privacy-policy' || 
-        path === '/privacypolicy' ||
+        path.endsWith('/privacy-policy') || 
+        path === '/privacypolicy' || 
+        path.endsWith('/privacypolicy') || 
+        path === '/cookie-policy' || 
+        path.endsWith('/cookie-policy') || 
+        path === '/cookies' || 
+        path.endsWith('/cookies') || 
+        path === '/سياسة-الخصوصية' || 
+        path.endsWith('/سياسة-الخصوصية') || 
+        path === '/سياسة_الخصوصية' || 
+        path.endsWith('/سياسة_الخصوصية') || 
+        path === '/الخصوصية' || 
+        path.endsWith('/الخصوصية') || 
         hash === '#privacy' ||
         hash === '#privacy-policy' ||
+        hash === '#cookie-policy' ||
         hash === '#سياسة-الخصوصية';
 
       if (isPrivacy) {
@@ -259,14 +290,22 @@ export default function App() {
 
       // 5. Terms of Service / الشروط والأحكام (Arabic & English)
       const isTerms = 
-        path === '/الشروط' || 
-        path === '/شروط' || 
-        path === '/الشروط-والأحكام' || 
-        path === '/الشروط-والاحكام' || 
-        path === '/شروط-الخدمة' || 
         path === '/terms' || 
+        path.endsWith('/terms') || 
         path === '/terms-of-service' || 
-        path === '/terms-and-conditions' ||
+        path.endsWith('/terms-of-service') || 
+        path === '/terms-and-conditions' || 
+        path.endsWith('/terms-and-conditions') || 
+        path === '/الشروط' || 
+        path.endsWith('/الشروط') || 
+        path === '/شروط' || 
+        path.endsWith('/شروط') || 
+        path === '/الشروط-والأحكام' || 
+        path.endsWith('/الشروط-والأحكام') || 
+        path === '/الشروط-والاحكام' || 
+        path.endsWith('/الشروط-والاحكام') || 
+        path === '/شروط-الخدمة' || 
+        path.endsWith('/شروط-الخدمة') || 
         hash === '#terms' ||
         hash === '#terms-of-service' ||
         hash === '#الشروط' ||
@@ -280,13 +319,23 @@ export default function App() {
 
       // 6. Google AdSense Policy / سياسة الإعلانات
       const isAdSensePolicy = 
-        path === '/سياسة-اعلانات-جوجل' || 
-        path === '/اعلانات-جوجل' || 
-        path === '/اعلانات' || 
         path === '/adsense' || 
-        path === '/adsense-policy' ||
+        path.endsWith('/adsense') || 
+        path === '/adsense-policy' || 
+        path.endsWith('/adsense-policy') || 
+        path === '/adsense-standards' || 
+        path.endsWith('/adsense-standards') || 
+        path === '/معايير-ادسنس' || 
+        path.endsWith('/معايير-ادسنس') || 
+        path === '/سياسة-اعلانات-جوجل' || 
+        path.endsWith('/سياسة-اعلانات-جوجل') || 
+        path === '/اعلانات-جوجل' || 
+        path.endsWith('/اعلانات-جوجل') || 
+        path === '/اعلانات' || 
+        path.endsWith('/اعلانات') || 
         hash === '#adsense' ||
-        hash === '#adsense-policy';
+        hash === '#adsense-policy' ||
+        hash === '#adsense-standards';
 
       if (isAdSensePolicy) {
         setLegalTab('adsense');
@@ -296,11 +345,16 @@ export default function App() {
 
       // 7. Blog / المدونة (Arabic & English)
       const isBlog = 
-        path === '/مدونة' || 
-        path === '/المدونة' || 
-        path === '/مقالات' || 
         path === '/blog' || 
-        path === '/articles' ||
+        path.endsWith('/blog') || 
+        path === '/articles' || 
+        path.endsWith('/articles') || 
+        path === '/مدونة' || 
+        path.endsWith('/مدونة') || 
+        path === '/المدونة' || 
+        path.endsWith('/المدونة') || 
+        path === '/مقالات' || 
+        path.endsWith('/مقالات') || 
         hash === '#blog' ||
         hash === '#مدونة' ||
         hash === '#hanan-blog';

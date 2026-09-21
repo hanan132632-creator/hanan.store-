@@ -5,7 +5,7 @@ import { Language } from '../types';
 interface SitemapViewerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialTab?: 'sitemap' | 'robots' | 'ads';
+  initialTab?: 'sitemap' | 'sitemap-txt' | 'robots' | 'ads';
   lang: Language;
 }
 
@@ -15,11 +15,29 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   initialTab = 'sitemap',
   lang
 }) => {
-  const [activeTab, setActiveTab] = useState<'sitemap' | 'robots' | 'ads'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'sitemap' | 'sitemap-txt' | 'robots' | 'ads'>(initialTab);
   const [copied, setCopied] = useState(false);
   const isAr = lang === 'ar';
 
   if (!isOpen) return null;
+
+  const sitemapTxtContent = `https://xn--mgblao3hjb.store/
+https://xn--mgblao3hjb.store/store
+https://xn--mgblao3hjb.store/blog
+https://xn--mgblao3hjb.store/about
+https://xn--mgblao3hjb.store/privacy
+https://xn--mgblao3hjb.store/terms
+https://xn--mgblao3hjb.store/contact
+https://xn--mgblao3hjb.store/cookie-policy
+https://xn--mgblao3hjb.store/adsense-standards
+https://xn--mgblao3hjb.store/privacy-policy
+https://xn--mgblao3hjb.store/adsense-policy
+https://xn--mgblao3hjb.store/blog/digital-products-business-2026
+https://xn--mgblao3hjb.store/blog/majlis-hospitality-incense-rituals
+https://xn--mgblao3hjb.store/blog/mindful-journaling-habits
+https://xn--mgblao3hjb.store/blog/gathering-games-guide
+https://xn--mgblao3hjb.store/blog/digital-planner-tips
+https://xn--mgblao3hjb.store/blog/royal-perfumes-guide`;
 
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -224,21 +242,28 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
 
 User-agent: Googlebot
 Allow: /
-Allow: /sitemap.xml
-Allow: /ads.txt
 
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemaps (XML & TXT)
 Sitemap: https://xn--mgblao3hjb.store/sitemap.xml
+Sitemap: https://xn--mgblao3hjb.store/sitemap.txt
 
+# Preferred Host
 Host: https://xn--mgblao3hjb.store`;
 
   const adsContent = `google.com, pub-3298241753177072, DIRECT, f08c47fec0942fa0`;
 
   const getCurrentContent = () => {
     if (activeTab === 'sitemap') return sitemapContent;
+    if (activeTab === 'sitemap-txt') return sitemapTxtContent;
     if (activeTab === 'robots') return robotsContent;
     return adsContent;
   };
@@ -254,7 +279,13 @@ Host: https://xn--mgblao3hjb.store`;
 
   const handleDownload = () => {
     const text = getCurrentContent();
-    const filename = activeTab === 'sitemap' ? 'sitemap.xml' : activeTab === 'robots' ? 'robots.txt' : 'ads.txt';
+    const filename = activeTab === 'sitemap' 
+      ? 'sitemap.xml' 
+      : activeTab === 'sitemap-txt' 
+        ? 'sitemap.txt' 
+        : activeTab === 'robots' 
+          ? 'robots.txt' 
+          : 'ads.txt';
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -297,10 +328,10 @@ Host: https://xn--mgblao3hjb.store`;
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-2 px-6 pt-4 bg-stone-100/60 border-b border-stone-200 text-xs font-bold">
+        <div className="flex items-center gap-2 px-6 pt-4 bg-stone-100/60 border-b border-stone-200 text-xs font-bold overflow-x-auto">
           <button
             onClick={() => setActiveTab('sitemap')}
-            className={`px-4 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-3.5 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
               activeTab === 'sitemap'
                 ? 'bg-white text-stone-900 border-t border-x border-stone-200 shadow-xs'
                 : 'text-stone-500 hover:text-stone-800'
@@ -311,26 +342,38 @@ Host: https://xn--mgblao3hjb.store`;
           </button>
 
           <button
+            onClick={() => setActiveTab('sitemap-txt')}
+            className={`px-3.5 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
+              activeTab === 'sitemap-txt'
+                ? 'bg-white text-stone-900 border-t border-x border-stone-200 shadow-xs'
+                : 'text-stone-500 hover:text-stone-800'
+            }`}
+          >
+            <FileCode className="w-4 h-4 text-amber-600" />
+            <span>sitemap.txt</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('robots')}
-            className={`px-4 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-3.5 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
               activeTab === 'robots'
                 ? 'bg-white text-stone-900 border-t border-x border-stone-200 shadow-xs'
                 : 'text-stone-500 hover:text-stone-800'
             }`}
           >
-            <Shield className="w-4 h-4 text-amber-600" />
+            <Shield className="w-4 h-4 text-emerald-600" />
             <span>robots.txt</span>
           </button>
 
           <button
             onClick={() => setActiveTab('ads')}
-            className={`px-4 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-3.5 py-2.5 rounded-t-xl transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
               activeTab === 'ads'
                 ? 'bg-white text-stone-900 border-t border-x border-stone-200 shadow-xs'
                 : 'text-stone-500 hover:text-stone-800'
             }`}
           >
-            <FileCode className="w-4 h-4 text-emerald-600" />
+            <FileCode className="w-4 h-4 text-indigo-600" />
             <span>ads.txt</span>
           </button>
         </div>
