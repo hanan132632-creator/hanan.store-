@@ -43,7 +43,7 @@ interface Scene {
   imageUrl: string;
 }
 
-type DurationType = '30s' | '1m' | '2m' | '3m';
+type DurationType = '30s' | '1m' | '2m' | '3m' | '5m' | '10m';
 
 const PRESET_SCRIPTS = [
   {
@@ -103,7 +103,9 @@ const getDurationInSeconds = (d: DurationType): number => {
     case '1m': return 60;
     case '2m': return 120;
     case '3m': return 180;
-    default: return 60;
+    case '5m': return 300;
+    case '10m': return 600;
+    default: return 600;
   }
 };
 
@@ -112,6 +114,18 @@ const formatTimeMMSS = (seconds: number): string => {
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+};
+
+const formatDurationArabic = (d: DurationType): string => {
+  switch (d) {
+    case '30s': return '30 ثانية';
+    case '1m': return '1 دقيقة';
+    case '2m': return '2 دقيقة';
+    case '3m': return '3 دقائق';
+    case '5m': return '5 دقائق';
+    case '10m': return '10 دقائق سينمائية';
+    default: return `${d}`;
+  }
 };
 
 export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
@@ -341,7 +355,7 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
 
     setIsGenerating(true);
     setGenerationProgress(15);
-    setGenerationStep(isAr ? `تحليل النص وبناء سيناريو فيديو طويل ممتد (${duration === '30s' ? '30 ثانية' : duration === '1m' ? 'دقيقة كاملة' : duration === '2m' ? 'دقيقتان' : '3 دقائق'})...` : `Analyzing prompt and building extended video roadmap (${duration})...`);
+    setGenerationStep(isAr ? `تحليل النص وبناء سيناريو فيديو طويل ممتد (${formatDurationArabic(duration)})...` : `Analyzing prompt and building extended video roadmap (${duration})...`);
 
     setTimeout(() => {
       setGenerationProgress(45);
@@ -426,7 +440,7 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
       setGeneratedResult({
         title: finalPrompt.length > 50 ? `${finalPrompt.slice(0, 50)}...` : finalPrompt,
         overview: isAr 
-          ? `تم توليد الفيديو الطويل بنجاح بمدة ${duration === '30s' ? '30 ثانية' : duration === '1m' ? 'دقيقة كاملة' : duration === '2m' ? 'دقيقتان' : '3 دقائق'} و 4 مشاهد سينمائية متسلسلة مع الصوت والتسجيل المباشر.` 
+          ? `تم توليد الفيديو الطويل بنجاح بمدة ${formatDurationArabic(duration)} و 4 مشاهد سينمائية متسلسلة مع الصوت والتسجيل المباشر.` 
           : `Extended ${duration} video generated successfully with 4 cinematic scenes, spoken narration, and instant recording export.`,
         scenes,
         masterPrompt: `Cinematic 4K long-form video (${duration} duration), ${visualStyle.replace('_', ' ')} style, ${aspectRatio} aspect ratio, continuous fluid storytelling, photorealistic textures, dynamic ${motionPacing.replace('_', ' ')} camera movement, anamorphic lens blur, professional studio color grading: ${finalPrompt}`,
@@ -518,7 +532,7 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
     if (!generatedResult) return;
     const text = `🎬 مخطط سيناريو الفيديو الطويل (Hanan AI Long-Form Video Studio)\n` +
       `العنوان: ${generatedResult.title}\n` +
-      `المدة الإجمالية: ${duration === '30s' ? '30 ثانية' : duration === '1m' ? 'دقيقة كاملة' : duration === '2m' ? 'دقيقتان' : '3 دقائق'} | الأبعاد: ${aspectRatio} | النمط: ${visualStyle}\n\n` +
+      `المدة الإجمالية: ${formatDurationArabic(duration)} (${formatTimeMMSS(generatedResult.totalDurationSeconds)}) | الأبعاد: ${aspectRatio} | النمط: ${visualStyle}\n\n` +
       generatedResult.scenes.map(s => 
         `[المشهد ${s.sceneNumber}] (${s.timecode})\n` +
         `• حركة الكاميرا: ${s.cameraMovement}\n` +
@@ -553,13 +567,13 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
                   <Sparkles className="w-4 h-4 text-amber-400 fill-amber-400" />
                 </h2>
                 <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/40">
-                  {isAr ? 'دعم الفيديوهات الطويلة 2026' : 'Long-Form Video 2026'}
+                  {isAr ? 'دعم حتى 10 دقائق 2026' : 'Up to 10 Minutes 2026'}
                 </span>
               </div>
               <p className="text-[11px] text-stone-400">
                 {isAr 
-                  ? 'توليد مقاطع وفيديوهات تسويقية ووثائقية ممتدة (دقيقة، دقيقتان، 3 دقائق) مع مشاهد متسلسلة وصوت ناطق'
-                  : 'Generate extended long-form videos (1 min, 2 min, 3 min) with multi-scene storytelling and spoken voiceover'}
+                  ? 'توليد مقاطع وفيديوهات تسويقية وأفلام سينمائية ممتدة حتى 10 دقائق كاملة مع مشاهد متسلسلة وصوت ناطق'
+                  : 'Generate extended long-form videos and cinematic features up to 10 minutes with multi-scene storytelling and spoken voiceover'}
               </p>
             </div>
           </div>
@@ -581,15 +595,15 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
             <Info className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-amber-300 font-bold block mb-0.5">
-                {isAr ? 'إنتاج سينمائي طويل بالدقائق مع مصداقية كاملة' : 'Long-Form Video Generation with Full Authenticity'}
+                {isAr ? 'إنتاج سينمائي طويل بالدقائق حتى 10 دقائق كاملة مع مصداقية كاملة' : 'Long-Form Video Generation up to 10 Minutes with Full Authenticity'}
               </strong>
               {isAr ? (
                 <span>
-                  تدعم الأداة الآن اختيار <strong>مدة الفيديو بالدقائق (دقيقة، دقيقتان، أو 3 دقائق)</strong> بدلاً من الثواني المقتضبة، حيث تقسم العمل إلى <strong>4 مشاهد إخراجية كاملة</strong> مع تعليق صوتي سينمائي، وتتيح لك تحميل مقطع فيديو حقيقي (WebM) أو نسخ برومبت الإخراج الكامل.
+                  تدعم الأداة الآن اختيار <strong>مدة الفيديو بالدقائق حتى 10 دقائق كاملة (10m) أو 5 دقائق أو دقيقة أو دقيقتين أو 3 دقائق</strong>، حيث تقسم الفيلم السينمائي إلى <strong>4 مشاهد إخراجية متتابعة</strong> بحسابات زمنية دقيقة مع تعليق صوتي وتصدير فوري.
                 </span>
               ) : (
                 <span>
-                  The tool now supports <strong>durations in minutes (1m, 2m, 3m)</strong> structured across 4 sequential cinematic scenes with spoken narration and one-click video download.
+                  The tool now supports <strong>durations up to 10 minutes (10m)</strong> structured across 4 sequential cinematic scenes with spoken narration and one-click video download.
                 </span>
               )}
             </div>
@@ -644,116 +658,195 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
             />
           </div>
 
-          {/* Controls Bar: Format, Style, Duration in Minutes, Motion */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-stone-900/80 p-3.5 rounded-2xl border border-stone-800/80 text-xs">
+          {/* Controls Section: Clean Distinct Rows to Prevent Any Text Cramping */}
+          <div className="space-y-3.5 bg-stone-900/90 p-4 rounded-2xl border border-stone-800 text-xs">
             
-            {/* 1. Duration in Minutes (Prominent Highlight) */}
-            <div className="space-y-1.5 col-span-2 sm:col-span-1">
-              <label className="text-[11px] font-bold text-amber-400 flex items-center gap-1">
-                <Clock className="w-3 h-3 text-amber-400" />
-                <span>{isAr ? 'مدة الفيديو (بالدقائق)' : 'Duration (Minutes)'}</span>
-              </label>
-              <div className="grid grid-cols-4 gap-1">
-                {(['30s', '1m', '2m', '3m'] as const).map((d) => (
-                  <button
-                    key={d}
-                    type="button"
-                    onClick={() => setDuration(d)}
-                    className={`py-1.5 px-1 rounded-lg font-mono text-[10px] font-bold text-center transition-colors cursor-pointer ${
-                      duration === d 
-                        ? 'bg-amber-600 text-white ring-1 ring-amber-400 shadow-md' 
-                        : 'bg-stone-800 text-stone-400 hover:text-white'
-                    }`}
-                    title={
-                      d === '30s' ? 'نصف دقيقة (30 ثانية)' :
-                      d === '1m' ? 'دقيقة كاملة (60 ثانية)' :
-                      d === '2m' ? 'دقيقتان (120 ثانية)' : '3 دقائق (180 ثانية)'
-                    }
-                  >
-                    {d === '30s' ? (isAr ? '30ث' : '30s') :
-                     d === '1m' ? (isAr ? '1 دقيقة' : '1 Min') :
-                     d === '2m' ? (isAr ? '2 دقيقة' : '2 Min') :
-                     (isAr ? '3 دقائق' : '3 Min')}
-                  </button>
-                ))}
+            {/* Row 1: Aspect Ratio Selection (Prominent & Super Clear) */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                  <Smartphone className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isAr ? 'نوع ومقاس الفيديو (اختر المنصة المطلوبة):' : 'Select Video Platform & Aspect Ratio:'}</span>
+                </label>
+                <span className="text-[11px] font-mono text-amber-400/90 bg-stone-950 px-2.5 py-0.5 rounded-full border border-stone-800">
+                  {aspectRatio === '16:9' ? (isAr ? 'المحدد: يوتيوب شاشة كاملة (16:9)' : 'Selected: YouTube Landscape 16:9') :
+                   aspectRatio === '9:16' ? (isAr ? 'المحدد: تيك توك وريلز وشورتس (9:16)' : 'Selected: TikTok & Shorts 9:16') :
+                   (isAr ? 'المحدد: مربع منشورات (1:1)' : 'Selected: Square 1:1')}
+                </span>
               </div>
-            </div>
 
-            {/* 2. Aspect Ratio */}
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-stone-400 flex items-center gap-1">
-                <Smartphone className="w-3 h-3 text-amber-400" />
-                <span>{isAr ? 'أبعاد الفيديو' : 'Aspect Ratio'}</span>
-              </label>
-              <div className="grid grid-cols-3 gap-1">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                {/* 1. YouTube Landscape 16:9 */}
                 <button
                   type="button"
                   onClick={() => setAspectRatio('16:9')}
-                  className={`p-1.5 rounded-lg font-mono text-[10px] font-bold text-center transition-colors cursor-pointer ${
-                    aspectRatio === '16:9' ? 'bg-amber-600 text-white' : 'bg-stone-800 text-stone-400 hover:text-white'
+                  className={`p-3 rounded-xl border text-start transition-all cursor-pointer flex items-center justify-between ${
+                    aspectRatio === '16:9'
+                      ? 'bg-amber-500/20 border-amber-500 text-white shadow-lg ring-1 ring-amber-500'
+                      : 'bg-stone-950/70 border-stone-800 text-stone-300 hover:border-stone-700 hover:text-white'
                   }`}
-                  title="YouTube / Landscape 16:9"
                 >
-                  16:9
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg">📺</span>
+                    <div>
+                      <div className="font-bold text-xs flex items-center gap-1.5">
+                        <span>{isAr ? 'يوتيوب بالعرض' : 'YouTube Landscape'}</span>
+                        <span className="font-mono bg-stone-900 px-1.5 py-0.5 rounded text-[10px] text-amber-300 border border-stone-800" dir="ltr">
+                          16 : 9
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-stone-400 mt-0.5">
+                        {isAr ? 'شاشات العرض واليوتيوب والأجهزة المكتبية' : 'Desktop, TV & YouTube standard'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    aspectRatio === '16:9' ? 'border-amber-400 bg-amber-500' : 'border-stone-700'
+                  }`}>
+                    {aspectRatio === '16:9' && <span className="w-1.5 h-1.5 rounded-full bg-stone-950"></span>}
+                  </div>
                 </button>
+
+                {/* 2. TikTok / Reels / Shorts 9:16 */}
                 <button
                   type="button"
                   onClick={() => setAspectRatio('9:16')}
-                  className={`p-1.5 rounded-lg font-mono text-[10px] font-bold text-center transition-colors cursor-pointer ${
-                    aspectRatio === '9:16' ? 'bg-amber-600 text-white' : 'bg-stone-800 text-stone-400 hover:text-white'
+                  className={`p-3 rounded-xl border text-start transition-all cursor-pointer flex items-center justify-between ${
+                    aspectRatio === '9:16'
+                      ? 'bg-amber-500/20 border-amber-500 text-white shadow-lg ring-1 ring-amber-500'
+                      : 'bg-stone-950/70 border-stone-800 text-stone-300 hover:border-stone-700 hover:text-white'
                   }`}
-                  title="Reels & Shorts 9:16"
                 >
-                  9:16
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg">📱</span>
+                    <div>
+                      <div className="font-bold text-xs flex items-center gap-1.5">
+                        <span>{isAr ? 'شورتس وريلز وتيك توك' : 'TikTok & Shorts'}</span>
+                        <span className="font-mono bg-stone-900 px-1.5 py-0.5 rounded text-[10px] text-amber-300 border border-stone-800" dir="ltr">
+                          9 : 16
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-stone-400 mt-0.5">
+                        {isAr ? 'فيديو طولي كامل للهواتف الذكية' : 'Vertical full screen mobile reels'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    aspectRatio === '9:16' ? 'border-amber-400 bg-amber-500' : 'border-stone-700'
+                  }`}>
+                    {aspectRatio === '9:16' && <span className="w-1.5 h-1.5 rounded-full bg-stone-950"></span>}
+                  </div>
                 </button>
+
+                {/* 3. Square 1:1 */}
                 <button
                   type="button"
                   onClick={() => setAspectRatio('1:1')}
-                  className={`p-1.5 rounded-lg font-mono text-[10px] font-bold text-center transition-colors cursor-pointer ${
-                    aspectRatio === '1:1' ? 'bg-amber-600 text-white' : 'bg-stone-800 text-stone-400 hover:text-white'
+                  className={`p-3 rounded-xl border text-start transition-all cursor-pointer flex items-center justify-between ${
+                    aspectRatio === '1:1'
+                      ? 'bg-amber-500/20 border-amber-500 text-white shadow-lg ring-1 ring-amber-500'
+                      : 'bg-stone-950/70 border-stone-800 text-stone-300 hover:border-stone-700 hover:text-white'
                   }`}
-                  title="Square 1:1"
                 >
-                  1:1
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg">⏹️</span>
+                    <div>
+                      <div className="font-bold text-xs flex items-center gap-1.5">
+                        <span>{isAr ? 'مربع للمنشورات' : 'Square Post'}</span>
+                        <span className="font-mono bg-stone-900 px-1.5 py-0.5 rounded text-[10px] text-amber-300 border border-stone-800" dir="ltr">
+                          1 : 1
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-stone-400 mt-0.5">
+                        {isAr ? 'منشورات إنستغرام وفيسبوك وتويتر' : 'Instagram & Facebook feed posts'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    aspectRatio === '1:1' ? 'border-amber-400 bg-amber-500' : 'border-stone-700'
+                  }`}>
+                    {aspectRatio === '1:1' && <span className="w-1.5 h-1.5 rounded-full bg-stone-950"></span>}
+                  </div>
                 </button>
               </div>
             </div>
 
-            {/* 3. Visual Style */}
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-stone-400 flex items-center gap-1">
-                <Palette className="w-3 h-3 text-amber-400" />
-                <span>{isAr ? 'النمط البصري' : 'Visual Style'}</span>
-              </label>
-              <select
-                value={visualStyle}
-                onChange={(e) => setVisualStyle(e.target.value as any)}
-                className="w-full bg-stone-800 text-stone-200 rounded-lg p-1.5 text-[11px] border border-stone-700 focus:outline-none focus:border-amber-500 cursor-pointer"
-              >
-                <option value="cinematic">{isAr ? 'سينمائي طويل 4K' : 'Cinematic 4K'}</option>
-                <option value="luxury_ad">{isAr ? 'إعلان تجاري فخم' : 'Luxury Commercial'}</option>
-                <option value="moody_documentary">{isAr ? 'وثائقي مطول' : 'Documentary'}</option>
-                <option value="3d_animation">{isAr ? 'أنيميشن ثلاثي الأبعاد' : '3D Animation'}</option>
-                <option value="drone_aerial">{isAr ? 'تصوير درون جوي' : 'Drone Aerial'}</option>
-              </select>
-            </div>
+            {/* Row 2: Duration, Style & Camera Options */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-stone-800/80">
+              
+              {/* Duration in Minutes */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-[11px] font-bold text-amber-300 flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-amber-400" />
+                    <span>{isAr ? 'مدة الفيديو (بالدقائق):' : 'Video Duration:'}</span>
+                  </label>
+                  {duration === '10m' && (
+                    <span className="text-[9px] font-bold text-amber-300 bg-amber-500/20 px-1.5 py-0.5 rounded border border-amber-500/30">
+                      {isAr ? 'فيلم سينمائي 10 دقائق 🎬' : '10 Min Feature'}
+                    </span>
+                  )}
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                  {(['30s', '1m', '2m', '3m', '5m', '10m'] as const).map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setDuration(d)}
+                      className={`py-2 px-1 rounded-xl font-mono text-[10px] font-bold text-center transition-all cursor-pointer ${
+                        duration === d 
+                          ? 'bg-amber-600 text-white ring-1 ring-amber-400 shadow-md font-black' 
+                          : 'bg-stone-950 text-stone-400 hover:text-white border border-stone-800'
+                      }`}
+                    >
+                      {d === '30s' ? (isAr ? '30 ثانية' : '30s') :
+                       d === '1m' ? (isAr ? '1 دقيقة' : '1 Min') :
+                       d === '2m' ? (isAr ? '2 دقيقة' : '2 Min') :
+                       d === '3m' ? (isAr ? '3 دقائق' : '3 Min') :
+                       d === '5m' ? (isAr ? '5 دقائق' : '5 Min') :
+                       (isAr ? '⭐ 10 دقائق' : '10 Min')}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-            {/* 4. Motion & Camera */}
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-stone-400 flex items-center gap-1">
-                <Camera className="w-3 h-3 text-amber-400" />
-                <span>{isAr ? 'إيقاع الكاميرا' : 'Camera Pacing'}</span>
-              </label>
-              <select
-                value={motionPacing}
-                onChange={(e) => setMotionPacing(e.target.value as any)}
-                className="w-full bg-stone-800 text-stone-200 rounded-lg p-1.5 text-[11px] border border-stone-700 focus:outline-none focus:border-amber-500 cursor-pointer"
-              >
-                <option value="smooth_slow">{isAr ? 'انسيابي بطيء وهادئ' : 'Smooth Cinematic Slow'}</option>
-                <option value="dynamic_fast">{isAr ? 'متتابع وسريع' : 'Dynamic Pacing'}</option>
-                <option value="orbit_360">{isAr ? 'دوران محيطي 360' : '360 Orbit'}</option>
-                <option value="macro_dramatic">{isAr ? 'ماكرو مقرب وتفاصيل' : 'Macro Details'}</option>
-              </select>
+              {/* Visual Style */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-stone-300 flex items-center gap-1">
+                  <Palette className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isAr ? 'النمط البصري للإخراج:' : 'Visual Style:'}</span>
+                </label>
+                <select
+                  value={visualStyle}
+                  onChange={(e) => setVisualStyle(e.target.value as any)}
+                  className="w-full bg-stone-950 text-stone-200 rounded-xl p-2 text-xs border border-stone-800 focus:outline-none focus:border-amber-500 cursor-pointer"
+                >
+                  <option value="cinematic">{isAr ? 'سينمائي عالي الجودة 4K' : 'Cinematic 4K'}</option>
+                  <option value="luxury_ad">{isAr ? 'إعلان تجاري فخم للمنتجات' : 'Luxury Commercial'}</option>
+                  <option value="moody_documentary">{isAr ? 'وثائقي تسويقي متكامل' : 'Documentary'}</option>
+                  <option value="3d_animation">{isAr ? 'أنيميشن ثلاثي الأبعاد' : '3D Animation'}</option>
+                  <option value="drone_aerial">{isAr ? 'تصوير درون جوي احترافي' : 'Drone Aerial'}</option>
+                </select>
+              </div>
+
+              {/* Camera Pacing */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-stone-300 flex items-center gap-1">
+                  <Camera className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isAr ? 'حركة وإيقاع الكاميرا:' : 'Camera Motion:'}</span>
+                </label>
+                <select
+                  value={motionPacing}
+                  onChange={(e) => setMotionPacing(e.target.value as any)}
+                  className="w-full bg-stone-950 text-stone-200 rounded-xl p-2 text-xs border border-stone-800 focus:outline-none focus:border-amber-500 cursor-pointer"
+                >
+                  <option value="smooth_slow">{isAr ? 'انسيابي بطيء وفخم (Slow Push)' : 'Smooth Cinematic Slow'}</option>
+                  <option value="dynamic_fast">{isAr ? 'حركي متتابع وسريع (Fast Cuts)' : 'Dynamic Pacing'}</option>
+                  <option value="orbit_360">{isAr ? 'دوران محيطي كامل 360' : '360 Orbit'}</option>
+                  <option value="macro_dramatic">{isAr ? 'ماكرو مقرب للتفاصيل الدقيقة' : 'Macro Dramatic'}</option>
+                </select>
+              </div>
+
             </div>
 
           </div>
@@ -764,7 +857,7 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>
                 {isAr 
-                  ? `المدة المحددة: ${duration === '30s' ? '30 ثانية' : duration === '1m' ? 'دقيقة كاملة' : duration === '2m' ? 'دقيقتان' : '3 دقائق'} مع 4 مشاهد متكاملة` 
+                  ? `المدة المحددة: ${formatDurationArabic(duration)} مع 4 مشاهد سينمائية متكاملة` 
                   : `Selected: ${duration} duration with 4 complete scenes`}
               </span>
             </div>
@@ -778,14 +871,14 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
               {isGenerating ? (
                 <>
                   <div className="w-4 h-4 border-2 border-stone-950 border-t-transparent rounded-full animate-spin"></div>
-                  <span>{isAr ? 'جاري بناء ومعالجة الفيديو بالدقائق...' : 'Generating Long-Form Video...'}</span>
+                  <span>{isAr ? 'جاري بناء ومعالجة الفيلم السينمائي...' : 'Generating Long-Form Video...'}</span>
                 </>
               ) : (
                 <>
                   <Video className="w-4 h-4" />
                   <span>
                     {isAr 
-                      ? `إنتاج الفيديو (${duration === '30s' ? '30 ثانية' : duration === '1m' ? '1 دقيقة' : duration === '2m' ? '2 دقيقة' : '3 دقائق'}) 🎬` 
+                      ? `إنتاج الفيديو (${formatDurationArabic(duration)}) 🎬` 
                       : `Generate ${duration} Video Now 🎬`}
                   </span>
                 </>
@@ -913,8 +1006,10 @@ export const TextToVideoModal: React.FC<TextToVideoModalProps> = ({
                     </div>
 
                     {/* Format Badge */}
-                    <div className="absolute top-3 end-3 bg-amber-500/90 text-stone-950 px-2 py-0.5 rounded-md text-[9px] font-black tracking-wider uppercase">
-                      {aspectRatio} • {formatTimeMMSS(generatedResult.totalDurationSeconds)}
+                    <div className="absolute top-3 end-3 bg-amber-500/90 text-stone-950 px-2 py-0.5 rounded-md text-[10px] font-black tracking-wider uppercase font-mono flex items-center gap-1 shadow-sm" dir="ltr">
+                      <span>{aspectRatio}</span>
+                      <span>•</span>
+                      <span>{formatTimeMMSS(generatedResult.totalDurationSeconds)}</span>
                     </div>
 
                     {/* Play/Pause Center Overlay when paused */}
