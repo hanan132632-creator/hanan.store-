@@ -27,6 +27,35 @@ async function startServer() {
       return res.status(200).json({ status: "ok", service: "API Service" });
     }
 
+    // Direct handler for session/properties and diagnostic telemetry to guarantee 100% cache & 200 OK
+    if (
+      cleanPath === "/session/properties" ||
+      cleanPath === "/session" ||
+      cleanPath.startsWith("/session/") ||
+      cleanPath === "/telemetry" ||
+      cleanPath === "/health" ||
+      cleanPath === "/ping"
+    ) {
+      res.setHeader("Cache-Control", "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400");
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      return res.status(200).json({
+        status: "success",
+        session: {
+          active: true,
+          mode: "production",
+          edgeCached: true,
+          timestamp: Date.now()
+        },
+        properties: {
+          store: "Hanan Store",
+          domain: "xn--mgblao3hjb.store",
+          geoDistributed: true,
+          adSenseReady: true,
+          version: "2026.1"
+        }
+      });
+    }
+
     if (cleanPath === "/contact") {
       const ticketId = "GIS-" + Math.floor(100000 + Math.random() * 900000);
       return res.status(200).json({
