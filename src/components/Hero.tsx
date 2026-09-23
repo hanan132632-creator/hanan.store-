@@ -8,7 +8,6 @@ interface HeroProps {
   onExploreClick: () => void;
   onCategorySelect: (catId: string) => void;
   onOpenDomainInfo: () => void;
-  onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
 }
 
@@ -17,7 +16,6 @@ export const Hero: React.FC<HeroProps> = ({
   onExploreClick,
   onCategorySelect,
   onOpenDomainInfo,
-  onOpenTextToVideo,
   onOpenArticleWriter
 }) => {
   const t = TRANSLATIONS[lang];
@@ -92,46 +90,35 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Free AI Generation Tools Showcase in Hero */}
             <div className="pt-2">
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 backdrop-blur-xs border border-amber-300/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-start">
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 backdrop-blur-xs border border-emerald-300/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-start">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-600 text-stone-950 flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
-                    ✨
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                    ✍️
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-black text-stone-900">
-                        {lang === 'ar' ? 'استوديو أدوات الذكاء الاصطناعي المجانية' : 'Free AI Studio Tools'}
+                        {lang === 'ar' ? 'أداة كاتب المقالات والسيو بالذكاء الاصطناعي' : 'AI Article & SEO Writer Tool'}
                       </span>
-                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-950 text-[10px] font-bold border border-amber-300">
-                        {lang === 'ar' ? 'متاح الآن' : 'LIVE'}
+                      <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-950 text-[10px] font-bold border border-emerald-300">
+                        {lang === 'ar' ? 'متاح مجاناً' : 'FREE'}
                       </span>
                     </div>
                     <p className="text-[11px] text-stone-700 font-medium">
-                      {lang === 'ar' ? 'أدوات مجانية: تحويل النص إلى فيديو + كاتب مقالات السيو وأدسنس' : 'Free tools: Text-to-Video generation + AI Article SEO writer'}
+                      {lang === 'ar' ? 'توليد مقالات متوافقة 100% مع معايير Google AdSense وSEO بنقرة واحدة' : 'Generate SEO & Google AdSense compliant long-form articles in seconds'}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-                  {onOpenTextToVideo && (
-                    <button
-                      id="hero-tool-video-btn"
-                      onClick={onOpenTextToVideo}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-stone-950 hover:bg-amber-600 text-amber-300 hover:text-stone-950 text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
-                    >
-                      <span>🎬</span>
-                      <span>{lang === 'ar' ? 'أداة الفيديو' : 'Video Tool'}</span>
-                    </button>
-                  )}
-
                   {onOpenArticleWriter && (
                     <button
                       id="hero-tool-writer-btn"
                       onClick={onOpenArticleWriter}
-                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
                     >
                       <span>✍️</span>
-                      <span>{lang === 'ar' ? 'صانع المقالات' : 'AI Writer'}</span>
+                      <span>{lang === 'ar' ? 'صانع المقالات الذكي' : 'AI Writer Tool'}</span>
                     </button>
                   )}
                 </div>

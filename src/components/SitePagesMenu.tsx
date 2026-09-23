@@ -25,7 +25,6 @@ interface SitePagesMenuProps {
   lang: Language;
   onSelectCategory: (catId: string) => void;
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
-  onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenAdSenseAudit?: () => void;
   onOpenMobileOptimizer?: () => void;
@@ -37,7 +36,6 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
   lang,
   onSelectCategory,
   onOpenLegal,
-  onOpenTextToVideo,
   onOpenArticleWriter,
   onOpenAdSenseAudit,
   onOpenMobileOptimizer
@@ -159,43 +157,16 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
           </div>
 
           {/* قسم أدوات الذكاء الاصطناعي الحصرية والمجانية */}
-          <div className="pt-2 pb-1 bg-gradient-to-br from-amber-500/10 via-amber-50 to-orange-50/50 rounded-xl p-2.5 border border-amber-300/80 my-2 space-y-1.5 shadow-xs">
-            <div className="px-1 text-[11px] font-black text-amber-950 uppercase tracking-wider flex items-center justify-between">
+          <div className="pt-2 pb-1 bg-gradient-to-br from-emerald-500/10 via-emerald-50 to-teal-50/50 rounded-xl p-2.5 border border-emerald-300/80 my-2 space-y-1.5 shadow-xs">
+            <div className="px-1 text-[11px] font-black text-emerald-950 uppercase tracking-wider flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 fill-emerald-500" />
                 <span>{isAr ? 'أدوات الذكاء الاصطناعي المجانية:' : 'Free AI Studio Tools:'}</span>
               </span>
-              <span className="text-[9px] bg-amber-700 text-white font-bold px-2 py-0.5 rounded-full">
-                {isAr ? 'متاح الآن مجاناً' : 'LIVE'}
+              <span className="text-[9px] bg-emerald-700 text-white font-bold px-2 py-0.5 rounded-full">
+                {isAr ? 'متاح مجاناً' : 'FREE'}
               </span>
             </div>
-
-            {/* زر أداة تحويل النص إلى فيديو */}
-            <button
-              id="menu-tool-text-to-video"
-              onClick={() => {
-                onClose();
-                if (onOpenTextToVideo) onOpenTextToVideo();
-              }}
-              className="w-full flex items-center justify-between px-2.5 py-2 rounded-lg bg-white hover:bg-amber-100/70 text-stone-900 transition-colors text-start shadow-xs border border-amber-200/80 cursor-pointer group"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-md bg-gradient-to-br from-amber-500 to-amber-600 text-stone-950 flex items-center justify-center font-bold text-xs shadow-xs">
-                  🎬
-                </div>
-                <div>
-                  <span className="font-black text-xs block text-stone-900 group-hover:text-amber-900">
-                    {isAr ? 'أداة تحويل النص إلى فيديو' : 'AI Text-to-Video Tool'}
-                  </span>
-                  <span className="text-[10px] text-stone-700 font-medium block">
-                    {isAr ? 'توليد ريلز ومقاطع سينمائية' : 'Generate cinematic Reels & clips'}
-                  </span>
-                </div>
-              </div>
-              <span className="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
-                {isAr ? 'تشغيل ↗' : 'Launch ↗'}
-              </span>
-            </button>
 
             {/* زر أداة كتابة المقالات بالذكاء الاصطناعي */}
             <button
@@ -220,7 +191,7 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
                 </div>
               </div>
               <span className="text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
-                {isAr ? 'تشغيل ↗' : 'Launch ↗'}
+                {isAr ? 'فتح ↗' : 'Open ↗'}
               </span>
             </button>
 

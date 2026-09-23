@@ -41,7 +41,6 @@ const FilePreviewModal = lazy(() => import('./components/FilePreviewModal').then
 const LegalModal = lazy(() => import('./components/LegalModal').then(m => ({ default: m.LegalModal })));
 const SearchConsoleModal = lazy(() => import('./components/SearchConsoleModal').then(m => ({ default: m.SearchConsoleModal })));
 const SitemapViewerModal = lazy(() => import('./components/SitemapViewerModal').then(m => ({ default: m.SitemapViewerModal })));
-const TextToVideoModal = lazy(() => import('./components/TextToVideoModal').then(m => ({ default: m.TextToVideoModal })));
 const ArticleWriterModal = lazy(() => import('./components/ArticleWriterModal').then(m => ({ default: m.ArticleWriterModal })));
 const AdSenseAuditModal = lazy(() => import('./components/AdSenseAuditModal').then(m => ({ default: m.AdSenseAuditModal })));
 const MobileOptimizerModal = lazy(() => import('./components/MobileOptimizerModal').then(m => ({ default: m.MobileOptimizerModal })));
@@ -64,7 +63,6 @@ export default function App() {
   const [isSearchConsoleOpen, setIsSearchConsoleOpen] = useState(false);
   const [isSitemapViewerOpen, setIsSitemapViewerOpen] = useState(false);
   const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
-  const [isTextToVideoOpen, setIsTextToVideoOpen] = useState(false);
   const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
   const [isAdSenseAuditOpen, setIsAdSenseAuditOpen] = useState(false);
   const [isMobileOptimizerOpen, setIsMobileOptimizerOpen] = useState(false);
@@ -378,9 +376,7 @@ export default function App() {
       }
 
       // 8. Specialized AI Tools & Diagnostic Modals
-      if (hash === '#tool-text-to-video' || hash === '#video-tool' || hash === '#text-to-video' || path === '/video-tool' || path === '/text-to-video') {
-        setIsTextToVideoOpen(true);
-      } else if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
+      if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
         setIsArticleWriterOpen(true);
       } else if (hash === '#adsense-audit' || hash === '#adsense-report' || path === '/adsense-audit') {
         setIsAdSenseAuditOpen(true);
@@ -631,7 +627,6 @@ export default function App() {
           setSitemapViewerTab('sitemap');
           setIsSitemapViewerOpen(true);
         }}
-        onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
         onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
         onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
@@ -659,7 +654,6 @@ export default function App() {
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
-        onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
       />
 
@@ -812,7 +806,6 @@ export default function App() {
         <Suspense fallback={<div className="py-12" />}>
           <BlogSection 
             lang={lang} 
-            onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
             onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
           />
         </Suspense>
@@ -837,7 +830,6 @@ export default function App() {
             setSitemapViewerTab(type);
             setIsSitemapViewerOpen(true);
           }}
-          onOpenTextToVideo={() => setIsTextToVideoOpen(true)}
           onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
           onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
           onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
@@ -1041,15 +1033,6 @@ export default function App() {
             isOpen={isSitemapViewerOpen}
             onClose={() => setIsSitemapViewerOpen(false)}
             initialTab={sitemapViewerTab}
-            lang={lang}
-          />
-        )}
-
-        {/* AI Text to Video Creation Tool Modal */}
-        {isTextToVideoOpen && (
-          <TextToVideoModal
-            isOpen={isTextToVideoOpen}
-            onClose={() => setIsTextToVideoOpen(false)}
             lang={lang}
           />
         )}

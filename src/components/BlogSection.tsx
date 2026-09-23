@@ -9,7 +9,7 @@ interface Article {
   categoryAr: string;
   categoryEn: string;
   categoryKey: 'gifting' | 'digital' | 'lifestyle' | 'fun' | 'luxury' | 'ai';
-  toolActionType?: 'text-to-video' | 'article-writer';
+  toolActionType?: 'article-writer';
   date: string;
   readTime: string;
   summaryAr: string;
@@ -134,7 +134,7 @@ const ARTICLES: Article[] = [
       '2. الثورة الرقمية وألعاب الجمعات التفاعلية (The Interactive Gathering Revolution): بالتوازي مع البوتيك الفاخر، صممنا قسماً رقمياً رائداً يضم أكثر من 15 ملفاً وفعالية تفاعلية جاهزة للتحميل الفوري، بدءاً من ألعاب جمعات العائلة والمناسبات (حروف وكلمات، تخمين الأمثال، الصندوق الغامض)، وصولاً إلى المخططات والبلانرات الرقمية اليومية والمالية المتوافقة مع أجهزة الأيباد والتابلت.',
       '3. البنية التقنية السحابية فائقة السرعة والدومين العربي (xn--mgblao3hjb.store): بُني متجر حنان وفق أحدث المعايير البرمجية العالمية ليعمل بسرعة فائقة (زمن استجابة خادم 1ms)، مع تشفير أمني متكامل 256-bit SSL، وتوافق تام مع محركات البحث العالمية (Google Search Console) وتوثيق الهوية الرقمية تحت النطاق العربي الرسمي حنان.store.',
       '4. التزامنا تجاه عملائنا وشركائنا: الجودة أولاً، الشفافية التامة، والتوصيل الفاخر والمبرد في كراتين هدايا مخملية أنيقة، مع دعم فني متواصل على مدار الساعة عبر الواتساب لضمان رضا ملكي بنسبة 100% لكل عميلة وعميل.',
-      '5. مستقبل حنان ستور: نواصل التوسع في إطلاق أدوات الذكاء الاصطناعي الإبداعية (تحويل النص إلى فيديو وصانع المقالات التسويقية) لتمكين زوارنا من تجربة مستقبل المحتوى والتجارة الإلكترونية في مكان واحد.'
+      '5. مستقبل حنان ستور: نواصل التوسع في إطلاق أدوات الذكاء الاصطناعي الإبداعية وصانع المقالات التسويقية المعتمد لتمكين زوارنا من تجربة مستقبل المحتوى والتجارة الإلكترونية في مكان واحد.'
     ],
     contentEn: [
       'Hanan Store was founded on a singular vision: redefining Arabic digital commerce by uniting heritage royal luxury fragrances with next-generation digital products and AI-driven experiences.',
@@ -179,33 +179,32 @@ const ARTICLES: Article[] = [
   },
   {
     id: 'ai-text-to-video-tools-guide-2026',
-    titleAr: 'دليل أداة تحويل النص إلى فيديو بالذكاء الاصطناعي: كيف تصنع مقاطع سينمائية وتسويقية مذهلة من مجرد كلمات في 2026',
-    titleEn: 'AI Text-to-Video Generation Guide: Crafting Cinematic & Commercial Videos from Words in 2026',
+    titleAr: 'دليل إنتاج الفيديو والمحتوى الإبداعي بالذكاء الاصطناعي: كيف تصنع مقاطع تسويقية واحترافية من النصوص في 2026',
+    titleEn: 'Creative AI Video & Content Production Guide: Crafting Engaging Videos from Text in 2026',
     categoryAr: 'أدوات الذكاء الاصطناعي 🤖',
     categoryEn: 'AI Video & Creative Tech 🤖',
     categoryKey: 'ai',
-    toolActionType: 'text-to-video',
     date: '2026-09-10',
     readTime: '8 دقائق',
-    summaryAr: 'كل ما تحتاج لمعرفته عن أداة تحويل النص إلى فيديو: نماذج التوليد السينمائي Sora وRunway وKling، أسرار صياغة البرومبت الإخراجي وحركة الكاميرا، وكيف تحول أفكارك ومنتجاتك إلى ريلز وإعلانات احترافية مجاناً.',
-    summaryEn: 'The definitive guide to AI Text-to-Video tools in 2026: exploring diffusion models, cinematic camera movement prompts, luxury commercial workflows, and hands-on video creation for TikTok and YouTube.',
+    summaryAr: 'كل ما تحتاج لمعرفته عن أدوات الذكاء الاصطناعي العالمية لإنتاج الفيديو: نماذج التوليد الحديثة، أسرار صياغة البرومبت الإخراجي وحركة الكاميرا، وكيف تحول أفكارك ومنتجاتك إلى ريلز وإعلانات احترافية.',
+    summaryEn: 'The definitive guide to modern AI Video tools in 2026: exploring diffusion models, cinematic camera movement prompts, luxury commercial workflows, and video creation for TikTok and YouTube.',
     contentAr: [
-      'يشهد عام 2026 ثورة بصرية غير مسبوقة في صناعة المحتوى الرقمي، حيث تحولت فكرة تحويل الكلمات والسيناريوهات المكتوبة إلى مقاطع فيديو فائقة الدقة والواقعية من خيال علمي إلى حقيقة يومية في متناول الجميع. لم يعد صناع المحتوى ورواد الأعمال بحاجة إلى معدات تصوير باهظة الثمن أو استوديوهات إضاءة معقدة لإنتاج مقاطع فيديو تسويقية أو سينمائية تأسر الأنظار.',
-      'أطلقت منصة حنان ستور أداة تحويل النص إلى فيديو المدمجة مجاناً لجميع زوار الموقع، لتمكين الجميع من تجربة التوليد الفوري للمشاهد السينمائية ومخططات الإخراج (Storyboards). إليك في هذا الدليل الشامل كل ما تحتاج لمعرفته لاحتراف هذه التقنية وصناعة فيديوهات تتصدر المشاهدات:',
-      '1. كيف تعمل تقنية تحويل النص إلى فيديو (Diffusion & Spatio-Temporal Video Models): تعتمد خوارزميات الفيديو الحديثة (مثل OpenAI Sora، Runway Gen-3 Alpha، Kling AI، وPika) على فهم العلاقات المكانية والزمنية. يقوم النموذج بتحليل الكلمات المفتاحية في النص، وتوليد إطارات متتالية تحافظ على ثبات ملامح الشخصيات والمنتجات وحركة الضوء والفيزياء الواقعية دون اهتزاز أو تشوهات بصرية.',
-      '2. هندسة البرومبت الإخراجي (Cinematic Prompt Engineering): للحصول على فيديو فائق الواقعية، يجب ألا تكتفي بوصف العنصر فقط، بل حدد أربعة عناصر إخراجية جوهرية: زاوية وحركة الكاميرا (مثل Slow Push-in، أو 360 Orbit، أو Extreme Macro)، نوع العدسة والعمق الميداني (Anamorphic Lens, Shallow Depth of Field f/1.2)، الإضاءة والأجواء (Cinematic Golden Hour, Dramatic Rim Lighting, Volumetric Fog)، ومعدل الإطارات ونعومة الحركة (4K 60fps Photorealistic).',
-      '3. صناعة إعلانات المنتجات الفاخرة للريلز والتيك توك: إذا كنت تدير متجراً للمنتجات الرقمية أو العطور أو الهدايا، فإن الفيديوهات القصيرة (بأبعاد 9:16) هي الأسرع انتشاراً ومبيعات. يمكنك إدخال سيناريو يركز على تفاصيل المنتج، كانبعاث دخان العود الملكي بهدوء فوق رمال الصحراء الذهبية، مع تعليق صوتي فخم يجذب المشاهد في أول 3 ثوانٍ وهي اللحظة الحاسمة لمنع التخطي (Hook).',
-      '4. تنظيم المخطط الزمني للمشاهد (Storyboard Breakdown): أفضل الفيديوهات الناجحة لا تعتمد على لقطة واحدة ممتدة، بل تتكون من 3 لقطات متناسقة: لقطة تأسيسية خاطفة (00:00 - 00:03) تلفت الانتباه، لقطة تفصيلية مقربة للمنتج أو الفكرة (00:03 - 00:07)، ولقطة ختامية متوازنة مع دعوة صريحة للعمل (00:07 - 00:10).',
-      '5. جرب الأداة التفاعلية المدمجة الآن: وفرنا لك في حنان ستور أداة تحويل النص إلى فيديو التفاعلية مباشرة على الموقع، لتوليد سيناريوهاتك، معاينة المحاكاة البصرية، ونسخ البرومبت الشامل الجاهز للاستخدام الفوري بضغطة زر واحدة.'
+      'يشهد عام 2026 ثورة بصرية غير مسبوقة في صناعة المحتوى الرقمي، حيث تحولت فكرة تحويل الكلمات والسيناريوهات المكتوبة إلى مقاطع فيديو فائقة الدقة والواقعية من خيال علمي إلى حقيقة يومية في متناول الجميع. لم يعد صناع المحتوى ورواد الأعمال بحاجة إلى معدات تصوير باهظة الثمن أو استوديوهات إضاءة معقدة لإنتاج مقاطع فيديو تسويقية تأسر الأنظار.',
+      'نقدم في هذا الدليل التخصصي لرواد الأعمال وصناع المحتوى مراجعة شاملة لأحدث منصات الذكاء الاصطناعي العالمية لإنتاج الفيديو، مع أسرار صياغة السيناريوهات الإخراجية التي تتصدر المشاهدات:',
+      '1. كيف تعمل تقنية إنتاج الفيديو بالذكاء الاصطناعي (Diffusion & Spatio-Temporal Video Models): تعتمد خوارزميات الفيديو الحديثة على فهم العلاقات المكانية والزمنية. يقوم النموذج بتحليل الكلمات المفتاحية في النص، وتوليد إطارات متتالية تحافظ على ثبات ملامح المنتجات وحركة الضوء والفيزياء الواقعية دون اهتزاز.',
+      '2. هندسة البرومبت الإخراجي (Cinematic Prompt Engineering): للحصول على نتائج مميزة، يجب ألا تكتفي بوصف العنصر فقط، بل حدد أربعة عناصر إخراجية جوهرية: زاوية وحركة الكاميرا (مثل Slow Push-in، أو 360 Orbit)، نوع العدسة والعمق الميداني، الإضاءة والأجواء، ومعدل الإطارات ونعومة الحركة.',
+      '3. صناعة إعلانات المنتجات للريلز والتيك توك: إذا كنت تدير متجراً للمنتجات الرقمية أو العطور أو الهدايا، فإن الفيديوهات القصيرة هي الأسرع انتشاراً ومبيعات. يمكنك إعداد سيناريو يركز على تفاصيل المنتج مع تعليق صوتي يجذب المشاهد في أول 3 ثوانٍ.',
+      '4. تنظيم المخطط الزمني للمشاهد (Storyboard Breakdown): أفضل الفيديوهات الناجحة لا تعتمد على لقطة واحدة ممتدة، بل تتكون من 3 لقطات متناسقة: لقطة تأسيسية خاطفة (00:00 - 00:03) تلفت الانتباه، لقطة تفصيلية مقربة للمنتج أو الفكرة (00:03 - 00:07)، ولقطة ختامية متوازنة مع دعوة صريحة للعمل.',
+      '5. أفضل المنصات العالمية الموصى بها في 2026: نوصي صناع المحتوى بالاعتماد على المنصات الرائدة مثل Runway Gen-3 للتحكم الحركي، وKling AI للإعلانات التسويقية المتزامنة مع الصوت.'
     ],
     contentEn: [
-      'In 2026, generative video AI has democratized high-end cinematography, enabling solopreneurs and creators to turn raw text into breathtaking 4K footage within seconds.',
-      'Hanan Store has introduced an integrated AI Text-to-Video tool directly on the platform to empower creators. Here is your roadmap to mastering generative video prompts and storyboard production:',
-      '1. Understanding Temporal Video Models: Cutting-edge systems (Sora, Runway Gen-3, Kling) leverage spatio-temporal diffusion to ensure consistent physics, lighting coherence, and character fidelity across consecutive video frames.',
-      '2. Cinematic Prompt Architecture: Specify camera dynamics (Slow Push-In, 360 Orbit), lens depth (50mm f/1.2 anamorphic), volumetric lighting, and color grading to unlock cinematic elegance.',
-      '3. Formats for Viral Reach: Leverage 9:16 vertical orientation for TikTok and Instagram Reels. Craft high-impact 3-second visual hooks focusing on tactile textures and emotional storytelling.',
-      '4. Three-Act Storyboard: Structure your clip into an establishing opener, a detailed macro feature showcase, and an authoritative closing call-to-action.',
-      '5. Try the Interactive Built-in Tool: Click the button below to launch our free AI Text-to-Video tool and generate your custom storyboards right now.'
+      'In 2026, generative video AI has enabled solopreneurs and creators to turn text into engaging promotional footage within seconds.',
+      'Here is your roadmap to mastering generative video prompts and storyboard production for brand growth:',
+      '1. Understanding Temporal Video Models: Cutting-edge systems leverage spatio-temporal diffusion to ensure consistent physics, lighting coherence, and fidelity across consecutive video frames.',
+      '2. Cinematic Prompt Architecture: Specify camera dynamics (Slow Push-In, 360 Orbit), lens depth, volumetric lighting, and color grading to unlock cinematic elegance.',
+      '3. Formats for Viral Reach: Leverage 9:16 vertical orientation for TikTok and Instagram Reels. Craft high-impact 3-second visual hooks focusing on tactile textures.',
+      '4. Three-Act Storyboard: Structure your clip into an establishing opener, a detailed feature showcase, and an authoritative closing call-to-action.',
+      '5. Strategic Tool Selection: Combine prompt craft with high-end tools to build engaging promotional campaigns.'
     ],
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
     isNew: true
@@ -698,13 +697,11 @@ const ARTICLES: Article[] = [
 
 interface BlogSectionProps {
   lang: Language;
-  onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
 }
 
 export const BlogSection: React.FC<BlogSectionProps> = ({ 
   lang,
-  onOpenTextToVideo,
   onOpenArticleWriter
 }) => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -888,31 +885,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             </div>
 
             {/* Interactive Tool Callouts if available */}
-            {selectedArticle.toolActionType === 'text-to-video' && (
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border border-amber-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                <div className="space-y-1 text-center sm:text-start">
-                  <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">
-                    {isAr ? 'أداة تفاعلية مدمجة على الموقع' : 'Interactive In-Site Tool'}
-                  </span>
-                  <h3 className="font-serif font-bold text-white text-base">
-                    {isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن مجاناً' : 'Try AI Text to Video Generator Now'}
-                  </h3>
-                  <p className="text-xs text-stone-300">
-                    {isAr ? 'أدخل النص وشاهد محاكاة المشاهد، حركة الكاميرا، والبرومبت الإخراجي الشامل.' : 'Enter your script and view simulated scene cuts, 4K prompts and storyboard.'}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onOpenTextToVideo) onOpenTextToVideo();
-                  }}
-                  className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-md transition-transform hover:scale-105 cursor-pointer whitespace-nowrap"
-                >
-                  {isAr ? 'فتح أداة الفيديو الآن 🎬' : 'Open Video Tool 🎬'}
-                </button>
-              </div>
-            )}
-
             {selectedArticle.toolActionType === 'article-writer' && (
               <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/40 text-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
                 <div className="space-y-1 text-center sm:text-start">
@@ -1120,21 +1092,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                         </p>
 
                         {/* Quick Direct Action Tool Button on Card */}
-                        {article.toolActionType === 'text-to-video' && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (onOpenTextToVideo) onOpenTextToVideo();
-                            }}
-                            aria-label={isAr ? 'تشغيل أداة تحويل النص إلى فيديو' : 'Launch Text to Video tool'}
-                            className="w-full mt-2 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-stone-950 text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
-                          >
-                            <Sparkles className="w-3.5 h-3.5 fill-current" />
-                            <span>{isAr ? 'جرّب أداة تحويل النص إلى فيديو الآن 🎬' : 'Launch Text to Video Tool 🎬'}</span>
-                          </button>
-                        )}
-
                         {article.toolActionType === 'article-writer' && (
                           <button
                             type="button"

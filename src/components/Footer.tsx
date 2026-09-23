@@ -20,7 +20,6 @@ interface FooterProps {
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
   onOpenSearchConsole?: () => void;
   onOpenSitemapViewer?: (type: 'sitemap' | 'robots' | 'ads') => void;
-  onOpenTextToVideo?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenAdSenseAudit?: () => void;
   onOpenMobileOptimizer?: () => void;
@@ -33,7 +32,6 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenLegal,
   onOpenSearchConsole,
   onOpenSitemapViewer,
-  onOpenTextToVideo,
   onOpenArticleWriter,
   onOpenAdSenseAudit,
   onOpenMobileOptimizer
@@ -153,27 +151,15 @@ export const Footer: React.FC<FooterProps> = ({
                   {lang === 'ar' ? 'المجوهرات والإكسسوارات' : 'Fine Jewelry & Gold'}
                 </button>
               </li>
-              {onOpenTextToVideo && (
-                <li className="pt-2 border-t border-stone-800/80">
-                  <button 
-                    id="footer-tool-video-btn"
-                    onClick={onOpenTextToVideo}
-                    className="hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 text-amber-400 font-bold"
-                  >
-                    <span>🎬</span>
-                    <span>{lang === 'ar' ? 'أداة تحويل النص إلى فيديو (مجاناً)' : 'AI Text-to-Video Tool (Free)'}</span>
-                  </button>
-                </li>
-              )}
               {onOpenArticleWriter && (
-                <li>
+                <li className="pt-2 border-t border-stone-800/80">
                   <button 
                     id="footer-tool-writer-btn"
                     onClick={onOpenArticleWriter}
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 text-emerald-400 font-bold"
                   >
                     <span>✍️</span>
-                    <span>{lang === 'ar' ? 'أداة كتابة المقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool (Free)'}</span>
+                    <span>{lang === 'ar' ? 'أداة كتابة المقالات بالذكاء الاصطناعي (مجاناً)' : 'AI Article Writer Tool (Free)'}</span>
                   </button>
                 </li>
               )}
