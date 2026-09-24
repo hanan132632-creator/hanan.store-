@@ -28,7 +28,7 @@ const ARTICLES: Article[] = [
     categoryAr: 'ذكاء مالي واستثمار واعي 💎',
     categoryEn: 'Financial Wellness & Mindful Wealth 💎',
     categoryKey: 'luxury',
-    date: '2026-09-24',
+    date: '2026-09-25',
     readTime: '11 دقيقة',
     summaryAr: 'دليل شامل وغير مسبوق في الثقافة المالية الشخصية: تفكيك علم النفس العصبي للشراء اللحظي (Dopamine Traps)، بروتوكول الـ 72 ساعة للتسوق الذكي دون حرمان، التطبيق العملي لمصفوفة (50/30/20) وفق الواقع الاقتصادي الخليجي والعربي، أسرار حفظ القيمة بين الذهب السبائكي والمجوهرات والفضة الإسترلينية 925، وكيف تبنين صندوق طوارئ يمنحكِ استقلالاً وسلاماً نفسياً دائماً.',
     summaryEn: 'A pioneering masterclass in personal financial wellness and behavioral economics: deconstructing dopamine shopping traps, the 72-Hour Cart Cooling Protocol, the modernized 50/30/20 lifestyle budgeting matrix, navigating wealth preservation via bullion, 925 sterling silver, and fine jewelry, and constructing an infallible peace-of-mind emergency reserve.',
