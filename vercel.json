@@ -71,6 +71,7 @@
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" },
     {
       "source": "/((?!assets/|api/|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot)$).*)",
       "destination": "/index.html"

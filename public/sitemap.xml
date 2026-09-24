@@ -4,7 +4,7 @@
   <!-- 1. Homepage & Primary Domain -->
   <url>
     <loc>https://xn--mgblao3hjb.store/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,9 +68,17 @@
   <!-- 10. Editorial Blog -->
   <url>
     <loc>https://xn--mgblao3hjb.store/#hanan-blog</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- 10.0. Blog Article: Mindful Financial Intelligence & Wealth Preservation 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/#article-mindful-financial-intelligence-wealth-preservation-2026</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <!-- 10.0. Blog Article: Mindful Time Architecture & Female Productivity 2026 -->
