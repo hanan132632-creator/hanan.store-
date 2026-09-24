@@ -5,6 +5,46 @@
   "cleanUrls": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/adsense-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/adsense-standards",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
       "source": "/html/:path*",
       "destination": "/#hanan-blog",
       "permanent": true
@@ -17,16 +57,6 @@
     {
       "source": "/article-:path*",
       "destination": "/#hanan-blog",
-      "permanent": true
-    },
-    {
-      "source": "/404.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/404",
-      "destination": "/",
       "permanent": true
     }
   ],
@@ -42,7 +72,7 @@
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/contact", "destination": "/contact/index.html" },
     {
-      "source": "/((?!assets/|api/|terms|privacy|about|contact|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot|html)$).*)",
+      "source": "/((?!assets/|api/|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot)$).*)",
       "destination": "/index.html"
     }
   ],
