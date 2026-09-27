@@ -32,21 +32,26 @@ const articleStatsStore: Record<string, { views: number; likes: number; liveRead
   'skincare-routine-guide': { views: 2680, likes: 260, liveReaders: 17 }
 };
 
-// Background live fluctuation generator every 20 seconds to keep counts organically live and dynamic
+// Background live fluctuation generator every 5 seconds to keep counts organically live and dynamic
 setInterval(() => {
   const keys = Object.keys(articleStatsStore);
   if (keys.length === 0) return;
-  const randomKey = keys[Math.floor(Math.random() * keys.length)];
-  const item = articleStatsStore[randomKey];
-  if (item) {
-    // 60% chance to increment a view somewhere
-    if (Math.random() > 0.4) {
+  
+  // Update 2-4 random articles every cycle
+  const countToUpdate = Math.floor(2 + Math.random() * 3);
+  for (let i = 0; i < countToUpdate; i++) {
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    const item = articleStatsStore[randomKey];
+    if (item) {
       item.views += 1;
+      // 55% chance to increment like as well
+      if (Math.random() > 0.45) {
+        item.likes += 1;
+      }
+      item.liveReaders = Math.max(9, Math.min(52, item.liveReaders + (Math.random() > 0.45 ? 1 : -1)));
     }
-    // Dynamic fluctuation for live readers (10-45)
-    item.liveReaders = Math.max(8, Math.min(45, item.liveReaders + (Math.random() > 0.48 ? 1 : -1)));
   }
-}, 20000);
+}, 5000);
 
 async function startServer() {
   const app = express();

@@ -759,6 +759,8 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   const [copied, setCopied] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [poppingHeartId, setPoppingHeartId] = useState<string | null>(null);
+  const [pulsingViewIds, setPulsingViewIds] = useState<Record<string, boolean>>({});
+  const [pulsingLikeIds, setPulsingLikeIds] = useState<Record<string, boolean>>({});
   const isAr = lang === 'ar';
 
   // Helper for numbers formatting
@@ -841,7 +843,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     };
   }, []);
 
-  // 5. Active Live Simulation Interval (Fluctuates readers & adds views dynamically)
+  // 5. Active Real-Time Live Simulation Interval (Every 3.5 seconds for views, likes, and readers)
   useEffect(() => {
     const timer = setInterval(() => {
       setStats((prev) => {
@@ -849,18 +851,76 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         const keys = Object.keys(next);
         if (keys.length === 0) return prev;
 
-        // Choose 1 or 2 random articles to fluctuate
-        const randomKey = keys[Math.floor(Math.random() * keys.length)];
-        const current = next[randomKey];
-        if (current) {
-          const delta = Math.random() > 0.48 ? 1 : -1;
-          const newReaders = Math.max(7, Math.min(48, current.liveReaders + delta));
-          const shouldAddView = Math.random() > 0.35;
-          next[randomKey] = {
-            ...current,
-            liveReaders: newReaders,
-            views: current.views + (shouldAddView ? 1 : 0)
+        const updatedViewIds: string[] = [];
+        const updatedLikeIds: string[] = [];
+
+        // If an article is currently open, prioritize updating its active readers, views & likes
+        if (selectedArticle && next[selectedArticle.id]) {
+          const sel = next[selectedArticle.id];
+          const newLive = Math.max(12, Math.min(54, sel.liveReaders + (Math.random() > 0.45 ? 1 : -1)));
+          const addView = Math.random() > 0.25;
+          const addLike = Math.random() > 0.55;
+
+          next[selectedArticle.id] = {
+            ...sel,
+            liveReaders: newLive,
+            views: sel.views + (addView ? 1 : 0),
+            likes: sel.likes + (addLike ? 1 : 0)
           };
+          if (addView) updatedViewIds.push(selectedArticle.id);
+          if (addLike) updatedLikeIds.push(selectedArticle.id);
+        }
+
+        // Also update 1 to 2 random articles from the list
+        const randCount = Math.floor(1 + Math.random() * 2);
+        for (let i = 0; i < randCount; i++) {
+          const randomKey = keys[Math.floor(Math.random() * keys.length)];
+          const current = next[randomKey];
+          if (current) {
+            const delta = Math.random() > 0.45 ? 1 : -1;
+            const newReaders = Math.max(9, Math.min(48, current.liveReaders + delta));
+            const addLike = Math.random() > 0.6;
+            next[randomKey] = {
+              ...current,
+              liveReaders: newReaders,
+              views: current.views + 1,
+              likes: current.likes + (addLike ? 1 : 0)
+            };
+            updatedViewIds.push(randomKey);
+            if (addLike) updatedLikeIds.push(randomKey);
+          }
+        }
+
+        // Trigger view pulsation
+        if (updatedViewIds.length > 0) {
+          const pulseMap: Record<string, boolean> = {};
+          updatedViewIds.forEach((id) => {
+            pulseMap[id] = true;
+          });
+          setPulsingViewIds((p) => ({ ...p, ...pulseMap }));
+          setTimeout(() => {
+            setPulsingViewIds((p) => {
+              const cleaned = { ...p };
+              updatedViewIds.forEach((id) => delete cleaned[id]);
+              return cleaned;
+            });
+          }, 1500);
+        }
+
+        // Trigger like pulsation & heart pop
+        if (updatedLikeIds.length > 0) {
+          const likePulseMap: Record<string, boolean> = {};
+          updatedLikeIds.forEach((id) => {
+            likePulseMap[id] = true;
+          });
+          setPulsingLikeIds((p) => ({ ...p, ...likePulseMap }));
+          setTimeout(() => {
+            setPulsingLikeIds((p) => {
+              const cleaned = { ...p };
+              updatedLikeIds.forEach((id) => delete cleaned[id]);
+              return cleaned;
+            });
+          }, 1500);
         }
 
         try {
@@ -870,10 +930,10 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         }
         return next;
       });
-    }, 14000);
+    }, 3500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [selectedArticle]);
 
   // Deep-linking: auto-open article modal if URL contains /article/<id>, /blog/<id>, #article-<id>, or #blog-<id>
   useEffect(() => {
@@ -1167,17 +1227,33 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
                   {/* Dynamic Live Stats Engagement Bar */}
                   <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-stone-900 via-stone-950 to-stone-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg border border-amber-500/30">
-                    <div className="flex items-center gap-4 text-xs font-bold flex-wrap justify-center sm:justify-start">
-                      {/* Live Readers Badge */}
-                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-emerald-300">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>{formatNumber(artStats.liveReaders)} {isAr ? 'شخص يقرؤون الآن' : 'Live Readers'}</span>
+                    <div className="flex items-center gap-3 sm:gap-4 text-xs font-bold flex-wrap justify-center sm:justify-start">
+                      {/* Live Readers Badge with dynamic pulsation */}
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/90 border border-emerald-500/60 text-emerald-300 shadow-xs transition-all duration-300">
+                        <span className="relative flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <span className="transition-all duration-300">
+                          {formatNumber(artStats.liveReaders)} {isAr ? 'شخص يقرؤون الآن' : 'Live Readers'}
+                        </span>
                       </div>
 
                       {/* Live Total Views Badge */}
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-800/90 border border-stone-700 text-stone-200">
-                        <Eye className="w-3.5 h-3.5 text-amber-400" />
-                        <span>{formatNumber(artStats.views)} {isAr ? 'مشاهدة موثقة' : 'Views'}</span>
+                      <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-300 ${
+                        pulsingViewIds[selectedArticle.id]
+                          ? 'bg-emerald-900 border-emerald-400 text-emerald-200 scale-105 shadow-md ring-2 ring-emerald-400/40'
+                          : 'bg-stone-800/90 border-stone-700 text-stone-200'
+                      }`}>
+                        <Eye className={`w-3.5 h-3.5 ${pulsingViewIds[selectedArticle.id] ? 'text-emerald-300 animate-spin' : 'text-amber-400'}`} />
+                        <span className="transition-all duration-300 font-mono">
+                          {formatNumber(artStats.views)} {isAr ? 'مشاهدة حية' : 'Live Views'}
+                        </span>
+                        {pulsingViewIds[selectedArticle.id] && (
+                          <span className="text-[10px] text-emerald-300 font-bold animate-bounce bg-emerald-950/80 px-1.5 py-0.5 rounded-full">
+                            +1
+                          </span>
+                        )}
                       </div>
                     </div>
 
@@ -1189,15 +1265,22 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                         className={`px-5 py-2 rounded-full font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md ${
                           isLiked
                             ? 'bg-rose-600 hover:bg-rose-500 text-white scale-105 ring-4 ring-rose-500/30'
+                            : pulsingLikeIds[selectedArticle.id]
+                            ? 'bg-gradient-to-r from-rose-500 to-pink-600 text-white scale-110 ring-4 ring-rose-400/50 shadow-rose-500/40 shadow-lg'
                             : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 hover:scale-105'
-                        } ${isPopping ? 'animate-bounce' : ''}`}
+                        } ${isPopping || pulsingLikeIds[selectedArticle.id] ? 'animate-bounce' : ''}`}
                       >
-                        <Heart className={`w-4 h-4 ${isLiked ? 'fill-white text-white' : 'fill-stone-950 text-stone-950'}`} />
+                        <Heart className={`w-4 h-4 ${isLiked || pulsingLikeIds[selectedArticle.id] ? 'fill-white text-white animate-pulse' : 'fill-stone-950 text-stone-950'}`} />
                         <span>
                           {isLiked
                             ? (isAr ? `معجب بالمقال (${formatNumber(artStats.likes)})` : `Liked (${formatNumber(artStats.likes)})`)
                             : (isAr ? `أعجبني (${formatNumber(artStats.likes)})` : `Like (${formatNumber(artStats.likes)})`)}
                         </span>
+                        {pulsingLikeIds[selectedArticle.id] && (
+                          <span className="text-[10px] bg-white text-rose-600 font-extrabold px-1.5 py-0.5 rounded-full shadow-xs">
+                            +1 ❤️
+                          </span>
+                        )}
                       </button>
                     </div>
                   </div>
@@ -1299,12 +1382,19 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                       onClick={(e) => toggleLike(selectedArticle.id, e)}
                       className={`px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer shadow-sm ${
                         isLiked
-                          ? 'bg-rose-600 text-white hover:bg-rose-500 scale-105'
+                          ? 'bg-rose-600 text-white hover:bg-rose-500 scale-105 shadow-rose-500/30 ring-2 ring-rose-400'
+                          : pulsingLikeIds[selectedArticle.id]
+                          ? 'bg-rose-500 text-white scale-105 shadow-md ring-2 ring-rose-300 animate-bounce'
                           : 'bg-white hover:bg-rose-50 text-rose-700 border border-rose-300 hover:border-rose-400'
                       }`}
                     >
-                      <Heart className={`w-4 h-4 ${isLiked ? 'fill-white text-white' : 'fill-rose-500 text-rose-500'}`} />
+                      <Heart className={`w-4 h-4 ${isLiked || pulsingLikeIds[selectedArticle.id] ? 'fill-white text-white animate-pulse' : 'fill-rose-500 text-rose-500'}`} />
                       <span>{isLiked ? (isAr ? 'معجب به' : 'Liked') : (isAr ? 'سجّل إعجابك' : 'Like Post')} ({formatNumber(artStats.likes)})</span>
+                      {pulsingLikeIds[selectedArticle.id] && (
+                        <span className="text-[10px] bg-white text-rose-600 font-extrabold px-1.5 py-0.5 rounded-full shadow-xs">
+                          +1 ❤️
+                        </span>
+                      )}
                     </button>
                     <button
                       type="button"
@@ -1472,10 +1562,17 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                       </div>
 
                       {/* Dynamic Live View Badge Over Image */}
-                      <div className="absolute bottom-2.5 start-2.5 px-2.5 py-1 rounded-full bg-stone-950/80 backdrop-blur-md text-white text-[10px] font-bold flex items-center gap-1.5 border border-white/10 shadow-xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <Eye className="w-3 h-3 text-amber-300" />
-                        <span>{formatNumber(artStats.views)}</span>
+                      <div className={`absolute bottom-2.5 start-2.5 px-2.5 py-1 rounded-full backdrop-blur-md text-[10px] font-bold flex items-center gap-1.5 border shadow-xs transition-all duration-300 ${
+                        pulsingViewIds[article.id]
+                          ? 'bg-emerald-900/95 border-emerald-400 text-emerald-200 scale-110 shadow-lg ring-2 ring-emerald-400/50'
+                          : 'bg-stone-950/80 border-white/10 text-white'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${pulsingViewIds[article.id] ? 'bg-emerald-300 animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
+                        <Eye className={`w-3 h-3 ${pulsingViewIds[article.id] ? 'text-emerald-300' : 'text-amber-300'}`} />
+                        <span className="font-mono">{formatNumber(artStats.views)}</span>
+                        {pulsingViewIds[article.id] && (
+                          <span className="text-[9px] text-emerald-300 font-extrabold animate-bounce">+1</span>
+                        )}
                       </div>
                     </div>
 
@@ -1522,7 +1619,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
                       {/* Interactive Engagement & Read CTA Footer */}
                       <div className="pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
-                        {/* Live Likes Button with active toggle & pop */}
+                        {/* Live Likes Button with active toggle & pop & dynamic pulsation */}
                         <button
                           type="button"
                           onClick={(e) => toggleLike(article.id, e)}
@@ -1530,11 +1627,20 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                             isLiked
                               ? 'bg-rose-50 text-rose-700 border border-rose-300 shadow-xs scale-105'
+                              : pulsingLikeIds[article.id]
+                              ? 'bg-rose-500 text-white border-rose-400 scale-110 shadow-md ring-2 ring-rose-300 animate-bounce'
                               : 'bg-stone-50 hover:bg-rose-50 text-stone-700 hover:text-rose-600 border border-stone-200 hover:border-rose-200'
                           } ${isPopping ? 'animate-bounce' : ''}`}
                         >
-                          <Heart className={`w-3.5 h-3.5 transition-transform ${isLiked ? 'fill-rose-500 text-rose-500 scale-110' : 'text-stone-400 group-hover:text-rose-500'}`} />
-                          <span>{formatNumber(artStats.likes)}</span>
+                          <Heart className={`w-3.5 h-3.5 transition-transform ${
+                            isLiked || pulsingLikeIds[article.id]
+                              ? 'fill-rose-500 text-rose-500 scale-110'
+                              : 'text-stone-400 group-hover:text-rose-500'
+                          } ${pulsingLikeIds[article.id] ? 'fill-white text-white animate-pulse' : ''}`} />
+                          <span className="font-mono">{formatNumber(artStats.likes)}</span>
+                          {pulsingLikeIds[article.id] && (
+                            <span className="text-[9px] bg-white text-rose-600 font-extrabold px-1 rounded-full shadow-xs">+1</span>
+                          )}
                         </button>
 
                         {/* Read Full Guide Link */}
