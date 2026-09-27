@@ -26,7 +26,6 @@ interface SitePagesMenuProps {
   onSelectCategory: (catId: string) => void;
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
   onOpenArticleWriter?: () => void;
-  onOpenAdSenseAudit?: () => void;
   onOpenMobileOptimizer?: () => void;
 }
 
@@ -37,7 +36,6 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
   onSelectCategory,
   onOpenLegal,
   onOpenArticleWriter,
-  onOpenAdSenseAudit,
   onOpenMobileOptimizer
 }) => {
   const isAr = lang === 'ar';
@@ -345,38 +343,6 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
               </div>
             </div>
             <ArrowUpRight className="w-3.5 h-3.5 text-stone-600" />
-          </button>
-
-          <div className="h-px bg-stone-100 my-1" />
-
-          {/* 7. تقرير مراجعة واعتماد جوجل أدسنس الحي */}
-          <button
-            id="menu-page-adsense-audit"
-            onClick={() => {
-              onClose();
-              onOpenAdSenseAudit?.();
-            }}
-            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-blue-50/70 hover:bg-blue-100/70 text-blue-950 transition-colors text-start group cursor-pointer border border-blue-200/80"
-          >
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                G
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-sm block">
-                    {isAr ? 'تقرير مراجعة Google AdSense' : 'AdSense Audit Report'}
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                </div>
-                <span className="text-[10px] text-blue-700">
-                  {isAr ? 'فحص الشفرة، ads.txt والجاهزية 100%' : 'Audit status & live checks'}
-                </span>
-              </div>
-            </div>
-            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
-              {isAr ? 'عرض ↗' : 'View ↗'}
-            </span>
           </button>
 
         </div>

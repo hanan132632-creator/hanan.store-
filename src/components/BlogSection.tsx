@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Calendar, 
@@ -6,15 +6,9 @@ import {
   ArrowRight, 
   ArrowLeft, 
   Sparkles, 
-  X, 
   Share2, 
   Check, 
-  Heart, 
-  Eye, 
-  Users, 
-  Bookmark, 
-  Flame, 
-  ThumbsUp 
+  Bookmark
 } from 'lucide-react';
 import { Language } from '../types';
 
@@ -758,15 +752,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copied, setCopied] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [poppingHeartId, setPoppingHeartId] = useState<string | null>(null);
-  const [pulsingViewIds, setPulsingViewIds] = useState<Record<string, boolean>>({});
-  const [pulsingLikeIds, setPulsingLikeIds] = useState<Record<string, boolean>>({});
   const isAr = lang === 'ar';
-
-  // Helper for numbers formatting
-  const formatNumber = useCallback((num: number): string => {
-    return num.toLocaleString(isAr ? 'ar-SA' : 'en-US');
-  }, [isAr]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -775,39 +761,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     }, 3500);
   };
 
-  // 1. In-Memory and LocalStorage-backed Live Stats Store
-  const [stats, setStats] = useState<Record<string, { views: number; likes: number; liveReaders: number }>>(() => {
-    try {
-      const cached = localStorage.getItem('hanan_article_stats_v1');
-      if (cached) {
-        return JSON.parse(cached);
-      }
-    } catch {
-      // ignore
-    }
-    const initial: Record<string, { views: number; likes: number; liveReaders: number }> = {};
-    ARTICLES.forEach((art, idx) => {
-      const charSum = art.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-      initial[art.id] = {
-        views: 2100 + (charSum % 2200) + idx * 55,
-        likes: 180 + (charSum % 280) + idx * 9,
-        liveReaders: 15 + (charSum % 18)
-      };
-    });
-    return initial;
-  });
-
-  // 2. User's Liked Articles Map
-  const [likedArticles, setLikedArticles] = useState<Record<string, boolean>>(() => {
-    try {
-      const saved = localStorage.getItem('hanan_liked_articles');
-      return saved ? JSON.parse(saved) : {};
-    } catch {
-      return {};
-    }
-  });
-
-  // 3. User's Saved / Bookmarked Articles Map
+  // User's Saved / Bookmarked Articles Map
   const [savedArticles, setSavedArticles] = useState<Record<string, boolean>>(() => {
     try {
       const saved = localStorage.getItem('hanan_saved_articles');
@@ -817,123 +771,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     }
   });
 
-  // 4. Fetch Live Stats from Backend on Mount
-  useEffect(() => {
-    let isMounted = true;
-    fetch('/api/articles/stats')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (isMounted && data?.success && data?.stats) {
-          setStats((prev) => {
-            const merged = { ...prev, ...data.stats };
-            try {
-              localStorage.setItem('hanan_article_stats_v1', JSON.stringify(merged));
-            } catch {
-              // ignore
-            }
-            return merged;
-          });
-        }
-      })
-      .catch(() => {
-        // silent fallback
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
-  // 5. Active Real-Time Live Simulation Interval (Every 3.5 seconds for views, likes, and readers)
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStats((prev) => {
-        const next = { ...prev };
-        const keys = Object.keys(next);
-        if (keys.length === 0) return prev;
-
-        const updatedViewIds: string[] = [];
-        const updatedLikeIds: string[] = [];
-
-        // If an article is currently open, prioritize updating its active readers, views & likes
-        if (selectedArticle && next[selectedArticle.id]) {
-          const sel = next[selectedArticle.id];
-          const newLive = Math.max(12, Math.min(54, sel.liveReaders + (Math.random() > 0.45 ? 1 : -1)));
-          const addView = Math.random() > 0.25;
-          const addLike = Math.random() > 0.55;
-
-          next[selectedArticle.id] = {
-            ...sel,
-            liveReaders: newLive,
-            views: sel.views + (addView ? 1 : 0),
-            likes: sel.likes + (addLike ? 1 : 0)
-          };
-          if (addView) updatedViewIds.push(selectedArticle.id);
-          if (addLike) updatedLikeIds.push(selectedArticle.id);
-        }
-
-        // Also update 1 to 2 random articles from the list
-        const randCount = Math.floor(1 + Math.random() * 2);
-        for (let i = 0; i < randCount; i++) {
-          const randomKey = keys[Math.floor(Math.random() * keys.length)];
-          const current = next[randomKey];
-          if (current) {
-            const delta = Math.random() > 0.45 ? 1 : -1;
-            const newReaders = Math.max(9, Math.min(48, current.liveReaders + delta));
-            const addLike = Math.random() > 0.6;
-            next[randomKey] = {
-              ...current,
-              liveReaders: newReaders,
-              views: current.views + 1,
-              likes: current.likes + (addLike ? 1 : 0)
-            };
-            updatedViewIds.push(randomKey);
-            if (addLike) updatedLikeIds.push(randomKey);
-          }
-        }
-
-        // Trigger view pulsation
-        if (updatedViewIds.length > 0) {
-          const pulseMap: Record<string, boolean> = {};
-          updatedViewIds.forEach((id) => {
-            pulseMap[id] = true;
-          });
-          setPulsingViewIds((p) => ({ ...p, ...pulseMap }));
-          setTimeout(() => {
-            setPulsingViewIds((p) => {
-              const cleaned = { ...p };
-              updatedViewIds.forEach((id) => delete cleaned[id]);
-              return cleaned;
-            });
-          }, 1500);
-        }
-
-        // Trigger like pulsation & heart pop
-        if (updatedLikeIds.length > 0) {
-          const likePulseMap: Record<string, boolean> = {};
-          updatedLikeIds.forEach((id) => {
-            likePulseMap[id] = true;
-          });
-          setPulsingLikeIds((p) => ({ ...p, ...likePulseMap }));
-          setTimeout(() => {
-            setPulsingLikeIds((p) => {
-              const cleaned = { ...p };
-              updatedLikeIds.forEach((id) => delete cleaned[id]);
-              return cleaned;
-            });
-          }, 1500);
-        }
-
-        try {
-          localStorage.setItem('hanan_article_stats_v1', JSON.stringify(next));
-        } catch {
-          // ignore
-        }
-        return next;
-      });
-    }, 3500);
-
-    return () => clearInterval(timer);
-  }, [selectedArticle]);
 
   // Deep-linking: auto-open article modal if URL contains /article/<id>, /blog/<id>, #article-<id>, or #blog-<id>
   useEffect(() => {
@@ -1147,10 +985,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {/* If an article is selected: Display the Full Dedicated In-Page Article View */}
         {selectedArticle ? (
           (() => {
-            const artStats = stats[selectedArticle.id] || { views: 3420, likes: 380, liveReaders: 24 };
-            const isLiked = !!likedArticles[selectedArticle.id];
             const isSaved = !!savedArticles[selectedArticle.id];
-            const isPopping = poppingHeartId === selectedArticle.id;
 
             return (
               <div className="bg-white rounded-3xl border border-stone-200/90 shadow-xl overflow-hidden p-6 sm:p-10 space-y-8 animate-in fade-in duration-300 relative">
@@ -1202,9 +1037,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Article Header & Live Engagement Indicators */}
+                {/* Article Header & Editorial Attribution */}
                 <div className="space-y-4 max-w-4xl">
-                  {/* Meta Bar with Live Readers */}
+                  {/* Meta Bar */}
                   <div className="flex items-center flex-wrap gap-2 sm:gap-3 text-xs text-stone-600 font-medium">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-amber-700" />
@@ -1217,73 +1052,13 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     </span>
                     <span>•</span>
                     <span className="text-amber-900 font-bold bg-amber-100/90 px-2.5 py-0.5 rounded-full border border-amber-300/80">
-                      ✍️ {isAr ? 'كتابة وبحث بشري 100% • هيئة تحرير حنان ستور' : '100% Human Authored • Editorial Team'}
+                      ✍️ {isAr ? 'كتابة وتوثيق: هيئة تحرير حنان ستور' : 'Author: Hanan Store Editorial Team'}
                     </span>
                   </div>
 
                   <h1 className="font-serif font-black text-stone-900 text-2xl sm:text-3xl lg:text-4xl leading-tight">
                     {isAr ? selectedArticle.titleAr : selectedArticle.titleEn}
                   </h1>
-
-                  {/* Dynamic Live Stats Engagement Bar */}
-                  <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-stone-900 via-stone-950 to-stone-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg border border-amber-500/30">
-                    <div className="flex items-center gap-3 sm:gap-4 text-xs font-bold flex-wrap justify-center sm:justify-start">
-                      {/* Live Readers Badge with dynamic pulsation */}
-                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/90 border border-emerald-500/60 text-emerald-300 shadow-xs transition-all duration-300">
-                        <span className="relative flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                        </span>
-                        <span className="transition-all duration-300">
-                          {formatNumber(artStats.liveReaders)} {isAr ? 'شخص يقرؤون الآن' : 'Live Readers'}
-                        </span>
-                      </div>
-
-                      {/* Live Total Views Badge */}
-                      <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-300 ${
-                        pulsingViewIds[selectedArticle.id]
-                          ? 'bg-emerald-900 border-emerald-400 text-emerald-200 scale-105 shadow-md ring-2 ring-emerald-400/40'
-                          : 'bg-stone-800/90 border-stone-700 text-stone-200'
-                      }`}>
-                        <Eye className={`w-3.5 h-3.5 ${pulsingViewIds[selectedArticle.id] ? 'text-emerald-300 animate-spin' : 'text-amber-400'}`} />
-                        <span className="transition-all duration-300 font-mono">
-                          {formatNumber(artStats.views)} {isAr ? 'مشاهدة حية' : 'Live Views'}
-                        </span>
-                        {pulsingViewIds[selectedArticle.id] && (
-                          <span className="text-[10px] text-emerald-300 font-bold animate-bounce bg-emerald-950/80 px-1.5 py-0.5 rounded-full">
-                            +1
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Prominent Live Like Button */}
-                    <div className="flex items-center gap-2 w-full sm:w-auto justify-center">
-                      <button
-                        type="button"
-                        onClick={(e) => toggleLike(selectedArticle.id, e)}
-                        className={`px-5 py-2 rounded-full font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md ${
-                          isLiked
-                            ? 'bg-rose-600 hover:bg-rose-500 text-white scale-105 ring-4 ring-rose-500/30'
-                            : pulsingLikeIds[selectedArticle.id]
-                            ? 'bg-gradient-to-r from-rose-500 to-pink-600 text-white scale-110 ring-4 ring-rose-400/50 shadow-rose-500/40 shadow-lg'
-                            : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 hover:scale-105'
-                        } ${isPopping || pulsingLikeIds[selectedArticle.id] ? 'animate-bounce' : ''}`}
-                      >
-                        <Heart className={`w-4 h-4 ${isLiked || pulsingLikeIds[selectedArticle.id] ? 'fill-white text-white animate-pulse' : 'fill-stone-950 text-stone-950'}`} />
-                        <span>
-                          {isLiked
-                            ? (isAr ? `معجب بالمقال (${formatNumber(artStats.likes)})` : `Liked (${formatNumber(artStats.likes)})`)
-                            : (isAr ? `أعجبني (${formatNumber(artStats.likes)})` : `Like (${formatNumber(artStats.likes)})`)}
-                        </span>
-                        {pulsingLikeIds[selectedArticle.id] && (
-                          <span className="text-[10px] bg-white text-rose-600 font-extrabold px-1.5 py-0.5 rounded-full shadow-xs">
-                            +1 ❤️
-                          </span>
-                        )}
-                      </button>
-                    </div>
-                  </div>
 
                   {/* Summary Lead Box */}
                   <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-stone-800 text-sm sm:text-base leading-relaxed font-medium">
@@ -1299,14 +1074,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  {/* Floating Live Badge Over Image */}
-                  <div className="absolute bottom-3 start-3 px-3 py-1.5 rounded-full bg-stone-950/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold flex items-center gap-2">
-                    <Eye className="w-3.5 h-3.5 text-amber-400" />
-                    <span>{formatNumber(artStats.views)} {isAr ? 'مشاهدة' : 'Views'}</span>
-                    <span className="text-stone-400">•</span>
-                    <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-rose-500 text-rose-500' : 'text-stone-300'}`} />
-                    <span>{formatNumber(artStats.likes)} {isAr ? 'إعجاب' : 'Likes'}</span>
-                  </div>
                 </div>
 
                 {/* Interactive Tool Callouts if available */}
@@ -1320,7 +1087,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                         {isAr ? 'محرر ومساعد المقالات التحريرية وصياغة السيو ✍️' : 'Editorial & SEO Article Studio'}
                       </h3>
                       <p className="text-xs text-stone-300">
-                        {isAr ? 'صياغة مقالات تحريرية بشرية أصيلة متوافقة مع معايير السيو وشروط قبول Google AdSense.' : 'Craft 100% human-quality, SEO and AdSense compliant long-form articles.'}
+                        {isAr ? 'صياغة مقالات تحريرية بشرية أصيلة متوافقة مع معايير السيو وتجربة القارئ.' : 'Craft 100% human-quality, SEO-optimized long-form articles.'}
                       </p>
                     </div>
                     <button
@@ -1366,57 +1133,38 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   })}
                 </div>
 
-                {/* Article Bottom Engagement Card */}
+                {/* Article Bottom Actions Card */}
                 <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="space-y-1 text-center sm:text-start">
                     <h4 className="font-bold text-stone-900 text-base font-serif">
-                      {isAr ? 'هل نال هذا المقال استحسانك؟' : 'Did you enjoy this guide?'}
+                      {isAr ? 'مشاركة وحفظ الدليل' : 'Save & Share This Guide'}
                     </h4>
                     <p className="text-xs text-stone-600">
-                      {isAr ? 'تفاعلك يساعدنا على إثراء المزيد من المقالات والأدلة الحصرية عالية القيمة.' : 'Your feedback motivates us to produce more high-quality human insights.'}
+                      {isAr ? 'يمكنك حفظ هذا الدليل في مفضلتك أو مشاركة رابطه مع أصدقائك وعائلتك.' : 'Save this guide to your bookmarks or share the link with friends & family.'}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <button
                       type="button"
-                      onClick={(e) => toggleLike(selectedArticle.id, e)}
-                      className={`px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer shadow-sm ${
-                        isLiked
-                          ? 'bg-rose-600 text-white hover:bg-rose-500 scale-105 shadow-rose-500/30 ring-2 ring-rose-400'
-                          : pulsingLikeIds[selectedArticle.id]
-                          ? 'bg-rose-500 text-white scale-105 shadow-md ring-2 ring-rose-300 animate-bounce'
-                          : 'bg-white hover:bg-rose-50 text-rose-700 border border-rose-300 hover:border-rose-400'
+                      onClick={(e) => toggleBookmark(selectedArticle.id, e)}
+                      className={`px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer border ${
+                        isSaved
+                          ? 'bg-amber-100 border-amber-400 text-amber-900 shadow-xs'
+                          : 'bg-white hover:bg-stone-100 text-stone-800 border-stone-300'
                       }`}
                     >
-                      <Heart className={`w-4 h-4 ${isLiked || pulsingLikeIds[selectedArticle.id] ? 'fill-white text-white animate-pulse' : 'fill-rose-500 text-rose-500'}`} />
-                      <span>{isLiked ? (isAr ? 'معجب به' : 'Liked') : (isAr ? 'سجّل إعجابك' : 'Like Post')} ({formatNumber(artStats.likes)})</span>
-                      {pulsingLikeIds[selectedArticle.id] && (
-                        <span className="text-[10px] bg-white text-rose-600 font-extrabold px-1.5 py-0.5 rounded-full shadow-xs">
-                          +1 ❤️
-                        </span>
-                      )}
+                      <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-amber-600 text-amber-700' : 'text-stone-600'}`} />
+                      <span>{isSaved ? (isAr ? 'محفوظ في المفضلة' : 'Saved to Bookmarks') : (isAr ? 'حفظ المقال' : 'Save Article')}</span>
                     </button>
                     <button
                       type="button"
                       onClick={handleShare}
-                      className="px-4 py-2.5 rounded-full bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                      className="px-5 py-2.5 rounded-full bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <Share2 className="w-3.5 h-3.5 text-stone-600" />
-                      <span>{isAr ? 'مشاركة' : 'Share'}</span>
+                      <span>{isAr ? 'مشاركة الرابط' : 'Share Link'}</span>
                     </button>
                   </div>
-                </div>
-
-                {/* AdSense & E-E-A-T Quality Disclosure */}
-                <div className="p-5 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs sm:text-sm space-y-2 max-w-4xl">
-                  <span className="font-bold text-amber-950 block text-sm">
-                    🌿 {isAr ? 'معايير النشر والمصداقية التحريرية (Google AdSense E-E-A-T):' : 'Editorial Quality & Disclosure:'}
-                  </span>
-                  <p className="text-amber-900/90 leading-relaxed">
-                    {isAr
-                      ? 'تمت كتابة وبحث وتوثيق كافة مقالات وأدلة متجر حنان التحريرية بأيدي كُتّاب وباحثين بشريين متخصصين 100% بهدف تقديم قيمة أصيلة ومعرفة نافعة وموثوقة، مع الالتزام التام والامتثال الكامل لسياسات Google AdSense وإرشادات الجودة للمحتوى المفيد (Helpful Content).'
-                      : 'This guide was thoroughly researched, written, and fact-checked by human specialists at Hanan Store, adhering strictly to Google AdSense helpful content guidelines and EEAT principles.'}
-                  </p>
                 </div>
 
                 {/* Next / Previous Navigation & Bottom Return Button */}
@@ -1473,17 +1221,14 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   <BookOpen className="w-3.5 h-3.5 text-amber-700" />
                   <span>{isAr ? 'مقالات وأدلة حنان ستور الحصرية' : 'Hanan Editorial & Guides'}</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300">
-                  <span>✍️ {isAr ? 'محتوى بشري أصيل 100% • معتمد لمعايير AdSense' : '100% Human Authored • AdSense Compliant'}</span>
-                </div>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 font-serif">
                 {isAr ? 'محتوى أصلي ومعرفة تلهم أوقاتك وجمعاتك' : 'Original Insights for Gatherings & Lifestyle'}
               </h2>
               <p className="text-stone-600 text-xs sm:text-sm">
                 {isAr 
-                  ? 'أدلة إرشادية وتجارب متجددة مكتوبة بأيدي متخصصين بشريين لمساعدتك في تنظيم أمتع الجمعات، إدارة الميزانية، واختيار أندر القطع وفق أعلى معايير الجودة (E-E-A-T).'
-                  : 'Helpful articles and expert tips written by human specialists to organize joyful gatherings, enhance digital planning, and discover rare beauty.'}
+                  ? 'أدلة إرشادية وتجارب متجددة لمساعدتك في تنظيم أمتع الجمعات، إدارة الميزانية، واختيار أندر القطع.'
+                  : 'Helpful articles and expert tips to organize joyful gatherings, enhance digital planning, and discover rare beauty.'}
               </p>
             </div>
 
@@ -1506,16 +1251,13 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               ))}
             </div>
 
-            {/* Article Cards Grid with Dynamic Views & Likes */}
+            {/* Article Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredArticles.map((article) => {
                 const title = isAr ? article.titleAr : article.titleEn;
                 const category = isAr ? article.categoryAr : article.categoryEn;
                 const summary = isAr ? article.summaryAr : article.summaryEn;
-                const artStats = stats[article.id] || { views: 2400, likes: 250, liveReaders: 16 };
-                const isLiked = !!likedArticles[article.id];
                 const isSaved = !!savedArticles[article.id];
-                const isPopping = poppingHeartId === article.id;
 
                 return (
                   <article
@@ -1560,20 +1302,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                           <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
                         </button>
                       </div>
-
-                      {/* Dynamic Live View Badge Over Image */}
-                      <div className={`absolute bottom-2.5 start-2.5 px-2.5 py-1 rounded-full backdrop-blur-md text-[10px] font-bold flex items-center gap-1.5 border shadow-xs transition-all duration-300 ${
-                        pulsingViewIds[article.id]
-                          ? 'bg-emerald-900/95 border-emerald-400 text-emerald-200 scale-110 shadow-lg ring-2 ring-emerald-400/50'
-                          : 'bg-stone-950/80 border-white/10 text-white'
-                      }`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${pulsingViewIds[article.id] ? 'bg-emerald-300 animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
-                        <Eye className={`w-3 h-3 ${pulsingViewIds[article.id] ? 'text-emerald-300' : 'text-amber-300'}`} />
-                        <span className="font-mono">{formatNumber(artStats.views)}</span>
-                        {pulsingViewIds[article.id] && (
-                          <span className="text-[9px] text-emerald-300 font-extrabold animate-bounce">+1</span>
-                        )}
-                      </div>
                     </div>
 
                     {/* Content Details */}
@@ -1617,31 +1345,11 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                         )}
                       </div>
 
-                      {/* Interactive Engagement & Read CTA Footer */}
+                      {/* Read CTA Footer */}
                       <div className="pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
-                        {/* Live Likes Button with active toggle & pop & dynamic pulsation */}
-                        <button
-                          type="button"
-                          onClick={(e) => toggleLike(article.id, e)}
-                          aria-label={isAr ? 'تسجيل إعجاب' : 'Like'}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                            isLiked
-                              ? 'bg-rose-50 text-rose-700 border border-rose-300 shadow-xs scale-105'
-                              : pulsingLikeIds[article.id]
-                              ? 'bg-rose-500 text-white border-rose-400 scale-110 shadow-md ring-2 ring-rose-300 animate-bounce'
-                              : 'bg-stone-50 hover:bg-rose-50 text-stone-700 hover:text-rose-600 border border-stone-200 hover:border-rose-200'
-                          } ${isPopping ? 'animate-bounce' : ''}`}
-                        >
-                          <Heart className={`w-3.5 h-3.5 transition-transform ${
-                            isLiked || pulsingLikeIds[article.id]
-                              ? 'fill-rose-500 text-rose-500 scale-110'
-                              : 'text-stone-400 group-hover:text-rose-500'
-                          } ${pulsingLikeIds[article.id] ? 'fill-white text-white animate-pulse' : ''}`} />
-                          <span className="font-mono">{formatNumber(artStats.likes)}</span>
-                          {pulsingLikeIds[article.id] && (
-                            <span className="text-[9px] bg-white text-rose-600 font-extrabold px-1 rounded-full shadow-xs">+1</span>
-                          )}
-                        </button>
+                        <span className="text-[11px] text-stone-500 font-medium">
+                          {isAr ? 'مقال تحريري متكامل' : 'Full Editorial Guide'}
+                        </span>
 
                         {/* Read Full Guide Link */}
                         <div className="flex items-center gap-1 text-xs font-bold text-amber-800 group-hover:text-amber-950 transition-colors">

@@ -3,56 +3,6 @@ import path from "path";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
 
-// In-memory live store for dynamic article views, likes, and active live readers
-const articleStatsStore: Record<string, { views: number; likes: number; liveReaders: number }> = {
-  'mindful-financial-intelligence-wealth-preservation-2026': { views: 3840, likes: 412, liveReaders: 28 },
-  'mindful-time-architecture-female-productivity-2026': { views: 3210, likes: 345, liveReaders: 22 },
-  'personal-color-analysis-capsule-wardrobe-2026': { views: 2980, likes: 289, liveReaders: 19 },
-  'calm-living-sanctuary-guide-2026': { views: 2650, likes: 234, liveReaders: 17 },
-  'hanan-store-official-story-vision-2026': { views: 4620, likes: 582, liveReaders: 34 },
-  'physical-digital-minimalism-guide-2026': { views: 2430, likes: 215, liveReaders: 14 },
-  'ai-text-to-video-tools-guide-2026': { views: 3150, likes: 320, liveReaders: 21 },
-  'ai-article-generator-seo-mastery-2026': { views: 4210, likes: 495, liveReaders: 31 },
-  'oud-incense-masterclass-2026': { views: 2890, likes: 278, liveReaders: 18 },
-  'goodnotes-time-blocking-mastery-2026': { views: 2540, likes: 241, liveReaders: 16 },
-  'fragrance-chemistry-sillage-secrets': { views: 3050, likes: 312, liveReaders: 20 },
-  'cybersecurity-ecommerce-2026': { views: 1980, likes: 185, liveReaders: 12 },
-  'ai-tools-for-solopreneurs-2026': { views: 3670, likes: 388, liveReaders: 25 },
-  'tiktok-snapchat-content-marketing-2026': { views: 2840, likes: 265, liveReaders: 19 },
-  'family-event-planning-checklist': { views: 2190, likes: 208, liveReaders: 15 },
-  'luxury-gifting-etiquette': { views: 3420, likes: 360, liveReaders: 23 },
-  'digital-products-business-2026': { views: 3890, likes: 425, liveReaders: 29 },
-  'majlis-hospitality-incense-rituals': { views: 2760, likes: 280, liveReaders: 18 },
-  'mindful-journaling-habits': { views: 2310, likes: 219, liveReaders: 14 },
-  'gathering-games-guide': { views: 3540, likes: 375, liveReaders: 24 },
-  'digital-planner-tips': { views: 2870, likes: 294, liveReaders: 19 },
-  'royal-perfumes-guide': { views: 4120, likes: 468, liveReaders: 27 },
-  'jewelry-care-guide': { views: 2150, likes: 198, liveReaders: 13 },
-  'abayas-styling-guide': { views: 3340, likes: 352, liveReaders: 22 },
-  'skincare-routine-guide': { views: 2680, likes: 260, liveReaders: 17 }
-};
-
-// Background live fluctuation generator every 5 seconds to keep counts organically live and dynamic
-setInterval(() => {
-  const keys = Object.keys(articleStatsStore);
-  if (keys.length === 0) return;
-  
-  // Update 2-4 random articles every cycle
-  const countToUpdate = Math.floor(2 + Math.random() * 3);
-  for (let i = 0; i < countToUpdate; i++) {
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    const item = articleStatsStore[randomKey];
-    if (item) {
-      item.views += 1;
-      // 55% chance to increment like as well
-      if (Math.random() > 0.45) {
-        item.likes += 1;
-      }
-      item.liveReaders = Math.max(9, Math.min(52, item.liveReaders + (Math.random() > 0.45 ? 1 : -1)));
-    }
-  }
-}, 5000);
-
 async function startServer() {
   const app = express();
   const PORT = 3000;
@@ -136,59 +86,6 @@ async function startServer() {
         overallScore: 97,
         adSenseCompatibility: "100% Compatible",
         nodes,
-      });
-    }
-
-    if (cleanPath === "/articles/stats" && req.method === "GET") {
-      res.setHeader("Cache-Control", "no-cache");
-      return res.status(200).json({
-        success: true,
-        stats: articleStatsStore,
-        timestamp: Date.now()
-      });
-    }
-
-    if (cleanPath.startsWith("/articles/stats/") && cleanPath.endsWith("/like") && req.method === "POST") {
-      const articleId = cleanPath.replace("/articles/stats/", "").replace("/like", "");
-      if (!articleStatsStore[articleId]) {
-        articleStatsStore[articleId] = {
-          views: 1200 + Math.floor(Math.random() * 800),
-          likes: 85 + Math.floor(Math.random() * 40),
-          liveReaders: 12 + Math.floor(Math.random() * 15)
-        };
-      }
-      const isUnlike = req.body?.unlike === true;
-      if (isUnlike) {
-        articleStatsStore[articleId].likes = Math.max(0, articleStatsStore[articleId].likes - 1);
-      } else {
-        articleStatsStore[articleId].likes += 1;
-      }
-      return res.status(200).json({
-        success: true,
-        articleId,
-        stats: articleStatsStore[articleId]
-      });
-    }
-
-    if (cleanPath.startsWith("/articles/stats/") && cleanPath.endsWith("/view") && req.method === "POST") {
-      const articleId = cleanPath.replace("/articles/stats/", "").replace("/view", "");
-      if (!articleStatsStore[articleId]) {
-        articleStatsStore[articleId] = {
-          views: 1200 + Math.floor(Math.random() * 800),
-          likes: 85 + Math.floor(Math.random() * 40),
-          liveReaders: 12 + Math.floor(Math.random() * 15)
-        };
-      }
-      articleStatsStore[articleId].views += 1;
-      // Slight dynamic fluctuation on live readers
-      articleStatsStore[articleId].liveReaders = Math.max(
-        6,
-        Math.min(48, articleStatsStore[articleId].liveReaders + (Math.random() > 0.5 ? 1 : -1))
-      );
-      return res.status(200).json({
-        success: true,
-        articleId,
-        stats: articleStatsStore[articleId]
       });
     }
 

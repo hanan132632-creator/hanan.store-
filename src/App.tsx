@@ -42,7 +42,6 @@ const LegalModal = lazy(() => import('./components/LegalModal').then(m => ({ def
 const SearchConsoleModal = lazy(() => import('./components/SearchConsoleModal').then(m => ({ default: m.SearchConsoleModal })));
 const SitemapViewerModal = lazy(() => import('./components/SitemapViewerModal').then(m => ({ default: m.SitemapViewerModal })));
 const ArticleWriterModal = lazy(() => import('./components/ArticleWriterModal').then(m => ({ default: m.ArticleWriterModal })));
-const AdSenseAuditModal = lazy(() => import('./components/AdSenseAuditModal').then(m => ({ default: m.AdSenseAuditModal })));
 const MobileOptimizerModal = lazy(() => import('./components/MobileOptimizerModal').then(m => ({ default: m.MobileOptimizerModal })));
 const ReviewsSection = lazy(() => import('./components/ReviewsSection').then(m => ({ default: m.ReviewsSection })));
 const BlogSection = lazy(() => import('./components/BlogSection').then(m => ({ default: m.BlogSection })));
@@ -64,7 +63,6 @@ export default function App() {
   const [isSitemapViewerOpen, setIsSitemapViewerOpen] = useState(false);
   const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
   const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
-  const [isAdSenseAuditOpen, setIsAdSenseAuditOpen] = useState(false);
   const [isMobileOptimizerOpen, setIsMobileOptimizerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
@@ -378,8 +376,6 @@ export default function App() {
       // 8. Specialized Editorial Tools & Diagnostic Modals
       if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
         setIsArticleWriterOpen(true);
-      } else if (hash === '#adsense-audit' || hash === '#adsense-report' || path === '/adsense-audit') {
-        setIsAdSenseAuditOpen(true);
       } else if (hash === '#mobile-optimizer' || hash === '#mobile-tool' || path === '/mobile-optimizer') {
         setIsMobileOptimizerOpen(true);
       }
@@ -628,7 +624,6 @@ export default function App() {
           setIsSitemapViewerOpen(true);
         }}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
-        onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
         onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
       />
 
@@ -831,7 +826,6 @@ export default function App() {
             setIsSitemapViewerOpen(true);
           }}
           onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
-          onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
           onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
         />
       </div>
@@ -1000,21 +994,6 @@ export default function App() {
             onClose={handleCloseLegal}
             lang={lang}
             initialTab={legalTab}
-            onOpenAdSenseAudit={() => setIsAdSenseAuditOpen(true)}
-          />
-        )}
-
-        {/* Google AdSense Live Audit & Policy Readiness Report Modal */}
-        {isAdSenseAuditOpen && (
-          <AdSenseAuditModal
-            isOpen={isAdSenseAuditOpen}
-            onClose={() => setIsAdSenseAuditOpen(false)}
-            lang={lang}
-            onOpenLegal={handleOpenLegal}
-            onOpenSitemapViewer={(type) => {
-              setSitemapViewerTab(type);
-              setIsSitemapViewerOpen(true);
-            }}
           />
         )}
 
