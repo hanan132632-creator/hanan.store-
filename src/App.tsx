@@ -18,7 +18,7 @@ import {
   Product 
 } from './types';
 import { CATEGORIES, PRODUCTS } from './data/products';
-import { TRANSLATIONS } from './data/translations';
+import { TRANSLATIONS, getLanguageDirection } from './data/translations';
 import { Header } from './components/Header';
 import { TopCategoryBars } from './components/TopCategoryBars';
 import { Hero } from './components/Hero';
@@ -115,8 +115,8 @@ export default function App() {
   // Keep HTML document lang & dir attributes synchronized
   useEffect(() => {
     document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.title = lang === 'ar'
+    document.documentElement.dir = getLanguageDirection(lang);
+    document.title = (lang === 'ar' || lang === 'ur')
       ? 'Hanan Store - متجر حنان | متجر فاخر xn--mgblao3hjb.store'
       : 'Hanan Store | Luxury Boutique xn--mgblao3hjb.store';
   }, [lang]);

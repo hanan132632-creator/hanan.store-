@@ -1,6 +1,20 @@
-export type Language = 'ar' | 'en';
+export type Language = 'ar' | 'en' | 'fr' | 'tr' | 'es' | 'de' | 'it' | 'ru' | 'zh' | 'ur';
 
-export type Currency = 'SAR' | 'AED' | 'KWD' | 'USD';
+export type Currency = 
+  | 'SAR' 
+  | 'AED' 
+  | 'KWD' 
+  | 'QAR' 
+  | 'BHD' 
+  | 'OMR' 
+  | 'EGP' 
+  | 'USD' 
+  | 'EUR' 
+  | 'GBP' 
+  | 'TRY' 
+  | 'JPY' 
+  | 'CAD' 
+  | 'AUD';
 
 export interface Category {
   id: string;

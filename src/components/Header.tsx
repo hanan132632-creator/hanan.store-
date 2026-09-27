@@ -5,13 +5,15 @@ import {
   Search, 
   Globe, 
   ShieldCheck, 
-  X,
-  PhoneCall,
-  Sparkles,
-  Menu
+  X, 
+  PhoneCall, 
+  Sparkles, 
+  Menu,
+  Check,
+  ChevronDown
 } from 'lucide-react';
 import { Currency, Language } from '../types';
-import { TRANSLATIONS } from '../data/translations';
+import { TRANSLATIONS, LANGUAGES_LIST, CURRENCY_RATES } from '../data/translations';
 
 const SitePagesMenu = React.lazy(() => import('./SitePagesMenu').then(m => ({ default: m.SitePagesMenu })));
 
@@ -56,12 +58,15 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAdSenseAudit,
   onOpenMobileOptimizer
 }) => {
-  const t = TRANSLATIONS[lang];
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.ar;
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
+  const [showLangMenu, setShowLangMenu] = useState(false);
 
-  const currencies: Currency[] = ['SAR', 'AED', 'KWD', 'USD'];
+  const currentCurrencyInfo = CURRENCY_RATES[currency] || CURRENCY_RATES.SAR;
+  const currentLangMeta = LANGUAGES_LIST.find((l) => l.code === lang) || LANGUAGES_LIST[0];
+  const allCurrencies = Object.keys(CURRENCY_RATES) as Currency[];
 
   return (
     <header id="store-header" className="sticky top-0 z-40 bg-white/98 sm:bg-white/95 sm:backdrop-blur-md border-b border-stone-200/80 transition-all duration-300 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)]">
@@ -307,56 +312,139 @@ export const Header: React.FC<HeaderProps> = ({
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Currency Selector */}
+            {/* Luxury Multi-Country Currency Selector */}
             <div className="relative">
               <button
                 id="currency-menu-btn"
-                onClick={() => setShowCurrencyMenu(!showCurrencyMenu)}
-                className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200/70 rounded-full transition-colors cursor-pointer"
-                aria-label={lang === 'ar' ? `تغيير العملة (الحالية: ${currency})` : `Change currency (current: ${currency})`}
+                type="button"
+                onClick={() => {
+                  setShowCurrencyMenu(!showCurrencyMenu);
+                  setShowLangMenu(false);
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-stone-800 hover:text-stone-950 bg-stone-100 hover:bg-stone-200/80 rounded-full transition-all cursor-pointer border border-stone-200/80 shadow-xs"
+                aria-label={lang === 'ar' ? `تغيير العملة (الحالية: ${currency} ${currentCurrencyInfo.flag})` : `Change currency (current: ${currency})`}
                 aria-haspopup="listbox"
                 aria-expanded={showCurrencyMenu}
               >
-                <span>{currency}</span>
+                <span>{currentCurrencyInfo.flag}</span>
+                <span className="font-mono">{currency}</span>
+                <ChevronDown className={`w-3 h-3 text-stone-500 transition-transform duration-200 ${showCurrencyMenu ? 'rotate-180' : ''}`} />
               </button>
               
               {showCurrencyMenu && (
                 <div 
-                  className="absolute end-0 mt-2 w-28 bg-white rounded-xl shadow-xl border border-stone-200 py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  className="absolute end-0 mt-2 w-56 sm:w-64 max-h-80 overflow-y-auto bg-white rounded-2xl shadow-2xl border border-stone-200/90 py-2 z-50 animate-in fade-in zoom-in-95 duration-150 divide-y divide-stone-100 scrollbar-thin"
                   role="listbox"
-                  aria-label={lang === 'ar' ? 'قائمة العملات المتاحة' : 'Available currencies'}
-                  onMouseLeave={() => setShowCurrencyMenu(false)}
+                  aria-label={lang === 'ar' ? 'قائمة عملات دول العالم' : 'Worldwide Currencies'}
                 >
-                  {currencies.map((curr) => (
-                    <button
-                      key={curr}
-                      role="option"
-                      aria-selected={currency === curr}
-                      onClick={() => {
-                        setCurrency(curr);
-                        setShowCurrencyMenu(false);
-                      }}
-                      className={`w-full text-start px-3 py-1.5 text-xs font-medium flex items-center justify-between hover:bg-stone-50 transition-colors cursor-pointer ${currency === curr ? 'text-amber-700 font-bold bg-amber-50/50' : 'text-stone-700'}`}
-                    >
-                      <span>{curr}</span>
-                      {currency === curr && <span className="w-1.5 h-1.5 rounded-full bg-amber-600"></span>}
-                    </button>
-                  ))}
+                  <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-stone-600 bg-stone-50/80">
+                    {lang === 'ar' ? 'اختر عملة دولتك 🌍' : 'Select Your Currency 🌍'}
+                  </div>
+                  <div className="py-1">
+                    {allCurrencies.map((curr) => {
+                      const cInfo = CURRENCY_RATES[curr];
+                      const isSelected = currency === curr;
+                      return (
+                        <button
+                          key={curr}
+                          role="option"
+                          type="button"
+                          aria-selected={isSelected}
+                          onClick={() => {
+                            setCurrency(curr);
+                            setShowCurrencyMenu(false);
+                          }}
+                          className={`w-full text-start px-3.5 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-50/60 transition-colors cursor-pointer ${
+                            isSelected ? 'text-amber-900 font-bold bg-amber-100/50' : 'text-stone-700'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-base leading-none">{cInfo.flag}</span>
+                            <div className="flex flex-col text-start">
+                              <span className="font-bold text-stone-900 text-xs flex items-center gap-1">
+                                <span>{curr}</span>
+                                <span className="text-stone-600 text-[11px]">({lang === 'ar' ? cInfo.symbolAr : cInfo.symbolEn})</span>
+                              </span>
+                              <span className="text-[10px] text-stone-600">
+                                {lang === 'ar' ? cInfo.nameAr : cInfo.nameEn}
+                              </span>
+                            </div>
+                          </div>
+                          {isSelected && <Check className="w-4 h-4 text-amber-600 shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Language Switcher Button */}
-            <button
-              id="language-toggle-btn"
-              onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200/70 rounded-full transition-colors cursor-pointer"
-              title={lang === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'}
-              aria-label={lang === 'ar' ? 'التحويل إلى اللغة الإنجليزية (English)' : 'التحويل إلى اللغة العربية (Arabic)'}
-            >
-              <Globe className="w-3.5 h-3.5 text-stone-500" />
-              <span>{lang === 'ar' ? 'EN' : 'عربي'}</span>
-            </button>
+            {/* Luxury Multi-Language Switcher Dropdown */}
+            <div className="relative">
+              <button
+                id="language-toggle-btn"
+                type="button"
+                onClick={() => {
+                  setShowLangMenu(!showLangMenu);
+                  setShowCurrencyMenu(false);
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-stone-800 hover:text-stone-950 bg-stone-100 hover:bg-stone-200/80 rounded-full transition-all cursor-pointer border border-stone-200/80 shadow-xs"
+                title={lang === 'ar' ? 'تغيير لغة المتجر' : 'Change Website Language'}
+                aria-label={lang === 'ar' ? `تغيير لغة المتجر (الحالية: ${currentLangMeta.nativeName})` : `Change language (current: ${currentLangMeta.name})`}
+                aria-haspopup="listbox"
+                aria-expanded={showLangMenu}
+              >
+                <Globe className="w-3.5 h-3.5 text-amber-600" />
+                <span>{currentLangMeta.flag}</span>
+                <span className="font-medium hidden sm:inline">{currentLangMeta.nativeName}</span>
+                <ChevronDown className={`w-3 h-3 text-stone-500 transition-transform duration-200 ${showLangMenu ? 'rotate-180' : ''}`} />
+              </button>
+
+              {showLangMenu && (
+                <div 
+                  className="absolute end-0 mt-2 w-52 sm:w-56 max-h-80 overflow-y-auto bg-white rounded-2xl shadow-2xl border border-stone-200/90 py-2 z-50 animate-in fade-in zoom-in-95 duration-150 divide-y divide-stone-100 scrollbar-thin"
+                  role="listbox"
+                  aria-label={lang === 'ar' ? 'قائمة لغات المتجر المتاحة' : 'Available Languages'}
+                >
+                  <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-stone-600 bg-stone-50/80">
+                    {lang === 'ar' ? 'اللغات المتاحة في المتجر 🌐' : 'Choose Language 🌐'}
+                  </div>
+                  <div className="py-1">
+                    {LANGUAGES_LIST.map((l) => {
+                      const isSelected = lang === l.code;
+                      return (
+                        <button
+                          key={l.code}
+                          role="option"
+                          type="button"
+                          aria-selected={isSelected}
+                          onClick={() => {
+                            setLang(l.code);
+                            setShowLangMenu(false);
+                          }}
+                          className={`w-full text-start px-3.5 py-2 text-xs font-medium flex items-center justify-between hover:bg-amber-50/60 transition-colors cursor-pointer ${
+                            isSelected ? 'text-amber-900 font-bold bg-amber-100/50' : 'text-stone-700'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-base leading-none">{l.flag}</span>
+                            <div className="flex flex-col text-start">
+                              <span className="font-bold text-stone-900 text-xs">
+                                {l.nativeName}
+                              </span>
+                              <span className="text-[10px] text-stone-600">
+                                {l.name}
+                              </span>
+                            </div>
+                          </div>
+                          {isSelected && <Check className="w-4 h-4 text-amber-600 shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Wishlist Button */}
             <button
