@@ -115,23 +115,63 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   };
 
   const countries = [
-    'المملكة العربية السعودية',
-    'الإمارات العربية المتحدة',
-    'دولة الكويت',
-    'سلطنة عُمان',
-    'دولة قطر',
-    'مملكة البحرين'
+    'المملكة العربية السعودية 🇸🇦',
+    'جمهورية مصر العربية 🇪🇬',
+    'الإمارات العربية المتحدة 🇦🇪',
+    'دولة الكويت 🇰🇼',
+    'دولة قطر 🇶🇦',
+    'سلطنة عُمان 🇴🇲',
+    'مملكة البحرين 🇧🇭',
+    'المملكة الأردنية الهاشمية 🇯🇴',
+    'العراق 🇮🇶',
+    'المغرب 🇲🇦',
+    'الجزائر 🇩🇿',
+    'تونس 🇹🇳',
+    'تركيا 🇹🇷',
+    'الولايات المتحدة الأمريكية 🇺🇸',
+    'المملكة المتحدة 🇬🇧',
+    'أوروبا والدول الأخرى 🌍'
   ];
 
-  const citiesSA = [
-    'الرياض',
+  // All 27 Egyptian Governorates
+  const egyptGovernorates = [
+    'القاهرة (العاصمة)',
+    'الجيزة',
+    'الإسكندرية (عروس البحر المتوسط)',
+    'القليوبية (بنها / شبرا الخيمة)',
+    'الدقهلية (المنصورة)',
+    'الشرقية (الزقازيق)',
+    'الغربية (طنطا / المحلة الكبرى)',
+    'المنوفية (شبين الكوم)',
+    'البحيرة (دمنهور)',
+    'كفر الشيخ',
+    'دمياط (رأس البر)',
+    'بورسعيد',
+    'الإسماعيلية',
+    'السويس',
+    'البحر الأحمر (الغردقة / الجونة / سفاجا)',
+    'جنوب سيناء (شرم الشيخ / دهب / نويبع)',
+    'شمال سيناء (العريش)',
+    'الفيوم',
+    'بني سويف',
+    'المنيا (عروس الصعيد)',
+    'أسيوط',
+    'سوهاج',
+    'قنا',
+    'الأقصر (عاصمة التاريخ)',
+    'أسوان (جوهرة النيل)',
+    'مطروح (الساحل الشمالي / العلمين / مرسى مطروح)',
+    'الوادي الجديد (الخارجة / الداخلة)'
+  ];
+
+  const saudiCities = [
+    'الرياض (العاصمة)',
     'جدة',
     'مكة المكرمة',
     'المدينة المنورة',
     'الدمام',
-    'الخبر',
-    'الظهران',
-    'الأحساء',
+    'الخبر والظهران',
+    'الأحساء والجبيل',
     'القصيم (بريدة / عنيزة)',
     'أبها وخميس مشيط',
     'تبوك',
@@ -139,10 +179,38 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     'الطائف',
     'جازان',
     'نجران',
+    'حفر الباطن',
+    'ينبع'
+  ];
+
+  const otherArabAndWorldCities = [
     'دبي (الإمارات)',
     'أبوظبي (الإمارات)',
-    'الكويت العاصمة'
+    'الكويت العاصمة (الكويت)',
+    'الدوحة (قطر)',
+    'مسقط (عُمان)',
+    'المنامة (البحرين)',
+    'عمان (الأردن)',
+    'بغداد (العراق)',
+    'الدار البيضاء (المغرب)',
+    'الجزائر العاصمة (الجزائر)',
+    'تونس العاصمة (تونس)',
+    'إسطنبول (تركيا)',
+    'لندن (بريطانيا)',
+    'نيويورك (أمريكا)',
+    'مدينة أخرى (أكتبها في الملاحظات)'
   ];
+
+  // Helper to determine the cities list according to selected country
+  const getAvailableCities = () => {
+    if (customer.country.includes('مصر')) {
+      return egyptGovernorates;
+    }
+    if (customer.country.includes('السعودية')) {
+      return saudiCities;
+    }
+    return [...egyptGovernorates.slice(0, 3), ...saudiCities.slice(0, 4), ...otherArabAndWorldCities];
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
@@ -255,8 +323,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </label>
                     <select
                       value={customer.country}
-                      onChange={(e) => setCustomer({ ...customer, country: e.target.value })}
-                      className="w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border border-stone-200 focus:bg-white focus:border-amber-600 focus:outline-none cursor-pointer"
+                      onChange={(e) => {
+                        const newCountry = e.target.value;
+                        const defaultCity = newCountry.includes('مصر') ? 'القاهرة (العاصمة)' : 'الرياض (العاصمة)';
+                        setCustomer({ ...customer, country: newCountry, city: defaultCity });
+                      }}
+                      className="w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border border-stone-200 focus:bg-white focus:border-amber-600 focus:outline-none cursor-pointer font-medium"
                     >
                       {countries.map((c) => (
                         <option key={c} value={c}>{c}</option>
@@ -266,14 +338,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
                   <div>
                     <label className="block text-xs font-bold text-stone-700 mb-1">
-                      {t.city} *
+                      {customer.country.includes('مصر') ? 'المحافظة المصرية (27 محافظة) *' : `${t.city} *`}
                     </label>
                     <select
                       value={customer.city}
                       onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
-                      className="w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border border-stone-200 focus:bg-white focus:border-amber-600 focus:outline-none cursor-pointer"
+                      className="w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border border-stone-200 focus:bg-white focus:border-amber-600 focus:outline-none cursor-pointer font-medium"
                     >
-                      {citiesSA.map((city) => (
+                      {getAvailableCities().map((city) => (
                         <option key={city} value={city}>{city}</option>
                       ))}
                     </select>
@@ -283,13 +355,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-bold text-stone-700 mb-1">
-                      {t.district}
+                      {customer.country.includes('مصر') ? 'المركز / الحي / المنطقة' : t.district}
                     </label>
                     <input
                       type="text"
                       value={customer.district}
                       onChange={(e) => setCustomer({ ...customer, district: e.target.value })}
-                      placeholder={lang === 'ar' ? 'مثال: حي النخيل / الملقا' : 'e.g. Al-Nakheel District'}
+                      placeholder={customer.country.includes('مصر') ? (lang === 'ar' ? 'مثال: المعادي / الشيخ زايد / مصر الجديدة' : 'e.g. Maadi / Zayed') : (lang === 'ar' ? 'مثال: حي النخيل / الملقا' : 'e.g. Al-Nakheel')}
                       className="w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border border-stone-200 focus:bg-white focus:border-amber-600 focus:outline-none"
                     />
                   </div>
@@ -302,7 +374,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                       type="text"
                       value={customer.addressDetails}
                       onChange={(e) => setCustomer({ ...customer, addressDetails: e.target.value })}
-                      placeholder={lang === 'ar' ? 'اسم الشارع، رقم الفيلا أو الشقة' : 'Street name, building / villa no.'}
+                      placeholder={lang === 'ar' ? 'اسم الشارع، رقم العمارة أو الفيلا والشقة' : 'Street name, building / villa no.'}
                       className={`w-full text-xs sm:text-sm bg-stone-50 rounded-xl p-3 border focus:bg-white focus:outline-none ${
                         errors.addressDetails ? 'border-rose-400 ring-1 ring-rose-400' : 'border-stone-200 focus:border-amber-600'
                       }`}
@@ -327,16 +399,105 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
               {/* Section 3: Payment Options */}
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-stone-900 font-bold text-sm border-b border-stone-100 pb-2">
-                  <CreditCard className="w-4 h-4 text-amber-600" />
-                  <span>{t.paymentMethod}</span>
+                <div className="flex items-center justify-between border-b border-stone-100 pb-2">
+                  <div className="flex items-center gap-2 text-stone-900 font-bold text-sm">
+                    <CreditCard className="w-4 h-4 text-amber-600" />
+                    <span>{t.paymentMethod}</span>
+                  </div>
+                  <span className="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold">
+                    {lang === 'ar' ? 'خيارات دفع متعددة وآمنة 🔒' : 'Multi-Payment & Secure 🔒'}
+                  </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   
-                  {/* Mada */}
+                  {/* Vodafone Cash / Smart Wallets / InstaPay (Egypt & Regional) */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'mada' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'vodafone_cash' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === 'vodafone_cash'}
+                      onChange={() => setPaymentMethod('vodafone_cash')}
+                      className="text-amber-600 focus:ring-amber-500"
+                    />
+                    <div className="flex-1">
+                      <span className="text-xs font-bold text-stone-900 flex items-center gap-1">
+                        <span>📱 فودافون كاش / إنستاباي</span>
+                      </span>
+                      <span className="text-[10px] text-stone-500 block">
+                        {lang === 'ar' ? 'فودافون كاش، اتصالات، أورانج، WE كاش، InstaPay' : 'Vodafone Cash, Orange, WE, InstaPay'}
+                      </span>
+                    </div>
+                  </label>
+
+                  {/* InstaPay Dedicated */}
+                  <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === 'instapay' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === 'instapay'}
+                      onChange={() => setPaymentMethod('instapay')}
+                      className="text-amber-600 focus:ring-amber-500"
+                    />
+                    <div className="flex-1">
+                      <span className="text-xs font-bold text-stone-900 flex items-center gap-1">
+                        <span>⚡ إنستاباي (InstaPay)</span>
+                      </span>
+                      <span className="text-[10px] text-stone-500 block">
+                        {lang === 'ar' ? 'تحويل لحظي مباشر لجميع الحسابات والبطاقات' : 'Instant bank & card transfer'}
+                      </span>
+                    </div>
+                  </label>
+
+                  {/* Fawry & Aman */}
+                  <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === 'fawry' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === 'fawry'}
+                      onChange={() => setPaymentMethod('fawry')}
+                      className="text-amber-600 focus:ring-amber-500"
+                    />
+                    <div className="flex-1">
+                      <span className="text-xs font-bold text-stone-900 flex items-center gap-1">
+                        <span>🟡 فوري وأمان (Fawry / Aman)</span>
+                      </span>
+                      <span className="text-[10px] text-stone-500 block">
+                        {lang === 'ar' ? 'كود دفع فوري عبر منافذ فوري وأمان' : 'Pay via Fawry / Aman kiosks'}
+                      </span>
+                    </div>
+                  </label>
+
+                  {/* Meeza Card */}
+                  <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === 'meeza' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === 'meeza'}
+                      onChange={() => setPaymentMethod('meeza')}
+                      className="text-amber-600 focus:ring-amber-500"
+                    />
+                    <div className="flex-1">
+                      <span className="text-xs font-bold text-stone-900 flex items-center gap-1">
+                        <span>💳 كارت ميزة (Meeza)</span>
+                      </span>
+                      <span className="text-[10px] text-stone-500 block">
+                        {lang === 'ar' ? 'بطاقة ميزة البنكية الوطنية المصرية' : 'Egyptian National Meeza Card'}
+                      </span>
+                    </div>
+                  </label>
+
+                  {/* Mada (Saudi) */}
+                  <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === 'mada' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"
@@ -353,7 +514,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
                   {/* Apple Pay */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'apple_pay' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'apple_pay' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"
@@ -368,9 +529,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </div>
                   </label>
 
-                  {/* Visa / Master */}
+                  {/* Visa / MasterCard */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'visa' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'visa' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"
@@ -381,13 +542,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     />
                     <div className="flex-1">
                       <span className="text-xs font-bold text-stone-900 block">{t.creditCard}</span>
-                      <span className="text-[10px] text-stone-500">{lang === 'ar' ? 'فيزا، ماستركارد' : 'Visa & Mastercard'}</span>
+                      <span className="text-[10px] text-stone-500">{lang === 'ar' ? 'فيزا، ماستركارد دولية ومحلية' : 'Visa & Mastercard'}</span>
                     </div>
                   </label>
 
                   {/* Tabby */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'tabby' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'tabby' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"
@@ -404,7 +565,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
                   {/* Tamara */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'tamara' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'tamara' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"
@@ -419,9 +580,28 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </div>
                   </label>
 
+                  {/* Instant Bank Transfer */}
+                  <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === 'bank_transfer' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === 'bank_transfer'}
+                      onChange={() => setPaymentMethod('bank_transfer')}
+                      className="text-amber-600 focus:ring-amber-500"
+                    />
+                    <div className="flex-1">
+                      <span className="text-xs font-bold text-stone-900 block">
+                        {lang === 'ar' ? '🏛️ تحويل بنكي فوري مباشر' : '🏛️ Direct Bank Wire'}
+                      </span>
+                      <span className="text-[10px] text-stone-500">{lang === 'ar' ? 'الأهلي، الراجحي، CIB، بنك مصر، QNB' : 'Major Arab & Intl Banks'}</span>
+                    </div>
+                  </label>
+
                   {/* Cash on Delivery */}
                   <label className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-all ${
-                    paymentMethod === 'cod' ? 'border-amber-500 bg-amber-50/50 shadow-xs' : 'border-stone-200 hover:bg-stone-50'
+                    paymentMethod === 'cod' ? 'border-amber-500 bg-amber-50/50 shadow-xs ring-1 ring-amber-300' : 'border-stone-200 hover:bg-stone-50'
                   }`}>
                     <input
                       type="radio"

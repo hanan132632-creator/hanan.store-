@@ -62,12 +62,29 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
     window.print();
   };
 
+  const getPaymentName = (method: string) => {
+    switch (method) {
+      case 'vodafone_cash': return lang === 'ar' ? 'فودافون كاش / إنستاباي / محافظ المحمول' : 'Vodafone Cash / InstaPay';
+      case 'instapay': return lang === 'ar' ? 'إنستاباي (InstaPay)' : 'InstaPay Transfer';
+      case 'fawry': return lang === 'ar' ? 'فوري وأمان (Fawry / Aman)' : 'Fawry / Aman';
+      case 'meeza': return lang === 'ar' ? 'بطاقة ميزة الوطنية' : 'Meeza Card';
+      case 'mada': return lang === 'ar' ? 'مدى (Mada)' : 'Mada';
+      case 'apple_pay': return 'Apple Pay';
+      case 'visa': return lang === 'ar' ? 'بطاقة ائتمانية (Visa / Mastercard)' : 'Credit Card (Visa / Mastercard)';
+      case 'tabby': return 'Tabby (تابي)';
+      case 'tamara': return 'Tamara (تمارا)';
+      case 'bank_transfer': return lang === 'ar' ? 'تحويل بنكي فوري مباشر' : 'Bank Transfer';
+      case 'cod': return lang === 'ar' ? 'الدفع عند الاستلام (COD)' : 'Cash on Delivery';
+      default: return method.toUpperCase();
+    }
+  };
+
   const whatsappMessage = encodeURIComponent(
     `مرحباً حنان ستور، أود تأكيد ومتابعة طلبي رقم (${order.id})\n` +
     `الاسم: ${order.customer.fullName}\n` +
     `المدينة: ${order.customer.city} - ${order.customer.district}\n` +
     `إجمالي الطلب: ${order.total} ر.س\n` +
-    `طريقة الدفع: ${order.paymentMethod.toUpperCase()}`
+    `طريقة الدفع: ${getPaymentName(order.paymentMethod)}`
   );
 
   return (
@@ -134,7 +151,7 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
             </div>
             <div className="flex justify-between">
               <span className="text-stone-500">{t.paymentMethod}:</span>
-              <span className="font-bold text-amber-800 uppercase">{order.paymentMethod}</span>
+              <span className="font-bold text-amber-900 font-sans">{getPaymentName(order.paymentMethod)}</span>
             </div>
             {order.customer.notes && (
               <div className="pt-2 border-t border-stone-200 text-stone-600">

@@ -83,7 +83,18 @@ export interface CustomerInfo {
   notes?: string;
 }
 
-export type PaymentMethod = 'mada' | 'apple_pay' | 'visa' | 'tabby' | 'tamara' | 'cod';
+export type PaymentMethod = 
+  | 'mada' 
+  | 'apple_pay' 
+  | 'visa' 
+  | 'tabby' 
+  | 'tamara' 
+  | 'vodafone_cash' 
+  | 'instapay' 
+  | 'fawry' 
+  | 'meeza' 
+  | 'bank_transfer' 
+  | 'cod';
 
 export interface Order {
   id: string;
