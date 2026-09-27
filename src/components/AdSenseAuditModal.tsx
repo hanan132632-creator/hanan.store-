@@ -122,12 +122,12 @@ export const AdSenseAuditModal: React.FC<AdSenseAuditModalProps> = ({
     },
     {
       id: 'valuable-inventory',
-      titleAr: 'محتوى ذو قيمة عالية وتفاعلي (Valuable Inventory)',
-      titleEn: 'High Value Content & Interactive Tools',
-      descAr: 'يضم الموقع مقالات حصرية متعمقة (أدوات الفيديو والمقالات بالذكاء الاصطناعي)، وأدوات مدمجة تعمل بكفاءة.',
-      descEn: 'Rich, comprehensive editorial guides, interactive AI Video & Article generators, and digital games.',
+      titleAr: 'محتوى بشري ذو قيمة عالية وتفاعلي (Valuable Inventory)',
+      titleEn: 'High Value Human Editorial Content & Tools',
+      descAr: 'يضم الموقع مقالات تحريرية حصرية متعمقة مكتوبة بأيدي كُتّاب وباحثين بشريين 100%، وأدوات رقمية تفاعلية مدمجة تعمل بكفاءة.',
+      descEn: 'Rich, comprehensive editorial guides authored by human specialists, interactive digital tools, and games.',
       status: 'verified',
-      tag: isAr ? '8+ مقالات وأدوات حية' : '8+ Guides & AI Tools',
+      tag: isAr ? '8+ مقالات بشرية وأدوات حية' : '8+ Human Guides & Tools',
       badge: isAr ? 'قيمة مضافة عالية' : 'High Value'
     },
     {

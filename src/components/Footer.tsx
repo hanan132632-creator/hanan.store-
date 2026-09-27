@@ -159,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 text-emerald-400 font-bold"
                   >
                     <span>✍️</span>
-                    <span>{lang === 'ar' ? 'أداة كتابة المقالات بالذكاء الاصطناعي (مجاناً)' : 'AI Article Writer Tool (Free)'}</span>
+                    <span>{lang === 'ar' ? 'محرر ومساعد المقالات التحريرية والسيو (مجاناً)' : 'Editorial & SEO Article Studio (Free)'}</span>
                   </button>
                 </li>
               )}

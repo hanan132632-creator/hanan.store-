@@ -52,10 +52,10 @@ interface GeneratedArticle {
 
 const TOPIC_PRESETS = [
   {
-    titleAr: 'دليل أداة تحويل النص إلى فيديو بالذكاء الاصطناعي',
-    titleEn: 'AI Text-to-Video Generation Guide',
+    titleAr: 'دليل إنتاج الفيديو التسويقي والمحتوى الإبداعي لعام 2026',
+    titleEn: 'Creative Video Production Guide 2026',
     icon: '🎬',
-    keywords: 'تحويل النص إلى فيديو, ذكاء اصطناعي, Sora, صناعة ريلز, فيديو تسويقي'
+    keywords: 'إنتاج الفيديو, محتوى إبداعي, صناعة ريلز, فيديو تسويقي, إخراج ومونتاج'
   },
   {
     titleAr: 'أسرار بدء تجارة المنتجات الرقمية بدون شحن',
@@ -125,7 +125,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
 
       setTimeout(() => {
         setProgress(70);
-        setStatusMessage(isAr ? 'كتابة المحتوى الأصلي وفق معايير Google EEAT وأدسنس...' : 'Drafting EEAT-compliant original paragraphs...');
+        setStatusMessage(isAr ? 'صياغة المحتوى التحريري البشري الأصلي وفق معايير Google EEAT وأدسنس...' : 'Drafting human EEAT-compliant original paragraphs...');
       }, 1400);
 
       setTimeout(() => {
@@ -173,7 +173,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
               ],
               bulletPoints: [
                 isAr ? 'تحديد الهدف الأساسي بوضوح قبل البدء بالتنفيذ' : 'Define the primary objective before deployment',
-                isAr ? 'الاستفادة من الأدوات الذكية لأتمتة المهام المتكررة' : 'Leverage AI utilities to automate manual repetition',
+                isAr ? 'الاستفادة من المنظومات الرقمية المتقدمة لتنظيم العمل والإنتاجية' : 'Leverage advanced digital systems to streamline productivity',
                 isAr ? 'المحافظة على النبرة الأصيلة والمصداقية العالية' : 'Preserve authenticity and strict factual integrity',
                 isAr ? 'القياس المستمر للنتائج وتطوير المحتوى دورياً' : 'Continuously measure performance benchmarks'
               ]
@@ -246,7 +246,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
       `\n\nالأسئلة الشائعة:\n` +
       result.faq.map(f => `س: ${f.question}\nج: ${f.answer}`).join('\n\n') +
       `\n\nالخاتمة:\n${result.conclusion}\n\n` +
-      `تم الإنشاء عبر أداة الذكاء الاصطناعي في متجر حنان ستور: https://xn--mgblao3hjb.store`;
+      `تمت الصياغة والتنسيق التحريري عبر محرر المقالات في متجر حنان ستور: https://xn--mgblao3hjb.store`;
 
     navigator.clipboard.writeText(fullText);
     setCopiedAll(true);
@@ -289,17 +289,17 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base sm:text-lg font-black font-serif text-stone-900 flex items-center gap-1.5">
-                  {isAr ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer & SEO Generator'}
+                  {isAr ? 'محرر ومساعد المقالات التحريرية والسيو' : 'Editorial Article & SEO Studio'}
                   <Sparkles className="w-4 h-4 text-emerald-600 fill-emerald-500" />
                 </h2>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">
-                  {isAr ? 'متوافق مع أدسنس والسيو' : 'AdSense & SEO Ready'}
+                  {isAr ? 'كتابة بشرية متوافقة مع أدسنس والسيو' : 'Human-First & AdSense Ready'}
                 </span>
               </div>
               <p className="text-[11px] text-stone-500">
                 {isAr 
-                  ? 'اكتب مقالات حصرية، متصدرة لمحركات البحث، ومتوافقة تماماً مع سياسات Google AdSense بنقرة زر' 
-                  : 'Generate long-form, SEO-optimized, human-quality articles compliant with Google policies'}
+                  ? 'صياغة وتنسيق مقالات تحريرية حصرية تنبض بالخبرة الإنسانية ومتوافقة تماماً مع معايير Google AdSense و E-E-A-T' 
+                  : 'Craft human-quality, authoritative editorial articles strictly compliant with Google policies'}
               </p>
             </div>
           </div>
@@ -320,7 +320,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
           <div className="space-y-2">
             <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
               <Wand2 className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{isAr ? 'مواضيع مقترحة جاهزة للتوليد الفوري:' : 'Quick Suggested Topics:'}</span>
+              <span>{isAr ? 'مواضيع مقترحة جاهزة للصياغة التحريرية:' : 'Quick Suggested Topics:'}</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
               {TOPIC_PRESETS.map((preset, pIdx) => (
@@ -359,7 +359,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
                 type="text"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                placeholder={isAr ? 'مثال: أداة تحويل النص إلى فيديو بالذكاء الاصطناعي وكيفية الاستفادة منها...' : 'e.g. AI Text to Video tools guide and practical workflows...'}
+                placeholder={isAr ? 'مثال: أسرار كتابة محتوى تحريري إنساني يجذب القراء ويتصدر محركات البحث...' : 'e.g. Masterclass in human editorial storytelling and organic SEO...'}
                 className="w-full bg-white border border-stone-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-stone-900 rounded-xl p-3 text-xs sm:text-sm placeholder:text-stone-400 focus:outline-none transition-all"
               />
             </div>
@@ -374,7 +374,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
                 type="text"
                 value={targetKeywords}
                 onChange={(e) => setTargetKeywords(e.target.value)}
-                placeholder={isAr ? 'ذكاء اصطناعي, فيديو, سيو, أدسنس' : 'AI, video, SEO, AdSense'}
+                placeholder={isAr ? 'محتوى أصيل, خبرة إنسانية, سيو, أدسنس' : 'human content, expertise, SEO, AdSense'}
                 className="w-full bg-white border border-stone-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 text-stone-900 rounded-xl p-3 text-xs sm:text-sm placeholder:text-stone-400 focus:outline-none transition-all"
               />
             </div>
@@ -449,7 +449,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
                   className="rounded text-emerald-600 focus:ring-emerald-500"
                 />
                 <span className="text-[11px] text-stone-700 font-medium">
-                  {isAr ? 'توليد وصف الميتا (Meta Description)' : 'Generate Meta Description'}
+                  {isAr ? 'صياغة وصف الميتا (Meta Description)' : 'Format Meta Description'}
                 </span>
               </label>
 
@@ -484,12 +484,12 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
               {isGenerating ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span>{isAr ? 'جاري كتابة وتنسيق المقال...' : 'Drafting Article...'}</span>
+                  <span>{isAr ? 'جاري صياغة وتنسيق المقال التحريري...' : 'Drafting Editorial Article...'}</span>
                 </>
               ) : (
                 <>
                   <FileText className="w-4 h-4" />
-                  <span>{isAr ? 'توليد المقال بالذكاء الاصطناعي ✍️' : 'Generate Article Now'}</span>
+                  <span>{isAr ? 'صياغة وتنسيق المقال التحريري ✍️' : 'Craft Editorial Article ✍️'}</span>
                 </>
               )}
             </button>
@@ -681,7 +681,7 @@ export const ArticleWriterModal: React.FC<ArticleWriterModalProps> = ({
         <div className="p-4 border-t border-stone-200 bg-stone-50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-500">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-            <span>{isAr ? 'أداة كتابة المقالات الرسمية لمتجر حنان ستور — متاحة مجاناً' : 'Official Hanan Store AI Article Tool — Free Access'}</span>
+            <span>{isAr ? 'محرر المقالات التحريرية والسيو الرسمي لمتجر حنان ستور — متاح مجاناً للكتّاب والباحثين' : 'Official Hanan Store Editorial & SEO Studio — Free Access'}</span>
           </div>
 
           <div className="flex items-center gap-2">

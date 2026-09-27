@@ -156,19 +156,19 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
             </div>
           </div>
 
-          {/* قسم أدوات الذكاء الاصطناعي الحصرية والمجانية */}
+          {/* قسم الأدوات التحريرية والرقمية الحصرية والمجانية */}
           <div className="pt-2 pb-1 bg-gradient-to-br from-emerald-500/10 via-emerald-50 to-teal-50/50 rounded-xl p-2.5 border border-emerald-300/80 my-2 space-y-1.5 shadow-xs">
             <div className="px-1 text-[11px] font-black text-emerald-950 uppercase tracking-wider flex items-center justify-between">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-600 fill-emerald-500" />
-                <span>{isAr ? 'أدوات الذكاء الاصطناعي المجانية:' : 'Free AI Studio Tools:'}</span>
+                <span>{isAr ? 'الأدوات التحريرية والرقمية المجانية:' : 'Free Editorial & Digital Tools:'}</span>
               </span>
               <span className="text-[9px] bg-emerald-700 text-white font-bold px-2 py-0.5 rounded-full">
                 {isAr ? 'متاح مجاناً' : 'FREE'}
               </span>
             </div>
 
-            {/* زر أداة كتابة المقالات بالذكاء الاصطناعي */}
+            {/* زر محرر ومساعد المقالات التحريرية والسيو */}
             <button
               id="menu-tool-article-writer"
               onClick={() => {
@@ -183,10 +183,10 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
                 </div>
                 <div>
                   <span className="font-black text-xs block text-stone-900 group-hover:text-emerald-900">
-                    {isAr ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool'}
+                    {isAr ? 'محرر ومساعد المقالات التحريرية والسيو' : 'Editorial & SEO Article Studio'}
                   </span>
                   <span className="text-[10px] text-stone-700 font-medium block">
-                    {isAr ? 'مقالات سيو وأدسنس بضغطة زر' : 'SEO & AdSense ready articles'}
+                    {isAr ? 'صياغة مقالات بشرية حصرية متوافقة مع أدسنس' : 'Human-first SEO & AdSense articles'}
                   </span>
                 </div>
               </div>

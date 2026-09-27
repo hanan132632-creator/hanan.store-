@@ -160,10 +160,10 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
     {
       id: 'service-advisor',
       icon: <Sparkles className="w-3.5 h-3.5 text-amber-600" />,
-      titleAr: 'مستشار الهدايا الذكي (AI Gift Advisor)',
-      titleEn: 'AI Gift Advisor Tool',
-      badgeAr: 'مساعد ذكي',
-      badgeEn: 'Smart AI',
+      titleAr: 'مستشار الهدايا التفاعلي (Gift Advisor)',
+      titleEn: 'Interactive Gift Advisor',
+      badgeAr: 'مساعد تفاعلي',
+      badgeEn: 'Interactive',
       action: onOpenGiftAdvisor
     },
     {

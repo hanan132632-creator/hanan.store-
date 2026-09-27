@@ -375,7 +375,7 @@ export default function App() {
         return;
       }
 
-      // 8. Specialized AI Tools & Diagnostic Modals
+      // 8. Specialized Editorial Tools & Diagnostic Modals
       if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
         setIsArticleWriterOpen(true);
       } else if (hash === '#adsense-audit' || hash === '#adsense-report' || path === '/adsense-audit') {
@@ -1037,7 +1037,7 @@ export default function App() {
           />
         )}
 
-        {/* AI Article & SEO Content Writer Tool Modal */}
+        {/* Editorial Article & SEO Content Studio Modal */}
         {isArticleWriterOpen && (
           <ArticleWriterModal
             isOpen={isArticleWriterOpen}

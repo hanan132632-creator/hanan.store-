@@ -88,7 +88,7 @@ export const Hero: React.FC<HeroProps> = ({
               </button>
             </div>
 
-            {/* Free AI Generation Tools Showcase in Hero */}
+            {/* Free Editorial Studio Tools Showcase in Hero */}
             <div className="pt-2">
               <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 backdrop-blur-xs border border-emerald-300/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-start">
                 <div className="flex items-center gap-3">
@@ -98,14 +98,14 @@ export const Hero: React.FC<HeroProps> = ({
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-black text-stone-900">
-                        {lang === 'ar' ? 'أداة كاتب المقالات والسيو بالذكاء الاصطناعي' : 'AI Article & SEO Writer Tool'}
+                        {lang === 'ar' ? 'محرر ومساعد المقالات التحريرية والسيو' : 'Editorial & SEO Article Studio'}
                       </span>
                       <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-950 text-[10px] font-bold border border-emerald-300">
                         {lang === 'ar' ? 'متاح مجاناً' : 'FREE'}
                       </span>
                     </div>
                     <p className="text-[11px] text-stone-700 font-medium">
-                      {lang === 'ar' ? 'توليد مقالات متوافقة 100% مع معايير Google AdSense وSEO بنقرة واحدة' : 'Generate SEO & Google AdSense compliant long-form articles in seconds'}
+                      {lang === 'ar' ? 'صياغة مقالات تحريرية بشرية أصيلة متوافقة 100% مع معايير Google AdSense وSEO' : 'Craft human-first editorial articles strictly compliant with Google AdSense and SEO'}
                     </p>
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({
                       className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-black transition-all cursor-pointer shadow-sm whitespace-nowrap min-h-[44px]"
                     >
                       <span>✍️</span>
-                      <span>{lang === 'ar' ? 'صانع المقالات الذكي' : 'AI Writer Tool'}</span>
+                      <span>{lang === 'ar' ? 'محرر المقالات التحريرية' : 'Editorial Studio'}</span>
                     </button>
                   )}
                 </div>

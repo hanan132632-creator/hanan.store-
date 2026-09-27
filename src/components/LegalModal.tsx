@@ -315,8 +315,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   </div>
                   <p className="text-xs text-stone-600 leading-relaxed">
                     {isAr
-                      ? 'يقدم الموقع مقالات وأدلة إرشادية حصرية حول تنظيم الفعاليات، ألعاب الجمعات العائلية، وتخطيط الميزانيات، مكتوبة بأيدي متخصصين، بعيداً عن المحتوى المنسوخ أو التوليد العشوائي.'
-                      : 'We provide unique, original gathering guides, productivity planners, and lifestyle insights crafted for real readers.'}
+                      ? 'يقدم الموقع مقالات وأدلة إرشادية حصرية حول تنظيم الفعاليات، ألعاب الجمعات العائلية، وإدارة الميزانيات، مكتوبة بأيدي كُتّاب وباحثين بشريين متخصصين 100%، بعيداً عن المحتوى المنسوخ أو النصوص المكررة.'
+                      : 'We provide unique, original gathering guides, productivity planners, and lifestyle insights written 100% by human specialists for real readers.'}
                   </p>
                 </div>
 

@@ -94,16 +94,16 @@ export const Header: React.FC<HeaderProps> = ({
 
             <span className="hidden md:inline text-stone-600">|</span>
 
-            {/* AI Article Writer Button in Announcement Bar */}
+            {/* Editorial Article Studio Button in Announcement Bar */}
             {onOpenArticleWriter && (
               <button
                 id="top-bar-tool-writer-btn"
                 onClick={onOpenArticleWriter}
                 className="hidden sm:inline-flex items-center gap-1 text-emerald-300 hover:text-white font-bold bg-emerald-500/20 hover:bg-emerald-500/30 px-2 py-0.5 rounded border border-emerald-500/40 cursor-pointer transition-colors"
-                title={lang === 'ar' ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool'}
+                title={lang === 'ar' ? 'محرر ومساعد المقالات التحريرية والسيو' : 'Editorial & SEO Article Studio'}
               >
                 <span>✍️</span>
-                <span>{lang === 'ar' ? 'أداة إنشاء المقالات AI' : 'AI Article Writer'}</span>
+                <span>{lang === 'ar' ? 'محرر المقالات والسيو' : 'Editorial Studio'}</span>
               </button>
             )}
 
@@ -257,16 +257,16 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Right Action Icons & Controls */}
           <div className="flex items-center gap-1.5 sm:gap-2.5">
             
-            {/* Quick AI Tools Buttons on Desktop */}
+            {/* Quick Editorial Tools Buttons on Desktop */}
             {onOpenArticleWriter && (
               <button
                 id="header-btn-article-writer"
                 onClick={onOpenArticleWriter}
                 className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-black rounded-full bg-emerald-900 text-emerald-100 hover:bg-emerald-600 hover:text-white transition-all shadow-xs border border-emerald-500/30 cursor-pointer"
-                title={lang === 'ar' ? 'أداة إنشاء مقالات بالذكاء الاصطناعي' : 'AI Article Writer Tool'}
+                title={lang === 'ar' ? 'محرر ومساعد المقالات التحريرية والسيو' : 'Editorial & SEO Article Studio'}
               >
                 <span>✍️</span>
-                <span className="hidden xl:inline">{lang === 'ar' ? 'كاتب المقالات' : 'AI Writer'}</span>
+                <span className="hidden xl:inline">{lang === 'ar' ? 'محرر المقالات' : 'Editorial'}</span>
               </button>
             )}
 
