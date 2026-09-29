@@ -35,6 +35,7 @@ interface HeaderProps {
   onOpenSitemap?: () => void;
   onOpenArticleWriter?: () => void;
   onOpenMobileOptimizer?: () => void;
+  onOpenPlayAssets?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -54,7 +55,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenLegal,
   onOpenSitemap: _onOpenSitemap,
   onOpenArticleWriter,
-  onOpenMobileOptimizer
+  onOpenMobileOptimizer,
+  onOpenPlayAssets
 }) => {
   const t = TRANSLATIONS[lang] || TRANSLATIONS.ar;
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
@@ -96,6 +98,19 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <span className="hidden md:inline text-stone-600">|</span>
+
+            {/* Google Play Assets Center Quick Button */}
+            {onOpenPlayAssets && (
+              <button
+                id="top-bar-play-assets-btn"
+                onClick={onOpenPlayAssets}
+                className="inline-flex items-center gap-1.5 text-white font-bold bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 px-3 py-0.5 rounded-full border border-amber-400 shadow-sm cursor-pointer transition-all active:scale-95 text-[11px]"
+                title={lang === 'ar' ? 'مركز تحميل صور جوجل بلاي كونسول' : 'Google Play Assets Center'}
+              >
+                <span>📥</span>
+                <span>{lang === 'ar' ? 'تحميل صور جوجل بلاي' : 'Play Store Assets'}</span>
+              </button>
+            )}
 
             {/* Editorial Article Studio Button in Announcement Bar */}
             {onOpenArticleWriter && (
@@ -193,6 +208,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onOpenLegal={onOpenLegal}
                   onOpenArticleWriter={onOpenArticleWriter}
                   onOpenMobileOptimizer={onOpenMobileOptimizer}
+                  onOpenPlayAssets={onOpenPlayAssets}
                 />
               </React.Suspense>
             )}

@@ -43,6 +43,7 @@ const SearchConsoleModal = lazy(() => import('./components/SearchConsoleModal').
 const SitemapViewerModal = lazy(() => import('./components/SitemapViewerModal').then(m => ({ default: m.SitemapViewerModal })));
 const ArticleWriterModal = lazy(() => import('./components/ArticleWriterModal').then(m => ({ default: m.ArticleWriterModal })));
 const MobileOptimizerModal = lazy(() => import('./components/MobileOptimizerModal').then(m => ({ default: m.MobileOptimizerModal })));
+const PlayAssetsModal = lazy(() => import('./components/PlayAssetsModal').then(m => ({ default: m.PlayAssetsModal })));
 const ReviewsSection = lazy(() => import('./components/ReviewsSection').then(m => ({ default: m.ReviewsSection })));
 const BlogSection = lazy(() => import('./components/BlogSection').then(m => ({ default: m.BlogSection })));
 
@@ -64,6 +65,7 @@ export default function App() {
   const [sitemapViewerTab, setSitemapViewerTab] = useState<'sitemap' | 'robots' | 'ads'>('sitemap');
   const [isArticleWriterOpen, setIsArticleWriterOpen] = useState(false);
   const [isMobileOptimizerOpen, setIsMobileOptimizerOpen] = useState(false);
+  const [isPlayAssetsOpen, setIsPlayAssetsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewFileProduct, setPreviewFileProduct] = useState<Product | null>(null);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
@@ -625,6 +627,7 @@ export default function App() {
         }}
         onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
         onOpenMobileOptimizer={() => setIsMobileOptimizerOpen(true)}
+        onOpenPlayAssets={() => setIsPlayAssetsOpen(true)}
       />
 
       {/* Top Three Department & Section Navigation Bars */}
@@ -1030,6 +1033,15 @@ export default function App() {
           <MobileOptimizerModal
             isOpen={isMobileOptimizerOpen}
             onClose={() => setIsMobileOptimizerOpen(false)}
+            lang={lang}
+          />
+        )}
+
+        {/* Google Play Console Assets Center Modal */}
+        {isPlayAssetsOpen && (
+          <PlayAssetsModal
+            isOpen={isPlayAssetsOpen}
+            onClose={() => setIsPlayAssetsOpen(false)}
             lang={lang}
           />
         )}

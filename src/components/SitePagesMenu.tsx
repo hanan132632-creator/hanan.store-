@@ -27,6 +27,7 @@ interface SitePagesMenuProps {
   onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
   onOpenArticleWriter?: () => void;
   onOpenMobileOptimizer?: () => void;
+  onOpenPlayAssets?: () => void;
 }
 
 export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
@@ -36,7 +37,8 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
   onSelectCategory,
   onOpenLegal,
   onOpenArticleWriter,
-  onOpenMobileOptimizer
+  onOpenMobileOptimizer,
+  onOpenPlayAssets
 }) => {
   const isAr = lang === 'ar';
 
@@ -192,6 +194,35 @@ export const SitePagesMenu: React.FC<SitePagesMenuProps> = ({
                 {isAr ? 'فتح ↗' : 'Open ↗'}
               </span>
             </button>
+
+            {/* Google Play Console Assets Center Button */}
+            {onOpenPlayAssets && (
+              <button
+                id="menu-tool-play-assets"
+                onClick={() => {
+                  onClose();
+                  onOpenPlayAssets();
+                }}
+                className="w-full flex items-center justify-between px-2.5 py-2 rounded-lg bg-white hover:bg-cyan-50 text-stone-900 transition-colors text-start shadow-xs border border-cyan-400 cursor-pointer group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-md bg-gradient-to-br from-cyan-600 to-blue-700 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    📥
+                  </div>
+                  <div>
+                    <span className="font-black text-xs block text-stone-900 group-hover:text-cyan-900">
+                      {isAr ? 'مركز تحميل صور جوجل بلاي' : 'Google Play Assets Center'}
+                    </span>
+                    <span className="text-[10px] text-stone-700 font-medium block">
+                      {isAr ? 'خدمات الإنترنت العالمية + حنان ستور' : 'GIS + Hanan Store Assets'}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-cyan-900 bg-cyan-100 px-2 py-0.5 rounded border border-cyan-300">
+                  {isAr ? 'تحميل 📥' : 'Download 📥'}
+                </span>
+              </button>
+            )}
 
             {/* Mobile Optimizer & Core Web Vitals Tool */}
             {onOpenMobileOptimizer && (
