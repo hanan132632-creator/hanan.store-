@@ -10,7 +10,7 @@ interface PlayAssetsModalProps {
 
 export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClose, lang }) => {
   const isAr = lang === 'ar';
-  const [activeTab, setActiveTab] = useState<'gis' | 'hanan'>('gis');
+  const [activeTab, setActiveTab] = useState<'elite' | 'gis' | 'hanan'>('elite');
   const [downloadingName, setDownloadingName] = useState<string | null>(null);
 
   if (!isOpen) return null;
@@ -28,7 +28,7 @@ export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClos
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(blobUrl);
-    } catch (err) {
+    } catch {
       // Fallback
       const a = document.createElement('a');
       a.href = url;
@@ -40,6 +40,48 @@ export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClos
     } finally {
       setTimeout(() => setDownloadingName(null), 1000);
     }
+  };
+
+  const eliteAssets = {
+    titleAr: 'تطبيق عقارات النخبة (Elite Real Estate)',
+    appIcon: {
+      url: '/elite_icon_512.png',
+      filename: 'elite_realestate_icon_512x512.png',
+      titleAr: 'رمز التطبيق (App Icon) - 512 × 512 بكسل تماماً',
+      specs: '512x512 PNG • مطابقة دقيقة 100% لمعايير جوجل بلاي (مضغوطة وعالية الجودة)'
+    },
+    featureGraphic: {
+      url: '/elite_feature_graphic_v2.png',
+      filename: 'elite_feature_graphic_1024x500.png',
+      titleAr: 'الرسم المميز لمتجر جوجل بلاي (1024 × 500 بكسل تماماً - 24-bit)',
+      specs: '1024x500 PNG 24-bit TrueColor بدون شفافية • متوافق تماماً مع جوجل بلاي كونسول'
+    },
+    screens: [
+      {
+        url: '/elite_screen_1_1080x1920.jpg',
+        filename: 'elite_screen_1_home_1080x1920.jpg',
+        titleAr: 'لقطة شاشة 1: الشاشة الرئيسية واستعراض الفلل والشقق والبحث',
+        specs: '1080x1920 Full HD (9:16) • مقاس معتمد رسمياً 100%'
+      },
+      {
+        url: '/elite_screen_2_1080x1920.jpg',
+        filename: 'elite_screen_2_details_1080x1920.jpg',
+        titleAr: 'لقطة شاشة 2: تفاصيل العقار وحاسبة التمويل والأقساط الشهرية',
+        specs: '1080x1920 Full HD (9:16) • مقاس معتمد رسمياً 100%'
+      },
+      {
+        url: '/elite_screen_3_1080x1920.jpg',
+        filename: 'elite_screen_3_search_map_1080x1920.jpg',
+        titleAr: 'لقطة شاشة 3: البحث المتقدم وفلترة المدن والأسعار والخريطة التفاعلية',
+        specs: '1080x1920 Full HD (9:16) • مقاس معتمد رسمياً 100%'
+      },
+      {
+        url: '/elite_screen_4_1080x1920.jpg',
+        filename: 'elite_screen_4_vip_booking_1080x1920.jpg',
+        titleAr: 'لقطة شاشة 4: حجز المعاينة الخاصة VIP والجولات الافتراضية 3D',
+        specs: '1080x1920 Full HD (9:16) • مقاس معتمد رسمياً 100%'
+      }
+    ]
   };
 
   const gisAssets = {
@@ -126,7 +168,7 @@ export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClos
     ]
   };
 
-  const current = activeTab === 'gis' ? gisAssets : hananAssets;
+  const current = activeTab === 'elite' ? eliteAssets : activeTab === 'gis' ? gisAssets : hananAssets;
 
   const downloadAllCurrent = async () => {
     await triggerDownload(current.appIcon.url, current.appIcon.filename);
@@ -172,6 +214,17 @@ export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClos
         <div className="px-4 pt-3 pb-2 bg-stone-950 border-b border-stone-800 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 bg-stone-900 p-1 rounded-xl border border-stone-800">
             <button
+              onClick={() => setActiveTab('elite')}
+              className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
+                activeTab === 'elite'
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 font-bold shadow-md'
+                  : 'text-stone-400 hover:text-stone-200'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              {isAr ? '🏰 تطبيق عقارات النخبة (الجديد)' : 'Elite Real Estate (New)'}
+            </button>
+            <button
               onClick={() => setActiveTab('gis')}
               className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                 activeTab === 'gis'
@@ -180,18 +233,18 @@ export const PlayAssetsModal: React.FC<PlayAssetsModalProps> = ({ isOpen, onClos
               }`}
             >
               <MonitorPlay className="w-4 h-4" />
-              {isAr ? '🌐 تطبيق خدمات الإنترنت العالمية' : 'Global Internet Services'}
+              {isAr ? '🌐 تطبيق خدمات الإنترنت' : 'GIS App'}
             </button>
             <button
               onClick={() => setActiveTab('hanan')}
               className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                 activeTab === 'hanan'
-                  ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-md'
+                  ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-md'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
             >
-              <Sparkles className="w-4 h-4" />
-              {isAr ? '🛍️ متجر حنان ستور' : 'Hanan Store'}
+              <Layers className="w-4 h-4" />
+              {isAr ? '🛍️ متجر حنان' : 'Hanan Store'}
             </button>
           </div>
 

@@ -668,7 +668,18 @@ export default function App() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+            <button
+              onClick={() => setIsPlayAssetsOpen(true)}
+              className="flex items-center gap-1.5 text-amber-300 hover:text-white font-bold cursor-pointer bg-stone-900/90 px-3 py-1 rounded-full border border-amber-500/50 hover:border-amber-400 transition-all shadow-md active:scale-95"
+            >
+              <span>🏰</span>
+              <span>{lang === 'ar' ? 'تحميل صور عقارات النخبة (جوجل بلاي)' : 'Download Elite Real Estate Assets'}</span>
+              <span className="text-[10px] bg-emerald-500 text-stone-950 px-1.5 py-0.2 rounded-full font-black">جاهزة</span>
+            </button>
+
+            <span className="hidden sm:inline text-stone-600">|</span>
+
             <button
               onClick={() => setIsDomainInfoOpen(true)}
               className="text-amber-200 hover:text-white underline underline-offset-2 flex items-center gap-1 cursor-pointer"
