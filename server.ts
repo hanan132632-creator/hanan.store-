@@ -241,51 +241,9 @@ async function startServer() {
     return res.status(204).end();
   });
 
-  // 4. Legacy /html/ and old article URLs 301/302 Redirect to modern SPA anchors
-  app.get(["/html/*", "/html", "/article-*"], (req, res) => {
-    const originalUrl = req.originalUrl || req.url;
-    if (originalUrl.startsWith("/article-")) {
-      const artId = originalUrl.replace(/^\/article-/, "").split("?")[0];
-      return res.redirect(301, `/article/${artId}`);
-    }
-    // Map known old article URLs or general /html/ paths to the corresponding article or blog
-    if (originalUrl.includes("luxury-gift") || originalUrl.includes("gifts-guide")) {
-      return res.redirect(301, "/#article-art-of-luxury-gifting-occasions-guide");
-    }
-    if (originalUrl.includes("games") || originalUrl.includes("gatherings")) {
-      return res.redirect(301, "/#article-interactive-gatherings-games-guide-2026");
-    }
-    if (originalUrl.includes("planner") || originalUrl.includes("goodnotes")) {
-      return res.redirect(301, "/#article-digital-planning-goodnotes-ipad-guide");
-    }
-    if (originalUrl.includes("perfume") || originalUrl.includes("oud")) {
-      return res.redirect(301, "/#article-royal-niche-perfumes-oud-secrets");
-    }
-    if (originalUrl.includes("business") || originalUrl.includes("profitable")) {
-      return res.redirect(301, "/#article-how-to-start-profitable-digital-products-business");
-    }
-    // Default fallback for any legacy /html/ page: redirect directly to the blog section
-    return res.redirect(301, "/#hanan-blog");
-  });
-
-  // 4.5. Dedicated handler for /blog and /مدونة routes
-  app.get(["/blog/:id", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9/:id"], (req, res) => {
-    const { id } = req.params;
-    return res.redirect(301, `/article/${id}`);
-  });
-  app.all(["/blog", "/%D9%85%D8%AF%D9%88%D9%86%D8%A9"], (req, res) => {
-    return res.redirect(301, "/#hanan-blog");
-  });
-  app.use((req, res, next) => {
-    try {
-      const decodedPath = decodeURIComponent(req.path);
-      if (decodedPath.startsWith("/مدونة")) {
-        return res.redirect(301, "/#hanan-blog");
-      }
-    } catch {
-      // ignore decoding errors and continue
-    }
-    next();
+  // 4. Legacy URL compatibility: clean redirects to canonical root without hash fragments
+  app.get(["/html/*", "/html"], (req, res) => {
+    return res.redirect(301, "/blog");
   });
 
   // 5. Dedicated handler for /404 and /404.html: redirect permanently to homepage with 301
