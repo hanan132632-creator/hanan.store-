@@ -669,14 +669,14 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-            <button
-              onClick={() => setIsPlayAssetsOpen(true)}
+            <a
+              href="#hanan-blog"
               className="flex items-center gap-1.5 text-amber-300 hover:text-white font-bold cursor-pointer bg-stone-900/90 px-3 py-1 rounded-full border border-amber-500/50 hover:border-amber-400 transition-all shadow-md active:scale-95"
             >
-              <span>🏰</span>
-              <span>{lang === 'ar' ? 'تحميل صور عقارات النخبة (جوجل بلاي)' : 'Download Elite Real Estate Assets'}</span>
-              <span className="text-[10px] bg-emerald-500 text-stone-950 px-1.5 py-0.2 rounded-full font-black">جاهزة</span>
-            </button>
+              <span>📚</span>
+              <span>{lang === 'ar' ? 'المدونة والمقالات الحصرية' : 'Exclusive Blog & Guides'}</span>
+              <span className="text-[10px] bg-emerald-500 text-stone-950 px-1.5 py-0.2 rounded-full font-black">E-E-A-T</span>
+            </a>
 
             <span className="hidden sm:inline text-stone-600">|</span>
 

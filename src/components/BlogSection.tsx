@@ -942,9 +942,28 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
       return {};
     }
   });
+  // Article Statistics (views, likes, live readers)
+  const [stats, setStats] = useState<Record<string, { views: number; likes: number; liveReaders: number }>>(() => {
+    try {
+      const saved = localStorage.getItem('hanan_article_stats_v1');
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
 
+  // User Liked Articles Map
+  const [likedArticles, setLikedArticles] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem('hanan_liked_articles');
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
 
-
+  // Heart pop animation state
+  const [poppingHeartId, setPoppingHeartId] = useState<string | null>(null);
   // Deep-linking: auto-open article modal if URL contains /article/<id>, /blog/<id>, #article-<id>, or #blog-<id>
   useEffect(() => {
     const handleRouteAndHashCheck = () => {

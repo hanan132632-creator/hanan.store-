@@ -171,20 +171,22 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button 
-                  onClick={() => onOpenLegal && onOpenLegal('privacy')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline"
+                <a 
+                  href="/privacy"
+                  onClick={(e) => { e.preventDefault(); onOpenLegal && onOpenLegal('privacy'); }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline block"
                 >
                   {lang === 'ar' ? 'سياسة الخصوصية والكوكيز' : 'Privacy & Cookies Policy'}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenLegal && onOpenLegal('adsense')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-amber-400 font-bold hover:underline"
+                <a 
+                  href="/adsense"
+                  onClick={(e) => { e.preventDefault(); onOpenLegal && onOpenLegal('adsense'); }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-amber-400 font-bold hover:underline block"
                 >
                   {lang === 'ar' ? 'إفصاح إعلانات Google AdSense' : 'Google AdSense Policy'}
-                </button>
+                </a>
               </li>
               {onOpenMobileOptimizer && (
                 <li>
@@ -198,28 +200,31 @@ export const Footer: React.FC<FooterProps> = ({
                 </li>
               )}
               <li>
-                <button 
-                  onClick={() => onOpenLegal && onOpenLegal('terms')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline"
+                <a 
+                  href="/terms"
+                  onClick={(e) => { e.preventDefault(); onOpenLegal && onOpenLegal('terms'); }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline block"
                 >
                   {lang === 'ar' ? 'الشروط والأحكام العامة' : 'Terms of Service'}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenLegal && onOpenLegal('about')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline"
+                <a 
+                  href="/about"
+                  onClick={(e) => { e.preventDefault(); onOpenLegal && onOpenLegal('about'); }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline block"
                 >
                   {lang === 'ar' ? 'من نحن (فريق العمل)' : 'About Hanan Store'}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenLegal && onOpenLegal('contact')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline"
+                <a 
+                  href="/contact"
+                  onClick={(e) => { e.preventDefault(); onOpenLegal && onOpenLegal('contact'); }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline block"
                 >
                   {lang === 'ar' ? 'اتصل بنا ومكتب الدعم' : 'Contact Us'}
-                </button>
+                </a>
               </li>
               <li>
                 <button

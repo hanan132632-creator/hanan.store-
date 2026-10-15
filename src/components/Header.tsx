@@ -99,18 +99,15 @@ export const Header: React.FC<HeaderProps> = ({
 
             <span className="hidden md:inline text-stone-600">|</span>
 
-            {/* Google Play Assets Center Quick Button */}
-            {onOpenPlayAssets && (
-              <button
-                id="top-bar-play-assets-btn"
-                onClick={onOpenPlayAssets}
-                className="inline-flex items-center gap-1.5 text-white font-bold bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 px-3 py-0.5 rounded-full border border-amber-400 shadow-sm cursor-pointer transition-all active:scale-95 text-[11px]"
-                title={lang === 'ar' ? 'مركز تحميل صور جوجل بلاي كونسول' : 'Google Play Assets Center'}
-              >
-                <span>📥</span>
-                <span>{lang === 'ar' ? 'تحميل صور جوجل بلاي' : 'Play Store Assets'}</span>
-              </button>
-            )}
+            {/* Direct Blog & Articles link */}
+            <a
+              href="#hanan-blog"
+              className="inline-flex items-center gap-1.5 text-amber-200 hover:text-white font-bold bg-amber-500/20 hover:bg-amber-500/30 px-3 py-0.5 rounded-full border border-amber-400/40 shadow-sm cursor-pointer transition-all text-[11px]"
+              title={lang === 'ar' ? 'المقالات والأدلة التحريرية المعتمدة' : 'Official Articles & Editorial Guides'}
+            >
+              <span>📚</span>
+              <span>{lang === 'ar' ? 'المقالات والأدلة التحريرية' : 'Editorial Guides'}</span>
+            </a>
 
             {/* Editorial Article Studio Button in Announcement Bar */}
             {onOpenArticleWriter && (
