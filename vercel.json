@@ -65,6 +65,7 @@
     { "source": "/sitemap.txt", "destination": "/sitemap.txt" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/ads.txt", "destination": "/ads.txt" },
+    { "source": "/app-ads.txt", "destination": "/app-ads.txt" },
     { "source": "/terms.html", "destination": "/terms.html" },
     { "source": "/privacy.html", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
@@ -219,7 +220,7 @@
       ]
     },
     {
-      "source": "/ads.txt",
+      "source": "/(ads\\.txt|app-ads\\.txt)",
       "headers": [
         {
           "key": "Content-Type",
@@ -235,7 +236,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
+          "value": "public, max-age=0, s-maxage=0, must-revalidate"
         }
       ]
     },

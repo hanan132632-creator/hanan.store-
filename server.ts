@@ -190,7 +190,7 @@ async function startServer() {
     if (fs.existsSync(filePath)) {
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Cache-Control", "public, max-age=3600");
+      res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
       if (req.method === "HEAD") return res.status(200).end();
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
