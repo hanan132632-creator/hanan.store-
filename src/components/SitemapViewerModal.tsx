@@ -259,7 +259,7 @@ Sitemap: https://xn--mgblao3hjb.store/sitemap.txt
 # Preferred Host
 Host: https://xn--mgblao3hjb.store`;
 
-  const adsContent = `google.com, pub-4559351287441685, DIRECT, f08c47fec0942fa0`;
+  const adsContent = `google.com, pub-9366698048953944, DIRECT, f08c47fec0942fa0`;
 
   const getCurrentContent = () => {
     if (activeTab === 'sitemap') return sitemapContent;
