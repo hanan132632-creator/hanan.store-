@@ -22,6 +22,7 @@ export const SitemapViewerModal: React.FC<SitemapViewerModalProps> = ({
   if (!isOpen) return null;
 
   const sitemapTxtContent = `https://xn--mgblao3hjb.store/
+https://xn--mgblao3hjb.store/blog/digital-products-business-freelance-saudi-eeat-2026
 https://xn--mgblao3hjb.store/store
 https://xn--mgblao3hjb.store/blog
 https://xn--mgblao3hjb.store/about
@@ -45,7 +46,15 @@ https://xn--mgblao3hjb.store/blog/royal-perfumes-guide`;
   <!-- 1. Homepage & Primary Domain -->
   <url>
     <loc>https://xn--mgblao3hjb.store/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Editorial E-E-A-T Guide 2026 -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/digital-products-business-freelance-saudi-eeat-2026</loc>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
