@@ -198,6 +198,70 @@ export const PRODUCTS: Product[] = [
     tagsAr: ['جلسات بنات', 'تحميل فوري', 'تصميم أنيق'],
     tagsEn: ['Girls Night', 'Instant Download', 'Chic Design']
   },
+  {
+    id: 'hn-file-games-03',
+    sku: 'FUN-GAME-003',
+    titleAr: 'ملف لعبة وتحدي أزياء تلبيس البنات الستايل الأمريكي العصري 2026 (حزمة الفاشن والأناقة التفاعلية)',
+    titleEn: 'American Style Fashion & Dress-Up Girls Interactive Game Kit 2026',
+    categoryId: 'fun-games',
+    categoryNameAr: 'ملفات الألعاب والفعاليات التفاعلية',
+    categoryNameEn: 'Interactive Games & Gathering Files',
+    price: 29,
+    originalPrice: 65,
+    rating: 5.0,
+    reviewsCount: 312,
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop'
+    ],
+    descriptionAr: 'الملف الأكثر تشويقاً وتفاعلاً لعاشقات الموضة والأزياء والستايل الأمريكي العصري 2026! ملف PDF وبوربوينت تفاعلي مبرمج بأزرار لمس سريعة يتضمن: خزانة الملابس الأمريكية الحديثة (NYC Streetwear, Modern Chic, Denim Trends, Hollywood Glam)، تحدي تنسيق قطع الملابس بالألوان، فقرة تقييم إطلالات الصديقات، واختيار أسلوب المكياج والشعر بضغطة زر واحدة. يعمل على الآيفون والآيباد والأندرويد والشاشات الذكية.',
+    descriptionEn: 'The definitive fashion & American style dress-up interactive digital game kit for 2026! Features hyperlinked outfit styling cards, NYC streetwear vs Hollywood glam challenges, color coordination quizzes, and voting rounds. Compatible with smartphones, tablets, and Smart TVs.',
+    featuresAr: [
+      'تحميل فوري مباشر بعد الطلب بثوانٍ معدودة',
+      'أكثر من 85 بطاقة وشريحة تفاعلية لتنسيق الأزياء والستايل الأمريكي',
+      'يشمل تحديات: ستايل الشارع النيويوركي، أناقة الكليات، وتحدي السجاد الأحمر',
+      'أزرار تنقل تفاعلية فورية تعمل بدون الحاجة لإنترنت',
+      'استخدام مفتوح مدى الحياة بدون اشتراكات'
+    ],
+    featuresEn: [
+      'Instant direct download within seconds',
+      'Over 85 interactive fashion & American style dress-up cards',
+      'Includes NYC Streetwear, Hollywood Glam, and Ivy League styling challenges',
+      'Interactive tap-to-navigate buttons working 100% offline',
+      'Lifetime personal access with zero subscriptions'
+    ],
+    specsAr: {
+      'نوع الملف': 'PDF تفاعلي عالي الدقة + بوربوينت أزياء 2026',
+      'عدد البطاقات / الشرائح': '85 بطاقة تفاعلية عالية الجودة',
+      'حجم الملف': '18 ميجابايت',
+      'التوافق': 'الآيفون، الأندرويد، الآيباد، والشاشات الذكية'
+    },
+    specsEn: {
+      'Format': 'Interactive High-Res PDF + Fashion PowerPoint',
+      'Cards / Slides': '85 interactive styling cards',
+      'Size': '18 MB',
+      'Compatibility': 'iPhone, Android, iPad & Smart TVs'
+    },
+    inStock: true,
+    stockCount: 9999,
+    isFeatured: true,
+    isBestSeller: true,
+    isDigitalFile: true,
+    fileType: 'PDF تفاعلي + بوربوينت',
+    fileSize: '18 MB',
+    filePagesOrItems: '85 بطاقة أزياء تفاعلية',
+    downloadFileName: 'American_Style_Fashion_DressUp_Game_2026.zip',
+    sampleContentPreview: [
+      'تحدي تنسيق ستايل الشارع النيويوركي (NYC Casual Streetwear)',
+      'اختبار تنسيق ألوان السترة والجينز والدريس الأمريكي العصري',
+      'تنسيق إطلالة السهرة والستايل المظلي والأنثوي الفاخر',
+      'جولة تصويت البنات لأجمل وأشيك تنسيق أزياء'
+    ],
+    tagsAr: ['ألعاب بنات', 'تلبيس أزياء', 'ستايل أمريكي 2026', 'تحميل فوري'],
+    tagsEn: ['Dress Up', 'Fashion Game', 'American Style 2026', 'Instant Download']
+  },
 
   // --- 2. DIGITAL FILES: PLANNERS (البلانرات والمخططات الرقمية) ---
   {
