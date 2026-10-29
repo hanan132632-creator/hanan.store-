@@ -56,6 +56,41 @@
       "permanent": true
     },
     {
+      "source": "/404",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/404.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/fashion",
+      "destination": "/?product=hn-file-games-03",
+      "permanent": true
+    },
+    {
+      "source": "/game",
+      "destination": "/?product=hn-file-games-03",
+      "permanent": true
+    },
+    {
+      "source": "/silver",
+      "destination": "/blog/sterling-silver-925-jewelry-preservation-eeat-2026",
+      "permanent": true
+    },
+    {
+      "source": "/silver925",
+      "destination": "/blog/sterling-silver-925-jewelry-preservation-eeat-2026",
+      "permanent": true
+    },
+    {
+      "source": "/freelance",
+      "destination": "/blog/digital-products-business-freelance-saudi-eeat-2026",
+      "permanent": true
+    },
+    {
       "source": "/article-:path*",
       "destination": "/#hanan-blog",
       "permanent": true
@@ -63,10 +98,15 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/sitemap.xml/", "destination": "/sitemap.xml" },
     { "source": "/sitemap.txt", "destination": "/sitemap.txt" },
+    { "source": "/sitemap.txt/", "destination": "/sitemap.txt" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/robots.txt/", "destination": "/robots.txt" },
     { "source": "/ads.txt", "destination": "/ads.txt" },
+    { "source": "/ads.txt/", "destination": "/ads.txt" },
     { "source": "/app-ads.txt", "destination": "/app-ads.txt" },
+    { "source": "/app-ads.txt/", "destination": "/app-ads.txt" },
     { "source": "/terms.html", "destination": "/terms/index.html" },
     { "source": "/privacy.html", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
@@ -79,6 +119,8 @@
     { "source": "/contact/", "destination": "/contact/index.html" },
     { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" },
     { "source": "/blog/:slug/", "destination": "/blog/:slug/index.html" },
+    { "source": "/assets/:file*.js", "destination": "/api/fallback-asset" },
+    { "source": "/assets/:file*.css", "destination": "/api/fallback-asset" },
     {
       "source": "/((?!assets/|api/|.*\\.(?:ico|svg|png|jpg|jpeg|webp|gif|xml|txt|json|css|js|map|woff|woff2|ttf|eot)$).*)",
       "destination": "/index.html"
