@@ -66,15 +66,7 @@ https://xn--mgblao3hjb.store/blog/royal-perfumes-guide`;
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. Interactive Games -->
-  <url>
-    <loc>https://xn--mgblao3hjb.store/?category=fun-games</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- 4. Digital Planners -->
+  <!-- Digital Planners -->
   <url>
     <loc>https://xn--mgblao3hjb.store/?category=planners</loc>
     <lastmod>2026-09-06</lastmod>

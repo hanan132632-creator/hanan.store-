@@ -6,18 +6,8 @@ export const CATEGORIES: Category[] = [
     nameAr: 'جميع الملفات والمعروضات',
     nameEn: 'All Files & Collections',
     iconName: 'Sparkles',
-    descriptionAr: 'تشكيلة ملفات وألعاب حنان ستور الرقمية والفاخرة لعام 2026',
+    descriptionAr: 'تشكيلة ملفات حنان ستور الرقمية والفاخرة لعام 2026',
     descriptionEn: 'Hanan Store Digital Files & 2026 Catalog'
-  },
-  {
-    id: 'fun-games',
-    nameAr: 'ملفات الألعاب والفعاليات',
-    nameEn: 'Interactive Games & Fun Files',
-    iconName: 'Gamepad',
-    badgeAr: 'الأكثر تحميلاً 🔥',
-    badgeEn: 'Top Download',
-    descriptionAr: 'ألعاب تفاعلية وبوربوينت مسابقات وتحديات ممتعة لجمعات العائلة والأصدقاء',
-    descriptionEn: 'Interactive gathering games, trivia, and icebreakers for families & friends'
   },
   {
     id: 'planners',
@@ -56,8 +46,8 @@ export const CATEGORIES: Category[] = [
     iconName: 'Gift',
     badgeAr: 'وفر 65%',
     badgeEn: 'Save 65%',
-    descriptionAr: 'حزم رقمية تجمع جميع ألعاب وبلانرات وقوالب المتجر في ملف واحد بسعر رمزي',
-    descriptionEn: 'All-inclusive digital bundles containing all games, templates, and planners'
+    descriptionAr: 'حزم رقمية تجمع جميع بلانرات وقوالب المتجر في ملف واحد بسعر رمزي',
+    descriptionEn: 'All-inclusive digital bundles containing all templates and planners'
   },
   {
     id: 'luxury',
@@ -72,198 +62,7 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const PRODUCTS: Product[] = [
-  // --- 1. DIGITAL FILES: FUN & GAMES ---
-  {
-    id: 'hn-file-games-01',
-    sku: 'FUN-GAME-001',
-    titleAr: 'ملف لعبة جمعات حنان التفاعلية الكبرى (150 تحدي وسؤال وجولة ضحك)',
-    titleEn: 'Hanan Ultimate Gathering Game (150 Interactive Challenges & Trivia)',
-    categoryId: 'fun-games',
-    categoryNameAr: 'ملفات الألعاب والفعاليات',
-    categoryNameEn: 'Interactive Games & Fun Files',
-    price: 49,
-    originalPrice: 120,
-    rating: 5.0,
-    reviewsCount: 384,
-    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop',
-    gallery: [
-      'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1000&auto=format&fit=crop'
-    ],
-    descriptionAr: 'الملف الأكثر طلباً وشهرة في متجر حنان! ملف تفاعلي ممتع جداً صُمم خصيصاً للجمعات العائلية وجمعات الأصدقاء والمناسبات. يحتوي على 150 شريحة وسؤال تفاعلي يشمل: فقرة "مين فينا؟"، وتحدي "أسرع إجابة"، وألغاز ذكاء، ومواقف محرجة مضحكة، ومسابقة بدون كلام. يعمل بكفاءة على شاشات التلفزيون الذكية والأيباد والجوالات بصيغة بوربوينت وPDF تفاعلي بنقرة زر.',
-    descriptionEn: 'The flagship bestselling file on Hanan Store! An ultra-entertaining interactive gathering party game featuring 150 slides with fun rounds: "Who is Most Likely To?", Rapid Fire, Hilarious Scenarios, and Charades. Plays seamlessly on Smart TVs, iPads, and smartphones.',
-    featuresAr: [
-      'تحميل فوري مباشر بعد الدفع بثوانٍ معدودة',
-      'صيغتان مرفقتان: بوربوينت تفاعلي (PPTX) + ملف PDF جاهز للعرض',
-      'مناسب لجميع الأعمار (جمعات بنات، عائلة، شباب، مناسبات العيد)',
-      'يعمل على شاشات التلفزيون الذكية، الأيباد، الجوال، واللابتوب بدون إنترنت',
-      'استخدام مفتوح ودائم مدى الحياة بدون أي اشتراكات شهرية'
-    ],
-    featuresEn: [
-      'Instant direct download within seconds of purchase',
-      'Two formats included: Interactive PowerPoint (PPTX) + Hyperlinked PDF',
-      'Family-friendly for all ages, holidays, and social gatherings',
-      'Runs offline on Smart TVs, iPads, phones, and laptops',
-      'Lifetime unlimited personal access with zero subscriptions'
-    ],
-    specsAr: {
-      'نوع الملف': 'بوربوينت تفاعلي + PDF عالي الدقة',
-      'عدد الشرائح / الأسئلة': '150 شريحة تفاعلية مع مؤثرات وانتقالات',
-      'حجم الملف': '28 ميجابايت',
-      'طريقة التسليم': 'تحميل فوري عبر الموقع + رابط مرسل للواتساب والإيميل'
-    },
-    specsEn: {
-      'File Format': 'Interactive PowerPoint (PPTX) + High-Res PDF',
-      'Slides / Questions': '150 interactive animated slides',
-      'File Size': '28 MB',
-      'Delivery Method': 'Instant on-screen download + WhatsApp & Email link'
-    },
-    options: ['نسخة الجوال والأيباد (PDF)', 'نسخة الشاشات واللابتوب (بوربوينت + PDF)'],
-    inStock: true,
-    stockCount: 9999,
-    isFeatured: true,
-    isBestSeller: true,
-    isDigitalFile: true,
-    fileType: 'بوربوينت تفاعلي + PDF',
-    fileSize: '28 MB',
-    filePagesOrItems: '150 شريحة تفاعلية',
-    downloadFileName: 'Hanan_Store_Gathering_Game_2026.zip',
-    sampleContentPreview: [
-      'فقرة مين فينا: من أكثر شخص يضيع مفاتيحه؟',
-      'تحدي الثواني الخمس: اذكر 3 أشياء مستحيل تسافر بدونها!',
-      'جولة تمثيل بدون كلام: أفلام ومسلسلات خليجية مشهورة',
-      'سؤال الصراحة والضحك: أغرب موقف صار لك بمناسبة رسمية'
-    ],
-    tagsAr: ['الأكثر طلباً', 'تحميل فوري', 'جمعات وعائلة', 'بوربوينت'],
-    tagsEn: ['Top Download', 'Instant Delivery', 'Gatherings', 'PowerPoint']
-  },
-  {
-    id: 'hn-file-games-02',
-    sku: 'FUN-GAME-002',
-    titleAr: 'ملف لعبة "تحدي مين فينا؟" و "كشف الأسرار" - نسخة البنات والجلسات الخاصة',
-    titleEn: 'Girls Night & Besties Icebreaker Game (Interactive PDF Edition)',
-    categoryId: 'fun-games',
-    categoryNameAr: 'ملفات الألعاب والفعاليات التفاعلية',
-    categoryNameEn: 'Interactive Games & Gathering Files',
-    price: 35,
-    originalPrice: 75,
-    rating: 4.9,
-    reviewsCount: 215,
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop',
-    gallery: [
-      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop'
-    ],
-    descriptionAr: 'لعبة مصممة خصيصاً لجلسات البنات والصديقات! تحتوي على أكثر من 90 سؤال وتحدي مرح وصريح يكشف خبايا الشخصيات ويشعل أجواء الجلسة بالضحك والمرح. تأتي بتصميم أنيق وبناتي متوافق بالكامل مع الجوال والأيباد مع أزرار تنقل تفاعلية.',
-    descriptionEn: 'Curated specifically for girls nights and close friends! Over 90 hilarious, witty, and deep conversation starters, trivia, and voting questions. Designed with chic aesthetics for smartphones and tablets.',
-    featuresAr: [
-      'أكثر من 90 سؤال صراحة وتصويت عفوي',
-      'تصميم أنيق بألوان باستيل راقية وسهلة القراءة',
-      'أزرار تفاعلية للتنقل بين الأسئلة بلمسة واحدة',
-      'تحميل مباشر فوري وصلاحية استخدام دائمة'
-    ],
-    featuresEn: [
-      'Over 90 witty questions and voting rounds',
-      'Chic pastel aesthetic with legible typography',
-      'One-tap interactive navigation buttons',
-      'Instant direct download and lifetime validity'
-    ],
-    specsAr: {
-      'نوع الملف': 'PDF تفاعلي (Interactive Mobile PDF)',
-      'عدد الصفحات': '95 صفحة وبطاقة',
-      'حجم الملف': '14 ميجابايت',
-      'التوافق': 'جميع هواتف آيفون وأندرويد وأجهزة الأيباد'
-    },
-    specsEn: {
-      'Format': 'Interactive Mobile PDF',
-      'Cards / Pages': '95 interactive cards',
-      'Size': '14 MB',
-      'Compatibility': 'iPhone, Android, iPad & Tablets'
-    },
-    inStock: true,
-    stockCount: 9999,
-    isFeatured: false,
-    isBestSeller: true,
-    isDigitalFile: true,
-    fileType: 'PDF تفاعلي للجوال',
-    fileSize: '14 MB',
-    filePagesOrItems: '95 بطاقة تفاعلية',
-    downloadFileName: 'Hanan_Girls_Night_Game.pdf',
-    sampleContentPreview: [
-      'لو كنا بعالم ديزني، مين مننا تكون الشريرة ومين الأميرة؟',
-      'مين أكثر وحدة تسوي تسوق إلكتروني وهي نايمة؟',
-      'تحدي: ورّونا آخر صورة حفظتوها في ألبوم الصور فوراً!'
-    ],
-    tagsAr: ['جلسات بنات', 'تحميل فوري', 'تصميم أنيق'],
-    tagsEn: ['Girls Night', 'Instant Download', 'Chic Design']
-  },
-  {
-    id: 'hn-file-games-03',
-    sku: 'FUN-GAME-003',
-    titleAr: 'ملف لعبة وتحدي أزياء تلبيس البنات الستايل الأمريكي العصري 2026 (حزمة الفاشن والأناقة التفاعلية)',
-    titleEn: 'American Style Fashion & Dress-Up Girls Interactive Game Kit 2026',
-    categoryId: 'fun-games',
-    categoryNameAr: 'ملفات الألعاب والفعاليات التفاعلية',
-    categoryNameEn: 'Interactive Games & Gathering Files',
-    price: 29,
-    originalPrice: 65,
-    rating: 5.0,
-    reviewsCount: 312,
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop',
-    gallery: [
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop'
-    ],
-    descriptionAr: 'الملف الأكثر تشويقاً وتفاعلاً لعاشقات الموضة والأزياء والستايل الأمريكي العصري 2026! ملف PDF وبوربوينت تفاعلي مبرمج بأزرار لمس سريعة يتضمن: خزانة الملابس الأمريكية الحديثة (NYC Streetwear, Modern Chic, Denim Trends, Hollywood Glam)، تحدي تنسيق قطع الملابس بالألوان، فقرة تقييم إطلالات الصديقات، واختيار أسلوب المكياج والشعر بضغطة زر واحدة. يعمل على الآيفون والآيباد والأندرويد والشاشات الذكية.',
-    descriptionEn: 'The definitive fashion & American style dress-up interactive digital game kit for 2026! Features hyperlinked outfit styling cards, NYC streetwear vs Hollywood glam challenges, color coordination quizzes, and voting rounds. Compatible with smartphones, tablets, and Smart TVs.',
-    featuresAr: [
-      'تحميل فوري مباشر بعد الطلب بثوانٍ معدودة',
-      'أكثر من 85 بطاقة وشريحة تفاعلية لتنسيق الأزياء والستايل الأمريكي',
-      'يشمل تحديات: ستايل الشارع النيويوركي، أناقة الكليات، وتحدي السجاد الأحمر',
-      'أزرار تنقل تفاعلية فورية تعمل بدون الحاجة لإنترنت',
-      'استخدام مفتوح مدى الحياة بدون اشتراكات'
-    ],
-    featuresEn: [
-      'Instant direct download within seconds',
-      'Over 85 interactive fashion & American style dress-up cards',
-      'Includes NYC Streetwear, Hollywood Glam, and Ivy League styling challenges',
-      'Interactive tap-to-navigate buttons working 100% offline',
-      'Lifetime personal access with zero subscriptions'
-    ],
-    specsAr: {
-      'نوع الملف': 'PDF تفاعلي عالي الدقة + بوربوينت أزياء 2026',
-      'عدد البطاقات / الشرائح': '85 بطاقة تفاعلية عالية الجودة',
-      'حجم الملف': '18 ميجابايت',
-      'التوافق': 'الآيفون، الأندرويد، الآيباد، والشاشات الذكية'
-    },
-    specsEn: {
-      'Format': 'Interactive High-Res PDF + Fashion PowerPoint',
-      'Cards / Slides': '85 interactive styling cards',
-      'Size': '18 MB',
-      'Compatibility': 'iPhone, Android, iPad & Smart TVs'
-    },
-    inStock: true,
-    stockCount: 9999,
-    isFeatured: true,
-    isBestSeller: true,
-    isDigitalFile: true,
-    fileType: 'PDF تفاعلي + بوربوينت',
-    fileSize: '18 MB',
-    filePagesOrItems: '85 بطاقة أزياء تفاعلية',
-    downloadFileName: 'American_Style_Fashion_DressUp_Game_2026.zip',
-    sampleContentPreview: [
-      'تحدي تنسيق ستايل الشارع النيويوركي (NYC Casual Streetwear)',
-      'اختبار تنسيق ألوان السترة والجينز والدريس الأمريكي العصري',
-      'تنسيق إطلالة السهرة والستايل المظلي والأنثوي الفاخر',
-      'جولة تصويت البنات لأجمل وأشيك تنسيق أزياء'
-    ],
-    tagsAr: ['ألعاب بنات', 'تلبيس أزياء', 'ستايل أمريكي 2026', 'تحميل فوري'],
-    tagsEn: ['Dress Up', 'Fashion Game', 'American Style 2026', 'Instant Download']
-  },
-
-  // --- 2. DIGITAL FILES: PLANNERS (البلانرات والمخططات الرقمية) ---
+  // --- 1. DIGITAL FILES: PLANNERS (البلانرات والمخططات الرقمية) ---
   {
     id: 'hn-file-planner-01',
     sku: 'PLN-2026-001',

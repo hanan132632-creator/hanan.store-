@@ -48,17 +48,8 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
     scrollToSection('catalog-main');
   };
 
-  // BAR 1: Digital & Games Sections
+  // BAR 1: Digital Sections
   const digitalSections = [
-    {
-      id: 'fun-games',
-      icon: <Gamepad className="w-3.5 h-3.5 text-amber-400" />,
-      titleAr: 'ألعاب وفعاليات الجمعات التفاعلية',
-      titleEn: 'Interactive Gathering Games',
-      badgeAr: 'الأكثر طلباً 🔥',
-      badgeEn: 'Popular 🔥',
-      action: () => handleCategoryClick('fun-games')
-    },
     {
       id: 'planners',
       icon: <Calendar className="w-3.5 h-3.5 text-blue-400" />,
@@ -173,7 +164,7 @@ export const TopCategoryBars: React.FC<TopCategoryBarsProps> = ({
       titleEn: 'Instant 24/7 File Vault',
       badgeAr: 'تسليم لحظي',
       badgeEn: 'Instant',
-      action: () => handleCategoryClick('fun-games')
+      action: () => handleCategoryClick('planners')
     },
     {
       id: 'service-reviews',

@@ -59,7 +59,6 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
 
   const sitemapUrls = [
     { path: '/', titleAr: 'الصفحة الرئيسية للمتجر', priority: '1.0', freq: 'daily' },
-    { path: '/?category=fun-games', titleAr: 'ألعاب الجمعات التفاعلية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=planners', titleAr: 'بلانر ومخططات الأيباد 2026', priority: '0.9', freq: 'weekly' },
     { path: '/?category=bundles', titleAr: 'البكجات الشاملة الرقمية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=perfumes', titleAr: 'العطور الملكية والنيش', priority: '0.85', freq: 'weekly' },

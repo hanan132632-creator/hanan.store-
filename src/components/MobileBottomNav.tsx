@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Gamepad2, Search, Heart, ShoppingBag } from 'lucide-react';
+import { Home, Calendar, Search, Heart, ShoppingBag } from 'lucide-react';
 import { Language, Currency } from '../types';
 import { formatPrice } from '../data/translations';
 
@@ -46,9 +46,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleGamesClick = () => {
+  const handlePlannersClick = () => {
     triggerHaptic();
-    onSelectCategory('fun-games');
+    onSelectCategory('planners');
     const el = document.getElementById('catalog-filters-section') || document.getElementById('featured-products-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -83,23 +83,23 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           </span>
         </button>
 
-        {/* Tab 2: Interactive Gathering Games & Digital files */}
+        {/* Tab 2: Digital Planners */}
         <button
-          id="mobile-nav-games"
-          onClick={handleGamesClick}
-          aria-label={isAr ? 'قسم ألعاب وتحديات الجمعات' : 'Fun Gathering Games Category'}
+          id="mobile-nav-planners"
+          onClick={handlePlannersClick}
+          aria-label={isAr ? 'قسم البلانرات ومخططات الأيباد' : 'Digital Planners Category'}
           className={`min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-colors cursor-pointer touch-manipulation active:scale-95 ${
-            activeCategory === 'fun-games' ? 'text-amber-800 font-bold' : 'text-stone-700 font-semibold hover:text-stone-950'
+            activeCategory === 'planners' ? 'text-amber-800 font-bold' : 'text-stone-700 font-semibold hover:text-stone-950'
           }`}
         >
           <div className="relative">
-            <Gamepad2 className="w-5 h-5 text-amber-600" />
-            {activeCategory === 'fun-games' && (
+            <Calendar className="w-5 h-5 text-amber-600" />
+            {activeCategory === 'planners' && (
               <span className="absolute -bottom-1 inset-x-1 h-0.5 bg-amber-600 rounded-full"></span>
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight truncate max-w-full">
-            {isAr ? 'ألعاب وجمعات' : 'Fun Games'}
+            {isAr ? 'البلانرات' : 'Planners'}
           </span>
         </button>
 
