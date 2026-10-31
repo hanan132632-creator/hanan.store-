@@ -59,6 +59,7 @@ export const SearchConsoleModal: React.FC<SearchConsoleModalProps> = ({
 
   const sitemapUrls = [
     { path: '/', titleAr: 'الصفحة الرئيسية للمتجر', priority: '1.0', freq: 'daily' },
+    { path: '/blog/mindful-financial-intelligence-wealth-preservation-2026', titleAr: 'مقال E-E-A-T: دليل الذكاء المالي والادخار بجدول الإكسل المؤتمت 2026', priority: '1.0', freq: 'daily' },
     { path: '/?category=planners', titleAr: 'بلانر ومخططات الأيباد 2026', priority: '0.9', freq: 'weekly' },
     { path: '/?category=bundles', titleAr: 'البكجات الشاملة الرقمية', priority: '0.9', freq: 'weekly' },
     { path: '/?category=perfumes', titleAr: 'العطور الملكية والنيش', priority: '0.85', freq: 'weekly' },

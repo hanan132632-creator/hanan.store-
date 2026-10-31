@@ -60,8 +60,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
       titleEn: 'About Hanan Store',
       badgeAr: 'علامة موثقة وهوية مسجلة',
       badgeEn: 'Verified Brand',
-      subAr: 'حنان ستور (xn--mgblao3hjb.store) — ألعاب جمعات، منتجات رقمية، وعطور فاخرة',
-      subEn: 'Authentic brand crafting memorable gathering games, digital planners, and curated luxury',
+      subAr: 'حنان ستور (xn--mgblao3hjb.store) — بلانرات ومخططات رقمية 2026، قوالب كانفا، وعطور ومجوهرات فاخرة',
+      subEn: 'Authentic brand crafting digital planners, Canva kits, and curated luxury',
       icon: Sparkles,
       iconColor: 'text-amber-600 bg-amber-50',
       badgeColor: 'bg-amber-100 text-amber-800 border-amber-200'
@@ -313,8 +313,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   </div>
                   <p className="text-xs text-stone-600 leading-relaxed">
                     {isAr
-                      ? 'يقدم الموقع مقالات وأدلة إرشادية حصرية حول تنظيم الفعاليات، ألعاب الجمعات العائلية، وإدارة الميزانيات، مكتوبة بأيدي كُتّاب وباحثين بشريين متخصصين 100%، بعيداً عن المحتوى المنسوخ أو النصوص المكررة.'
-                      : 'We provide unique, original gathering guides, productivity planners, and lifestyle insights written 100% by human specialists for real readers.'}
+                      ? 'يقدم الموقع مقالات وأدلة إرشادية حصرية حول التخطيط الرقمي، قوالب كانفا، إدارة الميزانيات، وعناية الفضة والعطور الفاخرة، مكتوبة بأيدي كُتّاب وباحثين بشريين متخصصين 100%، بعيداً عن المحتوى المنسوخ أو النصوص المكررة.'
+                      : 'We provide unique, original productivity planners, Canva guides, and lifestyle insights written 100% by human specialists for real readers.'}
                   </p>
                 </div>
 
@@ -386,8 +386,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h5>
                 <p>
                   {isAr
-                    ? 'جميع الملفات الرقمية وألعاب الجمعات التفاعلية، البلانرات، والقوالب المعروضة في المتجر مخصصة للاستخدام الشخصي غير التجاري مدى الحياة. يحظر منعاً باتاً إعادة بيعها أو توزيعها مجاناً أو نشرها على مواقع أخرى دون إذن خطي مسبق من إدارة حنان ستور.'
-                    : 'Digital files and gathering games are licensed for personal, non-commercial lifetime use. Reselling or public redistribution is strictly prohibited.'}
+                    ? 'جميع الملفات الرقمية، البلانرات، والقوالب المعروضة في المتجر مخصصة للاستخدام الشخصي غير التجاري مدى الحياة. يحظر منعاً باتاً إعادة بيعها أو توزيعها مجاناً أو نشرها على مواقع أخرى دون إذن خطي مسبق من إدارة حنان ستور.'
+                    : 'Digital files and digital planners are licensed for personal, non-commercial lifetime use. Reselling or public redistribution is strictly prohibited.'}
                 </p>
               </section>
 
@@ -424,8 +424,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-600 mt-1">
                     {isAr
-                      ? 'علامة سعودية رائدة تجمع بين سحر الفخامة الشرقية وابتكار الألعاب التفاعلية وصناعة المحتوى الرقمي المبهج للجمعات والمناسبات.'
-                      : 'A boutique celebrating oriental elegance and innovative gathering games under one authentic brand.'}
+                      ? 'علامة سعودية رائدة تجمع بين سحر الفخامة الشرقية والبلانرات والمخططات الرقمية وقوالب التصميم الذكية.'
+                      : 'A boutique celebrating oriental elegance, digital planners, and curated luxury.'}
                   </p>
                 </div>
               </div>
@@ -436,15 +436,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 </h5>
                 <p>
                   {isAr
-                    ? 'انطلقت منصة متجر حنان لتكون مساحة تجمع بين الجمال والترفيه الراقي. نبتكر ألعاباً عائلية تفاعلية تحيي الجمعات وتخلق ذكريات لا تُنسى، ونختار بعناية أجود العطور والمجوهرات التي تعكس الأصالة والذوق الرفيع.'
-                    : 'We craft memorable gatherings through interactive games while presenting curated royal fragrances and jewelry.'}
+                    ? 'انطلقت منصة متجر حنان لتكون مساحة تجمع بين التخطيط الرقمي المتقن والسكينة الشخصية. نصمم ونبتكر مخططات وبلانرات رقمية تفاعلية تحسن الإنتاجية والسكينة الشخصية، ونختار بعناية أجود العطور والمجوهرات التي تعكس الأصالة والذوق الرفيع.'
+                    : 'We empower digital productivity through hyperlinked planners while presenting curated royal fragrances and fine jewelry.'}
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
                 <div>
                   <span className="text-xl font-black text-amber-700 font-serif block">+12,500</span>
-                  <span className="text-[11px] text-stone-500">{isAr ? 'عميل سعيد بالجمعات' : 'Happy Customers'}</span>
+                  <span className="text-[11px] text-stone-500">{isAr ? 'عميل سعيد بالمنتجات' : 'Happy Customers'}</span>
                 </div>
                 <div>
                   <span className="text-xl font-black text-amber-700 font-serif block">100%</span>

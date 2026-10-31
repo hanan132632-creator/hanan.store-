@@ -54,6 +54,12 @@ https://xn--mgblao3hjb.store/blog/royal-perfumes-guide`;
 
   <!-- Editorial E-E-A-T Guide 2026 -->
   <url>
+    <loc>https://xn--mgblao3hjb.store/blog/mindful-financial-intelligence-wealth-preservation-2026</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://xn--mgblao3hjb.store/blog/sterling-silver-925-jewelry-preservation-eeat-2026</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>daily</changefreq>
