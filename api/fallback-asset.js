@@ -8,12 +8,21 @@ export default function handler(req, res) {
     return res.status(200).end();
   }
 
-  const url = req.url || "";
-  if (url.endsWith(".css")) {
+  const rawUrl = String(
+    req.headers["x-matched-path"] ||
+    req.headers["x-vercel-matched-path"] ||
+    req.headers["x-original-url"] ||
+    req.url ||
+    ""
+  ).toLowerCase();
+
+  if (rawUrl.includes(".css")) {
     res.setHeader("Content-Type", "text/css; charset=utf-8");
+    if (req.method === "HEAD") return res.status(200).end();
     return res.status(200).send("/* Fallback for legacy stylesheet */\n");
   }
 
   res.setHeader("Content-Type", "application/javascript; charset=utf-8");
+  if (req.method === "HEAD") return res.status(200).end();
   return res.status(200).send("// Fallback for legacy script asset\nconsole.debug('Asset refreshed');\n");
 }

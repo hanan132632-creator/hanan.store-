@@ -56,23 +56,13 @@
       "permanent": true
     },
     {
-      "source": "/404",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/404.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/fashion",
-      "destination": "/?product=hn-file-games-03",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/game",
-      "destination": "/?product=hn-file-games-03",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -97,6 +87,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/404", "destination": "/404.html" },
+    { "source": "/404/", "destination": "/404.html" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/sitemap.xml/", "destination": "/sitemap.xml" },
     { "source": "/sitemap.txt", "destination": "/sitemap.txt" },

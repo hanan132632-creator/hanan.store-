@@ -1,7 +1,11 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
@@ -22,6 +26,27 @@ async function startServer() {
     }
 
     const cleanPath = req.path.replace(/\.js$/, "");
+
+    // Fallback handler for legacy or stale build assets
+    if (cleanPath === "/fallback-asset" || cleanPath.startsWith("/fallback-asset")) {
+      const rawUrl = String(
+        req.headers["x-matched-path"] ||
+        req.headers["x-vercel-matched-path"] ||
+        req.headers["x-original-url"] ||
+        req.query.url ||
+        req.url ||
+        ""
+      ).toLowerCase();
+      res.setHeader("Cache-Control", "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400");
+      if (rawUrl.includes(".css")) {
+        res.setHeader("Content-Type", "text/css; charset=utf-8");
+        if (req.method === "HEAD") return res.status(200).end();
+        return res.status(200).send("/* Fallback for legacy stylesheet */\n");
+      }
+      res.setHeader("Content-Type", "application/javascript; charset=utf-8");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.status(200).send("// Fallback for legacy script asset\nconsole.debug('Asset refreshed');\n");
+    }
 
     if (cleanPath === "" || cleanPath === "/" || cleanPath === "/index") {
       return res.status(200).json({ status: "ok", service: "API Service" });
@@ -146,60 +171,104 @@ async function startServer() {
     next();
   });
 
-  // 3. Explicit SEO & Crawler Files (sitemap.xml, sitemap.txt, robots.txt, ads.txt)
-  app.all(["/sitemap.xml", "/sitemap"], (req, res) => {
-    const filePath = path.join(process.cwd(), "public", "sitemap.xml");
-    if (fs.existsSync(filePath)) {
-      res.setHeader("Content-Type", "application/xml; charset=utf-8");
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Cache-Control", "public, max-age=3600");
-      res.setHeader("X-Robots-Tag", "all");
-      if (req.method === "HEAD") return res.status(200).end();
+  // Helper to find a file across root, public, and dist directories
+  const resolveFile = (filename: string): string | null => {
+    const candidates = [
+      path.join(process.cwd(), "public", filename),
+      path.join(process.cwd(), "dist", filename),
+      path.join(process.cwd(), filename),
+      path.join(__dirname, "public", filename),
+      path.join(__dirname, filename),
+      path.join(__dirname, "..", "public", filename),
+    ];
+    for (const c of candidates) {
+      if (fs.existsSync(c) && fs.statSync(c).isFile()) return c;
+    }
+    return null;
+  };
+
+  // 3. Explicit SEO & Crawler Files (sitemap.xml, sitemap.txt, robots.txt, ads.txt, app-ads.txt)
+  // Handles requests with/without trailing slash and queries, with guaranteed 200 OK fallbacks
+  app.all(["/sitemap.xml", "/sitemap.xml/", "/sitemap", "/sitemap/"], (req, res) => {
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("X-Robots-Tag", "all");
+    if (req.method === "OPTIONS") return res.status(200).end();
+    if (req.method === "HEAD") return res.status(200).end();
+
+    const filePath = resolveFile("sitemap.xml");
+    if (filePath) {
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
-    return res.status(404).type("text/plain").send("Sitemap not found");
+
+    const fallbackXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://xn--mgblao3hjb.store/</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/about</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/privacy</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/terms</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/contact</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/mindful-financial-intelligence-wealth-preservation-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/sterling-silver-925-jewelry-preservation-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/digital-products-business-freelance-saudi-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/ipad-goodnotes-digital-planner-mastery-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+</urlset>`;
+    return res.status(200).send(fallbackXml);
   });
 
-  app.all(["/sitemap.txt"], (req, res) => {
-    const filePath = path.join(process.cwd(), "public", "sitemap.txt");
-    if (fs.existsSync(filePath)) {
-      res.setHeader("Content-Type", "text/plain; charset=utf-8");
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Cache-Control", "public, max-age=3600");
-      res.setHeader("X-Robots-Tag", "all");
-      if (req.method === "HEAD") return res.status(200).end();
+  app.all(["/sitemap.txt", "/sitemap.txt/"], (req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("X-Robots-Tag", "all");
+    if (req.method === "OPTIONS") return res.status(200).end();
+    if (req.method === "HEAD") return res.status(200).end();
+
+    const filePath = resolveFile("sitemap.txt");
+    if (filePath) {
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
-    return res.status(404).type("text/plain").send("Sitemap text not found");
+    return res.status(200).send("https://xn--mgblao3hjb.store/\nhttps://xn--mgblao3hjb.store/about\nhttps://xn--mgblao3hjb.store/privacy\nhttps://xn--mgblao3hjb.store/terms\nhttps://xn--mgblao3hjb.store/contact\n");
   });
 
-  app.all(["/robots.txt"], (req, res) => {
-    const filePath = path.join(process.cwd(), "public", "robots.txt");
-    if (fs.existsSync(filePath)) {
-      res.setHeader("Content-Type", "text/plain; charset=utf-8");
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Cache-Control", "public, max-age=3600");
-      if (req.method === "HEAD") return res.status(200).end();
+  app.all(["/robots.txt", "/robots.txt/"], (req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    if (req.method === "OPTIONS") return res.status(200).end();
+    if (req.method === "HEAD") return res.status(200).end();
+
+    const filePath = resolveFile("robots.txt");
+    if (filePath) {
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
-    return res.status(404).type("text/plain").send("Robots not found");
+
+    const fallbackRobots = `User-agent: *\nAllow: /\nDisallow: /api/\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Mediapartners-Google\nAllow: /\n\nUser-agent: AdsBot-Google\nAllow: /\n\nSitemap: https://xn--mgblao3hjb.store/sitemap.xml\nSitemap: https://xn--mgblao3hjb.store/sitemap.txt\nHost: https://xn--mgblao3hjb.store\n`;
+    return res.status(200).send(fallbackRobots);
   });
 
-  app.all(["/ads.txt", "/app-ads.txt"], (req, res) => {
-    const filePath = path.join(process.cwd(), "public", "ads.txt");
-    if (fs.existsSync(filePath)) {
-      res.setHeader("Content-Type", "text/plain; charset=utf-8");
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
-      if (req.method === "HEAD") return res.status(200).end();
+  app.all(["/ads.txt", "/ads.txt/", "/app-ads.txt", "/app-ads.txt/"], (req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+    if (req.method === "OPTIONS") return res.status(200).end();
+    if (req.method === "HEAD") return res.status(200).end();
+
+    const filePath = resolveFile("ads.txt");
+    if (filePath) {
       return res.status(200).send(fs.readFileSync(filePath, "utf-8"));
     }
-    return res.status(404).type("text/plain").send("Ads.txt not found");
+    return res.status(200).send("google.com, pub-8161307018337815, DIRECT, f08c47fec0942fa0\n");
   });
 
   app.all(["/favicon.ico"], (req, res) => {
-    const icoPath = path.join(process.cwd(), "public", "favicon.ico");
-    if (fs.existsSync(icoPath)) {
+    const icoPath = resolveFile("favicon.ico");
+    if (icoPath) {
       res.setHeader("Content-Type", "image/x-icon");
       res.setHeader("Cache-Control", "public, max-age=604800, immutable");
       res.setHeader("Access-Control-Allow-Origin", "*");
@@ -210,8 +279,8 @@ async function startServer() {
   });
 
   app.all(["/favicon.svg"], (req, res) => {
-    const svgPath = path.join(process.cwd(), "public", "favicon.svg");
-    if (fs.existsSync(svgPath)) {
+    const svgPath = resolveFile("favicon.svg");
+    if (svgPath) {
       res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=604800, immutable");
       res.setHeader("Access-Control-Allow-Origin", "*");
@@ -230,8 +299,8 @@ async function startServer() {
   ], (req, res) => {
     const reqFilename = path.basename(req.path);
     const targetFile = reqFilename === "apple-touch-icon-precomposed.png" ? "apple-touch-icon.png" : reqFilename;
-    const iconPath = path.join(process.cwd(), "public", targetFile);
-    if (fs.existsSync(iconPath)) {
+    const iconPath = resolveFile(targetFile);
+    if (iconPath) {
       res.setHeader("Content-Type", "image/png");
       res.setHeader("Cache-Control", "public, max-age=604800, immutable");
       res.setHeader("Access-Control-Allow-Origin", "*");
@@ -246,61 +315,71 @@ async function startServer() {
     return res.redirect(301, "/blog");
   });
 
-  // 5. Dedicated handler for /404 and /404.html: redirect permanently to homepage with 301
+  // 5. Dedicated handler for /404 and /404.html:
+  // Returns HTTP status 404 (Not Found) with friendly HTML 404 page,
+  // satisfying bot crawler 404 probes with 100% compliance while assisting real users.
   app.all(["/404", "/404.html", "/404.", "/404/", "/404/*"], (req, res) => {
-    return res.redirect(301, "/");
+    const errorPage = resolveFile("404.html");
+    res.status(404);
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader("X-Robots-Tag", "noindex, follow");
+    if (req.method === "HEAD") return res.status(404).end();
+    if (errorPage) {
+      return res.status(404).sendFile(errorPage);
+    }
+    return res.status(404).send("<!doctype html><html lang='ar' dir='rtl'><head><title>404</title><meta http-equiv='refresh' content='3;url=/'></head><body><h1>404 - الصفحة غير موجودة</h1><p>سيتم نقلك تلقائياً للصفحة الرئيسية...</p></body></html>");
   });
 
-  // 5. Stale asset hashes fallback (/assets/*.css and /assets/*.js)
-  // When cached browsers or bots request older build hashes that no longer exist,
-  // return a 200 OK fallback instead of generating 404 crawl errors.
-  app.get("/assets/:filename", (req, res, next) => {
-    const { filename } = req.params;
-    const distAssetsPath = path.join(process.cwd(), "dist", "assets", filename);
-    const publicAssetsPath = path.join(process.cwd(), "public", "assets", filename);
-
-    if (fs.existsSync(distAssetsPath)) {
-      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-      return res.sendFile(distAssetsPath);
-    }
-    if (fs.existsSync(publicAssetsPath)) {
-      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-      return res.sendFile(publicAssetsPath);
+  // 6. Comprehensive Stale/Cached Asset Handler (/assets/*)
+  // When crawlers or cached browsers request older hashed bundles that no longer exist on disk,
+  // this handler guarantees a 200 OK with correct MIME types to completely eliminate 404 crawl errors.
+  app.all("/assets/*", (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    if (req.method === "OPTIONS") {
+      return res.status(200).end();
     }
 
-    if (filename.endsWith(".css")) {
-      // Find latest css file in dist/assets if available
-      try {
-        const assetsDir = path.join(process.cwd(), "dist", "assets");
-        if (fs.existsSync(assetsDir)) {
-          const files = fs.readdirSync(assetsDir);
-          const currentCss = files.find((f) => f.endsWith(".css"));
-          if (currentCss) {
-            return res.sendFile(path.join(assetsDir, currentCss));
-          }
+    const subpath = req.path.replace(/^\/assets\//, "").replace(/^\/+/, "");
+    const candidates = [
+      path.join(process.cwd(), "dist", "assets", subpath),
+      path.join(process.cwd(), "public", "assets", subpath),
+      path.join(__dirname, "dist", "assets", subpath),
+      path.join(__dirname, "public", "assets", subpath),
+    ];
+
+    for (const c of candidates) {
+      if (fs.existsSync(c) && fs.statSync(c).isFile()) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        if (req.method === "HEAD") {
+          if (subpath.endsWith(".css")) res.setHeader("Content-Type", "text/css; charset=utf-8");
+          if (subpath.endsWith(".js") || subpath.endsWith(".mjs")) res.setHeader("Content-Type", "application/javascript; charset=utf-8");
+          return res.status(200).end();
         }
-      } catch {
-        // fallback
+        return res.sendFile(c);
       }
+    }
+
+    // Asset was not found on disk (older hash from previous deployment):
+    // Provide a valid 200 OK fallback response to prevent 404 crawl alerts!
+    res.setHeader("Cache-Control", "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400");
+
+    if (subpath.endsWith(".css") || req.url.includes(".css")) {
       res.setHeader("Content-Type", "text/css; charset=utf-8");
-      return res.status(200).send("/* Fallback for cached stylesheet */");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.status(200).send("/* Fallback for legacy stylesheet */\n");
     }
 
-    if (filename.endsWith(".js")) {
-      try {
-        const assetsDir = path.join(process.cwd(), "dist", "assets");
-        if (fs.existsSync(assetsDir)) {
-          const files = fs.readdirSync(assetsDir);
-          const currentJs = files.find((f) => f.endsWith(".js") && !f.includes("server"));
-          if (currentJs) {
-            return res.sendFile(path.join(assetsDir, currentJs));
-          }
-        }
-      } catch {
-        // fallback
-      }
+    if (subpath.endsWith(".js") || req.url.includes(".js") || subpath.endsWith(".mjs")) {
       res.setHeader("Content-Type", "application/javascript; charset=utf-8");
-      return res.status(200).send("// Fallback for cached script bundle");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.status(200).send("// Fallback for legacy script bundle\nconsole.debug('Asset refreshed');\n");
+    }
+
+    if (subpath.match(/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i)) {
+      res.setHeader("Content-Type", "image/png");
+      if (req.method === "HEAD") return res.status(200).end();
+      return res.status(204).end();
     }
 
     next();
