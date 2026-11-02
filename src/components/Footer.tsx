@@ -17,11 +17,12 @@ interface FooterProps {
   lang: Language;
   onCategorySelect: (catId: string) => void;
   onOpenDomainInfo: () => void;
-  onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact') => void;
+  onOpenLegal?: (tab: 'privacy' | 'terms' | 'adsense' | 'about' | 'contact' | 'author') => void;
   onOpenSearchConsole?: () => void;
   onOpenSitemapViewer?: (type: 'sitemap' | 'robots' | 'ads') => void;
   onOpenArticleWriter?: () => void;
   onOpenMobileOptimizer?: () => void;
+  onOpenAuthorProfile?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -32,7 +33,8 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenSearchConsole,
   onOpenSitemapViewer,
   onOpenArticleWriter,
-  onOpenMobileOptimizer
+  onOpenMobileOptimizer,
+  onOpenAuthorProfile
 }) => {
   const t = TRANSLATIONS[lang];
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -206,6 +208,23 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-amber-300 transition-colors cursor-pointer text-stone-300 hover:underline block"
                 >
                   {lang === 'ar' ? 'من نحن (فريق العمل)' : 'About Hanan Store'}
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/author"
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    if (onOpenAuthorProfile) {
+                      onOpenAuthorProfile();
+                    } else if (onOpenLegal) {
+                      onOpenLegal('author');
+                    }
+                  }}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-amber-300 font-bold hover:underline flex items-center gap-1.5"
+                >
+                  <span>✍️</span>
+                  <span>{lang === 'ar' ? 'الملف التحريري للكاتب (أ. حنان الشمري)' : 'Author Profile (Hanan Al-Shammari)'}</span>
                 </a>
               </li>
               <li>

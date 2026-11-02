@@ -39,6 +39,7 @@ const WishlistModal = lazy(() => import('./components/WishlistModal').then(m => 
 const GiftAdvisorModal = lazy(() => import('./components/GiftAdvisorModal').then(m => ({ default: m.GiftAdvisorModal })));
 const FilePreviewModal = lazy(() => import('./components/FilePreviewModal').then(m => ({ default: m.FilePreviewModal })));
 const LegalModal = lazy(() => import('./components/LegalModal').then(m => ({ default: m.LegalModal })));
+const AuthorProfileModal = lazy(() => import('./components/AuthorProfileModal').then(m => ({ default: m.AuthorProfileModal })));
 const SearchConsoleModal = lazy(() => import('./components/SearchConsoleModal').then(m => ({ default: m.SearchConsoleModal })));
 const SitemapViewerModal = lazy(() => import('./components/SitemapViewerModal').then(m => ({ default: m.SitemapViewerModal })));
 const ArticleWriterModal = lazy(() => import('./components/ArticleWriterModal').then(m => ({ default: m.ArticleWriterModal })));
@@ -58,6 +59,7 @@ export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isDomainInfoOpen, setIsDomainInfoOpen] = useState(false);
   const [isGiftAdvisorOpen, setIsGiftAdvisorOpen] = useState(false);
+  const [isAuthorOpen, setIsAuthorOpen] = useState(false);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<LegalTab>('privacy');
   const [isSearchConsoleOpen, setIsSearchConsoleOpen] = useState(false);
@@ -375,7 +377,25 @@ export default function App() {
         return;
       }
 
-      // 8. Specialized Editorial Tools & Diagnostic Modals
+      // 8. Author Profile / الملف التحريري للكاتب / أ. حنان الشمري
+      const isAuthorRoute = 
+        path === '/author' || 
+        path.startsWith('/author/') || 
+        path === '/الكاتب' || 
+        path === '/المؤلف' || 
+        path === '/حنان-الشمري' || 
+        path.endsWith('/author') || 
+        path.endsWith('/الكاتب') ||
+        hash === '#author' || 
+        hash === '#author-profile' || 
+        hash === '#الكاتب';
+
+      if (isAuthorRoute) {
+        setIsAuthorOpen(true);
+        return;
+      }
+
+      // 9. Specialized Editorial Tools & Diagnostic Modals
       if (hash === '#tool-article-writer' || hash === '#article-tool' || hash === '#ai-writer' || path === '/article-writer') {
         setIsArticleWriterOpen(true);
       } else if (hash === '#mobile-optimizer' || hash === '#mobile-tool' || path === '/mobile-optimizer') {
@@ -403,11 +423,33 @@ export default function App() {
       privacy: { ar: '/سياسة-الخصوصية', en: '/privacy-policy' },
       terms: { ar: '/الشروط', en: '/terms' },
       adsense: { ar: '/سياسة-اعلانات-جوجل', en: '/adsense' },
+      author: { ar: '/الكاتب', en: '/author' },
     };
 
     try {
       const slug = lang === 'ar' ? routeMap[tab].ar : routeMap[tab].en;
       window.history.pushState({ tab }, '', slug);
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleOpenAuthor = () => {
+    setIsAuthorOpen(true);
+    try {
+      window.history.pushState({ author: true }, '', '/author');
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleCloseAuthor = () => {
+    setIsAuthorOpen(false);
+    try {
+      const currentPath = decodeURIComponent(window.location.pathname || '').toLowerCase();
+      if (currentPath === '/author' || currentPath.startsWith('/author/') || currentPath === '/الكاتب' || currentPath === '/المؤلف') {
+        window.history.pushState(null, '', '/');
+      }
     } catch {
       // ignore
     }
@@ -424,7 +466,8 @@ export default function App() {
         '/متجر', '/المتجر', '/تسوق', '/store', '/shop',
         '/سياسة-الخصوصية', '/الخصوصية', '/privacy', '/privacy-policy',
         '/الشروط', '/شروط', '/الشروط-والأحكام', '/الشروط-والاحكام', '/terms', '/terms-of-service',
-        '/سياسة-اعلانات-جوجل', '/adsense', '/adsense-policy'
+        '/سياسة-اعلانات-جوجل', '/adsense', '/adsense-policy',
+        '/author', '/author/hanan', '/الكاتب', '/المؤلف'
       ];
       if (knownPaths.includes(currentPath)) {
         window.history.pushState(null, '', '/');
@@ -816,6 +859,7 @@ export default function App() {
           <BlogSection 
             lang={lang} 
             onOpenArticleWriter={() => setIsArticleWriterOpen(true)}
+            onOpenAuthorProfile={handleOpenAuthor}
           />
         </Suspense>
       </div>
@@ -834,6 +878,7 @@ export default function App() {
           onCategorySelect={handleSelectCategory}
           onOpenDomainInfo={() => setIsDomainInfoOpen(true)}
           onOpenLegal={handleOpenLegal}
+          onOpenAuthorProfile={handleOpenAuthor}
           onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
           onOpenSitemapViewer={(type) => {
             setSitemapViewerTab(type);
@@ -1008,6 +1053,29 @@ export default function App() {
             onClose={handleCloseLegal}
             lang={lang}
             initialTab={legalTab}
+          />
+        )}
+
+        {/* Verified Human Author E-E-A-T Profile Modal */}
+        {isAuthorOpen && (
+          <AuthorProfileModal
+            isOpen={isAuthorOpen}
+            onClose={handleCloseAuthor}
+            lang={lang}
+            onSelectArticle={(articleId) => {
+              handleCloseAuthor();
+              try {
+                if (window.history && window.history.pushState) {
+                  window.history.pushState(null, '', `/article/${articleId}`);
+                }
+              } catch {
+                window.location.hash = `article-${articleId}`;
+              }
+              setTimeout(() => {
+                const el = document.getElementById('hanan-blog');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
           />
         )}
 
