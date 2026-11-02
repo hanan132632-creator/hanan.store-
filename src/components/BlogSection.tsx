@@ -1347,28 +1347,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
       return {};
     }
   });
-  // Article Statistics (views, likes, live readers)
-  const [stats, setStats] = useState<Record<string, { views: number; likes: number; liveReaders: number }>>(() => {
-    try {
-      const saved = localStorage.getItem('hanan_article_stats_v1');
-      return saved ? JSON.parse(saved) : {};
-    } catch {
-      return {};
-    }
-  });
-
-  // User Liked Articles Map
-  const [likedArticles, setLikedArticles] = useState<Record<string, boolean>>(() => {
-    try {
-      const saved = localStorage.getItem('hanan_liked_articles');
-      return saved ? JSON.parse(saved) : {};
-    } catch {
-      return {};
-    }
-  });
-
-  // Heart pop animation state
-  const [poppingHeartId, setPoppingHeartId] = useState<string | null>(null);
   // Deep-linking: auto-open article modal if URL contains /article/<id>, /blog/<id>, #article-<id>, or #blog-<id>
   useEffect(() => {
     const handleRouteAndHashCheck = () => {
@@ -1409,28 +1387,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   const openArticle = (article: Article) => {
     setSelectedArticle(article);
 
-    // Live view count increment (+1)
-    setStats((prev) => {
-      const current = prev[article.id] || { views: 2400, likes: 250, liveReaders: 18 };
-      const updated = {
-        ...prev,
-        [article.id]: {
-          ...current,
-          views: current.views + 1,
-          liveReaders: Math.min(55, current.liveReaders + 1)
-        }
-      };
-      try {
-        localStorage.setItem('hanan_article_stats_v1', JSON.stringify(updated));
-      } catch {
-        // ignore
-      }
-      return updated;
-    });
-
-    // Send async backend view increment
-    fetch(`/api/articles/stats/${article.id}/view`, { method: 'POST' }).catch(() => {});
-
     try {
       if (window.history && window.history.pushState) {
         window.history.pushState({ articleId: article.id }, '', `/article/${article.id}`);
@@ -1465,56 +1421,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }, 60);
-  };
-
-  // Toggle Like Handler
-  const toggleLike = (articleId: string, e?: React.MouseEvent) => {
-    if (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-    const isCurrentlyLiked = !!likedArticles[articleId];
-    const newLikedState = !isCurrentlyLiked;
-
-    const nextLiked = { ...likedArticles, [articleId]: newLikedState };
-    setLikedArticles(nextLiked);
-    try {
-      localStorage.setItem('hanan_liked_articles', JSON.stringify(nextLiked));
-    } catch {
-      // ignore
-    }
-
-    setStats((prev) => {
-      const current = prev[articleId] || { views: 2400, likes: 250, liveReaders: 18 };
-      const nextLikes = newLikedState ? current.likes + 1 : Math.max(0, current.likes - 1);
-      const updated = {
-        ...prev,
-        [articleId]: {
-          ...current,
-          likes: nextLikes
-        }
-      };
-      try {
-        localStorage.setItem('hanan_article_stats_v1', JSON.stringify(updated));
-      } catch {
-        // ignore
-      }
-      return updated;
-    });
-
-    if (newLikedState) {
-      setPoppingHeartId(articleId);
-      setTimeout(() => setPoppingHeartId(null), 900);
-      showToast(isAr ? '❤️ شكراً لتفاعلك! تم تسجيل إعجابك بالمقال بنجاح.' : '❤️ Thank you! Article liked successfully.');
-    } else {
-      showToast(isAr ? 'تم إلغاء الإعجاب بالمقال' : 'Like removed');
-    }
-
-    fetch(`/api/articles/stats/${articleId}/like`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ unlike: !newLikedState })
-    }).catch(() => {});
   };
 
   // Toggle Bookmark Handler
