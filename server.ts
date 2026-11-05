@@ -205,15 +205,16 @@ async function startServer() {
 
     const fallbackXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://xn--mgblao3hjb.store/</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/about</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/privacy</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/terms</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/contact</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/blog/mindful-financial-intelligence-wealth-preservation-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/blog/sterling-silver-925-jewelry-preservation-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/blog/digital-products-business-freelance-saudi-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://xn--mgblao3hjb.store/blog/ipad-goodnotes-digital-planner-mastery-eeat-2026</loc><lastmod>2026-10-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/hanan-store-lifestyle-productivity-silver-mastery-2026</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/about</loc><lastmod>2026-11-05</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/privacy</loc><lastmod>2026-11-05</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/terms</loc><lastmod>2026-11-05</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/contact</loc><lastmod>2026-11-05</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/mindful-financial-intelligence-wealth-preservation-2026</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/sterling-silver-925-jewelry-preservation-eeat-2026</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/digital-products-business-freelance-saudi-eeat-2026</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xn--mgblao3hjb.store/blog/ipad-goodnotes-digital-planner-mastery-eeat-2026</loc><lastmod>2026-11-05</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
 </urlset>`;
     return res.status(200).send(fallbackXml);
   });

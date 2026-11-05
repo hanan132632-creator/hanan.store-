@@ -4,7 +4,15 @@
   <!-- 1. Homepage & Primary Domain -->
   <url>
     <loc>https://xn--mgblao3hjb.store/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Flagship Editorial Article -->
+  <url>
+    <loc>https://xn--mgblao3hjb.store/blog/hanan-store-lifestyle-productivity-silver-mastery-2026</loc>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
