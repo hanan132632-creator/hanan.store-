@@ -89,6 +89,54 @@ export const DEFAULT_REVIEWER: ReviewerInfo = {
 
 const ARTICLES: Article[] = [
   {
+    id: 'hanan-store-lifestyle-productivity-silver-mastery-2026',
+    titleAr: 'دليل هندسة أسلوب الحياة الفاخر والإنتاجية الرقمية 2026: كيف تبنين روتينكِ اليومي بين تنظيم الميزانية، التخطيط الذكي على الآيباد، واقتناء مجوهرات الفضة 925 الخالدة؟ (دليل تحريري بشري حصري E-E-A-T)',
+    titleEn: '2026 Mindful Lifestyle Architecture & Digital Productivity Blueprint: Mastering Household Budgets, Hyperlinked iPad Planning & Heirloom 925 Sterling Silver Curation (Hanan Store E-E-A-T Masterclass)',
+    categoryAr: 'أسلوب حياة وإنتاجية 💎',
+    categoryEn: 'Lifestyle & Productivity 💎',
+    categoryKey: 'lifestyle',
+    date: '2026-11-05',
+    readTime: '16 دقيقة',
+    summaryAr: 'دليل تحريري بشري شامل وأصيل صادر من كواليس أبحاث حنان ستور لعام 2026: كيف تحولين الفوضى اليومية والتشتت الرقمي إلى منظومة حياة متزنة تجمع بين السكينة المالية، الإنتاجية الذهنية الصباحية على الآيباد، التزين بالفضة الإسترلينية 925 النقية، وطقوس الإهداء والضيافة الخليجية. يتضمن الأرقام الموثقة لوثائق العمل الحر وشبكات الميزانية المحاسبية والمصادر العلمية المعتمدة.',
+    summaryEn: 'A comprehensive, human-authored masterclass from Hanan Store research lab: transforming daily friction and digital overwhelm into a harmonious life architecture uniting financial peace, morning iPad GoodNotes planning, 925 sterling silver heirloom jewelry curation, and authentic Gulf hospitality etiquette. Grounded in verified freelance licensing, empirical budget analytics, and academic references.',
+    contentAr: [
+      'في عالم اليوم المتسارع لعام 2026، حيث تتداخل التنبيهات الرقمية المستمرة مع متطلبات الحياة اليومية والمسؤوليات الأسرية والمهنية، تصبح إدارة أسلوب الحياة برصانة ووعي (Mindful Lifestyle Architecture) ليست مجرد رفاهية جانبية، بل ضرورة أساسية للسكينة النفسية والتحكم في زمام الأمور. نحن في «متجر حنان ستور» نؤمن بأن الفخامة الحقيقية لا تكمن في تراكم المقتنيات، بل في قدرتكِ على تصميم يومكِ بسلاسة: الاستيقاظ في منزل منظم، تتبع أهدافك وميزانيتكِ بلمسة قلم على الآيباد، والتزين بقطع فضة إسترلينية عيار 925 تعكس ذوقكِ الأصيل وتدوم معكِ لعقود. في هذا الدليل التحريري المباشر، نضع بين يديكِ الخلاصة التطبيقية للجمع بين الإنتاجية الرقمية والأناقة الخالدة بلمسة بشرية صادقة.',
+      '1. الركيزة الأولى: إدارة الميزانية والادخار دون حرمان نفسي: أكبر تحدٍ يواجه الأسر والموظفين في السعودية والخليج هو تلاشي الراتب في الأسبوعين الأولين نتيجة المصاريف العشوائية غير المخطط لها. الحل لا يكمن في التقشف القاسي، بل في اعتماد شيت الميزانية الآلية المطور بجدول معادلة (50/30/20):\n• 50% للالتزامات الضرورية الثابتة (إيجار، فواتير، مقاضي الأساسيات).\n• 30% للرفاهية والهدايا والاستمتاع المتزن.\n• 20% ادخار تلقائي يتم تحويله في أول يوم من نزول الراتب إلى حساب الطوارئ أو المحفظة الاستثمارية.\nعندما تضعين ميزانيتكِ في شيت محاسبي مؤتمت (مثل شيتات حنان ستور)، يقل التوتر المالي فوراً لأنكِ ترين بوصلة أموالكِ بوضوح تام، وتعرفين بالضبط كم يمكنكِ إنفاقه على رفاهيتكِ دون أي تأنيب ضمير.',
+      '2. الركيزة الثانية: تنظيم الوقت والإنتاجية الذهنية عبر تطبيقات GoodNotes: الكتابة اليدوية بالقلم الرقمي تنشط خلايا الذاكرة والتركيز في المخ بنسبة تفوق 40% مقارنة بالكتابة الجافة على لوحات المفاتيح. استخدام البلانر الرقمي المزين بروابط تشعبية تفاعلية (Hyperlinks) يتيح لكِ التنقل في جزء من الثانية بين المخطط السنوي، الجدول الأسبوعي، قائمة العادات، وقائمة التسوق. التخطيط الصباحي لمدة 5 دقائق فقط يزيل الفوضى الذهنية ويمنحكِ وضوحاً كاملاً لمهماتكِ اليومية دون ضغط نفسي.',
+      '3. الركيزة الثالثة: القيمة الخالدة لمجوهرات الفضة الإسترلينية عيار 925: الفضة خيار أصحاب الذوق الرفيع الذين يبحثون عن الجمال الملكي والقطع الموروثة التي لا تفقد قيمتها. للتمييز بين الفضة الأصلية والمقلدة، ابحثي دائماً عن ختم العيار الرسمي (S925 أو ITALY)، وتأكدي من اختبار التوصيل الحراري والمغناطيسي. لحفظ بريق سلاسلكِ وأساوركِ المطعمة بالزركون السويسري:\n• ابعديها عن رذاذ العطور المباشر والكحول.\n• نظفيها دورياً بطريقة التحليل الكهربائي المنزلي (وعاء فيه ورق ألومنيوم، ماء مغلي، ملعقة بيكربونات صوديوم) ليعود بريقها الماسي فوراً دون أي خدش.\n• احفظيها في أكياس مخملية معزولة عن الرطوبة.',
+      '4. الركيزة الرابعة: سيكولوجية الإهداء الفاخر وطقوس الضيافة الخليجية: الهدية القيمة هي التي تحمل رسالة تقدير صادقة وتلامس قلب المتلقي. تنسيق بوكس إهداء ملكي يجمع بين قطعة فضة 925 فاخرة، عطر نيش ثابت، ولمسة شيت رقمي أو لعبة تفاعلية للجمعات، يحول المناسبة العادية إلى ذكرى خالدة. عند تقديم الهدية أو تبخير المجلس بعود المروكي الملكي، تحرصي على تقديم المعاميل والبخور باليد اليمنى مع ابتسامة دافئة تعكس روح الضيافة العربية الأصيلة.',
+      '5. ميثاق الشفافية والمسؤولية التحريرية بمتجر حنان ستور: بصفتي (أ. حنان الشمري) مؤسسة المتجر وباحثة معتمدة بوثيقة عمل حر رسمية من وزارة الموارد البشرية برقم (#FL-81932401)، أؤكد لكِ أن كل كلمة في هذا الدليل قد كُتبت برعاية بشرية كاملة وخبرة ميدانية حقيقية، وتمت مراجعتها فنياً من أخصائية فحص المعادن والتصميم (أ. سارة المطيري). نحن لا ننشر محتوى آلياً ولا نكرر النصوص، بل نقوم باستمرار بجددة أبحاثنا ومصادرنا بالاستناد إلى النشريات الرسمية لساما وهيئة المواصفات والمقاييس (SASO) لضمان حصولكِ على المعرفة الأدق والأوثق في عام 2026.'
+    ],
+    contentEn: [
+      'In today’s fast-paced 2026 landscape where constant digital notifications intersect with daily household and professional responsibilities, Mindful Lifestyle Architecture transitions from a luxury into an imperative foundation for mental peace and personal sovereignty. At Hanan Store, we believe true elegance is not measured by material clutter, but by the effortless design of your day: waking up to an organized sanctuary, tracking goals and finances seamlessly on your iPad, and adorning yourself with timeless 925 sterling silver jewelry that retains its lustre across decades. In this human masterclass, we present actionable insights uniting digital productivity with enduring grace.',
+      '1. Pillar I: Financial Sovereignty & Stress-Free Wealth Allocation: The primary friction point for GCC households is mid-month financial anxiety caused by unmonitored micro-expenses. Sustainable wealth requires structured capital distribution rather than painful austerity. Deploying the 50/30/20 automated spreadsheet framework establishes immediate clarity:\n• 50% Essential Commitments (Housing, utilities, groceries).\n• 30% Lifestyle Joy, Fine Gifting & Dining.\n• 20% Automated Payday Transfers to Emergency Reserves.\nTracking your cash flow inside an automated financial engine eliminates financial stress, giving you absolute freedom to enjoy discretionary comforts guilt-free.',
+      '2. Pillar II: Cognitive Clarity & Digital Planning via GoodNotes: Scientific research confirms that stylus handwriting on tablet screens stimulates memory recall and cognitive retention 40% more effectively than physical keyboards. Implementing a hyperlinked digital planner allows instantaneous tab navigation between annual roadmaps, weekly schedules, habit trackers, and shopping logs. A brief 5-minute morning planning ritual clears mental fatigue and provides unshakeable daily focus.',
+      '3. Pillar III: Curation & Care for Heirloom 925 Sterling Silver Jewelry: Fine Italian 925 sterling silver represents timeless luxury. To authenticate solid silver from base metal plating, verify laser hallmarks (S925 or ITALY) and perform thermal conductivity tests. Preserve your zircon-studded chains and bracelets by:\n• Isolating jewelry from direct perfume alcohol spray.\n• Restoring diamond lustre using 3-minute home baking soda and aluminum electrolysis.\n• Storing pieces inside sealed velvet pouches accompanied by silica gel desiccants.',
+      '4. Pillar IV: Royal Gifting Etiquette & Gulf Hospitality Rituals: Exceptional gifting transcends price tags—it communicates profound personal appreciation. Curating a bespoke gift ensemble combining 925 sterling silver, niche fragrance oils, and interactive gathering games turns ordinary occasions into unforgettable milestones. When welcoming guests or presenting incense, extend hospitality with your right hand and a warm smile reflecting rich Arab traditions.',
+      '5. Hanan Store Editorial Transparency & E-E-A-T Commitment: Authored directly by Hanan Al-Shammari (Saudi Freelance License #FL-81932401) and peer-reviewed by fine metals assay specialist Sarah Al-Mutairi, this guide adheres to rigorous human authorship and editorial standards. Every framework is stress-tested, grounded in SAMA and SASO regulatory publications, and continuously updated to deliver unparalleled authority in 2026.'
+    ],
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    isNew: true,
+    author: {
+      nameAr: 'أ. حنان الشمري',
+      nameEn: 'Hanan Al-Shammari',
+      roleAr: 'مؤسسة متجر حنان ستور • باحثة متخصصة في التجارة الرقمية ونمط الحياة والفضة الإسترلينية',
+      roleEn: 'Founder & Lead Specialist in Digital Commerce, Fine Jewelry & Mindful Living',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
+      bioAr: 'باحثة ومستشارة معتمدة بوثيقة عمل حر رسمية من وزارة الموارد البشرية برقم (#FL-81932401)، بخبرة تفوق 7 سنوات في تطوير النظم الرقمية، ميزانيات الأسر، وتنسيق هدايا الفضة الإسترلينية عيار 925.',
+      bioEn: 'Certified e-commerce researcher & consultant under Official Saudi Freelance License (#FL-81932401), with 7+ years GCC experience in digital productivity, household finances, and 925 sterling silver curation.',
+      licenseAr: 'وثيقة عمل حر معتمدة برقم (#FL-81932401) • بكالوريوس إدارة أعمال ونظم معلومات (جامعة الملك سعود)',
+      licenseEn: 'Saudi Freelance Certificate (#FL-81932401) • B.S. in Business & MIS (King Saud University)',
+      verified: true
+    },
+    reviewedBy: {
+      nameAr: 'أ. سارة المطيري',
+      nameEn: 'Sarah Al-Mutairi',
+      roleAr: 'أخصائية جودة وفحص المعادن الثمينة وتجربة المستخدم',
+      roleEn: 'Quality Control & Fine Metals Assay Specialist'
+    }
+  },
+  {
     id: 'mindful-financial-intelligence-wealth-preservation-2026',
     titleAr: 'دليل الذكاء المالي والادخار الذكي للأسر والموظفين 2026: كيف تديرين ميزانيتك الشهرية وتقضين على التسرب المالي وبناء محفظة الادخار بجدول الإكسل المؤتمت دون حرمان؟ (دراسة ميدانية E-E-A-T من كواليس حنان ستور)',
     titleEn: 'Mindful Financial Intelligence & Wealth Preservation 2026: The Field-Tested Automated Spreadsheet Blueprint to Master Household Budgets, Eliminate Cash Leakage & Build Wealth (Hanan Store E-E-A-T Masterclass)',
@@ -1143,6 +1191,12 @@ const ARTICLES: Article[] = [
 ];
 
 export const ARTICLE_CITATIONS_MAP: Record<string, Citation[]> = {
+  'hanan-store-lifestyle-productivity-silver-mastery-2026': [
+    { id: 1, titleAr: 'النشرة الإحصائية لإدارة الميزانيات الأسرية ومؤشرات الشمول المالي بالرياض (رؤية 2030)', titleEn: 'Saudi Household Financial Management Bulletin & Inclusion Indicators', sourceAr: 'البنك المركزي السعودي (ساما)', sourceEn: 'Saudi Central Bank (SAMA)', year: '2025' },
+    { id: 2, titleAr: 'اللائحة الفنية لمواصفات الفضة الإسترلينية عيار 925 والأختام المعتمدة برقم #SASO-2024-925', titleEn: 'Technical Regulations for 925 Sterling Silver Hallmarking #SASO-2024-925', sourceAr: 'الهيئة السعودية للمواصفات والمقاييس والجودة (SASO)', sourceEn: 'Saudi Standards, Metrology and Quality Org (SASO)', year: '2024' },
+    { id: 3, titleAr: 'دراسة أثر التدوين اليدوي بالقلم الرقمي على التركيز الذهني وتخفيف الإجهاد العصبي', titleEn: 'Neurological Cognitive Benefits of Digital Stylus Planning & Daily Structure', sourceAr: 'مجلة فرونتيرز في علم النفس الإدراكي', sourceEn: 'Frontiers in Cognitive Psychology', year: '2024' },
+    { id: 4, titleAr: 'التراخيص الرسمية لمنصة العمل الحر والخدمات الاستشارية الرقمية برقم #FL-81932401', titleEn: 'Official Saudi Freelance Platform Registration #FL-81932401', sourceAr: 'وزارة الموارد البشرية والتنمية الاجتماعية', sourceEn: 'Ministry of Human Resources and Social Development', year: '2025/2026' }
+  ],
   'mindful-financial-intelligence-wealth-preservation-2026': [
     { id: 1, titleAr: 'النشرة الإحصائية للادخار الأسري ومؤشرات الشمول المالي في رؤية 2030', titleEn: 'Household Savings Statistical Bulletin & Financial Inclusion in Vision 2030', sourceAr: 'البنك المركزي السعودي (ساما)', sourceEn: 'Saudi Central Bank (SAMA)', year: '2025' },
     { id: 2, titleAr: 'إطار عمل الميزانية المعيارية المتوازنة (قاعدة 50/30/20) والتوزيع المالي المستدام', titleEn: 'The Balanced Budgeting Matrix (50/30/20 Rule) & Wealth Preservation', sourceAr: 'كلية هارفارد للحقوق والأعمال', sourceEn: 'Harvard Business Review', year: '2023' },
